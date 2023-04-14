@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "923172081312-9i45te3510lto9carhd8sakoojuf4lcn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hestia_23",
+            "certificate_hash": "4abec5cd6ed0e3d0d2287dd0d5b409d6ecb9a9ca"
+          }
+        },
+        {
           "client_id": "923172081312-rrb8tlcsc13amnfkbdubl314r11sqbrh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
