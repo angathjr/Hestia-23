@@ -28,12 +28,13 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       home: ProfileCompletion(),
       getPages: [
-        GetPage(name: '/', page: () => EventDetailsScreen()),
-        //  storage.hasData('authToken')
-        //     ? storage.read('isComplete') ?? false
-        //         ? HomeScreen()
-        //         : const ProfileCompletion()
-        //     : LoginScreen()),
+        GetPage(
+            name: '/',
+            page: () => storage.hasData('authToken')
+                ? storage.read('isComplete') ?? false
+                    ? HomeScreen()
+                    : ProfileCompletion()
+                : LoginScreen()),
         // GetPage(name: '/posts', page: () => PostsScreen()),
         GetPage(name: '/login', page: () => LoginScreen()),
       ],
