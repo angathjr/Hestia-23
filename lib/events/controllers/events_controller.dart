@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../core/api_provider.dart';
+import '../../core/api_provider.dart';
 import '../models/event.dart';
 
 class EventsController extends GetxController {

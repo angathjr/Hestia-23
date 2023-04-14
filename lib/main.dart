@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:hestia_23/views/profile_completion_screen.dart';
-import './views/login_screen.dart';
-import 'views/home_screen.dart';
-
+import 'package:hestia_23/profile/views/profile_completion_screen.dart';
+import 'auth/views/login_screen.dart';
 import 'getx_di.dart';
+import './home/views/home_screen.dart';
+
 
 void main() async {
   GetXDependancyInjector().onInit();
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       enableLog: true,
-      title: 'Flutter Demo',
+      title: 'Hestia 23',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
             page: () => storage.hasData('authToken')
                 ? storage.read('isComplete') ?? false
                     ? HomeScreen()
-                    : ProfileCompletion()
+                    : const ProfileCompletion()
                 : LoginScreen()),
         // GetPage(name: '/posts', page: () => PostsScreen()),
         GetPage(name: '/login', page: () => LoginScreen()),

@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import '../core/api_provider.dart';
-import '../core/api_provider_no_auth.dart';
+import '../../core/api_provider.dart';
+import '../../core/api_provider_no_auth.dart';
 import '../models/user.dart';
 
 class AuthController extends GetxController {
