@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
-import 'package:hestia_23/controllers/events_controller.dart';
+import 'package:hestia_23/events/controllers/events_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});

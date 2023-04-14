@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "923172081312-rrb8tlcsc13amnfkbdubl314r11sqbrh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hestia_23",
+            "certificate_hash": "f84ca631e79fc5e5e9557a4954f34bd9fcd51076"
+          }
+        },
+        {
           "client_id": "923172081312-72oimh67ua00856280jbud202453b825.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -51,6 +59,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "923172081312-7dualk47qpsh6kn5pheb9o4aljkjbvja.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hestia_app",
+            "certificate_hash": "f84ca631e79fc5e5e9557a4954f34bd9fcd51076"
+          }
+        },
         {
           "client_id": "923172081312-q3f0so50jpuct5pn6b0l0sp7uds0gqg4.apps.googleusercontent.com",
           "client_type": 1,
