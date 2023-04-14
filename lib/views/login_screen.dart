@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hestia_23/controllers/auth_controller.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
+
+  final AuthController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ElevatedButton(onPressed: () {}, child: const Text('Sign-In')),
+        child: ElevatedButton(
+            onPressed: () => controller.handleSignIn(),
+            child: const Text('Sign-In')),
       ),
     );
   }

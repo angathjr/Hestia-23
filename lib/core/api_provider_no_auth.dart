@@ -2,30 +2,19 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:get_storage/get_storage.dart';
 
-class ApiProvider extends GetConnect {
+class ApiProviderNoAuth extends GetConnect {
   // Get request
   Future<Response> getApi(String url) => get(url);
   // Post request
   Future<Response> postApi(String url, Map data) => post(url, data);
-  // Put request
-  Future<Response> putApi(String url, Map data) => put(url, data);
-  // patch request
-  Future<Response> patchApi(String url, Map data) => patch(url, data);
-  // delete request
-  Future<Response> deleteApi(String url, Map data) => delete(url);
 
   @override
   void onInit() {
     final storage = GetStorage();
-
-    // Request Modifier
     httpClient.addRequestModifier<dynamic>((request) {
-      //add header
-      final token = storage.read('authToken');
-      log('AuthTOken: $token');
-      request.headers['Authorization'] = "token $token";
       log(request.headers.toString());
       log(request.url.toString());
       return request;
@@ -33,7 +22,7 @@ class ApiProvider extends GetConnect {
 
     httpClient.baseUrl = 'https://backend.hestiatkmce.live';
 
-    // Response Modifiers
+    // It's will attach 'apikey' property on header from all requests
     httpClient.addResponseModifier((request, response) {
       debugPrint(
         '${response.body}',

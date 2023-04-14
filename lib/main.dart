@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hestia_23/views/profile_completion_screen.dart';
 import './views/login_screen.dart';
 import 'views/home_screen.dart';
 
@@ -24,14 +25,18 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/',
-      home: LoginScreen(),
-      // getPages: [
-      //   GetPage(
-      //       name: '/',
-      //       page: () => storage.hasData('user') ? HomeScreen() : LoginScreen()),
-      // GetPage(name: '/posts', page: () => PostsScreen()),
-      //   GetPage(name: '/login', page: () => LoginScreen()),
-      // ],
+      // home: LoginScreen(),
+      getPages: [
+        GetPage(
+            name: '/',
+            page: () => storage.hasData('authToken')
+                ? storage.read('isComplete') ?? false
+                    ? HomeScreen()
+                    : ProfileCompletion()
+                : LoginScreen()),
+        // GetPage(name: '/posts', page: () => PostsScreen()),
+        GetPage(name: '/login', page: () => LoginScreen()),
+      ],
     );
   }
 }
