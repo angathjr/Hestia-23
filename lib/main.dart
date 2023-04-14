@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           useMaterial3: true,
           scaffoldBackgroundColor: Colors.black,
-          appBarTheme: AppBarTheme(color: Colors.white)),
+          appBarTheme: AppBarTheme(color: Colors.black)),
       initialRoute: '/',
       // home: LoginScreen(),
       getPages: [

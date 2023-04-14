@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
 
 class EventDetailsScreen extends StatelessWidget {
-  const EventDetailsScreen({Key? key}) : super(key: key);
+  EventDetailsScreen({Key? key}) : super(key: key);
+
+  final controller = Get.put(ScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +17,9 @@ class EventDetailsScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(width * 0.02),
+            padding: EdgeInsets.all(width * 0.04),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //The poster will be placed here
 
@@ -23,7 +27,7 @@ class EventDetailsScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   child: SizedBox(
                     width: width,
-                    height: height * 0.5,
+                    height: height * 0.47,
                     child: Image.asset(
                       "assets/images/poster.png",
                       fit: BoxFit.fill,
@@ -155,14 +159,81 @@ class EventDetailsScreen extends StatelessWidget {
                           ))
                     ],
                   ),
+                ),
+                SizedBox(height: height * 0.03),
+                Text(
+                  "ABOUT",
+                  style: FutTheme.font5.copyWith(fontSize: height * 0.026),
+                ),
+                SizedBox(
+                  height: height * 0.015,
+                ),
+                Obx(
+                  () => Stack(
+                    alignment: AlignmentDirectional.bottomEnd,
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                            " Lorem Ipsum has been the industry's standard dummy text ever since the"
+                            "1500s, when an unknown printer took a galley of type and scrambled it to "
+                            "make a type specimen book. It has survived not only five centuries, but also"
+                            " the leap into electronic typesetting, remaining essentially unchanged. It was "
+                            "popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,"
+                            " and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+                            style: FutTheme.font4
+                                .copyWith(fontSize: height * 0.018),
+                            maxLines:
+                                controller.isReadMore.value == false ? 3 : null,
+                            overflow: TextOverflow.fade,
+                            textAlign: TextAlign.justify,
+                          ),
+                          Container(
+                            height: height * 0.02,
+                          //  color: Colors.red,
+                          ),
+                        ],
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          controller.readMore();
+                        },
+                        child: Container(
+                            height: width * 0.1,
+                            width: width * 0.1,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.grey.shade100.withOpacity(0.2),
+                            ),
+                            child: RotatedBox(
+                                quarterTurns: controller.isReadMore.value?3:1,
+                                child: const Icon(Icons.double_arrow_sharp))),
+                      )
+                    ],
+                  ),
+                ),
 
-
-                )
+                Text(
+                  "CONTACT",
+                  style: FutTheme.font5.copyWith(fontSize: height * 0.026),
+                ),
+                SizedBox(
+                  height: height * 0.02,
+                ),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+}
+
+class ScreenController extends GetxController {
+  var isReadMore = false.obs;
+
+  void readMore() {
+    isReadMore.value = !isReadMore.value;
   }
 }
