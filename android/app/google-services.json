@@ -23,11 +23,27 @@
           }
         },
         {
+          "client_id": "923172081312-6pd2ts7jj7tlme35t4scbnuaero8m0b5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hestia_23",
+            "certificate_hash": "9840cfdce7218afcb11e4331d8538b078aad8959"
+          }
+        },
+        {
           "client_id": "923172081312-rrb8tlcsc13amnfkbdubl314r11sqbrh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.hestia_23",
             "certificate_hash": "f84ca631e79fc5e5e9557a4954f34bd9fcd51076"
+          }
+        },
+        {
+          "client_id": "923172081312-u418bbtsveoltv9bo49tk4sn3esho4h5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hestia_23",
+            "certificate_hash": "265cc133b92489cd94cc3d6034d684b8ac5b23e8"
           }
         },
         {
