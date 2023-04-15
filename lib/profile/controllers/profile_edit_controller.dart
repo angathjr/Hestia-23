@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hestia_23/auth/controllers/auth_controller.dart';
+import 'package:hestia_23/auth/models/user.dart';
 import 'package:hestia_23/core/api_provider.dart';
 
 class ProfileEditController extends GetxController {
@@ -11,6 +13,7 @@ class ProfileEditController extends GetxController {
   var phoneNumber = ''.obs;
   var college = ''.obs;
   var department = ''.obs;
+  late UserModel user;
 
   var nameError = ''.obs;
   var phoneNumberError = ''.obs;
@@ -21,8 +24,6 @@ class ProfileEditController extends GetxController {
   TextEditingController phoneController = TextEditingController();
   TextEditingController collegeController = TextEditingController();
   TextEditingController departmentController = TextEditingController();
-
-  String? validate() {}
 
   void save() async {
     if (nameController.text.isEmpty) {
@@ -60,23 +61,40 @@ class ProfileEditController extends GetxController {
       departmentError.value = '';
     }
 
-    // TODO: API INTEGRATION
-    // final response = await api.putApi(url, data);
+    //! API INTEGRATION
+    user = user.copyWith(
+        phoneNumber: '+91${phoneController.text.trim()}',
+        name: nameController.text.trim(),
+        collegeName: collegeController.text.trim(),
+        deptName: departmentController.text.trim(),
+        isCompleted: true);
 
-    // TODO: USER CACHING
+    final response =
+        await api.putApi('/api/users/${user.username}/', user.toJson());
 
-    // TODO: logout
+    if (response.statusCode == 200) {
+      await _storage.write('user', user.toJson());
+      await _storage.write('isComplete', true);
+      print(_storage.read('isComplete'));
+      Get.offAllNamed('/');
+    } else {
+      Get.snackbar(
+        'Error has occured',
+        '${response.body}',
+        colorText: Colors.white,
+      );
+    }
   }
 
   @override
   void onInit() {
     super.onInit();
 
-    final user = _storage.read('user');
-    nameController = TextEditingController(text: user['name']);
-    phoneController = TextEditingController(text: user['phoneNumber']);
-    collegeController = TextEditingController(text: user['college_name']);
-    departmentController = TextEditingController(text: user['dept_name']);
+    user = userModelFromJson(_storage.read('user'));
+    nameController = TextEditingController(text: user.name);
+    phoneController = TextEditingController(text: user.phoneNumber);
+    collegeController = TextEditingController(text: user.collegeName);
+    departmentController = TextEditingController(text: user.deptName);
   }
 
   @override

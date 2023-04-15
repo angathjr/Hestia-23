@@ -13,7 +13,7 @@ class GetXDependancyInjector {
     Get.put(ApiProviderNoAuth());
     Get.put(AuthController());
     Get.put(GetStorage());
-    Get.lazyPut(() => EventsController());
+    Get.lazyPut(() => EventsController(), fenix: true);
     Get.lazyPut(() => ProfileEditController(), fenix: true);
   }
 }

@@ -20,7 +20,8 @@ class AuthController extends GetxController {
   }
 
   void signout() async {
-    await _storage.remove('authToken');
+    await _googleSignIn.signOut();
+    await _storage.erase();
     Get.toNamed('/login');
   }
 
@@ -28,8 +29,6 @@ class AuthController extends GetxController {
     try {
       final result = await _googleSignIn.signIn();
       final auth = await result!.authentication;
-
-      log(auth.accessToken.toString());
 
       Map data = {'access_token': auth.accessToken};
       final response = await apiNoAuth.postApi('/users/google/', data);
@@ -40,9 +39,6 @@ class AuthController extends GetxController {
       await _storage.write('authToken', apiToken);
 
       final Response userResponse = await api.getApi('/api/users/');
-      // log(user.body['results'][0].toString());
-
-      // if (user.body['results'][0]['is_completed']) ;
 
       final UserModel userModel =
           userModelFromJson(userResponse.body['results'][0]);
@@ -54,7 +50,7 @@ class AuthController extends GetxController {
       } else {
         _storage.write('isComplete', false);
       }
-
+      
       Get.offAllNamed('/');
     } catch (error) {
       print(error);

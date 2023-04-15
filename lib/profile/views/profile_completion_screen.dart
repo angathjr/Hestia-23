@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hestia_23/auth/controllers/auth_controller.dart';
 
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/profile/controllers/profile_edit_controller.dart';
@@ -9,6 +10,7 @@ class ProfileCompletion extends StatelessWidget {
   ProfileCompletion({super.key});
 
   final ProfileEditController profileEditController = Get.find();
+  final AuthController authController = Get.find();
 
   Widget gap() => const SizedBox(
         height: 20,
@@ -75,6 +77,7 @@ class ProfileCompletion extends StatelessWidget {
                   children: [
                     const Spacer(),
                     GestureDetector(
+                      onTap: () => authController.signout(),
                       child: Container(
                         margin: const EdgeInsets.only(right: 20),
                         padding: const EdgeInsets.symmetric(

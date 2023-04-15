@@ -23,10 +23,12 @@ class MyApp extends StatelessWidget {
       title: 'Hestia 23',
       theme: ThemeData(
           useMaterial3: true,
+          brightness: Brightness.dark,
           scaffoldBackgroundColor: Colors.black,
+          // primaryColor: Colors.white,
           appBarTheme: AppBarTheme(color: Colors.black)),
       initialRoute: '/',
-      home: ProfileCompletion(),
+      // home: ProfileCompletion(),
       getPages: [
         GetPage(
             name: '/',
