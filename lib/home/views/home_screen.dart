@@ -1,12 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
 
-import 'Event_Category_Card.dart';
+import 'event_category_card.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -16,77 +14,93 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('HomeScreen'),
-        actions: [
-          IconButton(
-              onPressed: () => authController.signout(),
-              icon: Icon(Icons.logout)),
-        ],
-      ),
-      body: Obx(
-        () => ListView.builder(
-          itemCount: eventController.events.length,
-          itemBuilder: (context, index) =>
-              Text(eventController.events[index].title),
-        ),
+      body: Scaffold(
+        body: SafeArea(
+            child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              title: Image.asset(
+                "assets/images/mascot.png",
+                scale: 2.2,
+              ),
+            ),
+            SliverPadding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+                sliver: SliverList(
+                  delegate: SliverChildListDelegate([
+                    Stack(
+                      children: [
+                        //The background image is placed here
+                        SizedBox(
+                          width: double.infinity,
+                          height:  height,
+                          child: Image.asset(
+                            'assets/images/bg.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+
+                        //other stack elements
+
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
+                            SizedBox(
+                              width: width,
+                              child: Image.asset("assets/images/story2.png"),
+                            ),
+                            SizedBox(
+                              height: height * 0.05,
+                            ),
+
+                            //the category screen placed here
+
+                            SizedBox(
+                              height: height * 0.5,
+                              width: width,
+                              child:
+
+                              CarouselSlider.builder(
+                                itemCount: 5,
+                                itemBuilder: (BuildContext context, int index,
+                                    int realIndex) {
+                                  return const CategoryCard();
+                                },
+                                options: CarouselOptions(
+                                 // autoPlay: true,
+                                  autoPlayCurve: Curves.linearToEaseOut,
+                                  height: height*0.46,
+                                  viewportFraction: 0.72,
+                                  enlargeCenterPage: true
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.1,
+                            ),
+                            SizedBox(
+                              width: width,
+                              child: Image.asset("assets/images/leader.png"),
+                            ),
+                            SizedBox(
+                              height: height * 0.4,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ]),
+                ))
+          ],
+        )),
       ),
     );
   }
 }
 
-//Event_Category
-
-class EventCategory extends StatelessWidget {
-  const EventCategory({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    var w = MediaQuery.of(context).size.width;
-    var h = MediaQuery.of(context).size.height;
-    var cardh = 0.49 * h;
-    var cardw = 0.55 * w;
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Align(
-          alignment: Alignment.center,
-          child: CarouselSlider(
-            options: CarouselOptions(
-                height: cardh, viewportFraction: 0.6, enlargeCenterPage: true),
-            items: [
-              CardEvents(
-                  cardh: cardh,
-                  cardw: cardw,
-                  w: w,
-                  imgurl: "assets/Eventcategory1.png",
-                  eventcat: "Category"),
-              CardEvents(
-                  cardh: cardh,
-                  cardw: cardw,
-                  w: w,
-                  imgurl: "assets/Eventcategory1.png",
-                  eventcat: "Category"),
-              CardEvents(
-                  cardh: cardh,
-                  cardw: cardw,
-                  w: w,
-                  imgurl: "assets/Eventcategory1.png",
-                  eventcat: "Category"),
-              CardEvents(
-                  cardh: cardh,
-                  cardw: cardw,
-                  w: w,
-                  imgurl: "assets/Eventcategory1.png",
-                  eventcat: "Category"),
-              CardEvents(
-                  cardh: cardh,
-                  cardw: cardw,
-                  w: w,
-                  imgurl: "assets/Eventcategory1.png",
-                  eventcat: "Category"),
-            ],
-          )),
-    );
-  }
-}
