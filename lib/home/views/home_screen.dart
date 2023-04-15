@@ -33,11 +33,14 @@ class HomeScreen extends StatelessWidget {
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(25, 40, 0, 0),
+            padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
             child: Column(
               children: [
                 Row(
                   children: [
+                    SizedBox(
+                      width: _width / 20,
+                    ),
                     GestureDetector(
                       onTap: () {
                         Get.to(ProfileCompletion());
@@ -50,17 +53,51 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 40, 0, 40),
-                  child: Text(
-                    "Hello User , Welcome \nTo Hestia 23",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                    ),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: _width / 15,
+                          ),
+                          Text(
+                            "Hello User , Welcome ",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 25,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: _width / 15,
+                          ),
+                          Text(
+                            "To ",
+                            style: TextStyle(color: Colors.white, fontSize: 25),
+                          ),
+                          Text(
+                            "Hestia 23",
+                            style: TextStyle(
+                                color: Colors.greenAccent, fontSize: 25),
+                          )
+                        ],
+                      )
+                    ],
                   ),
                 ),
-                Text(
-                  "STORIES",
-                  style: TextStyle(color: Colors.white, fontSize: 15),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: _width / 20,
+                    ),
+                    Text(
+                      "STORIES",
+                      style: TextStyle(color: Colors.white, fontSize: 15),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   width: double.infinity,
@@ -75,10 +112,21 @@ class HomeScreen extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                               color: Colors.grey[800],
-                              borderRadius: BorderRadius.circular(20)),
+                              borderRadius: BorderRadius.circular(15)),
                           width: _width / 3.5,
                           height: _height / 5,
-                          child: Text("hello"),
+                          child: Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Padding(
+                              padding: EdgeInsets.all(4),
+                              child: Text(
+                                "username ",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                       );
                     },
