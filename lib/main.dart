@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
                     : ProfileCompletion()
                 : LoginScreen()),
         // GetPage(name: '/posts', page: () => PostsScreen()),
-        GetPage(name: '/login', page: () => LoginScreen()),
+        GetPage(name: '/login', page: () => HomeScreen()),
       ],
     );
   }
