@@ -23,10 +23,23 @@ class FutTheme {
 
   static TextStyle font5 = GoogleFonts.poppins(
       fontWeight: FontWeight.w700, color: const Color(0xffDEFD72));
+
+  static TextStyle font5 = GoogleFonts.poppins(
+      fontWeight: FontWeight.w700, color: const Color(0xffDEFD72));
+
+  static TextStyle font6 =
+      GoogleFonts.georama(fontWeight: FontWeight.w600, color: Colors.white);
+
+  static TextStyle mFont = GoogleFonts.montserrat(
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+  );
 }
 
 class ThemeColor {
   static const color1 = Color.fromRGBO(123, 126, 130, 1);
+  static TextStyle font4 = GoogleFonts.oxanium(
+      fontWeight: FontWeight.w300, color: const Color(0xffBCBCBC));
   static TextStyle font4 = GoogleFonts.oxanium(
       fontWeight: FontWeight.w300, color: const Color(0xffBCBCBC));
 }
