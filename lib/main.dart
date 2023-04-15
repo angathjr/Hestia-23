@@ -6,7 +6,6 @@ import 'auth/views/login_screen.dart';
 import 'getx_di.dart';
 import './home/views/home_screen.dart';
 
-
 void main() async {
   GetXDependancyInjector().onInit();
   await GetStorage.init();
@@ -36,6 +35,7 @@ class MyApp extends StatelessWidget {
                 : LoginScreen()),
         // GetPage(name: '/posts', page: () => PostsScreen()),
         GetPage(name: '/login', page: () => LoginScreen()),
+        GetPage(name: '/profile', page: () => ProfileCompletion()),
       ],
     );
   }
