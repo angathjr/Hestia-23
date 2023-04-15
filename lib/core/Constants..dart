@@ -28,4 +28,14 @@ class FutTheme {
 
   );
 
+  static TextStyle font6=GoogleFonts.georama(
+    fontWeight: FontWeight.w600,
+    color: Colors.white
+  );
+
+  static  TextStyle mFont=GoogleFonts.montserrat(
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+  );
+
 }

@@ -20,6 +20,9 @@ class EventDetailsScreen extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           slivers: [
             SliverAppBar(
+              pinned: false,
+              floating: true,
+              snap: true,
               titleSpacing: 20,
               title: Container(
                   width: width * 0.09,
