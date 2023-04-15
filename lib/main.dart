@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           scaffoldBackgroundColor: Colors.black,
           appBarTheme: AppBarTheme(color: Colors.white)),
-      initialRoute: '/',
+      initialRoute: '/login',
       // home: LoginScreen(),
       getPages: [
         GetPage(name: '/', page: () => EventDetailsScreen()),
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         //         : const ProfileCompletion()
         //     : LoginScreen()),
         // GetPage(name: '/posts', page: () => PostsScreen()),
-        GetPage(name: '/login', page: () => LoginScreen()),
+        GetPage(name: '/login', page: () => HomeScreen()),
       ],
     );
   }
