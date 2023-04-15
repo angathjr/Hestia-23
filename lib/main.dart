@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
+import 'package:hestia_23/events/views/events_screen.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 import 'auth/views/login_screen.dart';
 import 'getx_di.dart';
@@ -23,17 +24,20 @@ class MyApp extends StatelessWidget {
       title: 'Hestia 23',
       theme: ThemeData(
           useMaterial3: true,
+          brightness: Brightness.dark,
           scaffoldBackgroundColor: Colors.black,
-          appBarTheme: AppBarTheme(color: Colors.white)),
-      initialRoute: '/login',
-      // home: LoginScreen(),
+          // primaryColor: Colors.white,
+          appBarTheme: AppBarTheme(color: Colors.black)),
+      initialRoute: '/',
+      home: EventScreen(),
       getPages: [
-        GetPage(name: '/', page: () => EventDetailsScreen()),
-        //  storage.hasData('authToken')
-        //     ? storage.read('isComplete') ?? false
-        //         ? HomeScreen()
-        //         : const ProfileCompletion()
-        //     : LoginScreen()),
+        GetPage(
+            name: '/',
+            page: () => storage.hasData('authToken')
+                ? storage.read('isComplete') ?? false
+                    ? HomeScreen()
+                    : ProfileCompletion()
+                : LoginScreen()),
         // GetPage(name: '/posts', page: () => PostsScreen()),
         GetPage(name: '/login', page: () => HomeScreen()),
       ],

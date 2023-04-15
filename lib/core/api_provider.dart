@@ -46,21 +46,25 @@ class ApiProvider extends GetConnect {
   }
 
   dynamic errorHandler(Response response) {
-    log(response.statusCode.toString());
-    log(response.body.toString());
-    switch (response.statusCode) {
-      case 200:
-      case 201:
-      case 202:
-        var responseJson = response.body.toString();
-        return responseJson;
-      case 500:
-        throw "Server Error pls retry later";
-      case 403:
-        throw 'Invalid token header. No credentials provided.';
-      case 500:
-      default:
-        throw 'Error occurred retry';
+    try {
+      log(response.statusCode.toString());
+      log(response.body.toString());
+      // switch (response.statusCode) {
+      //   case 200:
+      //   case 201:
+      //   case 202:
+      //     var responseJson = response.body.toString();
+      //     return responseJson;
+      //   case 500:
+      //     throw "Server Error pls retry later";
+      //   case 403:
+      //     throw 'Invalid token header. No credentials provided.';
+      //   case 500:
+      //   default:
+      //     throw 'Error occurred retry';
+      // }
+    } catch (e) {
+      print(e);
     }
   }
 }

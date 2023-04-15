@@ -1,8 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // To parse this JSON data, do
 //
 //     final userModel = userModelFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 UserModel userModelFromJson(Map<String, dynamic> str) =>
@@ -60,4 +60,30 @@ class UserModel {
         "is_completed": isCompleted,
         "accommodation": accommodation,
       };
+
+  UserModel copyWith({
+    String? username,
+    String? phoneNumber,
+    String? name,
+    String? url,
+    String? email,
+    String? profileImage,
+    String? collegeName,
+    String? deptName,
+    bool? isCompleted,
+    bool? accommodation,
+  }) {
+    return UserModel(
+      username: username ?? this.username,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      name: name ?? this.name,
+      url: url ?? this.url,
+      email: email ?? this.email,
+      profileImage: profileImage ?? this.profileImage,
+      collegeName: collegeName ?? this.collegeName,
+      deptName: deptName ?? this.deptName,
+      isCompleted: isCompleted ?? this.isCompleted,
+      accommodation: accommodation ?? this.accommodation,
+    );
+  }
 }
