@@ -31,6 +31,14 @@ class FutTheme {
     fontWeight: FontWeight.bold,
     color: Colors.black,
   );
+
+  static TextStyle categoryFont=const TextStyle(
+    fontFamily: 'Azonix'
+  );
+
+  static TextStyle  font7= GoogleFonts.oxanium(
+
+  );
 }
 
 class ThemeColor {
