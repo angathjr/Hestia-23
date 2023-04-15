@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           // primaryColor: Colors.white,
           appBarTheme: AppBarTheme(color: Colors.black)),
       initialRoute: '/',
-      // home: ProfileCompletion(),
+      home: EventScreen(),
       getPages: [
         GetPage(
             name: '/',

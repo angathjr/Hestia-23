@@ -1,11 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
+import 'package:hestia_23/events/controllers/events_controller.dart';
 
 class EventScreen extends StatelessWidget {
-  const EventScreen({Key? key}) : super(key: key);
+  EventScreen({Key? key}) : super(key: key);
 
+  final EventsController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -39,14 +42,15 @@ class EventScreen extends StatelessWidget {
                 )),
           ),
           SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-            sliver: SliverList(
-                delegate: SliverChildListDelegate([
-              SizedBox(
-                height: height * 0.01,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate(
+                  [
+                    SizedBox(
+                      height: height * 0.01,
+                    ),
 
-                    //search bar
+                    //TODO: search needed to be implemented
 
                     Container(
                       height: height * 0.065,
@@ -59,32 +63,10 @@ class EventScreen extends StatelessWidget {
                       height: height * 0.03,
                     ),
 
-                    // we need to add the list of department here
+                    // list of department
 
-                    SizedBox(
-                      height: height * 0.048,
-                      child: ListView.builder(
-                          physics: const BouncingScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 11,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: EdgeInsets.only(right: width * 0.022),
-                              child: Container(
-                                alignment: Alignment.center,
-                                width: width * 0.35,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(33),
-                                    border: Border.all(
-                                        color: const Color(0xffFFD730))),
-                                child: Text(
-                                  "Department",
-                                  style: FutTheme.font6,
-                                ),
-                              ),
-                            );
-                          }),
-                    ),
+                    departmentSection(height, width),
+
                     SizedBox(
                       height: height * 0.02,
                     ),
@@ -106,6 +88,30 @@ class EventScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(33),
                               border:
                                   Border.all(color: const Color(0xffFFD730))),
+                          child:Obx(
+                            ()=>DropdownButtonHideUnderline(
+                              child: ButtonTheme(
+                                alignedDropdown: true,
+                                child: DropdownButton(
+                                  borderRadius: BorderRadius.circular(15),
+                                  isExpanded: true,
+                                  isDense: false,
+                                  value: controller.date.value,
+                                  elevation: 0,
+                                  items: EventsController.eventDates.map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                        return DropdownMenuItem(
+                                          value: value,
+                                          child: Text(value,style: FutTheme.font3.copyWith(fontSize: width*0.035)),
+                                        );
+                                      }).toList(),
+                                  onChanged: (value) {
+                                    controller.date.value= value!;
+                                  },
+                                ),
+                              ),
+                            ),
+                          )
                         )
                       ],
                     ),
@@ -199,6 +205,38 @@ class EventScreen extends StatelessWidget {
           )
         ],
       )),
+    );
+  }
+
+  SizedBox departmentSection(double height, double width) {
+    return SizedBox(
+      height: height * 0.048,
+      child: ListView.builder(
+          physics: const BouncingScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          itemCount: controller.departments.isEmpty
+              ? 5
+              : controller.departments.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: EdgeInsets.only(right: width * 0.022),
+              child: Obx(
+                () => Container(
+                  alignment: Alignment.center,
+                  width: width * 0.35,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(33),
+                      border: Border.all(color: const Color(0xffFFD730))),
+                  child: controller.departmentLoading.value == true
+                      ? Text(
+                          "${controller.departments[index].title?.toUpperCase()}",
+                          style: FutTheme.font6,
+                        )
+                      : const Text("....."),
+                ),
+              ),
+            );
+          }),
     );
   }
 }
