@@ -24,4 +24,9 @@ class FutTheme {
 
 class ThemeColor {
   static const color1 = Color.fromRGBO(123, 126, 130, 1);
+  static TextStyle font4 = GoogleFonts.oxanium(
+      fontWeight: FontWeight.w300, color: const Color(0xffBCBCBC));
+
+  static TextStyle font5 = GoogleFonts.poppins(
+      fontWeight: FontWeight.w700, color: const Color(0xffDEFD72));
 }
