@@ -70,6 +70,9 @@ class CategoryCard extends StatelessWidget {
               ),
             ),
           ),
+
+          //TODO : need to make new clips for the check it out
+
           Expanded(
               flex: 5,
               child: GestureDetector(
