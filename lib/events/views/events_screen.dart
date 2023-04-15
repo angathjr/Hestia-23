@@ -16,7 +16,7 @@ class EventScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: CustomScrollView(
-            physics: const BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         slivers: [
           //app bar
 
@@ -46,153 +46,157 @@ class EventScreen extends StatelessWidget {
                 height: height * 0.01,
               ),
 
-              //search bar
+                    //search bar
 
-              Container(
-                height: height * 0.065,
-                width: width,
-                decoration: BoxDecoration(
-                    color: const Color(0xff1E1E1E),
-                    borderRadius: BorderRadius.circular(8)),
-              ),
-              SizedBox(
-                height: height * 0.03,
-              ),
+                    Container(
+                      height: height * 0.065,
+                      width: width,
+                      decoration: BoxDecoration(
+                          color: const Color(0xff1E1E1E),
+                          borderRadius: BorderRadius.circular(8)),
+                    ),
+                    SizedBox(
+                      height: height * 0.03,
+                    ),
 
-              // we need to add the list of department here
+                    // we need to add the list of department here
 
-              SizedBox(
-                height: height * 0.048,
-                child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 11,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: EdgeInsets.only(right: width * 0.022),
-                        child: Container(
-                          alignment: Alignment.center,
-                          width: width * 0.35,
+                    SizedBox(
+                      height: height * 0.048,
+                      child: ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 11,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: EdgeInsets.only(right: width * 0.022),
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: width * 0.35,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(33),
+                                    border: Border.all(
+                                        color: const Color(0xffFFD730))),
+                                child: Text(
+                                  "Department",
+                                  style: FutTheme.font6,
+                                ),
+                              ),
+                            );
+                          }),
+                    ),
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
+
+                    Row(
+                      children: [
+                        Text(
+                          "Date",
+                          style:
+                              FutTheme.font6.copyWith(fontSize: width * 0.04),
+                        ),
+                        SizedBox(
+                          width: width * 0.02,
+                        ),
+                        Container(
+                          height: height * 0.047,
+                          width: width * 0.3,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(33),
                               border:
                                   Border.all(color: const Color(0xffFFD730))),
-                          child: Text(
-                            "Department",
-                            style: FutTheme.font6,
+                        )
+                      ],
+                    ),
+
+                    SizedBox(
+                      height: height * 0.03,
+                    ),
+                  ],
+                ),
+              )),
+
+          // The list of cards are starts from here
+
+          SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(childCount: 6,
+                  (BuildContext context, index) {
+                return Padding(
+                  padding: EdgeInsets.only(bottom: height * 0.02),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+                    height: cardHeight,
+                    width: width,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: const Color(0xffFFD730)),
+                        borderRadius: BorderRadius.circular(40)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ClipRRect(
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(40),
+                              topRight: Radius.circular(40)),
+                          child: Container(
+                            width: squareCard,
+                            height: squareCard,
+                            decoration: const BoxDecoration(),
+                            child: Image.asset("assets/images/encore11.jpg"),
                           ),
                         ),
-                      );
-                    }),
-              ),
-              SizedBox(
-                height: height * 0.02,
-              ),
-
-              Row(
-                children: [
-                  Text(
-                    "Date",
-                    style: FutTheme.font6.copyWith(fontSize: width * 0.04),
-                  ),
-                  SizedBox(
-                    width: width * 0.02,
-                  ),
-                  Container(
-                    height: height * 0.047,
-                    width: width * 0.3,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(33),
-                        border: Border.all(color: const Color(0xffFFD730))),
-                  )
-                ],
-              ),
-
-              SizedBox(
-                height: height * 0.05,
-              ),
-
-              //Card
-            ])),
-          ),
-          SliverPadding(padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-          sliver: SliverList(
-
-            delegate: SliverChildBuilderDelegate(
-                childCount: 6,
-                (BuildContext context,index){
-                  return Padding(
-                    padding:  EdgeInsets.only(bottom: height*0.02),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                      height: cardHeight,
-                      width: width,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: const Color(0xffFFD730)),
-                          borderRadius: BorderRadius.circular(40)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(40),
-                                topRight: Radius.circular(40)),
-                            child: Container(
-                              width: squareCard,
-                              height: squareCard,
-                              decoration: const BoxDecoration(),
-                              child: Image.asset("assets/images/encore11.jpg"),
-                            ),
-                          ),
-                          SizedBox(
-                              width: width * 0.6,
-                              child: Text(
-                                "LOGO ,WEB AND APP DESIGN COMPETITION",
-                                style: FutTheme.mFont.copyWith(color: Colors.white),
-                                softWrap: true,
-                                textAlign: TextAlign.center,
-                              )),
-                          Container(
-                            height: cardHeight * 0.1,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(43),
-                                color: const Color(0xffFFD730)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                const Spacer(
-                                  flex: 9,
-                                ),
-                                Text("View Details", style: FutTheme.mFont),
-                                const Spacer(
-                                  flex: 5,
-                                ),
-                                Container(
-                                  height: cardHeight * 0.082,
-                                  width: cardHeight * 0.1,
-                                  decoration: BoxDecoration(
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.circular(29)),
-                                  child: Transform.rotate(
-                                    angle: pi / 3,
-                                    child: const Icon(
-                                      Icons.arrow_upward_rounded,
-                                      color: Colors.white,
-                                    ),
+                        SizedBox(
+                            width: width * 0.6,
+                            child: Text(
+                              "LOGO ,WEB AND APP DESIGN COMPETITION",
+                              style:
+                                  FutTheme.mFont.copyWith(color: Colors.white),
+                              softWrap: true,
+                              textAlign: TextAlign.center,
+                            )),
+                        Container(
+                          height: cardHeight * 0.1,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(43),
+                              color: const Color(0xffFFD730)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              const Spacer(
+                                flex: 9,
+                              ),
+                              Text("View Details", style: FutTheme.mFont),
+                              const Spacer(
+                                flex: 5,
+                              ),
+                              Container(
+                                height: cardHeight * 0.082,
+                                width: cardHeight * 0.1,
+                                decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(29)),
+                                child: Transform.rotate(
+                                  angle: pi / 3,
+                                  child: const Icon(
+                                    Icons.arrow_upward_rounded,
+                                    color: Colors.white,
                                   ),
                                 ),
-                                const Spacer()
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                              ),
+                              const Spacer()
+                            ],
+                          ),
+                        )
+                      ],
                     ),
-                  );
-                }
+                  ),
+                );
+              }),
             ),
-          ),)
+          )
         ],
       )),
     );
