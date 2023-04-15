@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
     final _width = _size.width;
     return Scaffold(
       backgroundColor: Colors.black45,
-      body: Column(
+      body: ListView(
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
@@ -56,6 +56,32 @@ class HomeScreen extends StatelessWidget {
                       color: Colors.white,
                       fontSize: 30,
                     ),
+                  ),
+                ),
+                Text(
+                  "STORIES",
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: _height / 5,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: 4,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.grey[800],
+                              borderRadius: BorderRadius.circular(20)),
+                          width: _width / 3.5,
+                          height: _height / 5,
+                          child: Text("hello"),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
