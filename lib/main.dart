@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hestia_23/profile/views/profile.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 import 'auth/views/login_screen.dart';
 import 'getx_di.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
                 : LoginScreen()),
         // GetPage(name: '/posts', page: () => PostsScreen()),
         GetPage(name: '/login', page: () => LoginScreen()),
-        GetPage(name: '/profile', page: () => ProfileCompletion()),
+        GetPage(name: '/profile', page: () => Profile()),
       ],
     );
   }
