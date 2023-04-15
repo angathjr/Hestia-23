@@ -193,7 +193,7 @@ class EventDetailsScreen extends StatelessWidget {
                       child: Text(
                         "ABOUT",
                         style:
-                            FutTheme.font5.copyWith(fontSize: height * 0.026),
+                            FutTheme.font5.copyWith(fontSize: height * 0.023),
                       ),
                     ),
                     SizedBox(
@@ -245,7 +245,7 @@ class EventDetailsScreen extends StatelessWidget {
                       child: Text(
                         "CONTACT",
                         style:
-                            FutTheme.font5.copyWith(fontSize: height * 0.026),
+                            FutTheme.font5.copyWith(fontSize: height * 0.023),
                       ),
                     ),
                     SizedBox(
@@ -264,22 +264,22 @@ class EventDetailsScreen extends StatelessWidget {
                     SizedBox(
                       height: height * 0.05,
                     ),
-                    Container(
-                      alignment: Alignment.center,
-                      width: width,
-                      height: height * 0.06,
-                      decoration: BoxDecoration(
-                          color: const Color(0xffDEFD72),
-                          borderRadius: BorderRadius.circular(127)),
-                      child: Text(
-                        "REGISTER NOW >>",
-                        style: FutTheme.font5.copyWith(
-                            color: Colors.black, fontSize: height * 0.024),
-                      ),
-                    ),
-                    SizedBox(
-                      height: height * 0.05,
-                    ),
+                    // Container(
+                    //   alignment: Alignment.center,
+                    //   width: width,
+                    //   height: height * 0.06,
+                    //   decoration: BoxDecoration(
+                    //       color: const Color(0xffDEFD72),
+                    //       borderRadius: BorderRadius.circular(127)),
+                    //   child: Text(
+                    //     "REGISTER NOW >>",
+                    //     style: FutTheme.font5.copyWith(
+                    //         color: Colors.black, fontSize: height * 0.024),
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: height * 0.05,
+                    // ),
                   ],
                 ),
               )
@@ -292,19 +292,20 @@ class EventDetailsScreen extends StatelessWidget {
 
   SizedBox contactDetails(double width, double height, String name) {
     return SizedBox(
-        width: width * 0.26,
+        width: width * 0.24,
         height: height * 0.07,
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              width: width * 0.1,
-              height: width * 0.1,
+              width: width * 0.09,
+              height: width * 0.09,
               decoration: const BoxDecoration(
                   color: Color(0xffD1D1D1), shape: BoxShape.circle),
               child: Icon(
                 Icons.call,
-                size: width * 0.06,
+                size: width * 0.05,
               ),
             ),
             Text(
