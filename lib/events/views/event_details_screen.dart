@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
-import '../controllers/detailPageController.dart';
+import '../controllers/event_pages_controller.dart';
 
 class EventDetailsScreen extends StatelessWidget {
   EventDetailsScreen({Key? key}) : super(key: key);
 
-  final controller = Get.put(DetailPageController());
+  final controller = Get.put(EventPagesController());
 
   @override
   Widget build(BuildContext context) {
