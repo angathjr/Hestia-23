@@ -90,14 +90,19 @@ class Profile extends StatelessWidget {
             ),
             Container(
               width: _width,
-              height: _height / 2,
+              height: _height / 2.4,
+              // decoration: BoxDecoration(
+              //   color: Colors.grey[850],
+              //   borderRadius: BorderRadius.only(
+              //     topLeft: Radius.circular(20),
+              //     topRight: Radius.circular(20),
+              //     bottomRight: Radius.circular(20),
+              //     bottomLeft: Radius.circular(20),
+              //   ),
+              // ),
               decoration: BoxDecoration(
-                color: Colors.grey[850],
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[800]),
               child: Padding(
                 padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
                 child: Column(
