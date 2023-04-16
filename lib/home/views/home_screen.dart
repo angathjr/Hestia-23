@@ -21,83 +21,87 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Scaffold(
         body: SafeArea(
-            child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              title: Image.asset(
-                "assets/images/mascot.png",
-                scale: 2.2,
+          child: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                title: Image.asset(
+                  "assets/images/mascot.png",
+                  scale: 2.2,
+                ),
               ),
-            ),
-            SliverPadding(
+              SliverPadding(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.04),
                 sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                    Stack(
-                      children: [
-                        //The background image is placed here
-                        SizedBox(
-                          width: double.infinity,
-                          height: height,
-                          child: Image.asset(
-                            'assets/images/bg.png',
-                            fit: BoxFit.cover,
+                  delegate: SliverChildListDelegate(
+                    [
+                      Stack(
+                        children: [
+                          //The background image is placed here
+                          SizedBox(
+                            width: double.infinity,
+                            height: height,
+                            child: Image.asset(
+                              'assets/images/bg.png',
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
 
-                        //otherr stack elements
+                          //otherr stack elements
 
-                        Column(
-                          children: [
-                            SizedBox(
-                              height: height * 0.02,
-                            ),
-                            SizedBox(
-                              width: width,
-                              child: Stories(),
-                            ),
-                            SizedBox(
-                              height: height * 0.05,
-                            ),
-
-                            //the category screen placed here
-
-                            SizedBox(
-                              height: height * 0.5,
-                              width: width,
-                              child: CarouselSlider.builder(
-                                itemCount: 5,
-                                itemBuilder: (BuildContext context, int index,
-                                    int realIndex) {
-                                  return const CategoryCard();
-                                },
-                                options: CarouselOptions(
-                                    // autoPlay: true,
-                                    autoPlayCurve: Curves.linearToEaseOut,
-                                    height: height * 0.46,
-                                    viewportFraction: 0.72,
-                                    enlargeCenterPage: true),
+                          Column(
+                            children: [
+                              SizedBox(
+                                height: height * 0.02,
                               ),
-                            ),
-                            SizedBox(
-                              height: height * 0.1,
-                            ),
-                            SizedBox(
-                              width: width,
-                              child: LeaderBoard.futureLeaderboard(
-                                  height, context),
-                            ),
-                            SizedBox(
-                              height: height * 0.4,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ]),
-                ))
-          ],
-        )),
+                              SizedBox(
+                                width: width,
+                                child: Stories(),
+                              ),
+                              SizedBox(
+                                height: height * 0.05,
+                              ),
+
+                              //the category screen placed here
+
+                              SizedBox(
+                                height: height * 0.5,
+                                width: width,
+                                child: CarouselSlider.builder(
+                                  itemCount: 5,
+                                  itemBuilder: (BuildContext context, int index,
+                                      int realIndex) {
+                                    return const CategoryCard();
+                                  },
+                                  options: CarouselOptions(
+                                      // autoPlay: true,
+                                      autoPlayCurve: Curves.linearToEaseOut,
+                                      height: height * 0.46,
+                                      viewportFraction: 0.72,
+                                      enlargeCenterPage: true),
+                                ),
+                              ),
+                              SizedBox(
+                                height: height * 0.1,
+                              ),
+                              SizedBox(
+                                width: width,
+                                child: LeaderBoard.futureLeaderboard(
+                                    height, context),
+                              ),
+                              SizedBox(
+                                height: height * 0.4,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

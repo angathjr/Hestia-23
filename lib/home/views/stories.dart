@@ -23,7 +23,7 @@ class Stories extends StatelessWidget {
         ),
         SizedBox(
           width: double.infinity,
-          height: _height / 5,
+          height: _height / 5.5,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
@@ -35,8 +35,8 @@ class Stories extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.grey[800],
                       borderRadius: BorderRadius.circular(15)),
-                  width: _width / 3.5,
-                  height: _height / 5,
+                  width: _width / 3.8,
+                  height: _height / 5.5,
                   child: Align(
                     alignment: Alignment.bottomLeft,
                     child: Padding(
