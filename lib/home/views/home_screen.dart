@@ -13,13 +13,15 @@ class HomeScreen extends StatelessWidget {
   final EventsController eventController = Get.find();
   final AuthController authController = Get.find();
 
+  final List<String> _categoryItems=["GENERAL","TECHNICAL","WORKSHOPS","PROSHOWS",];
+
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: Scaffold(
         body: SafeArea(
           child: CustomScrollView(
             slivers: [
@@ -67,10 +69,13 @@ class HomeScreen extends StatelessWidget {
                                 height: height * 0.5,
                                 width: width,
                                 child: CarouselSlider.builder(
-                                  itemCount: 5,
+                                  itemCount: _categoryItems.length,
                                   itemBuilder: (BuildContext context, int index,
                                       int realIndex) {
-                                    return const CategoryCard();
+                                    return  CategoryCard(
+
+                                      type:_categoryItems[index],
+                                    );
                                   },
                                   options: CarouselOptions(
                                       // autoPlay: true,
@@ -102,7 +107,6 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 }

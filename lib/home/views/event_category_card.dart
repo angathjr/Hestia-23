@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hestia_23/core/Constants..dart';
 
 class CategoryCard extends StatelessWidget {
-  const CategoryCard({
+  final String type;
+  CategoryCard({
     super.key,
+    required this.type,
   });
 
   @override
@@ -24,11 +26,10 @@ class CategoryCard extends StatelessWidget {
                   flex: 2,
                   child: Container(
                     alignment: Alignment.bottomCenter,
-                    // color: Colors.white,
                     child: RotatedBox(
                       quarterTurns: 3,
                       child: Text(
-                        "CULTURAL",
+                        type,
                         style: FutTheme.categoryFont
                             .copyWith(fontSize: cardHeight * 0.08),
                       ),
@@ -37,9 +38,8 @@ class CategoryCard extends StatelessWidget {
                 ),
                 Expanded(
                   flex: 7,
-                  child: Container(
+                  child: SizedBox(
                     height: cardHeight * 0.6,
-                    // color: Colors.yellow,
                     child: ClipPath(
                       clipBehavior: Clip.hardEdge,
                       clipper: CustomClipPath(),
@@ -60,7 +60,6 @@ class CategoryCard extends StatelessWidget {
             child: Container(
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.fromLTRB(w * 0.08, 0, 0, 0),
-              //  color: Colors.green,
               child: Text(
                 "Learn from the finest of skills from the best of mentors at our curated workshops and skill sessions",
                 style: FutTheme.font7.copyWith(
