@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
+import 'package:hestia_23/events/views/events_screen.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 
 import 'event_category_card.dart';
@@ -50,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                         //The background image is placed here
                         SizedBox(
                           width: double.infinity,
-                          height:  height,
+                          height: height,
                           child: Image.asset(
                             'assets/images/bg.png',
                             fit: BoxFit.cover,
@@ -77,21 +78,27 @@ class HomeScreen extends StatelessWidget {
                             SizedBox(
                               height: height * 0.5,
                               width: width,
-                              child:
-
-                              CarouselSlider.builder(
-                                itemCount: 5,
+                              child: CarouselSlider.builder(
+                                itemCount: eventController.categories.length,
                                 itemBuilder: (BuildContext context, int index,
                                     int realIndex) {
-                                  return const CategoryCard();
+                                  return CategoryCard(
+                                    onTap: () {
+                                      eventController.selectedCategory =
+                                          eventController.categories[index];
+                                      eventController.fetchEvents();
+                                      Get.to(() => EventScreen());
+                                    },
+                                    categoryModel:
+                                        eventController.categories[index],
+                                  );
                                 },
                                 options: CarouselOptions(
-                                 // autoPlay: true,
-                                  autoPlayCurve: Curves.linearToEaseOut,
-                                  height: height*0.46,
-                                  viewportFraction: 0.72,
-                                  enlargeCenterPage: true
-                                ),
+                                    // autoPlay: true,
+                                    autoPlayCurve: Curves.linearToEaseOut,
+                                    height: height * 0.46,
+                                    viewportFraction: 0.72,
+                                    enlargeCenterPage: true),
                               ),
                             ),
                             SizedBox(
@@ -116,4 +123,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

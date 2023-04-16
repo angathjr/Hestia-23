@@ -1,10 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:hestia_23/core/Constants..dart';
+import 'package:hestia_23/events/models/category.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
-    super.key,
-  });
+    Key? key,
+    required this.categoryModel,
+    required this.onTap,
+  }) : super(key: key);
+
+  final CategoryModel categoryModel;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +36,7 @@ class CategoryCard extends StatelessWidget {
                     child: RotatedBox(
                       quarterTurns: 3,
                       child: Text(
-                        "CULTURAL",
+                        categoryModel.name,
                         style: FutTheme.categoryFont
                             .copyWith(fontSize: cardHeight * 0.08),
                       ),
@@ -76,7 +84,7 @@ class CategoryCard extends StatelessWidget {
           Expanded(
               flex: 5,
               child: GestureDetector(
-                  onTap: () {},
+                  onTap: () => onTap(),
                   child: Image.asset("assets/images/checkout.png")))
         ],
       ),

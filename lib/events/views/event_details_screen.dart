@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
+import 'package:intl/intl.dart';
 import '../controllers/event_pages_controller.dart';
 
 class EventDetailsScreen extends StatelessWidget {
@@ -131,7 +132,9 @@ class EventDetailsScreen extends StatelessWidget {
                                       .copyWith(fontSize: height * 0.014),
                                 ),
                                 Text(
-                                  "${eventsController.selectedEvent.eventStart?.day} / ${eventsController.selectedEvent.eventStart?.month}",
+                                  DateFormat('MMM d').format(eventsController
+                                      .selectedEvent.eventStart!),
+                                  // "${eventsController.selectedEvent.eventStart?.day} / ${eventsController.selectedEvent.eventStart?.month}",
                                   style: FutTheme.font1.copyWith(
                                       fontSize: height * 0.018,
                                       fontWeight: FontWeight.w700),
@@ -178,7 +181,7 @@ class EventDetailsScreen extends StatelessWidget {
                                         .copyWith(fontSize: height * 0.015),
                                   ),
                                   Text(
-                                    '${eventsController.selectedEvent.fees}',
+                                    '₹ ${(eventsController.selectedEvent.fees == null ? 0 : eventsController.selectedEvent.fees! / 100).toInt()}',
                                     style: FutTheme.font1.copyWith(
                                         fontSize: height * 0.018,
                                         fontWeight: FontWeight.w700),
@@ -257,7 +260,8 @@ class EventDetailsScreen extends StatelessWidget {
                         SizedBox(
                           width: width * 0.11,
                         ),
-                        contactDetails(width, height, "Amal")
+                        contactDetails(width, height,
+                            '${eventsController.selectedEvent.coordinator1?.committeeName}'),
                       ],
                     ),
 

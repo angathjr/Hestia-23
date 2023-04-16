@@ -220,7 +220,7 @@ class EventScreen extends StatelessWidget {
                 }),
               ),
             ),
-          )
+          ),
         ],
       )),
     );
@@ -239,18 +239,24 @@ class EventScreen extends StatelessWidget {
             return Padding(
               padding: EdgeInsets.only(right: width * 0.022),
               child: Obx(
-                () => Container(
-                  alignment: Alignment.center,
-                  width: width * 0.35,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(33),
-                      border: Border.all(color: const Color(0xffFFD730))),
-                  child: controller.departmentLoading.value == true
-                      ? Text(
-                          "${controller.departments[index].title?.toUpperCase()}",
-                          style: FutTheme.font6,
-                        )
-                      : const Text("....."),
+                () => GestureDetector(
+                  onTap: () => controller.setDepartmentIndex(index),
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: width * 0.35,
+                    decoration: BoxDecoration(
+                        color: controller.selectedDepartmentIndex.value == index
+                            ? const Color(0xffFFD730)
+                            : null,
+                        borderRadius: BorderRadius.circular(33),
+                        border: Border.all(color: const Color(0xffFFD730))),
+                    child: controller.departmentLoading.value == true
+                        ? Text(
+                            "${controller.departments[index].title?.toUpperCase()}",
+                            style: FutTheme.font6,
+                          )
+                        : const Text("....."),
+                  ),
                 ),
               ),
             );

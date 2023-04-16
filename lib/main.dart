@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
-import 'package:hestia_23/profile/views/profile.dart';
+import 'package:hestia_23/profile/views/profile_screen.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 import 'auth/views/login_screen.dart';
 import 'getx_di.dart';
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           // primaryColor: Colors.white,
           appBarTheme: AppBarTheme(color: Colors.black)),
       initialRoute: '/',
-      home: HomeScreen(),
+      // home: ProfileScreen(),
       getPages: [
         GetPage(
             name: '/',
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         // GetPage(name: '/posts', page: () => PostsScreen()),
         GetPage(name: '/login', page: () => HomeScreen()),
         GetPage(name: '/login', page: () => LoginScreen()),
-        GetPage(name: '/profile', page: () => Profile()),
+        GetPage(name: '/profile', page: () => ProfileScreen()),
       ],
     );
   }

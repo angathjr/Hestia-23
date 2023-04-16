@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
+import 'package:hestia_23/core/Constants..dart';
 
-class Profile extends StatelessWidget {
-  const Profile({super.key});
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +13,14 @@ class Profile extends StatelessWidget {
     final _height = _size.height;
     final _width = _size.width;
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
         centerTitle: true,
-        title: Text("PROFILE"),
-        backgroundColor: Colors.black,
+        title: Text(
+          "PROFILE",
+          style: FutTheme.font1.copyWith(
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
       body: Container(
         width: _width,
