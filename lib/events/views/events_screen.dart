@@ -24,6 +24,7 @@ class EventScreen extends StatelessWidget {
           //app bar
 
           SliverAppBar(
+            automaticallyImplyLeading: false,
             pinned: false,
             floating: true,
             snap: true,

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:hestia_23/events/models/department_list..dart';
 
@@ -35,7 +37,6 @@ class EventsController extends GetxController {
 
   //TODO: fetch all dept
   void fetchDepartments()async{
-
     final Response response = await api.getApi('/api/events/department/all/');
     List<DepartmentModel> parsed = departmentModelFromJson(response.body['results']);
     departments.value=parsed;

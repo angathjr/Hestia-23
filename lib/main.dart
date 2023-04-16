@@ -7,6 +7,7 @@ import 'package:hestia_23/events/views/events_screen.dart';
 import 'package:hestia_23/navbar/views/navbar_screen.dart';
 import 'package:hestia_23/profile/views/profile.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
+import 'package:hestia_23/testscreen.dart';
 import 'auth/views/login_screen.dart';
 import 'getx_di.dart';
 import './home/views/home_screen.dart';
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.black,
           appBarTheme: const AppBarTheme(color: Colors.black)),
       initialRoute: '/',
-      home: NavBarPage(),
+      home: AllScreens(),
       getPages: [
         GetPage(
             name: '/',
