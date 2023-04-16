@@ -309,6 +309,7 @@ class EventDetailsScreen extends StatelessWidget {
               child: Icon(
                 Icons.call,
                 size: width * 0.05,
+                color: Colors.black,
               ),
             ),
             Text(
