@@ -122,7 +122,7 @@ class LeaderBoard extends StatelessWidget {
   }
 
   //leaderboard widget-future theme
-  Widget futureLeaderboard(num h, BuildContext context) {
+ static Widget futureLeaderboard(num h, BuildContext context) {
     return Column(
       children: [
         Center(child: Image.asset('assets/images/future_lb.png')),
