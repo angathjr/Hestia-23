@@ -21,8 +21,7 @@ class CardEvents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: cardh,
-      width: cardw,
+      width: cardw * 1,
       child: SingleChildScrollView(
         child: Card(
             color: const Color(0xff2C2C2C),
@@ -56,7 +55,7 @@ class CardEvents extends StatelessWidget {
                           height: cardh * 0.63,
                           child: Image(
                             image: AssetImage(imgurl),
-                            fit: BoxFit.fill,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       )

@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
         () => ListView.builder(
           itemCount: eventController.events.length,
           itemBuilder: (context, index) =>
-              Text(eventController.events[index].title),
+              Text('${eventController.events[index].coordinator1}'),
         ),
       ),
     );
@@ -59,31 +59,31 @@ class EventCategory extends StatelessWidget {
                   cardh: cardh,
                   cardw: cardw,
                   w: w,
-                  imgurl: "assets/Eventcategory1.png",
+                  imgurl: "assets/images/Eventcategory1.png",
                   eventcat: "Category"),
               CardEvents(
                   cardh: cardh,
                   cardw: cardw,
                   w: w,
-                  imgurl: "assets/Eventcategory1.png",
+                  imgurl: "assets/images/Eventcategory1.png",
                   eventcat: "Category"),
               CardEvents(
                   cardh: cardh,
                   cardw: cardw,
                   w: w,
-                  imgurl: "assets/Eventcategory1.png",
+                  imgurl: "assets/images/Eventcategory1.png",
                   eventcat: "Category"),
               CardEvents(
                   cardh: cardh,
                   cardw: cardw,
                   w: w,
-                  imgurl: "assets/Eventcategory1.png",
+                  imgurl: "assets/images/Eventcategory1.png",
                   eventcat: "Category"),
               CardEvents(
                   cardh: cardh,
                   cardw: cardw,
                   w: w,
-                  imgurl: "assets/Eventcategory1.png",
+                  imgurl: "assets/images/Eventcategory1.png",
                   eventcat: "Category"),
             ],
           )),
