@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
+import 'package:hestia_23/fcm/controllers/fcm_controller.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 
 import 'event_category_card.dart';
