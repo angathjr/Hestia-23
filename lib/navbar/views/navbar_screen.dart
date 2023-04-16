@@ -33,7 +33,6 @@ class NavBarPage extends StatelessWidget {
       child: Column(
         children: [
 
-
           //pageview
 
           SizedBox(
