@@ -77,7 +77,11 @@ class CategoryCard extends StatelessWidget {
               flex: 5,
               child: GestureDetector(
                   onTap: () {},
-                  child: Image.asset("assets/images/checkout.png")))
+                  child: Container(
+                    padding: EdgeInsets.only(left: w*0.07),
+                    alignment: Alignment.centerLeft,
+
+                   child: Image.asset("assets/images/checkitout.png")),))
         ],
       ),
     );
