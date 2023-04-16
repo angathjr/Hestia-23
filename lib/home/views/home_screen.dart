@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
+import 'package:hestia_23/home/views/stories.dart';
 import 'leaderboard_card.dart';
 import 'event_category_card.dart';
 
@@ -37,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                         //The background image is placed here
                         SizedBox(
                           width: double.infinity,
-                          height:  height,
+                          height: height,
                           child: Image.asset(
                             'assets/images/bg.png',
                             fit: BoxFit.cover,
@@ -53,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                             SizedBox(
                               width: width,
-                              child: Image.asset("assets/images/story2.png"),
+                              child: Stories(),
                             ),
                             SizedBox(
                               height: height * 0.05,
@@ -64,21 +65,18 @@ class HomeScreen extends StatelessWidget {
                             SizedBox(
                               height: height * 0.5,
                               width: width,
-                              child:
-
-                              CarouselSlider.builder(
+                              child: CarouselSlider.builder(
                                 itemCount: 5,
                                 itemBuilder: (BuildContext context, int index,
                                     int realIndex) {
                                   return const CategoryCard();
                                 },
                                 options: CarouselOptions(
-                                 // autoPlay: true,
-                                  autoPlayCurve: Curves.linearToEaseOut,
-                                  height: height*0.46,
-                                  viewportFraction: 0.72,
-                                  enlargeCenterPage: true
-                                ),
+                                    // autoPlay: true,
+                                    autoPlayCurve: Curves.linearToEaseOut,
+                                    height: height * 0.46,
+                                    viewportFraction: 0.72,
+                                    enlargeCenterPage: true),
                               ),
                             ),
                             SizedBox(
@@ -86,8 +84,8 @@ class HomeScreen extends StatelessWidget {
                             ),
                             SizedBox(
                               width: width,
-                              child:LeaderBoard.futureLeaderboard(height, context) ,
-
+                              child: LeaderBoard.futureLeaderboard(
+                                  height, context),
                             ),
                             SizedBox(
                               height: height * 0.4,
@@ -104,4 +102,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
