@@ -111,7 +111,7 @@ class TimeLineofEvents extends StatelessWidget {
                 height: h * 0.2,
                 width: w * 0.6,
                 child: Image(
-                  image: AssetImage("assets/EventCategory1.png"),
+                  image: AssetImage("assets/images/EventCategory1.png"),
                   fit: BoxFit.fill,
                 ),
               )
