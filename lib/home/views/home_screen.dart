@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
+import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 
 import 'event_category_card.dart';
 
@@ -11,6 +12,18 @@ class HomeScreen extends StatelessWidget {
 
   final EventsController eventController = Get.find();
   final AuthController authController = Get.find();
+
+  final List _stories = [
+    "user1",
+    "user2",
+    "user3",
+    "user1",
+    "user2",
+    "user3",
+    "user1",
+    "user2",
+    "user3",
+  ];
 
   @override
   Widget build(BuildContext context) {
