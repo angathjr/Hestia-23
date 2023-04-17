@@ -23,29 +23,18 @@ class ProfileScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.black,
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {},
-          icon: CircleAvatar(
-            backgroundColor: Color.fromRGBO(32, 32, 32, 1),
-            radius: 20,
-            child: const Icon(
-              Icons.arrow_back_ios_sharp,
-              color: Color.fromRGBO(231, 231, 231, 1),
-            ),
-          ),
-        ),
       ),
-      body: Container(
+      body: SizedBox(
         width: _width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
+              backgroundColor: const Color.fromRGBO(51, 51, 51, 1),
+              radius: _width / 8,
               child: CircleAvatar(
-                radius: 40,
+                radius: _width / 12,
               ),
-              backgroundColor: Colors.grey,
-              radius: 45,
             ),
             SizedBox(
               height: _height / 100,
@@ -53,7 +42,7 @@ class ProfileScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.phone_outlined,
                   color: Color.fromRGBO(153, 153, 153, 1),
                 ),
@@ -63,7 +52,7 @@ class ProfileScreen extends StatelessWidget {
                 Text(
                   "00000000",
                   style: FutTheme.font3.copyWith(
-                    color: Color.fromRGBO(153, 153, 153, 1),
+                    color: const Color.fromRGBO(153, 153, 153, 1),
                     letterSpacing: 2,
                   ),
                 )
@@ -75,7 +64,7 @@ class ProfileScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.mail_outline,
                   color: Color.fromRGBO(153, 153, 153, 1),
                 ),
@@ -85,7 +74,7 @@ class ProfileScreen extends StatelessWidget {
                 Text(
                   "email",
                   style: FutTheme.font3.copyWith(
-                    color: Color.fromRGBO(153, 153, 153, 1),
+                    color: const Color.fromRGBO(153, 153, 153, 1),
                     letterSpacing: 1,
                   ),
                 )
@@ -97,11 +86,11 @@ class ProfileScreen extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Color.fromRGBO(26, 26, 26, 1)),
+                  color: const Color.fromRGBO(26, 26, 26, 1)),
               width: _width - 2 * (_width / 25),
               height: _height / 9,
               child: Padding(
-                padding: EdgeInsets.all(15),
+                padding: EdgeInsets.all(_width / 30),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -109,18 +98,18 @@ class ProfileScreen extends StatelessWidget {
                       "Number of events \nregistered",
                       style: FutTheme.font3.copyWith(
                         letterSpacing: 1,
-                        color: Color.fromRGBO(204, 204, 204, 1),
+                        color: const Color.fromRGBO(204, 204, 204, 1),
                         fontSize: _width * 0.04,
                       ),
                     ),
                     Text(
                       "5",
                       style: FutTheme.font2.copyWith(
-                        fontSize: 35,
+                        fontSize: _width * 0.09,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Icon(
+                    const Icon(
                       Icons.navigate_next_outlined,
                       color: Color.fromRGBO(222, 253, 114, 1),
                     )
@@ -136,10 +125,10 @@ class ProfileScreen extends StatelessWidget {
               height: _height / 2.4,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Color.fromRGBO(26, 26, 26, 1),
+                color: const Color.fromRGBO(26, 26, 26, 1),
               ),
               child: Padding(
-                padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                padding: EdgeInsets.only(left: _width / 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -152,7 +141,7 @@ class ProfileScreen extends StatelessWidget {
                       },
                       child: Row(
                         children: [
-                          CircleAvatar(
+                          const CircleAvatar(
                             backgroundColor: Color.fromRGBO(51, 51, 51, 1),
                             child: Icon(
                               Icons.edit,
@@ -160,13 +149,15 @@ class ProfileScreen extends StatelessWidget {
                               size: 18,
                             ),
                           ),
-                          Padding(padding: EdgeInsets.all(5)),
+                          Padding(
+                            padding: EdgeInsets.all(_width / 70),
+                          ),
                           Text(
                             "Edit Profile",
                             style: FutTheme.font3.copyWith(
                               color: Colors.white,
                               fontSize: _width * 0.04,
-                              fontWeight: FontWeight.w100,
+                              fontWeight: FontWeight.w200,
                             ),
                           )
                         ],
@@ -175,7 +166,7 @@ class ProfileScreen extends StatelessWidget {
                     Row(
                       // mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircleAvatar(
+                        const CircleAvatar(
                           backgroundColor: Color.fromRGBO(51, 51, 51, 1),
                           child: Icon(
                             Icons.document_scanner_outlined,
@@ -183,13 +174,13 @@ class ProfileScreen extends StatelessWidget {
                             size: 18,
                           ),
                         ),
-                        Padding(padding: EdgeInsets.all(5)),
+                        Padding(padding: EdgeInsets.all(_width / 70)),
                         Text(
                           "Certificates",
                           style: FutTheme.font3.copyWith(
                             color: Colors.white,
                             fontSize: _width * 0.04,
-                            fontWeight: FontWeight.w300,
+                            fontWeight: FontWeight.w200,
                           ),
                         )
                       ],
@@ -197,7 +188,7 @@ class ProfileScreen extends StatelessWidget {
                     Row(
                       // mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircleAvatar(
+                        const CircleAvatar(
                           backgroundColor: Color.fromRGBO(51, 51, 51, 1),
                           child: Icon(
                             Icons.perm_identity_outlined,
@@ -205,13 +196,13 @@ class ProfileScreen extends StatelessWidget {
                             size: 18,
                           ),
                         ),
-                        Padding(padding: EdgeInsets.all(5)),
+                        Padding(padding: EdgeInsets.all(_width / 70)),
                         Text(
                           "ID Card",
                           style: FutTheme.font3.copyWith(
                             color: Colors.white,
                             fontSize: _width * 0.04,
-                            fontWeight: FontWeight.w300,
+                            fontWeight: FontWeight.w200,
                           ),
                         )
                       ],
@@ -219,7 +210,7 @@ class ProfileScreen extends StatelessWidget {
                     Row(
                       // mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircleAvatar(
+                        const CircleAvatar(
                           backgroundColor: Color.fromRGBO(51, 51, 51, 1),
                           child: Icon(
                             Icons.logout_outlined,
@@ -227,13 +218,13 @@ class ProfileScreen extends StatelessWidget {
                             size: 18,
                           ),
                         ),
-                        Padding(padding: EdgeInsets.all(5)),
+                        Padding(padding: EdgeInsets.all(_width / 70)),
                         Text(
                           "Logout",
                           style: FutTheme.font3.copyWith(
                             color: Colors.white,
                             fontSize: _width * 0.04,
-                            fontWeight: FontWeight.w300,
+                            fontWeight: FontWeight.w200,
                           ),
                         )
                       ],
