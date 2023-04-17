@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -5,23 +7,29 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
 import 'package:hestia_23/navbar/views/navbar_screen.dart';
-import 'package:hestia_23/profile/views/profile.dart';
+import 'package:hestia_23/profile/views/profile_screen.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 import 'auth/views/login_screen.dart';
 import 'getx_di.dart';
 import './home/views/home_screen.dart';
 
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+
+  print("Handling a background message: ${message.messageId}");
+}
+
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
-  GetXDependancyInjector().onInit();
+  await Firebase.initializeApp();
   await GetStorage.init();
+  GetXDependancyInjector().onInit();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-
-  SystemChrome.setPreferredOrientations([
+  await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown
-  ]).then((value) => runApp(MyApp()));
+    DeviceOrientation.portraitDown,
+  ]);
 
   runApp(MyApp());
 }
@@ -42,7 +50,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.black,
           appBarTheme: const AppBarTheme(color: Colors.black)),
       initialRoute: '/',
-      home: NavBarPage(),
+      // home: ProfileScreen(),
       getPages: [
         GetPage(
             name: '/',
@@ -54,7 +62,7 @@ class MyApp extends StatelessWidget {
         // GetPage(name: '/posts', page: () => PostsScreen()),
         GetPage(name: '/login', page: () => HomeScreen()),
         GetPage(name: '/login', page: () => LoginScreen()),
-        GetPage(name: '/profile', page: () => Profile()),
+        GetPage(name: '/profile', page: () => ProfileScreen()),
       ],
     );
   }

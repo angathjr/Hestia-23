@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
+import 'package:hestia_23/events/views/event_details_screen.dart';
 
 class EventScreen extends StatelessWidget {
   EventScreen({Key? key}) : super(key: key);
@@ -82,37 +83,39 @@ class EventScreen extends StatelessWidget {
                           width: width * 0.02,
                         ),
                         Container(
-                          height: height * 0.047,
-                          width: width * 0.3,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(33),
-                              border:
-                                  Border.all(color: const Color(0xffFFD730))),
-                          child:Obx(
-                            ()=>DropdownButtonHideUnderline(
-                              child: ButtonTheme(
-                                alignedDropdown: true,
-                                child: DropdownButton(
-                                  borderRadius: BorderRadius.circular(15),
-                                  isExpanded: true,
-                                  isDense: false,
-                                  value: controller.date.value,
-                                  elevation: 0,
-                                  items: EventsController.eventDates.map<DropdownMenuItem<String>>(
-                                          (String value) {
-                                        return DropdownMenuItem(
-                                          value: value,
-                                          child: Text(value,style: FutTheme.font3.copyWith(fontSize: width*0.035)),
-                                        );
-                                      }).toList(),
-                                  onChanged: (value) {
-                                    controller.date.value= value!;
-                                  },
+                            height: height * 0.047,
+                            width: width * 0.3,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(33),
+                                border:
+                                    Border.all(color: const Color(0xffFFD730))),
+                            child: Obx(
+                              () => DropdownButtonHideUnderline(
+                                child: ButtonTheme(
+                                  alignedDropdown: true,
+                                  child: DropdownButton(
+                                    borderRadius: BorderRadius.circular(15),
+                                    isExpanded: true,
+                                    isDense: false,
+                                    value: controller.date.value,
+                                    elevation: 0,
+                                    items: EventsController.eventDates
+                                        .map<DropdownMenuItem<String>>(
+                                            (String value) {
+                                      return DropdownMenuItem(
+                                        value: value,
+                                        child: Text(value,
+                                            style: FutTheme.font3.copyWith(
+                                                fontSize: width * 0.035)),
+                                      );
+                                    }).toList(),
+                                    onChanged: (value) {
+                                      controller.date.value = value!;
+                                    },
+                                  ),
                                 ),
                               ),
-                            ),
-                          )
-                        )
+                            ))
                       ],
                     ),
 
@@ -127,82 +130,97 @@ class EventScreen extends StatelessWidget {
 
           SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(childCount: 6,
-                  (BuildContext context, index) {
-                return Padding(
-                  padding: EdgeInsets.only(bottom: height * 0.02),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                    height: cardHeight,
-                    width: width,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: const Color(0xffFFD730)),
-                        borderRadius: BorderRadius.circular(40)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(40),
-                              topRight: Radius.circular(40)),
-                          child: Container(
-                            width: squareCard,
-                            height: squareCard,
-                            decoration: const BoxDecoration(),
-                            child: Image.asset("assets/images/encore11.jpg"),
+            sliver: Obx(
+              () => SliverList(
+                delegate: SliverChildBuilderDelegate(
+                    childCount: controller.events.length,
+                    (BuildContext context, index) {
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: height * 0.02),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+                      height: cardHeight,
+                      width: width,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: const Color(0xffFFD730)),
+                          borderRadius: BorderRadius.circular(40)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(40),
+                                topRight: Radius.circular(40)),
+                            child: Container(
+                              width: squareCard,
+                              height: squareCard,
+                              decoration: const BoxDecoration(),
+                              child: Image.network(
+                                '${controller.events[index].image}',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                            width: width * 0.6,
-                            child: Text(
-                              "LOGO ,WEB AND APP DESIGN COMPETITION",
-                              style:
-                                  FutTheme.mFont.copyWith(color: Colors.white),
-                              softWrap: true,
-                              textAlign: TextAlign.center,
-                            )),
-                        Container(
-                          height: cardHeight * 0.1,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(43),
-                              color: const Color(0xffFFD730)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              const Spacer(
-                                flex: 9,
-                              ),
-                              Text("View Details", style: FutTheme.mFont),
-                              const Spacer(
-                                flex: 5,
-                              ),
-                              Container(
-                                height: cardHeight * 0.082,
-                                width: cardHeight * 0.1,
-                                decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.circular(29)),
-                                child: Transform.rotate(
-                                  angle: pi / 3,
-                                  child: const Icon(
-                                    Icons.arrow_upward_rounded,
-                                    color: Colors.white,
+                          SizedBox(
+                              width: width * 0.6,
+                              child: Text(
+                                "${controller.events[index].title}",
+                                style: FutTheme.mFont
+                                    .copyWith(color: Colors.white),
+                                softWrap: true,
+                                textAlign: TextAlign.center,
+                              )),
+                          GestureDetector(
+                            onTap: () {
+                              controller.selectedEvent =
+                                  controller.events[index];
+                              Get.to(EventDetailsScreen());
+                            },
+                            child: Container(
+                              height: cardHeight * 0.1,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(43),
+                                  color: const Color(0xffFFD730)),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  const Spacer(
+                                    flex: 9,
                                   ),
-                                ),
+                                  Text("View Details", style: FutTheme.mFont),
+                                  const Spacer(
+                                    flex: 5,
+                                  ),
+                                  Container(
+                                    height: cardHeight * 0.082,
+                                    width: cardHeight * 0.1,
+                                    decoration: BoxDecoration(
+                                        color: Colors.black,
+                                        borderRadius:
+                                            BorderRadius.circular(29)),
+                                    child: Transform.rotate(
+                                      angle: pi / 3,
+                                      child: const Icon(
+                                        Icons.arrow_upward_rounded,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  const Spacer()
+                                ],
                               ),
-                              const Spacer()
-                            ],
-                          ),
-                        )
-                      ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              }),
+                  );
+                }),
+              ),
             ),
-          )
+          ),
         ],
       )),
     );
@@ -221,18 +239,24 @@ class EventScreen extends StatelessWidget {
             return Padding(
               padding: EdgeInsets.only(right: width * 0.022),
               child: Obx(
-                () => Container(
-                  alignment: Alignment.center,
-                  width: width * 0.35,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(33),
-                      border: Border.all(color: const Color(0xffFFD730))),
-                  child: controller.departmentLoading.value == true
-                      ? Text(
-                          "${controller.departments[index].title?.toUpperCase()}",
-                          style: FutTheme.font6,
-                        )
-                      : const Text("....."),
+                () => GestureDetector(
+                  onTap: () => controller.setDepartmentIndex(index),
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: width * 0.35,
+                    decoration: BoxDecoration(
+                        color: controller.selectedDepartmentIndex.value == index
+                            ? const Color(0xffFFD730)
+                            : null,
+                        borderRadius: BorderRadius.circular(33),
+                        border: Border.all(color: const Color(0xffFFD730))),
+                    child: controller.departmentLoading.value == true
+                        ? Text(
+                            "${controller.departments[index].title?.toUpperCase()}",
+                            style: FutTheme.font6,
+                          )
+                        : const Text("....."),
+                  ),
                 ),
               ),
             );
