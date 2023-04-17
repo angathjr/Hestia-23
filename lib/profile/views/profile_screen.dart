@@ -3,10 +3,13 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
+<<<<<<< HEAD
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
+=======
+>>>>>>> origin/main
 
-class Profile extends StatelessWidget {
-  const Profile({super.key});
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +17,8 @@ class Profile extends StatelessWidget {
     final _height = _size.height;
     final _width = _size.width;
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
+<<<<<<< HEAD
         title: Text(
           "PROFILE",
           style: FutTheme.font2
@@ -28,6 +31,13 @@ class Profile extends StatelessWidget {
           icon: const Icon(
             Icons.arrow_back_ios_sharp,
             color: Color.fromRGBO(231, 231, 231, 1),
+=======
+        centerTitle: true,
+        title: Text(
+          "PROFILE",
+          style: FutTheme.font1.copyWith(
+            fontWeight: FontWeight.w700,
+>>>>>>> origin/main
           ),
         ),
       ),
