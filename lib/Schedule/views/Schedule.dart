@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
+import 'package:hestia_23/Schedule/controller/schedule_controller.dart';
+import 'package:hestia_23/events/models/event.dart';
+import 'package:intl/intl.dart';
 
 class Schedule extends StatelessWidget {
-  const Schedule({super.key});
+  Schedule({super.key});
+
+  final ScheduleController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -11,36 +17,52 @@ class Schedule extends StatelessWidget {
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.black,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              SizedBox(
-                height: h * 0.05,
-                width: double.infinity,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            SizedBox(
+              height: h * 0.08,
+              width: double.infinity,
+            ),
+            Text(
+              "Schedule",
+              style: TextStyle(color: Colors.white),
+            ),
+            SizedBox(
+              height: h * 0.05,
+              width: double.infinity,
+            ),
+            SizedBox(
+              height: h * 0.09,
+              child: Center(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) => Dates(
+                    date: controller.dates[index],
+                    index: index,
+                    controller: controller,
+                  ),
+                  itemCount: 4,
+                ),
               ),
-              Text(
-                "Schedule",
-                style: TextStyle(color: Colors.white),
+            ),
+            SizedBox(
+              height: h * 0.07,
+              width: double.infinity,
+            ),
+            Obx(
+              () => Expanded(
+                child: ListView.builder(
+                  itemBuilder: (context, index) => TimeLineofEvents(
+                    event: controller.events[index],
+                  ),
+                  itemCount: controller.events.length,
+                ),
               ),
-              SizedBox(
-                height: h * 0.05,
-                width: double.infinity,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [Dates(), Dates(), Dates()],
-              ),
-              SizedBox(
-                height: h * 0.07,
-                width: double.infinity,
-              ),
-              TimeLineofEvents(),
-              TimeLineofEvents(),
-              TimeLineofEvents(),
-            ],
-          ),
+            )
+          ],
         ),
       ),
       bottomNavigationBar: BottomAppBar(
@@ -81,9 +103,9 @@ class Schedule extends StatelessWidget {
 
 //Full EventSchedule with Line and images
 class TimeLineofEvents extends StatelessWidget {
-  const TimeLineofEvents({
-    super.key,
-  });
+  const TimeLineofEvents({super.key, required this.event});
+
+  final EventModel event;
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +120,7 @@ class TimeLineofEvents extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "12:00",
+                "${DateFormat('h:mm a').format(event.eventStart!)}",
                 style: TextStyle(color: Colors.grey),
               ),
               SizedBox(
@@ -111,7 +133,7 @@ class TimeLineofEvents extends StatelessWidget {
                 height: h * 0.2,
                 width: w * 0.6,
                 child: Image(
-                  image: AssetImage("assets/images/EventCategory1.png"),
+                  image: NetworkImage(event.image!),
                   fit: BoxFit.fill,
                 ),
               )
@@ -125,32 +147,54 @@ class TimeLineofEvents extends StatelessWidget {
 
 //Conatiner for date box
 class Dates extends StatelessWidget {
-  const Dates({
-    super.key,
-  });
+  const Dates(
+      {super.key,
+      required this.date,
+      required this.index,
+      required this.controller});
+  final int index;
+  final ScheduleDate date;
+  final ScheduleController controller;
 
   @override
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
-    return Container(
-      height: h * 0.09,
-      width: w * 0.15,
-      decoration: BoxDecoration(
-          border: Border.all(color: Colors.white),
-          borderRadius: BorderRadius.all(Radius.circular(10))),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Text(
-            "27",
-            style: TextStyle(color: Colors.white),
+    return GestureDetector(
+      onTap: () {
+        controller.setdate(index);
+      },
+      child: Obx(
+        () => Container(
+          margin: EdgeInsets.symmetric(horizontal: w * 0.04),
+          height: h * 0.09,
+          width: w * 0.15,
+          decoration: BoxDecoration(
+              color: controller.selectedDateIndex.value == index
+                  ? Colors.white
+                  : null,
+              border: Border.all(color: Colors.white),
+              borderRadius: BorderRadius.all(Radius.circular(10))),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                "${date.date}",
+                style: TextStyle(
+                    color: controller.selectedDateIndex.value == index
+                        ? Colors.black
+                        : Colors.white),
+              ),
+              Text(
+                "${date.day}",
+                style: TextStyle(
+                    color: controller.selectedDateIndex.value == index
+                        ? Colors.black
+                        : Colors.white),
+              )
+            ],
           ),
-          Text(
-            "Feb",
-            style: TextStyle(color: Colors.white),
-          )
-        ],
+        ),
       ),
     );
   }

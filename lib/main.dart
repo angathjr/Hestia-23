@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hestia_23/Schedule/views/Schedule.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
 import 'package:hestia_23/navbar/views/navbar_screen.dart';
@@ -12,16 +13,13 @@ import 'getx_di.dart';
 import './home/views/home_screen.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   GetXDependancyInjector().onInit();
   await GetStorage.init();
 
-
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown
-  ]).then((value) => runApp(MyApp()));
+  SystemChrome.setPreferredOrientations(
+          [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
+      .then((value) => runApp(MyApp()));
 
   runApp(MyApp());
 }
@@ -41,7 +39,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           scaffoldBackgroundColor: Colors.black,
           appBarTheme: const AppBarTheme(color: Colors.black)),
-      initialRoute: '/',
+      initialRoute: '/schedule',
       home: NavBarPage(),
       getPages: [
         GetPage(
@@ -52,7 +50,7 @@ class MyApp extends StatelessWidget {
                     : ProfileCompletion()
                 : LoginScreen()),
         // GetPage(name: '/posts', page: () => PostsScreen()),
-        GetPage(name: '/login', page: () => HomeScreen()),
+        GetPage(name: "/schedule", page: () => Schedule()),
         GetPage(name: '/login', page: () => LoginScreen()),
         GetPage(name: '/profile', page: () => Profile()),
       ],

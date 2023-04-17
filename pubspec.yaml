@@ -39,7 +39,7 @@ dependencies:
   google_sign_in: ^6.0.2
   google_fonts: ^4.0.3
   carousel_slider: ^4.2.1
-  
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:
@@ -82,11 +82,11 @@ flutter:
     - family: Geomanist
       fonts:
         - asset: assets\fonts\Geomanist-Bold .ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+    #       - asset: fonts/Schyler-Italic.ttf
+    #         style: italic
     - family: Azonix
       fonts:
-         - asset: assets/fonts/Azonix.otf
+        - asset: assets/fonts/Azonix.otf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

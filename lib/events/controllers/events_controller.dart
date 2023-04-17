@@ -9,11 +9,16 @@ class EventsController extends GetxController {
 
   var events = <EventModel>[].obs;
   var eventsLoading = false.obs;
-  var departmentLoading=false.obs;
+  var departmentLoading = false.obs;
   var selectedEventIndex = 0.obs;
-  var departments=<DepartmentModel>[].obs;
-  static final  List<String> eventDates=['27 April','28 April','29 April','30 April'];
-  var date=eventDates.first.obs;
+  var departments = <DepartmentModel>[].obs;
+  static final List<String> eventDates = [
+    '27 April',
+    '28 April',
+    '29 April',
+    '30 April'
+  ];
+  var date = eventDates.first.obs;
 
   @override
   void onInit() {
@@ -34,14 +39,14 @@ class EventsController extends GetxController {
   }
 
   //TODO: fetch all dept
-  void fetchDepartments()async{
-
+  void fetchDepartments() async {
     final Response response = await api.getApi('/api/events/department/all/');
-    List<DepartmentModel> parsed = departmentModelFromJson(response.body['results']);
-    departments.value=parsed;
+    List<DepartmentModel> parsed =
+        departmentModelFromJson(response.body['results']);
+    departments.value = parsed;
     departmentLoading(true);
-
   }
+
   // TODO: IMPLEMENTATION
   void fetchAttendance() async {}
 
