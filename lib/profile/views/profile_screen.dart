@@ -3,10 +3,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
-<<<<<<< HEAD
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
-=======
->>>>>>> origin/main
+import 'package:hestia_23/core/Constants..dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -18,7 +16,6 @@ class ProfileScreen extends StatelessWidget {
     final _width = _size.width;
     return Scaffold(
       appBar: AppBar(
-<<<<<<< HEAD
         title: Text(
           "PROFILE",
           style: FutTheme.font2
@@ -28,16 +25,13 @@ class ProfileScreen extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           onPressed: () {},
-          icon: const Icon(
-            Icons.arrow_back_ios_sharp,
-            color: Color.fromRGBO(231, 231, 231, 1),
-=======
-        centerTitle: true,
-        title: Text(
-          "PROFILE",
-          style: FutTheme.font1.copyWith(
-            fontWeight: FontWeight.w700,
->>>>>>> origin/main
+          icon: CircleAvatar(
+            backgroundColor: Color.fromRGBO(32, 32, 32, 1),
+            radius: 20,
+            child: const Icon(
+              Icons.arrow_back_ios_sharp,
+              color: Color.fromRGBO(231, 231, 231, 1),
+            ),
           ),
         ),
       ),
@@ -116,7 +110,7 @@ class ProfileScreen extends StatelessWidget {
                       style: FutTheme.font3.copyWith(
                         letterSpacing: 1,
                         color: Color.fromRGBO(204, 204, 204, 1),
-                        fontSize: 18,
+                        fontSize: _width * 0.04,
                       ),
                     ),
                     Text(
@@ -171,8 +165,8 @@ class ProfileScreen extends StatelessWidget {
                             "Edit Profile",
                             style: FutTheme.font3.copyWith(
                               color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w300,
+                              fontSize: _width * 0.04,
+                              fontWeight: FontWeight.w100,
                             ),
                           )
                         ],
@@ -194,7 +188,7 @@ class ProfileScreen extends StatelessWidget {
                           "Certificates",
                           style: FutTheme.font3.copyWith(
                             color: Colors.white,
-                            fontSize: 18,
+                            fontSize: _width * 0.04,
                             fontWeight: FontWeight.w300,
                           ),
                         )
@@ -216,7 +210,7 @@ class ProfileScreen extends StatelessWidget {
                           "ID Card",
                           style: FutTheme.font3.copyWith(
                             color: Colors.white,
-                            fontSize: 18,
+                            fontSize: _width * 0.04,
                             fontWeight: FontWeight.w300,
                           ),
                         )
@@ -238,7 +232,7 @@ class ProfileScreen extends StatelessWidget {
                           "Logout",
                           style: FutTheme.font3.copyWith(
                             color: Colors.white,
-                            fontSize: 18,
+                            fontSize: _width * 0.04,
                             fontWeight: FontWeight.w300,
                           ),
                         )
