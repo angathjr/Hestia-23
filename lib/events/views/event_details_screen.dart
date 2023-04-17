@@ -56,7 +56,7 @@ class EventDetailsScreen extends StatelessWidget {
                         height: cardSize,
                         child: Image.network(
                           '${eventsController.selectedEvent.image}',
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
