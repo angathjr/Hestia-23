@@ -1,40 +1,274 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
 
+  final style1 = const TextStyle(
+    fontWeight: FontWeight.bold,
+  );
+  final style2 = const TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          leading: const IconButton(
-              onPressed: null, icon: Icon(Icons.arrow_back_ios)),
-          title: const Text('NOTIFICATIONS',
-              style: TextStyle(fontWeight: FontWeight.bold)),
-          bottom: const TabBar(
-            controller: null,
-            tabs: [
-              Tab(child: Text('General')),
-              Tab(
-                child: Text('My Events'),
-              )
-            ],
+    final h = MediaQuery.of(context).size.height -
+        MediaQuery.of(context).padding.top -
+        kToolbarHeight;
+    return DefaultTabController(
+      length: 2,
+      child: Padding(
+        padding: const EdgeInsets.all(13.0),
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back_ios_new_rounded),
+              color: Colors.white,
+              onPressed: () {},
+            ),
+            centerTitle: true,
+            bottom: TabBar(
+              labelColor: Colors.white,
+              indicatorWeight: 1,
+              indicatorSize: TabBarIndicatorSize.label,
+              unselectedLabelColor: Colors.grey,
+              indicatorColor: const Color.fromARGB(255, 226, 222, 169),
+              dividerColor: Colors.transparent,
+              tabs: [
+                Tab(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'General',
+                        style: GoogleFonts.questrial(textStyle: style1),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                        width: 20,
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Color.fromARGB(255, 236, 217, 15)),
+                        child: const Center(
+                            child: Text(
+                          '${4}',
+                          style: TextStyle(color: Colors.black),
+                        )),
+                      )
+                    ],
+                  ),
+                ),
+                Tab(
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'My Events',
+                      style: GoogleFonts.questrial(textStyle: style1),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      width: 20,
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color.fromARGB(255, 236, 217, 15)),
+                      child: const Center(
+                          child: Text(
+                        '${4}',
+                        style: TextStyle(color: Colors.black),
+                      )),
+                    )
+                  ],
+                )),
+              ],
+            ),
+            title: Text(
+              'NOTIFICATIONS',
+              style: GoogleFonts.questrial(textStyle: style1),
+            ),
+          ),
+          body: Padding(
+            padding:
+                const EdgeInsets.only(top: 25, left: 10, right: 10, bottom: 10),
+            child: TabBarView(
+              children: [
+                ListView.separated(
+                  separatorBuilder: (context, index) {
+                    return const Divider(
+                      height: 30,
+                      color: Colors.transparent,
+                    );
+                  },
+                  itemCount: 6,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: const Color.fromARGB(255, 33, 32, 32)),
+                      height: h * 0.4,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Text(
+                              'WORKSHOP ABOUT TO START',
+                              style: GoogleFonts.questrial(textStyle: style2),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: RichText(
+                              text: const TextSpan(
+                                text:
+                                    "All registered people head to college ground DJ Rizz proshow will start by 2:00 pm... ",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: ' Read more',
+                                      style: TextStyle(
+                                          color: Color.fromARGB(
+                                              255, 236, 217, 15))),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  '12:34',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.all(10),
+                                  padding: const EdgeInsets.all(10),
+                                  alignment: Alignment.center,
+                                  decoration: const BoxDecoration(
+                                      color: Color.fromARGB(255, 70, 67, 67),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(
+                                              10.0)), // Set rounded corner radius
+                                      boxShadow: [
+                                        BoxShadow(
+                                            blurRadius: 10,
+                                            color: Colors.black,
+                                            offset: Offset(1, 3))
+                                      ] // Make rounded corner of border
+                                      ),
+                                  child: Text(
+                                    "AI Workshop",
+                                    style: GoogleFonts.questrial(
+                                        textStyle: const TextStyle(
+                                            color: Colors.white)),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                ListView.separated(
+                  separatorBuilder: (context, index) {
+                    return const Divider(
+                      height: 30,
+                      color: Colors.transparent,
+                    );
+                  },
+                  itemCount: 6,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: const Color.fromARGB(255, 33, 32, 32)),
+                      height: h * 0.4,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Text(
+                              'WORKSHOP ABOUT TO START',
+                              style: GoogleFonts.questrial(textStyle: style2),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: RichText(
+                              text: const TextSpan(
+                                text:
+                                    "All registered people head to college ground DJ Rizz proshow will start by 2:00 pm... ",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: ' Read more',
+                                      style: TextStyle(
+                                          color: Color.fromARGB(
+                                              255, 236, 217, 15))),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  '12:34',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.all(10),
+                                  padding: const EdgeInsets.all(10),
+                                  alignment: Alignment.center,
+                                  decoration: const BoxDecoration(
+                                      color: Color.fromARGB(255, 70, 67, 67),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(
+                                              10.0)), // Set rounded corner radius
+                                      boxShadow: [
+                                        BoxShadow(
+                                            blurRadius: 10,
+                                            color: Colors.black,
+                                            offset: Offset(1, 3))
+                                      ] // Make rounded corner of border
+                                      ),
+                                  child: Text(
+                                    "AI Workshop",
+                                    style: GoogleFonts.questrial(
+                                        textStyle: const TextStyle(
+                                            color: Colors.white)),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                )
+              ],
+            ),
           ),
         ),
-        body: TabBarView(children: [
-          Container(
-            //for first tab
-            height: 400,
-            color: Colors.red,
-          ),
-          Container(
-            //for second tab
-            height: 400,
-            color: Colors.green,
-          )
-        ]));
+      ),
+    );
   }
 }

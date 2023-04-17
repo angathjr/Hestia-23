@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
+import 'package:hestia_23/home/views/leaderboard_card.dart';
 import 'package:hestia_23/home/views/notification_screen.dart';
 import 'package:hestia_23/navbar/views/navbar_screen.dart';
 import 'package:hestia_23/profile/views/profile_screen.dart';
