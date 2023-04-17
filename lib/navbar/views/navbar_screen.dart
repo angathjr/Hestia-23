@@ -48,48 +48,48 @@ class NavBarPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: width*0.06,vertical: height*0.005),
+                padding: EdgeInsets.symmetric(
+                    horizontal: width * 0.06, vertical: height * 0.005),
                 child: Container(
                   height: height * 0.07,
                   decoration: BoxDecoration(
                     color: const Color(0xff111111),
                     borderRadius: BorderRadius.circular(15),
                   ),
-
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    buildNavIcons(
-                      navHeight: navHeight,
-                      w: 0.40,
-                      h: 0.40,
-                      index: 0,
-                      icon: Icon(Icons.home_filled),
-                    ),
-                    buildNavIcons(
-                      navHeight: navHeight,
-                      w: 0.35,
-                      h: 0.35,
-                      index: 1,
-                      icon: Icon(Icons.calendar_today_outlined),
-                    ),
-                    buildNavIcons(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      buildNavIcons(
+                        navHeight: navHeight,
+                        w: 0.40,
+                        h: 0.40,
+                        index: 0,
+                        icon: Icon(Icons.home_filled),
+                      ),
+                      buildNavIcons(
                         navHeight: navHeight,
                         w: 0.35,
                         h: 0.35,
-                        index: 2,
-                        icon: Icon(Icons.notifications)),
-                    buildNavIcons(
-                        navHeight: navHeight,
-                        w: 0.35,
-                        h: 0.35,
-                        index: 3,
-                        icon: Icon(Icons.person)),
-                  ],
+                        index: 1,
+                        icon: Icon(Icons.calendar_today_outlined),
+                      ),
+                      buildNavIcons(
+                          navHeight: navHeight,
+                          w: 0.35,
+                          h: 0.35,
+                          index: 2,
+                          icon: Icon(Icons.notifications)),
+                      buildNavIcons(
+                          navHeight: navHeight,
+                          w: 0.35,
+                          h: 0.35,
+                          index: 3,
+                          icon: Icon(Icons.person)),
+                    ],
+                  ),
                 ),
-              ),)
+              )
             ],
-          
           )
         ],
       ),

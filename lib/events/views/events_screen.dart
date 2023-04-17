@@ -33,10 +33,23 @@ class EventScreen extends StatelessWidget {
             floating: true,
             snap: true,
             titleSpacing: 20,
-            title: BackButtonWidget(width: width, height: height),
+            title: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                GestureDetector(
+                    onTap: () => Get.back(), child: const BackButtonWidget()),
+                const SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  Get.arguments.toString(),
+                  style: FutTheme.categoryFont,
+                ),
+              ],
+            ),
           ),
           SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+              padding: EdgeInsets.symmetric(horizontal: width * 0.05),
               sliver: SliverList(
                 delegate: SliverChildListDelegate(
                   [
@@ -122,7 +135,7 @@ class EventScreen extends StatelessWidget {
           // The list of cards are starts from here
 
           SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+            padding: EdgeInsets.symmetric(horizontal: width * 0.05),
             sliver: Obx(
               () => SliverList(
                 delegate: SliverChildBuilderDelegate(
@@ -246,7 +259,11 @@ class EventScreen extends StatelessWidget {
                     child: controller.departmentLoading.value == true
                         ? Text(
                             "${controller.departments[index].title?.toUpperCase()}",
-                            style: FutTheme.font6,
+                            style: controller.selectedDepartmentIndex.value !=
+                                    index
+                                ? FutTheme.font6
+                                : FutTheme.font6
+                                    .copyWith(color: const Color(0xff373737)),
                           )
                         : const Text("....."),
                   ),
