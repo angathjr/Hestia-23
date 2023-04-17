@@ -34,6 +34,7 @@ class HomeScreen extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
+              automaticallyImplyLeading: false,
               title: Image.asset(
                 "assets/images/mascot.png",
                 scale: 2.2,
@@ -68,13 +69,13 @@ class HomeScreen extends StatelessWidget {
                               child: Stories(),
                             ),
                             SizedBox(
-                              height: height * 0.05,
+                              height: height * 0.08,
                             ),
 
                             //the category screen placed here
 
                             SizedBox(
-                              height: height * 0.5,
+                              height: height * 0.47,
                               width: width,
                               child: CarouselSlider.builder(
                                 itemCount: eventController.categories.length,
@@ -85,7 +86,9 @@ class HomeScreen extends StatelessWidget {
                                       eventController.selectedCategory =
                                           eventController.categories[index];
                                       eventController.fetchEvents();
-                                      Get.to(() => EventScreen());
+                                      Get.to(() => EventScreen(),
+                                          arguments: eventController
+                                              .categories[index]);
                                     },
                                     categoryModel:
                                         eventController.categories[index],

@@ -6,10 +6,13 @@ import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 
+import '../../core/widgets/back_button_widget.dart';
+
 class EventScreen extends StatelessWidget {
   EventScreen({Key? key}) : super(key: key);
 
   final EventsController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -30,18 +33,7 @@ class EventScreen extends StatelessWidget {
             floating: true,
             snap: true,
             titleSpacing: 20,
-            title: Container(
-                width: width * 0.09,
-                height: width * 0.09,
-                decoration: const BoxDecoration(
-                  color: Color(0xff202020),
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  Icons.arrow_back_ios_rounded,
-                  color: Colors.white,
-                  size: height * 0.022,
-                )),
+            title: BackButtonWidget(width: width, height: height),
           ),
           SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: width * 0.04),
