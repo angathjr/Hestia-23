@@ -3,14 +3,19 @@ import 'package:get/get.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
 import 'package:hestia_23/home/views/home_screen.dart';
-import 'package:hestia_23/profile/views/profile.dart';
+import 'package:hestia_23/profile/views/profile_screen.dart';
 
 import '../controllers/navbar_controller.dart';
 
 class NavBarPage extends StatelessWidget {
   NavBarPage({Key? key}) : super(key: key);
 
-  var pages = [HomeScreen(), EventDetailsScreen(), EventScreen(), Profile()];
+  var pages = [
+    HomeScreen(),
+    EventDetailsScreen(),
+    EventScreen(),
+    ProfileScreen()
+  ];
 
   final navController = Get.put(NavBarController());
 
@@ -22,7 +27,7 @@ class NavBarPage extends StatelessWidget {
     double navHeight = (height - topHeight) - (width * 0.035 * 2);
 
     return Scaffold(
-        body: SizedBox(
+        body: Container(
       width: width,
       height: height,
       child: Stack(
@@ -51,42 +56,40 @@ class NavBarPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                   ),
 
-                  // The nav bar icons are placed here
-
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      buildNavIcons(
-                        navHeight: navHeight,
-                        w: 0.40,
-                        h: 0.40,
-                        index: 0,
-                        icon: const Icon(Icons.home_filled),
-                      ),
-                      buildNavIcons(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    buildNavIcons(
+                      navHeight: navHeight,
+                      w: 0.40,
+                      h: 0.40,
+                      index: 0,
+                      icon: Icon(Icons.home_filled),
+                    ),
+                    buildNavIcons(
+                      navHeight: navHeight,
+                      w: 0.35,
+                      h: 0.35,
+                      index: 1,
+                      icon: Icon(Icons.calendar_today_outlined),
+                    ),
+                    buildNavIcons(
                         navHeight: navHeight,
                         w: 0.35,
                         h: 0.35,
-                        index: 1,
-                        icon: const Icon(Icons.calendar_today_outlined),
-                      ),
-                      buildNavIcons(
-                          navHeight: navHeight,
-                          w: 0.35,
-                          h: 0.35,
-                          index: 2,
-                          icon: const Icon(Icons.notifications)),
-                      buildNavIcons(
-                          navHeight: navHeight,
-                          w: 0.35,
-                          h: 0.35,
-                          index: 3,
-                          icon: const Icon(Icons.person)),
-                    ],
-                  ),
+                        index: 2,
+                        icon: Icon(Icons.notifications)),
+                    buildNavIcons(
+                        navHeight: navHeight,
+                        w: 0.35,
+                        h: 0.35,
+                        index: 3,
+                        icon: Icon(Icons.person)),
+                  ],
                 ),
-              ),
+              ),)
             ],
+          
           )
         ],
       ),

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
+import 'package:hestia_23/events/controllers/events_controller.dart';
+import 'package:intl/intl.dart';
 import '../controllers/event_pages_controller.dart';
 
 class EventDetailsScreen extends StatelessWidget {
   EventDetailsScreen({Key? key}) : super(key: key);
 
+  final EventsController eventsController = Get.find();
   final controller = Get.put(EventPagesController());
 
   @override
@@ -44,7 +47,6 @@ class EventDetailsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-
                     //The poster will be placed here
 
                     ClipRRect(
@@ -52,8 +54,8 @@ class EventDetailsScreen extends StatelessWidget {
                       child: SizedBox(
                         width: width,
                         height: cardSize,
-                        child: Image.asset(
-                          "assets/images/encore11.jpg",
+                        child: Image.network(
+                          '${eventsController.selectedEvent.image}',
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -73,12 +75,12 @@ class EventDetailsScreen extends StatelessWidget {
                             height: height * 0.01,
                           ),
                           Text(
-                            "AGREE TO DISAGREE",
+                            "${eventsController.selectedEvent.title}",
                             style: FutTheme.font1
                                 .copyWith(fontSize: height * 0.028),
                           ),
                           Text(
-                            "DEBATE COMPETITION",
+                            "${eventsController.selectedEvent.dept?.title}",
                             style: FutTheme.font2
                                 .copyWith(fontSize: height * 0.015),
                           ),
@@ -93,7 +95,8 @@ class EventDetailsScreen extends StatelessWidget {
                               SizedBox(
                                 width: width * 0.02,
                               ),
-                              Text("APJ PARK",
+                              Text(
+                                  "${eventsController.selectedEvent.venue?.title}",
                                   style: FutTheme.font2.copyWith(
                                       fontSize: height * 0.0135,
                                       color: const Color(0xff8C8984),
@@ -129,7 +132,9 @@ class EventDetailsScreen extends StatelessWidget {
                                       .copyWith(fontSize: height * 0.014),
                                 ),
                                 Text(
-                                  "May 26",
+                                  DateFormat('MMM d').format(eventsController
+                                      .selectedEvent.eventStart!),
+                                  // "${eventsController.selectedEvent.eventStart?.day} / ${eventsController.selectedEvent.eventStart?.month}",
                                   style: FutTheme.font1.copyWith(
                                       fontSize: height * 0.018,
                                       fontWeight: FontWeight.w700),
@@ -155,7 +160,7 @@ class EventDetailsScreen extends StatelessWidget {
                                           color: Colors.black),
                                     ),
                                     Text(
-                                      "30 K",
+                                      '${eventsController.selectedEvent.prize}',
                                       style: FutTheme.font1.copyWith(
                                           fontSize: height * 0.03,
                                           fontWeight: FontWeight.w700,
@@ -176,7 +181,7 @@ class EventDetailsScreen extends StatelessWidget {
                                         .copyWith(fontSize: height * 0.015),
                                   ),
                                   Text(
-                                    "500",
+                                    '₹ ${(eventsController.selectedEvent.fees == null ? 0 : eventsController.selectedEvent.fees! / 100).toInt()}',
                                     style: FutTheme.font1.copyWith(
                                         fontSize: height * 0.018,
                                         fontWeight: FontWeight.w700),
@@ -206,14 +211,8 @@ class EventDetailsScreen extends StatelessWidget {
                       () => Column(
                         children: [
                           Text(
-                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                            " Lorem Ipsum has been the industry's standard dummy text ever since the"
-                            "1500s, when an unknown printer took a galley of type and scrambled it to "
-                            "make a type specimen book. It has survived not only five centuries, but also"
-                            " the leap into electronic typesetting, remaining essentially unchanged. It was "
-                            "popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,"
-                            " and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-                            style: FutTheme.font7
+                            '${eventsController.selectedEvent.desc}',
+                            style: FutTheme.font4
                                 .copyWith(fontSize: height * 0.018),
                             maxLines:
                                 controller.isReadMore.value == false ? 4 : null,
@@ -256,11 +255,13 @@ class EventDetailsScreen extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        contactDetails(width, height, "Dinoy"),
+                        contactDetails(width, height,
+                            '${eventsController.selectedEvent.coordinator1?.committeeName}'),
                         SizedBox(
                           width: width * 0.11,
                         ),
-                        contactDetails(width, height, "Amal")
+                        contactDetails(width, height,
+                            '${eventsController.selectedEvent.coordinator1?.committeeName}'),
                       ],
                     ),
 
