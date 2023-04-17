@@ -13,16 +13,13 @@ import 'getx_di.dart';
 import './home/views/home_screen.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   GetXDependancyInjector().onInit();
   await GetStorage.init();
 
-
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown
-  ]).then((value) => runApp(MyApp()));
+  SystemChrome.setPreferredOrientations(
+          [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
+      .then((value) => runApp(MyApp()));
 
   runApp(MyApp());
 }
