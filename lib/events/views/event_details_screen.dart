@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
+import 'package:hestia_23/core/widgets/back_button_widget.dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:intl/intl.dart';
 import '../controllers/event_pages_controller.dart';
@@ -23,22 +24,13 @@ class EventDetailsScreen extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           slivers: [
             SliverAppBar(
+              automaticallyImplyLeading: false,
               pinned: false,
               floating: true,
               snap: true,
               titleSpacing: 20,
-              title: Container(
-                  width: width * 0.09,
-                  height: width * 0.09,
-                  decoration: const BoxDecoration(
-                    color: Color(0xff202020),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    Icons.arrow_back_ios_rounded,
-                    color: Colors.white,
-                    size: height * 0.022,
-                  )),
+              title: GestureDetector(
+                  onTap: () => Get.back(), child: const BackButtonWidget()),
             ),
             SliverList(
                 delegate: SliverChildListDelegate([
@@ -212,7 +204,7 @@ class EventDetailsScreen extends StatelessWidget {
                         children: [
                           Text(
                             '${eventsController.selectedEvent.desc}',
-                            style: FutTheme.font4
+                            style: FutTheme.font7
                                 .copyWith(fontSize: height * 0.018),
                             maxLines:
                                 controller.isReadMore.value == false ? 4 : null,

@@ -2,16 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
+import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 import 'package:hestia_23/core/Constants..dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  ProfileScreen({super.key});
+
+  final AuthController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    final _size = MediaQuery.of(context).size;
+    final _size = MediaQuery
+        .of(context)
+        .size;
     final _height = _size.height;
     final _width = _size.width;
     return Scaffold(
@@ -219,12 +224,15 @@ class ProfileScreen extends StatelessWidget {
                           ),
                         ),
                         Padding(padding: EdgeInsets.all(_width / 70)),
-                        Text(
-                          "Logout",
-                          style: FutTheme.font3.copyWith(
-                            color: Colors.white,
-                            fontSize: _width * 0.04,
-                            fontWeight: FontWeight.w200,
+                        InkWell(
+                          onTap: () => controller.signout(),
+                          child: Text(
+                            "Logout",
+                            style: FutTheme.font3.copyWith(
+                              color: Colors.white,
+                              fontSize: _width * 0.04,
+                              fontWeight: FontWeight.w200,
+                            ),
                           ),
                         )
                       ],

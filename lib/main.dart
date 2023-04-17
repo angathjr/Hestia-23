@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
             name: '/',
             page: () => storage.hasData('authToken')
                 ? storage.read('isComplete') ?? false
-                    ? HomeScreen()
+                    ? NavBarPage()
                     : ProfileCompletion()
                 : LoginScreen()),
         // GetPage(name: '/posts', page: () => PostsScreen()),

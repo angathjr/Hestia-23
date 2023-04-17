@@ -88,7 +88,7 @@ class HomeScreen extends StatelessWidget {
                                       eventController.fetchEvents();
                                       Get.to(() => EventScreen(),
                                           arguments: eventController
-                                              .categories[index]);
+                                              .categories[index].name);
                                     },
                                     categoryModel:
                                         eventController.categories[index],
