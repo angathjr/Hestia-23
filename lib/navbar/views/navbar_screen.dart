@@ -30,31 +30,31 @@ class NavBarPage extends StatelessWidget {
         body: Container(
       width: width,
       height: height,
-      child: Column(
+      child: Stack(
         children: [
           //pageview
 
           SizedBox(
             width: width,
-            height: topHeight,
+            height: height,
             child: PageView(
               physics: const NeverScrollableScrollPhysics(),
               controller: navController.controller,
               children: pages,
             ),
           ),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.all(width * 0.03),
-              width: width,
-              color: Colors.transparent,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xff111111),
-                  borderRadius: BorderRadius.circular(15),
-                ),
 
-                // The nav bar icons are placed here
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width*0.06,vertical: height*0.005),
+                child: Container(
+                  height: height * 0.07,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff111111),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
 
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -87,8 +87,9 @@ class NavBarPage extends StatelessWidget {
                         icon: Icon(Icons.person)),
                   ],
                 ),
-              ),
-            ),
+              ),)
+            ],
+          
           )
         ],
       ),

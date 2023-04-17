@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:hestia_23/events/models/category.dart';
 import 'package:hestia_23/events/models/department_list..dart';
