@@ -36,7 +36,7 @@ class EventScreen extends StatelessWidget {
             title: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                GestureDetector(
+                InkWell(
                     onTap: () => Get.back(), child: const BackButtonWidget()),
                 const SizedBox(
                   width: 20,
@@ -50,9 +50,9 @@ class EventScreen extends StatelessWidget {
           ),
           SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate(
-                  [
+              sliver: SliverToBoxAdapter(
+                child: Column(
+                  children: [
                     SizedBox(
                       height: height * 0.01,
                     ),
