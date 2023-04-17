@@ -3,19 +3,18 @@ import 'package:get/get.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
 import 'package:hestia_23/home/views/home_screen.dart';
-import 'package:hestia_23/profile/views/profile.dart';
+import 'package:hestia_23/profile/views/profile_screen.dart';
 
 import '../controllers/navbar_controller.dart';
-
 
 class NavBarPage extends StatelessWidget {
   NavBarPage({Key? key}) : super(key: key);
 
-  var pages =  [
-   HomeScreen(),
+  var pages = [
+    HomeScreen(),
     EventDetailsScreen(),
     EventScreen(),
-    Profile()
+    ProfileScreen()
   ];
 
   final navController = Get.put(NavBarController());
@@ -27,12 +26,12 @@ class NavBarPage extends StatelessWidget {
     double topHeight = height * 0.915;
     double navHeight = (height - topHeight) - (width * 0.035 * 2);
 
-    return Scaffold(body: Container(
+    return Scaffold(
+        body: Container(
       width: width,
       height: height,
       child: Column(
         children: [
-
           //pageview
 
           SizedBox(
@@ -61,29 +60,31 @@ class NavBarPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     buildNavIcons(
-                        navHeight: navHeight,
-                        w: 0.40,
-                        h: 0.40,
-                        index: 0,
-                  icon:Icon(Icons.home_filled),),
-
+                      navHeight: navHeight,
+                      w: 0.40,
+                      h: 0.40,
+                      index: 0,
+                      icon: Icon(Icons.home_filled),
+                    ),
                     buildNavIcons(
-                        navHeight: navHeight,
-                        w: 0.35,
-                        h: 0.35,
-                        index: 1, icon: Icon(Icons.calendar_today_outlined),
-
+                      navHeight: navHeight,
+                      w: 0.35,
+                      h: 0.35,
+                      index: 1,
+                      icon: Icon(Icons.calendar_today_outlined),
                     ),
                     buildNavIcons(
                         navHeight: navHeight,
                         w: 0.35,
                         h: 0.35,
-                        index: 2, icon: Icon(Icons.notifications)),
+                        index: 2,
+                        icon: Icon(Icons.notifications)),
                     buildNavIcons(
                         navHeight: navHeight,
                         w: 0.35,
                         h: 0.35,
-                        index: 3, icon: Icon(Icons.person)),
+                        index: 3,
+                        icon: Icon(Icons.person)),
                   ],
                 ),
               ),
@@ -96,23 +97,18 @@ class NavBarPage extends StatelessWidget {
 
   InkWell buildNavIcons(
       {required double navHeight,
-        required Icon icon,
-        required double w,
-        required double h,
-        required int index}) {
+      required Icon icon,
+      required double w,
+      required double h,
+      required int index}) {
     return InkWell(
       onTap: () {
         navController.changePage(index, navController.controller);
         navController.index.value = index;
       },
-      child: SizedBox(
-          width: navHeight * w,
-          height: navHeight * h,
-          child: icon
-      ),
+      child: SizedBox(width: navHeight * w, height: navHeight * h, child: icon),
     );
   }
 }
-
 
 //TODO: this is only a sample nav bar for testing, need to rebuild it

@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.black,
           appBarTheme: const AppBarTheme(color: Colors.black)),
       initialRoute: '/',
-      // home: ProfileScreen(),
+      home: ProfileScreen(),
       getPages: [
         GetPage(
             name: '/',
