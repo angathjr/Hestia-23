@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hestia_23/Schedule/views/Schedule.dart';
+import 'package:hestia_23/schedule/views/Schedule.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
 import 'package:hestia_23/navbar/views/navbar_screen.dart';

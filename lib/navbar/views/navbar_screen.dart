@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hestia_23/Schedule/views/Schedule.dart';
+import 'package:hestia_23/schedule/views/Schedule.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
 import 'package:hestia_23/home/views/home_screen.dart';
@@ -14,8 +14,7 @@ class NavBarPage extends StatelessWidget {
 
   var pages = [HomeScreen(), Schedule(), NotificationScreen(), ProfileScreen()];
 
-  final navController = Get.put(NavBarController());
-
+  final NavBarController navBarController = Get.find();
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -36,7 +35,7 @@ class NavBarPage extends StatelessWidget {
             height: height,
             child: PageView(
               physics: const NeverScrollableScrollPhysics(),
-              controller: navController.controller,
+              controller: navBarController.controller,
               children: pages,
             ),
           ),
@@ -107,13 +106,13 @@ class NavBarPage extends StatelessWidget {
       required int index}) {
     return InkWell(
       onTap: () {
-        navController.changePage(index, navController.controller);
-        navController.index.value = index;
+        navBarController.changePage(index, navBarController.controller);
+        navBarController.index.value = index;
       },
       child: SizedBox(
           width: navHeight,
           height: navHeight,
-          child: (navController.index.value == index)
+          child: (navBarController.index.value == index)
               ? selectedIcon
               : unselectedIcon),
     );

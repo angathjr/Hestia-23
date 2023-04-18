@@ -35,9 +35,12 @@ class HomeScreen extends StatelessWidget {
           slivers: [
             SliverAppBar(
               automaticallyImplyLeading: false,
-              title: Image.asset(
-                "assets/images/mascot.png",
-                scale: 2.2,
+              title: InkWell(
+                onTap: () => authController.signout(),
+                child: Image.asset(
+                  "assets/images/mascot.png",
+                  scale: 2.2,
+                ),
               ),
             ),
             SliverPadding(
