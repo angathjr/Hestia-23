@@ -3,19 +3,18 @@ import 'package:get/get.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
 import 'package:hestia_23/home/views/home_screen.dart';
-import 'package:hestia_23/profile/views/profile.dart';
+import 'package:hestia_23/profile/views/profile_screen.dart';
 
 import '../controllers/navbar_controller.dart';
-
 
 class NavBarPage extends StatelessWidget {
   NavBarPage({Key? key}) : super(key: key);
 
-  var pages =  [
-   HomeScreen(),
+  var pages = [
+    HomeScreen(),
     EventDetailsScreen(),
     EventScreen(),
-    Profile()
+    ProfileScreen()
   ];
 
   final navController = Get.put(NavBarController());
@@ -24,71 +23,80 @@ class NavBarPage extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    double topHeight = height * 0.915;
-    double navHeight = (height - topHeight) - (width * 0.035 * 2);
 
-    return Scaffold(body: Container(
+    double navHeight = height * 0.063;
+
+    return Scaffold(
+        body: SizedBox(
       width: width,
       height: height,
-      child: Column(
+      child: Stack(
         children: [
-
-
           //pageview
 
           SizedBox(
             width: width,
-            height: topHeight,
+            height: height,
             child: PageView(
               physics: const NeverScrollableScrollPhysics(),
               controller: navController.controller,
               children: pages,
             ),
           ),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.all(width * 0.03),
-              width: width,
-              color: Colors.transparent,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xff111111),
-                  borderRadius: BorderRadius.circular(15),
+
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: width * 0.06, vertical: height * 0.006),
+                child: Container(
+                  height: height * 0.065,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff111111),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Obx(
+                        () => buildNavIcons(
+                          navHeight: navHeight,
+                          index: 0,
+                          selectedIcon: const Icon(Icons.home_filled),
+                          unselectedIcon: const Icon(Icons.home_outlined),
+                        ),
+                      ),
+                      Obx(
+                        () => buildNavIcons(
+                          navHeight: navHeight,
+                          index: 1,
+                          selectedIcon:
+                              const Icon(Icons.calendar_today_rounded),
+                          unselectedIcon:
+                              const Icon(Icons.calendar_today_outlined),
+                        ),
+                      ),
+                      Obx(
+                        () => buildNavIcons(
+                            navHeight: navHeight,
+                            index: 2,
+                            selectedIcon: const Icon(Icons.notifications),
+                            unselectedIcon:
+                                const Icon(Icons.notifications_none_outlined)),
+                      ),
+                      Obx(() => buildNavIcons(
+                            navHeight: navHeight,
+                            index: 3,
+                            selectedIcon: const Icon(Icons.person),
+                            unselectedIcon:
+                                const Icon(Icons.person_outline_rounded),
+                          ))
+                    ],
+                  ),
                 ),
-
-                // The nav bar icons are placed here
-
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    buildNavIcons(
-                        navHeight: navHeight,
-                        w: 0.40,
-                        h: 0.40,
-                        index: 0,
-                  icon:Icon(Icons.home_filled),),
-
-                    buildNavIcons(
-                        navHeight: navHeight,
-                        w: 0.35,
-                        h: 0.35,
-                        index: 1, icon: Icon(Icons.calendar_today_outlined),
-
-                    ),
-                    buildNavIcons(
-                        navHeight: navHeight,
-                        w: 0.35,
-                        h: 0.35,
-                        index: 2, icon: Icon(Icons.notifications)),
-                    buildNavIcons(
-                        navHeight: navHeight,
-                        w: 0.35,
-                        h: 0.35,
-                        index: 3, icon: Icon(Icons.person)),
-                  ],
-                ),
-              ),
-            ),
+              )
+            ],
           )
         ],
       ),
@@ -97,23 +105,22 @@ class NavBarPage extends StatelessWidget {
 
   InkWell buildNavIcons(
       {required double navHeight,
-        required Icon icon,
-        required double w,
-        required double h,
-        required int index}) {
+      required Icon selectedIcon,
+      required Icon unselectedIcon,
+      required int index}) {
     return InkWell(
       onTap: () {
         navController.changePage(index, navController.controller);
         navController.index.value = index;
       },
       child: SizedBox(
-          width: navHeight * w,
-          height: navHeight * h,
-          child: icon
-      ),
+          width: navHeight,
+          height: navHeight,
+          child: (navController.index.value == index)
+              ? selectedIcon
+              : unselectedIcon),
     );
   }
 }
 
-
-//TODO: this is only a sample nav bar for testing, need to rebuild it
+//TODO: this is only a sample nav bar for testing, need to rebuild it ,also need to change the icons and ripple effects
