@@ -14,7 +14,7 @@ class GetXDependancyInjector {
     Get.put(ApiProviderNoAuth());
     Get.put(AuthController());
     Get.put(GetStorage());
-    Get.put(FCMController());
+    Get.lazyPut(() => FCMController(), fenix: true);
     Get.lazyPut(() => EventsController(), fenix: true);
     Get.lazyPut(() => ProfileEditController(), fenix: true);
     Get.lazyPut(() => ScheduleController(), fenix: true);

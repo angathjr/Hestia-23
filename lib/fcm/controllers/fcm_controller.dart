@@ -45,15 +45,18 @@ class FCMController extends GetxController {
   }
 
   void subscribeToTopic() async {
-    List<EventModel> registeredEvents = [];
-
     try {
       await Future.delayed(Duration(seconds: 1));
       final Response response = await api.getApi('/api/events/reg/events/');
-      registeredEvents = eventModelFromJson(response.body['results']);
-      log(registeredEvents.toString());
-      registeredEvents
-          .map((e) async => await messaging.subscribeToTopic(e.slug ?? ''));
+      final List responseBody = response.body['results'];
+      List eventSlugs = [];
+      for (var e in responseBody) {
+        eventSlugs.add(e['event']?['slug']);
+      }
+      eventSlugs.forEach((e) async {
+        await messaging.subscribeToTopic('$e');
+        print('Subscribed to $e');
+      });
     } on Exception catch (e) {}
   }
 
