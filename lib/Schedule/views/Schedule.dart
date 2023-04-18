@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/Schedule/controller/schedule_controller.dart';
+import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/models/event.dart';
 import 'package:intl/intl.dart';
 
@@ -27,24 +26,50 @@ class Schedule extends StatelessWidget {
             ),
             Text(
               "Schedule",
-              style: TextStyle(color: Colors.white),
+              style: FutTheme.font1.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: h * 0.03),
             ),
             SizedBox(
-              height: h * 0.05,
+              height: h * 0.03,
               width: double.infinity,
             ),
             SizedBox(
-              height: h * 0.09,
-              child: Center(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => Dates(
-                    date: controller.dates[index],
-                    index: index,
-                    controller: controller,
-                  ),
-                  itemCount: 4,
+                height: dateContainerHeight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      child: Dates(
+                        date: controller.dates[0],
+                        index: 0,
+                        controller: controller,
+                      ),
+                    ),
+                    Expanded(
+                      child: Dates(
+                        date: controller.dates[1],
+                        index: 1,
+                        controller: controller,
+                      ),
+                    ),
+                    Expanded(
+                      child: Dates(
+                        date: controller.dates[2],
+                        index: 2,
+                        controller: controller,
+                      ),
+                    ),
+                    Expanded(
+                      child: Dates(
+                        date: controller.dates[3],
+                        index: 3,
+                        controller: controller,
+                      ),
+                    ),
+                  ],
+                )
                 ),
               ),
             ),
@@ -129,12 +154,28 @@ class TimeLineofEvents extends StatelessWidget {
               Container(
                 clipBehavior: Clip.hardEdge,
                 decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(event.image!),
+                        fit: BoxFit.cover,
+                        opacity: 0.7),
                     borderRadius: BorderRadius.all(Radius.circular(20))),
-                height: h * 0.2,
-                width: w * 0.6,
-                child: Image(
-                  image: NetworkImage(event.image!),
-                  fit: BoxFit.fill,
+                height: h * 0.15,
+                width: w * 0.8,
+                child: Padding(
+                  padding: EdgeInsets.only(left: w * 0.04),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        event.title ?? '',
+                        style: FutTheme.font3.copyWith(
+                            fontWeight: FontWeight.bold, fontSize: h * 0.024),
+                      ),
+                      Text(event.shortDesc ?? ''),
+                      Text(event.venue?.title ?? '')
+                    ],
+                  ),
                 ),
               )
             ],
@@ -167,7 +208,7 @@ class Dates extends StatelessWidget {
       child: Obx(
         () => Container(
           margin: EdgeInsets.symmetric(horizontal: w * 0.04),
-          height: h * 0.09,
+          height: h * 0.06,
           width: w * 0.15,
           decoration: BoxDecoration(
               color: controller.selectedDateIndex.value == index
@@ -210,9 +251,9 @@ class CustomTimeLine extends StatelessWidget {
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
-    return Container(
-      height: h * 0.3,
-      width: w * 0.2,
+    return SizedBox(
+      height: h * 0.25,
+      width: w * 0.09,
       child: CustomPaint(
         painter: LineCircle(),
       ),
