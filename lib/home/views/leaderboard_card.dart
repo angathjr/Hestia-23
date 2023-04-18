@@ -37,26 +37,24 @@ class LeaderBoard extends StatelessWidget {
             decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(8)),
                 color: Color.fromARGB(255, 23, 22, 22)),
-            child: Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (BuildContext context, int index) {
-                  return const ListTile(
-                      trailing: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.red,
+            child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (BuildContext context, int index) {
+                return const ListTile(
+                    trailing: Icon(
+                      Icons.arrow_forward,
+                      color: Colors.red,
+                    ),
+                    title: Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Text(
+                        "Logo Designing",
+                        style: TextStyle(color: Colors.white
+                            //fontWeight: FontWeight.bold,
+                            ),
                       ),
-                      title: Padding(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          "Logo Designing",
-                          style: TextStyle(color: Colors.white
-                              //fontWeight: FontWeight.bold,
-                              ),
-                        ),
-                      ));
-                },
-              ),
+                    ));
+              },
             ),
           ),
         )
@@ -96,24 +94,22 @@ class LeaderBoard extends StatelessWidget {
             decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(8)),
                 color: Color.fromARGB(255, 23, 22, 22)),
-            child: Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (BuildContext context, int index) {
-                  return const ListTile(
-                      trailing: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.yellow,
+            child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (BuildContext context, int index) {
+                return const ListTile(
+                    trailing: Icon(
+                      Icons.arrow_forward,
+                      color: Colors.yellow,
+                    ),
+                    title: Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Text(
+                        "Logo Designing",
+                        style: TextStyle(color: Colors.white),
                       ),
-                      title: Padding(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          "Logo Designing",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ));
-                },
-              ),
+                    ));
+              },
             ),
           ),
         )
@@ -153,26 +149,24 @@ class LeaderBoard extends StatelessWidget {
             decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(8)),
                 color: Color.fromARGB(255, 23, 22, 22)),
-            child: Expanded(
-              child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (BuildContext context, int index) {
-                  return const ListTile(
-                      trailing: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.yellowAccent,
+            child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (BuildContext context, int index) {
+                return const ListTile(
+                    trailing: Icon(
+                      Icons.arrow_forward,
+                      color: Colors.yellowAccent,
+                    ),
+                    title: Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Text(
+                        "Logo Designing",
+                        style: TextStyle(color: Colors.white
+                            //fontWeight: FontWeight.bold,
+                            ),
                       ),
-                      title: Padding(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          "Logo Designing",
-                          style: TextStyle(color: Colors.white
-                              //fontWeight: FontWeight.bold,
-                              ),
-                        ),
-                      ));
-                },
-              ),
+                    ));
+              },
             ),
           ),
         )
