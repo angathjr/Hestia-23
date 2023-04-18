@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/Schedule/controller/schedule_controller.dart';
 import 'package:hestia_23/core/Constants..dart';
@@ -38,17 +36,40 @@ class Schedule extends StatelessWidget {
               width: double.infinity,
             ),
             SizedBox(
-              height: h * 0.07,
-              child: Center(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => Dates(
-                    date: controller.dates[index],
-                    index: index,
-                    controller: controller,
-                  ),
-                  itemCount: 4,
+                height: dateContainerHeight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      child: Dates(
+                        date: controller.dates[0],
+                        index: 0,
+                        controller: controller,
+                      ),
+                    ),
+                    Expanded(
+                      child: Dates(
+                        date: controller.dates[1],
+                        index: 1,
+                        controller: controller,
+                      ),
+                    ),
+                    Expanded(
+                      child: Dates(
+                        date: controller.dates[2],
+                        index: 2,
+                        controller: controller,
+                      ),
+                    ),
+                    Expanded(
+                      child: Dates(
+                        date: controller.dates[3],
+                        index: 3,
+                        controller: controller,
+                      ),
+                    ),
+                  ],
+                )
                 ),
               ),
             ),
@@ -230,9 +251,9 @@ class CustomTimeLine extends StatelessWidget {
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
-    return Container(
-      height: h * 0.3,
-      width: w * 0.2,
+    return SizedBox(
+      height: h * 0.25,
+      width: w * 0.09,
       child: CustomPaint(
         painter: LineCircle(),
       ),
