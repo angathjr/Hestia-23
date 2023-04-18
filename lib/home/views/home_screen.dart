@@ -30,101 +30,104 @@ class HomeScreen extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              automaticallyImplyLeading: false,
-              title: InkWell(
-                onTap: () => authController.signout(),
-                child: Image.asset(
-                  "assets/images/mascot.png",
-                  scale: 2.2,
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: SafeArea(
+          child: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                automaticallyImplyLeading: false,
+                title: InkWell(
+                  onTap: () => authController.signout(),
+                  child: Image.asset(
+                    "assets/images/mascot.png",
+                    scale: 2.2,
+                  ),
                 ),
               ),
-            ),
-            SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate(
-                  [
-                    Stack(
-                      children: [
-                        //The background image is placed here
-                        SizedBox(
-                          width: double.infinity,
-                          height: height,
-                          child: Image.asset(
-                            'assets/images/bg.png',
-                            fit: BoxFit.cover,
+              SliverPadding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+                sliver: SliverList(
+                  delegate: SliverChildListDelegate(
+                    [
+                      Stack(
+                        children: [
+                          //The background image is placed here
+                          SizedBox(
+                            width: double.infinity,
+                            height: height,
+                            child: Image.asset(
+                              'assets/images/bg.png',
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
 
-                        //otherr stack elements
+                          //otherr stack elements
 
-                        Column(
-                          children: [
-                            SizedBox(
-                              height: height * 0.02,
-                            ),
-                            SizedBox(
-                              width: width,
-                              child: Stories(),
-                            ),
-                            SizedBox(
-                              height: height * 0.08,
-                            ),
-
-                            //the category screen placed here
-
-                            SizedBox(
-                              height: height * 0.47,
-                              width: width,
-                              child: CarouselSlider.builder(
-                                itemCount: eventController.categories.length,
-                                itemBuilder: (BuildContext context, int index,
-                                    int realIndex) {
-                                  return CategoryCard(
-                                    onTap: () {
-                                      eventController.selectedCategory =
-                                          eventController.categories[index];
-                                      eventController.fetchEvents();
-                                      Get.to(() => EventScreen(),
-                                          arguments: eventController
-                                              .categories[index].name);
-                                    },
-                                    categoryModel:
-                                        eventController.categories[index],
-                                  );
-                                },
-                                options: CarouselOptions(
-                                    // autoPlay: true,
-                                    autoPlayCurve: Curves.linearToEaseOut,
-                                    height: height * 0.46,
-                                    viewportFraction: 0.72,
-                                    enlargeCenterPage: true),
+                          Column(
+                            children: [
+                              SizedBox(
+                                height: height * 0.02,
                               ),
-                            ),
-                            SizedBox(
-                              height: height * 0.1,
-                            ),
-                            SizedBox(
-                              width: width,
-                              child: LeaderBoard.futureLeaderboard(
-                                  height, context),
-                            ),
-                            SizedBox(
-                              height: height * 0.4,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+                              SizedBox(
+                                width: width,
+                                child: Stories(),
+                              ),
+                              SizedBox(
+                                height: height * 0.08,
+                              ),
+
+                              //the category screen placed here
+
+                              SizedBox(
+                                height: height * 0.47,
+                                width: width,
+                                child: CarouselSlider.builder(
+                                  itemCount: eventController.categories.length,
+                                  itemBuilder: (BuildContext context, int index,
+                                      int realIndex) {
+                                    return CategoryCard(
+                                      onTap: () {
+                                        eventController.selectedCategory =
+                                            eventController.categories[index];
+                                        eventController.fetchEvents();
+                                        Get.to(() => EventScreen(),
+                                            arguments: eventController
+                                                .categories[index].name);
+                                      },
+                                      categoryModel:
+                                          eventController.categories[index],
+                                    );
+                                  },
+                                  options: CarouselOptions(
+                                      // autoPlay: true,
+                                      autoPlayCurve: Curves.linearToEaseOut,
+                                      height: height * 0.46,
+                                      viewportFraction: 0.72,
+                                      enlargeCenterPage: true),
+                                ),
+                              ),
+                              SizedBox(
+                                height: height * 0.1,
+                              ),
+                              SizedBox(
+                                width: width,
+                                child: LeaderBoard.futureLeaderboard(
+                                    height, context),
+                              ),
+                              SizedBox(
+                                height: height * 0.4,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

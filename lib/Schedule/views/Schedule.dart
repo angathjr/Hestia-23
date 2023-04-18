@@ -89,6 +89,7 @@ class Schedule extends StatelessWidget {
             Obx(
               () => Expanded(
                 child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) => TimeLineofEvents(
                     event: controller.events[index],
                   ),
