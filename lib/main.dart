@@ -53,8 +53,8 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           scaffoldBackgroundColor: Colors.black,
           appBarTheme: const AppBarTheme(color: Colors.black)),
-      initialRoute: '/schedule',
-      home: NavBarPage(),
+      initialRoute: '/',
+      // home: NavBarPage(),
       getPages: [
         GetPage(
             name: '/',

@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/Constants..dart';
+import 'package:hestia_23/profile/controllers/profile_controller.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 import 'package:hestia_23/core/Constants..dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
 
-  final AuthController controller = Get.find();
+  final AuthController authController = Get.find();
+  final ProfileController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    final _size = MediaQuery
-        .of(context)
-        .size;
+    final _size = MediaQuery.of(context).size;
     final _height = _size.height;
     final _width = _size.width;
     return Scaffold(
@@ -38,6 +36,10 @@ class ProfileScreen extends StatelessWidget {
               backgroundColor: const Color.fromRGBO(51, 51, 51, 1),
               radius: _width / 8,
               child: CircleAvatar(
+                backgroundImage: NetworkImage(
+                  controller.user.profileImage,
+                  // fit: BoxFit.f,
+                ),
                 radius: _width / 12,
               ),
             ),
@@ -55,7 +57,7 @@ class ProfileScreen extends StatelessWidget {
                   width: _width / 80,
                 ),
                 Text(
-                  "00000000",
+                  "${controller.user.phoneNumber}",
                   style: FutTheme.font3.copyWith(
                     color: const Color.fromRGBO(153, 153, 153, 1),
                     letterSpacing: 2,
@@ -77,7 +79,7 @@ class ProfileScreen extends StatelessWidget {
                   width: _width / 80,
                 ),
                 Text(
-                  "email",
+                  "${controller.user.email}",
                   style: FutTheme.font3.copyWith(
                     color: const Color.fromRGBO(153, 153, 153, 1),
                     letterSpacing: 1,
@@ -225,7 +227,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         Padding(padding: EdgeInsets.all(_width / 70)),
                         InkWell(
-                          onTap: () => controller.signout(),
+                          onTap: () => authController.signout(),
                           child: Text(
                             "Logout",
                             style: FutTheme.font3.copyWith(

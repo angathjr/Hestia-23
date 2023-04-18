@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hestia_23/Schedule/views/Schedule.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
 import 'package:hestia_23/home/views/home_screen.dart';
@@ -10,12 +11,7 @@ import '../controllers/navbar_controller.dart';
 class NavBarPage extends StatelessWidget {
   NavBarPage({Key? key}) : super(key: key);
 
-  var pages = [
-    HomeScreen(),
-    EventDetailsScreen(),
-    EventScreen(),
-    ProfileScreen()
-  ];
+  var pages = [HomeScreen(), Schedule(), EventScreen(), ProfileScreen()];
 
   final navController = Get.put(NavBarController());
 
