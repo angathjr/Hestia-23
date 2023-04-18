@@ -105,7 +105,7 @@ class NotificationScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           color: const Color.fromARGB(255, 33, 32, 32)),
-                      height: h * 0.4,
+                      height: h * 0.45,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -183,7 +183,7 @@ class NotificationScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           color: const Color.fromARGB(255, 33, 32, 32)),
-                      height: h * 0.4,
+                      height: h * 0.45,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [

@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           scaffoldBackgroundColor: Colors.black,
           appBarTheme: const AppBarTheme(color: Colors.black)),
-      //home: NotificationScreen(),
+      //home: NotificationScreenTwo(),
       getPages: [
         GetPage(
             name: '/',
