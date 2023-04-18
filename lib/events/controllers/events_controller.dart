@@ -47,7 +47,7 @@ class EventsController extends GetxController {
     super.onInit();
     selectedCategory = categories[0];
     fetchDepartments();
-    fetchEvents();
+    // fetchEvents();
   }
 
   void fetchEvents() async {

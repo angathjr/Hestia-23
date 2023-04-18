@@ -28,6 +28,7 @@ class ScheduleController extends GetxController {
 
   @override
   void onInit() {
+    // TODO: implement onInit
     super.onInit();
     fetchEventsbyDate();
   }

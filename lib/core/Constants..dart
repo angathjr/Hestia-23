@@ -32,14 +32,17 @@ class FutTheme {
     color: Colors.black,
   );
 
-  static TextStyle categoryFont = const TextStyle(fontFamily: 'Azonix');
+  static TextStyle categoryFont=const TextStyle(
+    fontFamily: 'Azonix'
+  );
 
-  static TextStyle font7 = GoogleFonts.oxanium();
+  static TextStyle  font7= GoogleFonts.oxanium(
 
-  static Color primaryColor = const Color(0xffDEFD72);
-  static Color primaryBg = const Color(0xff1A1A1A);
+  );
 }
 
 class ThemeColor {
   static const color1 = Color.fromRGBO(123, 126, 130, 1);
+
+
 }

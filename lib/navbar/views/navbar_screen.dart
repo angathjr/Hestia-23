@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hestia_23/schedule/views/Schedule.dart';
+import 'package:hestia_23/Schedule/views/Schedule.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
 import 'package:hestia_23/home/views/home_screen.dart';
@@ -14,7 +14,8 @@ class NavBarPage extends StatelessWidget {
 
   var pages = [HomeScreen(), Schedule(), NotificationScreen(), ProfileScreen()];
 
-  final NavBarController navBarController = Get.find();
+  final navController = Get.put(NavBarController());
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -23,81 +24,80 @@ class NavBarPage extends StatelessWidget {
     double navHeight = height * 0.063;
 
     return Scaffold(
-        resizeToAvoidBottomInset: false,
         body: SizedBox(
-          width: width,
-          height: height,
-          child: Stack(
+      width: width,
+      height: height,
+      child: Stack(
+        children: [
+          //pageview
+
+          SizedBox(
+            width: width,
+            height: height,
+            child: PageView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: navController.controller,
+              children: pages,
+            ),
+          ),
+
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              //pageview
-
-              SizedBox(
-                width: width,
-                height: height,
-                child: PageView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  controller: navBarController.controller,
-                  children: pages,
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: width * 0.06, vertical: height * 0.006),
+                child: Container(
+                  height: height * 0.065,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff111111),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Obx(
+                        () => buildNavIcons(
+                          navHeight: navHeight,
+                          index: 0,
+                          selectedIcon: const Icon(Icons.home_filled),
+                          unselectedIcon: const Icon(Icons.home_outlined),
+                        ),
+                      ),
+                      Obx(
+                        () => buildNavIcons(
+                          navHeight: navHeight,
+                          index: 1,
+                          selectedIcon:
+                              const Icon(Icons.calendar_today_rounded),
+                          unselectedIcon:
+                              const Icon(Icons.calendar_today_outlined),
+                        ),
+                      ),
+                      Obx(
+                        () => buildNavIcons(
+                            navHeight: navHeight,
+                            index: 2,
+                            selectedIcon: const Icon(Icons.notifications),
+                            unselectedIcon:
+                                const Icon(Icons.notifications_none_outlined)),
+                      ),
+                      Obx(() => buildNavIcons(
+                            navHeight: navHeight,
+                            index: 3,
+                            selectedIcon: const Icon(Icons.person),
+                            unselectedIcon:
+                                const Icon(Icons.person_outline_rounded),
+                          ))
+                    ],
+                  ),
                 ),
-              ),
-
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: width * 0.06, vertical: height * 0.006),
-                    child: Container(
-                      height: height * 0.065,
-                      decoration: BoxDecoration(
-                        color: const Color(0xff111111),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Obx(
-                            () => buildNavIcons(
-                              navHeight: navHeight,
-                              index: 0,
-                              selectedIcon: const Icon(Icons.home_filled),
-                              unselectedIcon: const Icon(Icons.home_outlined),
-                            ),
-                          ),
-                          Obx(
-                            () => buildNavIcons(
-                              navHeight: navHeight,
-                              index: 1,
-                              selectedIcon:
-                                  const Icon(Icons.calendar_today_rounded),
-                              unselectedIcon:
-                                  const Icon(Icons.calendar_today_outlined),
-                            ),
-                          ),
-                          Obx(
-                            () => buildNavIcons(
-                                navHeight: navHeight,
-                                index: 2,
-                                selectedIcon: const Icon(Icons.notifications),
-                                unselectedIcon: const Icon(
-                                    Icons.notifications_none_outlined)),
-                          ),
-                          Obx(() => buildNavIcons(
-                                navHeight: navHeight,
-                                index: 3,
-                                selectedIcon: const Icon(Icons.person),
-                                unselectedIcon:
-                                    const Icon(Icons.person_outline_rounded),
-                              ))
-                        ],
-                      ),
-                    ),
-                  )
-                ],
               )
             ],
-          ),
-        ));
+          )
+        ],
+      ),
+    ));
   }
 
   InkWell buildNavIcons(
@@ -107,13 +107,13 @@ class NavBarPage extends StatelessWidget {
       required int index}) {
     return InkWell(
       onTap: () {
-        navBarController.changePage(index, navBarController.controller);
-        navBarController.index.value = index;
+        navController.changePage(index, navController.controller);
+        navController.index.value = index;
       },
       child: SizedBox(
           width: navHeight,
           height: navHeight,
-          child: (navBarController.index.value == index)
+          child: (navController.index.value == index)
               ? selectedIcon
               : unselectedIcon),
     );

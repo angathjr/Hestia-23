@@ -8,12 +8,10 @@ class ProfileController extends GetxController {
   final _storage = GetStorage();
 
   late UserModel user;
-  var registeredEventCount = 0.obs;
 
   @override
   void onInit() {
     super.onInit();
-    fetchRegCount();
     user = UserModel.fromJson(_storage.read('user'));
   }
 
@@ -25,11 +23,5 @@ class ProfileController extends GetxController {
     _storage.write('user', userModel.toJson());
 
     user = userModel;
-  }
-
-  void fetchRegCount() async {
-    final Response response = await api.getApi("/api/events/reg/events/");
-
-    registeredEventCount = response.body['count'];
   }
 }
