@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/schedule/controller/schedule_controller.dart';
 import 'package:hestia_23/core/Constants..dart';
@@ -70,17 +68,6 @@ class Schedule extends StatelessWidget {
                     ),
                   ],
                 )
-                // ListView.builder(
-                //   physics: const NeverScrollableScrollPhysics(),
-                //   shrinkWrap: true,
-                //   scrollDirection: Axis.horizontal,
-                //   itemBuilder: (context, index) => Dates(
-                //     date: controller.dates[index],
-                //     index: index,
-                //     controller: controller,
-                //   ),
-                //   itemCount: 4,
-                // ),
                 ),
             SizedBox(
               height: h * 0.02,
@@ -223,7 +210,7 @@ class CustomTimeLine extends StatelessWidget {
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
-    return Container(
+    return SizedBox(
       height: h * 0.25,
       width: w * 0.09,
       child: CustomPaint(
