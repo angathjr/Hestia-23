@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hestia_23/events/controllers/events_search_controller.dart';
 import 'package:hestia_23/fcm/controllers/fcm_controller.dart';
 import 'package:hestia_23/Schedule/controller/schedule_controller.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
@@ -20,5 +21,6 @@ class GetXDependancyInjector {
     Get.lazyPut(() => ProfileEditController(), fenix: true);
     Get.lazyPut(() => ScheduleController(), fenix: true);
     Get.lazyPut(() => ProfileController(), fenix: true);
+    Get.lazyPut(() => EventsSearchController(), fenix: true);
   }
 }

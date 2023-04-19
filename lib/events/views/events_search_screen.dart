@@ -4,14 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
+import 'package:hestia_23/events/controllers/events_search_controller.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 
 import '../../core/widgets/back_button_widget.dart';
 
-class EventScreen extends StatelessWidget {
-  EventScreen({Key? key}) : super(key: key);
+class EventsSearchScreen extends StatelessWidget {
+  EventsSearchScreen({Key? key}) : super(key: key);
 
-  final EventsController controller = Get.find();
+  final EventsController eventsController = Get.find();
+  final EventsSearchController searchController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class EventScreen extends StatelessWidget {
                   width: 20,
                 ),
                 Text(
-                  Get.arguments.toString(),
+                  'SEARCH',
                   style: FutTheme.categoryFont,
                 ),
               ],
@@ -59,16 +61,21 @@ class EventScreen extends StatelessWidget {
 
                     //TODO: search needed to be implemented
 
-                    // Container(
-                    //   height: height * 0.065,
-                    //   width: width,
-                    //   decoration: BoxDecoration(
-                    //       color: const Color(0xff1E1E1E),
-                    //       borderRadius: BorderRadius.circular(8)),
-                    // ),
-                    // SizedBox(
-                    //   height: height * 0.03,
-                    // ),
+                    Container(
+                      height: height * 0.065,
+                      width: width,
+                      decoration: BoxDecoration(
+                          color: const Color(0xff1E1E1E),
+                          borderRadius: BorderRadius.circular(8)),
+                      child: TextField(
+                        onChanged: (value) =>
+                            searchController.textFieldOnChanged(),
+                        controller: searchController.editingController,
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * 0.03,
+                    ),
 
                     // list of department
 
@@ -103,9 +110,9 @@ class EventScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(15),
                                     isExpanded: true,
                                     isDense: false,
-                                    value: controller.date.value,
+                                    value: searchController.date.value,
                                     elevation: 0,
-                                    items: EventsController.eventDates
+                                    items: EventsSearchController.eventDates
                                         .map<DropdownMenuItem<String>>(
                                             (String value) {
                                       return DropdownMenuItem(
@@ -116,7 +123,7 @@ class EventScreen extends StatelessWidget {
                                       );
                                     }).toList(),
                                     onChanged: (value) {
-                                      controller.setDate(value!);
+                                      searchController.setDate(value!);
                                     },
                                   ),
                                 ),
@@ -139,7 +146,7 @@ class EventScreen extends StatelessWidget {
             sliver: Obx(
               () => SliverList(
                 delegate: SliverChildBuilderDelegate(
-                    childCount: controller.events.length,
+                    childCount: searchController.events.length,
                     (BuildContext context, index) {
                   return Padding(
                     padding: EdgeInsets.only(bottom: height * 0.02),
@@ -162,7 +169,7 @@ class EventScreen extends StatelessWidget {
                               height: squareCard,
                               decoration: const BoxDecoration(),
                               child: Image.network(
-                                '${controller.events[index].image}',
+                                '${searchController.events[index].image}',
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -170,7 +177,7 @@ class EventScreen extends StatelessWidget {
                           SizedBox(
                               width: width * 0.6,
                               child: Text(
-                                "${controller.events[index].title}",
+                                "${searchController.events[index].title}",
                                 style: FutTheme.mFont
                                     .copyWith(color: Colors.white),
                                 softWrap: true,
@@ -178,7 +185,8 @@ class EventScreen extends StatelessWidget {
                               )),
                           GestureDetector(
                             onTap: () {
-                              controller.goToEvent(controller.events[index]);
+                              eventsController
+                                  .goToEvent(searchController.events[index]);
                             },
                             child: Container(
                               height: cardHeight * 0.1,
@@ -236,28 +244,30 @@ class EventScreen extends StatelessWidget {
       child: ListView.builder(
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
-          itemCount: controller.departments.isEmpty
+          itemCount: eventsController.departments.isEmpty
               ? 5
-              : controller.departments.length,
+              : eventsController.departments.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.only(right: width * 0.022),
               child: Obx(
                 () => GestureDetector(
-                  onTap: () => controller.setDepartmentIndex(index),
+                  onTap: () => searchController.setDepartmentIndex(index),
                   child: Container(
                     alignment: Alignment.center,
                     width: width * 0.35,
                     decoration: BoxDecoration(
-                        color: controller.selectedDepartmentIndex.value == index
+                        color: searchController.selectedDepartmentIndex.value ==
+                                index
                             ? const Color(0xffFFD730)
                             : null,
                         borderRadius: BorderRadius.circular(33),
                         border: Border.all(color: const Color(0xffFFD730))),
-                    child: controller.departmentLoading.value == true
+                    child: eventsController.departmentLoading.value == true
                         ? Text(
-                            "${controller.departments[index].title?.toUpperCase()}",
-                            style: controller.selectedDepartmentIndex.value !=
+                            "${eventsController.departments[index].title?.toUpperCase()}",
+                            style: searchController
+                                        .selectedDepartmentIndex.value !=
                                     index
                                 ? FutTheme.font6
                                 : FutTheme.font6
