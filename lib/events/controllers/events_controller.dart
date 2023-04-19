@@ -39,14 +39,14 @@ class EventsController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    print('on Ready');
+    selectedCategory = categories[0];
+    fetchDepartments();
   }
 
   @override
   void onInit() {
     super.onInit();
-    selectedCategory = categories[0];
-    fetchDepartments();
+
     // fetchEvents();
   }
 
