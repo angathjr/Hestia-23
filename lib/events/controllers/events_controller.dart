@@ -29,6 +29,7 @@ class EventsController extends GetxController {
   var selectedDepartmentIndex = 0.obs;
 
   static final List<String> eventDates = [
+    '-- ----',
     '27 April',
     '28 April',
     '29 April',
@@ -71,6 +72,13 @@ class EventsController extends GetxController {
         : RxList(
             allEvents.where((event) => event.dept?.id == dept.id).toList());
 
+    if (date.value != eventDates.first) {
+      events.value = RxList(events
+          .where((event) =>
+              event.eventStart?.day == int.parse(date.value.split(' ')[0]))
+          .toList());
+    }
+
     print(events.value);
   }
 
@@ -88,6 +96,16 @@ class EventsController extends GetxController {
 
   void setDepartmentIndex(int index) {
     selectedDepartmentIndex.value = index;
+    filterEvents();
+  }
+
+  void goToEvent(EventModel event) {
+    selectedEvent = event;
+    Get.toNamed('/event');
+  }
+
+  void setDate(String date) {
+    this.date.value = date;
     filterEvents();
   }
 

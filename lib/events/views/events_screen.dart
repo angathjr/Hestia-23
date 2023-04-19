@@ -116,7 +116,7 @@ class EventScreen extends StatelessWidget {
                                       );
                                     }).toList(),
                                     onChanged: (value) {
-                                      controller.date.value = value!;
+                                      controller.setDate(value!);
                                     },
                                   ),
                                 ),
@@ -178,9 +178,7 @@ class EventScreen extends StatelessWidget {
                               )),
                           GestureDetector(
                             onTap: () {
-                              controller.selectedEvent =
-                                  controller.events[index];
-                              Get.to(EventDetailsScreen());
+                              controller.goToEvent(controller.events[index]);
                             },
                             child: Container(
                               height: cardHeight * 0.1,
