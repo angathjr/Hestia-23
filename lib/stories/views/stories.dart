@@ -28,7 +28,7 @@ class Stories extends StatelessWidget {
         ),
         SizedBox(
           width: double.infinity,
-          height: _height / 5.5,
+          height: _height / 6,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
