@@ -67,19 +67,7 @@ class Schedule extends StatelessWidget {
                       ),
                     ),
                   ],
-                )
-                // ListView.builder(
-                //   physics: const NeverScrollableScrollPhysics(),
-                //   shrinkWrap: true,
-                //   scrollDirection: Axis.horizontal,
-                //   itemBuilder: (context, index) => Dates(
-                //     date: controller.dates[index],
-                //     index: index,
-                //     controller: controller,
-                //   ),
-                //   itemCount: 4,
-                // ),
-                ),
+                )),
             SizedBox(
               height: h * 0.02,
               width: double.infinity,
@@ -121,7 +109,7 @@ class TimeLineofEvents extends StatelessWidget {
           children: [
             Text(
               DateFormat('h:mm a').format(event.eventStart!),
-              style: TextStyle(color: Colors.grey),
+              style: const TextStyle(color: Colors.grey),
             ),
             SizedBox(
               height: h * 0.03,
@@ -160,7 +148,8 @@ class TimeLineofEvents extends StatelessWidget {
   }
 }
 
-//Conatiner for date box
+//Container for date box
+
 class Dates extends StatelessWidget {
   const Dates(
       {super.key,
@@ -221,7 +210,7 @@ class CustomTimeLine extends StatelessWidget {
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
-    return Container(
+    return SizedBox(
       height: h * 0.25,
       width: w * 0.09,
       child: CustomPaint(

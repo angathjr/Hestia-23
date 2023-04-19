@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           brightness: Brightness.dark,
           scaffoldBackgroundColor: Colors.black,
-          appBarTheme: const AppBarTheme(color: Colors.black)),
+          appBarTheme: const AppBarTheme(color: Colors.black,scrolledUnderElevation: 0)),
       // home: NavBarPage(),
       getPages: [
         GetPage(
