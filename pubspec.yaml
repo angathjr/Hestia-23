@@ -45,6 +45,8 @@ dependencies:
   share_plus: ^6.3.2
   stories_editor: ^0.2.2
   story_view: ^0.14.0
+  cloud_firestore: ^4.5.2
+  
 
 dev_dependencies:
   flutter_test:

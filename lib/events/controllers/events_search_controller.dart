@@ -36,7 +36,7 @@ class EventsSearchController extends GetxController {
   void filterEvents() {
     final dept = eventsController.departments[selectedDepartmentIndex.value];
     events.value = dept.title == 'ALL'
-        ? allEvents.value
+        ? allEvents
         : RxList(
             allEvents.where((event) => event.dept?.id == dept.id).toList());
     events.value = events
