@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
+import 'package:hestia_23/events/controllers/events_search_controller.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 
 import '../../core/widgets/back_button_widget.dart';
@@ -11,7 +12,8 @@ import '../../core/widgets/back_button_widget.dart';
 class EventsSearchScreen extends StatelessWidget {
   EventsSearchScreen({Key? key}) : super(key: key);
 
-  final EventsController controller = Get.find();
+  final EventsController eventsController = Get.find();
+  final EventsSearchController searchController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class EventsSearchScreen extends StatelessWidget {
                   width: 20,
                 ),
                 Text(
-                  Get.arguments.toString(),
+                  'SEARCH',
                   style: FutTheme.categoryFont,
                 ),
               ],
@@ -65,7 +67,11 @@ class EventsSearchScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: const Color(0xff1E1E1E),
                           borderRadius: BorderRadius.circular(8)),
-                      child: TextField(),
+                      child: TextField(
+                        onChanged: (value) =>
+                            searchController.textFieldOnChanged(),
+                        controller: searchController.editingController,
+                      ),
                     ),
                     SizedBox(
                       height: height * 0.03,
@@ -104,7 +110,7 @@ class EventsSearchScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(15),
                                     isExpanded: true,
                                     isDense: false,
-                                    value: controller.date.value,
+                                    value: eventsController.date.value,
                                     elevation: 0,
                                     items: EventsController.eventDates
                                         .map<DropdownMenuItem<String>>(
@@ -117,7 +123,7 @@ class EventsSearchScreen extends StatelessWidget {
                                       );
                                     }).toList(),
                                     onChanged: (value) {
-                                      controller.date.value = value!;
+                                      eventsController.date.value = value!;
                                     },
                                   ),
                                 ),
@@ -140,7 +146,7 @@ class EventsSearchScreen extends StatelessWidget {
             sliver: Obx(
               () => SliverList(
                 delegate: SliverChildBuilderDelegate(
-                    childCount: controller.events.length,
+                    childCount: searchController.events.length,
                     (BuildContext context, index) {
                   return Padding(
                     padding: EdgeInsets.only(bottom: height * 0.02),
@@ -163,7 +169,7 @@ class EventsSearchScreen extends StatelessWidget {
                               height: squareCard,
                               decoration: const BoxDecoration(),
                               child: Image.network(
-                                '${controller.events[index].image}',
+                                '${searchController.events[index].image}',
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -171,7 +177,7 @@ class EventsSearchScreen extends StatelessWidget {
                           SizedBox(
                               width: width * 0.6,
                               child: Text(
-                                "${controller.events[index].title}",
+                                "${searchController.events[index].title}",
                                 style: FutTheme.mFont
                                     .copyWith(color: Colors.white),
                                 softWrap: true,
@@ -179,8 +185,8 @@ class EventsSearchScreen extends StatelessWidget {
                               )),
                           GestureDetector(
                             onTap: () {
-                              controller.selectedEvent =
-                                  controller.events[index];
+                              eventsController.selectedEvent =
+                                  eventsController.events[index];
                               Get.to(EventDetailsScreen());
                             },
                             child: Container(
@@ -239,28 +245,30 @@ class EventsSearchScreen extends StatelessWidget {
       child: ListView.builder(
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
-          itemCount: controller.departments.isEmpty
+          itemCount: eventsController.departments.isEmpty
               ? 5
-              : controller.departments.length,
+              : eventsController.departments.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.only(right: width * 0.022),
               child: Obx(
                 () => GestureDetector(
-                  onTap: () => controller.setDepartmentIndex(index),
+                  onTap: () => searchController.setDepartmentIndex(index),
                   child: Container(
                     alignment: Alignment.center,
                     width: width * 0.35,
                     decoration: BoxDecoration(
-                        color: controller.selectedDepartmentIndex.value == index
+                        color: searchController.selectedDepartmentIndex.value ==
+                                index
                             ? const Color(0xffFFD730)
                             : null,
                         borderRadius: BorderRadius.circular(33),
                         border: Border.all(color: const Color(0xffFFD730))),
-                    child: controller.departmentLoading.value == true
+                    child: eventsController.departmentLoading.value == true
                         ? Text(
-                            "${controller.departments[index].title?.toUpperCase()}",
-                            style: controller.selectedDepartmentIndex.value !=
+                            "${eventsController.departments[index].title?.toUpperCase()}",
+                            style: searchController
+                                        .selectedDepartmentIndex.value !=
                                     index
                                 ? FutTheme.font6
                                 : FutTheme.font6

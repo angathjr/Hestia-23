@@ -17,13 +17,6 @@ class HomeScreen extends StatelessWidget {
   final EventsController eventController = Get.find();
   final AuthController authController = Get.find();
 
-  final List<String> _categoryItems = [
-    "GENERAL",
-    "TECHNICAL",
-    "WORKSHOPS",
-    "PROSHOWS",
-  ];
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -39,6 +32,15 @@ class HomeScreen extends StatelessWidget {
                 "assets/images/mascot.png",
                 scale: 2.2,
               ),
+              actions: [
+                IconButton(
+                  onPressed: () => Get.toNamed('/search'),
+                  icon: const Icon(
+                    Icons.search,
+                    // size: 28,
+                  ),
+                ),
+              ],
             ),
             SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: width * 0.04),

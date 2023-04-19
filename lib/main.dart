@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           scaffoldBackgroundColor: Colors.black,
           appBarTheme: const AppBarTheme(color: Colors.black)),
-      home: EventsSearchScreen(),
+      // home: EventsSearchScreen(),
       getPages: [
         GetPage(
             name: '/',
@@ -66,6 +66,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/schedule", page: () => Schedule()),
         GetPage(name: '/login', page: () => LoginScreen()),
         GetPage(name: '/profile', page: () => ProfileScreen()),
+        GetPage(name: '/search', page: () => EventsSearchScreen()),
       ],
     );
   }
