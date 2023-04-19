@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
@@ -23,14 +22,13 @@ class ProfileCompletion extends StatelessWidget {
         backgroundColor: Colors.black,
         title: Text(
           'EDIT PROFILE',
-          style: FutTheme.font2.copyWith(
+          style: FutTheme.categoryFont.copyWith(
             fontWeight: FontWeight.w700,
-            fontSize: 26,
           ),
         ),
         centerTitle: true,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () => Get.back(),
           icon: const Icon(
             Icons.arrow_back_ios_sharp,
             color: Colors.white,
@@ -43,6 +41,7 @@ class ProfileCompletion extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                gap(),
                 EditTextWidget(
                   errorText: profileEditController.nameError.value,
                   fieldLabel: 'Name',
@@ -176,6 +175,15 @@ class EditTextWidget extends StatelessWidget {
               color: const Color.fromRGBO(153, 153, 153, 1),
             ),
             decoration: InputDecoration(
+              errorBorder:OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.red),
+                  borderRadius: BorderRadius.circular(10)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: FutTheme.primaryColor),
+                  borderRadius: BorderRadius.circular(10)),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(10)),
               errorText: errorText.isEmpty ? null : errorText,
               hintText: hintText,
               hintStyle: FutTheme.font3.copyWith(
