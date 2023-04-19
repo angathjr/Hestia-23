@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../core/widgets/back_button_widget.dart';
+import '../core/widgets/back_button_widget.dart';
 
 class NotificationScreenTwo extends StatelessWidget {
   const NotificationScreenTwo({super.key});

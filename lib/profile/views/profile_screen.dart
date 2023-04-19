@@ -45,6 +45,12 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(
                 height: _height / 100,
               ),
+              Text(controller.user.name,style:FutTheme.font3.copyWith(
+                color: const Color.fromRGBO(153, 153, 153, 1),
+                letterSpacing: 2,
+                fontSize: _width*0.045
+              ),),
+              SizedBox(height: _height/100,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -87,7 +93,7 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: _height / 25,
+                height: _height / 30,
               ),
               Container(
                 decoration: BoxDecoration(
@@ -126,7 +132,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: _height / 20,
+                height: _height / 35,
               ),
               Container(
                 width: _width,
@@ -136,7 +142,7 @@ class ProfileScreen extends StatelessWidget {
                   color: const Color.fromRGBO(26, 26, 26, 1),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(left: _width / 10),
+                  padding: EdgeInsets.only(left: _width / 14),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -172,7 +178,6 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                       Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const CircleAvatar(
                             backgroundColor: Color.fromRGBO(51, 51, 51, 1),
@@ -194,7 +199,7 @@ class ProfileScreen extends StatelessWidget {
                         ],
                       ),
                       Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
+
                         children: [
                           const CircleAvatar(
                             backgroundColor: Color.fromRGBO(51, 51, 51, 1),
@@ -218,7 +223,6 @@ class ProfileScreen extends StatelessWidget {
                       InkWell(
                         onTap: () => authController.signout(),
                         child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const CircleAvatar(
                               backgroundColor: Color.fromRGBO(51, 51, 51, 1),

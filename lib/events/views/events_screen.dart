@@ -57,27 +57,11 @@ class EventScreen extends StatelessWidget {
                       height: height * 0.01,
                     ),
 
-                    //TODO: search needed to be implemented
-
-                    // Container(
-                    //   height: height * 0.065,
-                    //   width: width,
-                    //   decoration: BoxDecoration(
-                    //       color: const Color(0xff1E1E1E),
-                    //       borderRadius: BorderRadius.circular(8)),
-                    // ),
-                    // SizedBox(
-                    //   height: height * 0.03,
-                    // ),
-
                     // list of department
-
                     departmentSection(height, width),
-
                     SizedBox(
                       height: height * 0.02,
                     ),
-
                     Row(
                       children: [
                         Text(
@@ -149,14 +133,14 @@ class EventScreen extends StatelessWidget {
                       width: width,
                       decoration: BoxDecoration(
                           border: Border.all(color: const Color(0xffFFD730)),
-                          borderRadius: BorderRadius.circular(40)),
+                          borderRadius: BorderRadius.circular(30)),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           ClipRRect(
                             borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(40),
-                                topRight: Radius.circular(40)),
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30)),
                             child: Container(
                               width: squareCard,
                               height: squareCard,
@@ -184,7 +168,7 @@ class EventScreen extends StatelessWidget {
                               height: cardHeight * 0.1,
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(43),
+                                  borderRadius: BorderRadius.circular(10),
                                   color: const Color(0xffFFD730)),
                               child: Row(
                                 mainAxisAlignment:
@@ -203,7 +187,7 @@ class EventScreen extends StatelessWidget {
                                     decoration: BoxDecoration(
                                         color: Colors.black,
                                         borderRadius:
-                                            BorderRadius.circular(29)),
+                                            BorderRadius.circular(23)),
                                     child: Transform.rotate(
                                       angle: pi / 3,
                                       child: const Icon(

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../core/widgets/back_button_widget.dart';
+import '../core/widgets/back_button_widget.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
@@ -16,7 +15,6 @@ class NotificationScreen extends StatelessWidget {
   );
   @override
   Widget build(BuildContext context) {
-    print("not");
     final h = MediaQuery.of(context).size.height -
         MediaQuery.of(context).padding.top -
         kToolbarHeight;
@@ -25,9 +23,8 @@ class NotificationScreen extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(13.0),
         child: Scaffold(
+
           appBar: AppBar(
-            leading:
-                InkWell(onTap: () => null, child: const BackButtonWidget()),
             centerTitle: true,
             bottom: TabBar(
               labelColor: Colors.white,
