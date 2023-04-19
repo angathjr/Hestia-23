@@ -22,7 +22,7 @@ class AuthController extends GetxController {
   void signout() async {
     await _googleSignIn.signOut();
     await _storage.erase();
-    Get.toNamed('/login');
+    Get.offAllNamed('/login');
   }
 
   Future<void> handleSignIn() async {
@@ -50,7 +50,7 @@ class AuthController extends GetxController {
       } else {
         _storage.write('isComplete', false);
       }
-      
+
       Get.offAllNamed('/');
     } catch (error) {
       print(error);
