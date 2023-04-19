@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
-import 'package:hestia_23/stories/views/stories.dart';
+import 'package:hestia_23/stories/views/stories_widget.dart';
 import 'leaderboard_card.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
 import 'package:hestia_23/fcm/controllers/fcm_controller.dart';
