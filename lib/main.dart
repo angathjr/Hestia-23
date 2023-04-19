@@ -9,13 +9,12 @@ import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
 import 'package:hestia_23/events/views/events_search_screen.dart';
 import 'package:hestia_23/home/views/leaderboard_card.dart';
-import 'package:hestia_23/home/views/notification_screen.dart';
+
 import 'package:hestia_23/navbar/views/navbar_screen.dart';
 import 'package:hestia_23/profile/views/profile_screen.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 import 'auth/views/login_screen.dart';
 import 'getx_di.dart';
-import './home/views/home_screen.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -52,8 +51,9 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           brightness: Brightness.dark,
           scaffoldBackgroundColor: Colors.black,
-          appBarTheme: const AppBarTheme(color: Colors.black)),
-      // home: EventsSearchScreen(),
+          appBarTheme: const AppBarTheme(
+              color: Colors.black, scrolledUnderElevation: 0)),
+      // home: NavBarPage(),
       getPages: [
         GetPage(
             name: '/',

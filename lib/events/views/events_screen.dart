@@ -59,16 +59,16 @@ class EventScreen extends StatelessWidget {
 
                     //TODO: search needed to be implemented
 
-                    Container(
-                      height: height * 0.065,
-                      width: width,
-                      decoration: BoxDecoration(
-                          color: const Color(0xff1E1E1E),
-                          borderRadius: BorderRadius.circular(8)),
-                    ),
-                    SizedBox(
-                      height: height * 0.03,
-                    ),
+                    // Container(
+                    //   height: height * 0.065,
+                    //   width: width,
+                    //   decoration: BoxDecoration(
+                    //       color: const Color(0xff1E1E1E),
+                    //       borderRadius: BorderRadius.circular(8)),
+                    // ),
+                    // SizedBox(
+                    //   height: height * 0.03,
+                    // ),
 
                     // list of department
 

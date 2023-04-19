@@ -6,7 +6,7 @@ import 'package:hestia_23/events/views/events_screen.dart';
 import 'package:hestia_23/home/views/home_screen.dart';
 import 'package:hestia_23/profile/views/profile_screen.dart';
 
-import '../../home/views/notification_screen.dart';
+import '../../home/views/notifications/notification_screen.dart';
 import '../controllers/navbar_controller.dart';
 
 class NavBarPage extends StatelessWidget {
