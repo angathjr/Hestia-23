@@ -122,7 +122,7 @@ class LeaderBoard extends StatelessWidget {
     return Column(
       children: [
         Center(child: Image.asset('assets/images/future_lb.png')),
-        SizedBox(height: h*0.05,),
+        SizedBox(height: h*0.06,),
         Padding(
           padding: const EdgeInsets.all(15),
           child: TextField(
@@ -142,7 +142,9 @@ class LeaderBoard extends StatelessWidget {
               hintText: " Search for event",
             ),
           ),
+
         ),
+        SizedBox(height: h*0.02,),
         Padding(
           padding: const EdgeInsets.all(15.0),
           child: Container(

@@ -34,7 +34,7 @@ class Stories extends StatelessWidget {
         ),
         SizedBox(
           width: double.infinity,
-          height: _height / 5.5,
+          height: _height / 6.5,
           child: Obx(
             () => ListView.builder(
               scrollDirection: Axis.horizontal,

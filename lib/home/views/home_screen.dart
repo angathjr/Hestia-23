@@ -49,12 +49,13 @@ class HomeScreen extends StatelessWidget {
                 delegate: SliverChildListDelegate(
                   [
                     Container(
-                      height: height*1.58,
+                      height: height*1.7,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage("assets/images/bg.png")
                         )
                       ),
+
                       child: Column(
                         children: [
                           SizedBox(
@@ -114,7 +115,6 @@ class HomeScreen extends StatelessWidget {
                             child: LeaderBoard.futureLeaderboard(
                                 height*0.8, context),
                           ),
-
                         ],
                       ),
                     ),
