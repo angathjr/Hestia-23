@@ -8,6 +8,15 @@ class EventsSearchController extends GetxController {
   final ApiProvider api = Get.find();
   final EventsController eventsController = Get.find();
 
+  static final List<String> eventDates = [
+    '-- ----',
+    '27 April',
+    '28 April',
+    '29 April',
+    '30 April'
+  ];
+  var date = eventDates.first.obs;
+
   var searchText = ''.obs;
   late TextEditingController editingController;
   var eventsLoading = false.obs;
@@ -33,6 +42,12 @@ class EventsSearchController extends GetxController {
         .where((element) =>
             element.title!.contains(editingController.text.toUpperCase()))
         .toList();
+    if (date.value != eventDates.first) {
+      events.value = RxList(events
+          .where((event) =>
+              event.eventStart?.day == int.parse(date.value.split(' ')[0]))
+          .toList());
+    }
   }
 
   void fetchAllEvents() async {
@@ -46,6 +61,11 @@ class EventsSearchController extends GetxController {
 
   void setDepartmentIndex(int index) {
     selectedDepartmentIndex.value = index;
+    filterEvents();
+  }
+
+  void setDate(String date) {
+    this.date.value = date;
     filterEvents();
   }
 

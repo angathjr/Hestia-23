@@ -110,9 +110,9 @@ class EventsSearchScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(15),
                                     isExpanded: true,
                                     isDense: false,
-                                    value: eventsController.date.value,
+                                    value: searchController.date.value,
                                     elevation: 0,
-                                    items: EventsController.eventDates
+                                    items: EventsSearchController.eventDates
                                         .map<DropdownMenuItem<String>>(
                                             (String value) {
                                       return DropdownMenuItem(
@@ -123,7 +123,7 @@ class EventsSearchScreen extends StatelessWidget {
                                       );
                                     }).toList(),
                                     onChanged: (value) {
-                                      eventsController.date.value = value!;
+                                      searchController.setDate(value!);
                                     },
                                   ),
                                 ),
@@ -185,9 +185,8 @@ class EventsSearchScreen extends StatelessWidget {
                               )),
                           GestureDetector(
                             onTap: () {
-                              eventsController.selectedEvent =
-                                  eventsController.events[index];
-                              Get.to(EventDetailsScreen());
+                              eventsController
+                                  .goToEvent(searchController.events[index]);
                             },
                             child: Container(
                               height: cardHeight * 0.1,
