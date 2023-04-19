@@ -23,7 +23,7 @@ class Schedule extends StatelessWidget {
       slivers: [
         SliverAppBar(
             pinned: true,
-            // floating: true,
+            floating: true,
             centerTitle: true,
             title: Text(
               "Schedule",
@@ -34,7 +34,7 @@ class Schedule extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: w * 0.04),
                 child: Container(
-                  padding: EdgeInsets.only(bottom: h * 0.005),
+                  padding: EdgeInsets.only(bottom: h * 0.006),
                   height: dateContainerHeight,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -77,7 +77,7 @@ class Schedule extends StatelessWidget {
               w * 0.04,
               w * 0.04,
               w * 0.04,
-              w * 0.065,
+              w * 0.07,
             ),
             sliver: SliverList(
                 delegate: SliverChildBuilderDelegate(

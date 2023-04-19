@@ -32,6 +32,7 @@ class AuthController extends GetxController {
 
       Map data = {'access_token': auth.accessToken};
       final response = await apiNoAuth.postApi('/users/google/', data);
+      log(data.toString());
       final apiToken = response.body['key'];
 
       print('Api Token: $apiToken');
