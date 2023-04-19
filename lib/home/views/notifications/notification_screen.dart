@@ -16,6 +16,7 @@ class NotificationScreen extends StatelessWidget {
   );
   @override
   Widget build(BuildContext context) {
+    print("not");
     final h = MediaQuery.of(context).size.height -
         MediaQuery.of(context).padding.top -
         kToolbarHeight;
