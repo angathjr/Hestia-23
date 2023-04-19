@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:hestia_23/events/models/category.dart';
@@ -29,7 +28,7 @@ class EventsController extends GetxController {
   var selectedDepartmentIndex = 0.obs;
 
   static final List<String> eventDates = [
-    '-- ----',
+    '-- April',
     '27 April',
     '28 April',
     '29 April',
@@ -45,12 +44,6 @@ class EventsController extends GetxController {
     fetchDepartments();
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-
-    // fetchEvents();
-  }
 
   void fetchEvents() async {
     eventsLoading(true);

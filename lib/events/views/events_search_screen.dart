@@ -62,12 +62,17 @@ class EventsSearchScreen extends StatelessWidget {
                     //TODO: search needed to be implemented
 
                     Container(
+                      alignment: Alignment.center,
                       height: height * 0.065,
                       width: width,
                       decoration: BoxDecoration(
                           color: const Color(0xff1E1E1E),
                           borderRadius: BorderRadius.circular(8)),
                       child: TextField(
+                        style: FutTheme.font3,
+                        decoration: const InputDecoration(contentPadding: EdgeInsets.only(left: 20),
+                          border: InputBorder.none
+                        ),
                         onChanged: (value) =>
                             searchController.textFieldOnChanged(),
                         controller: searchController.editingController,
