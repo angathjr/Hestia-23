@@ -47,7 +47,6 @@ class ApiProviderNoAuth extends GetConnect {
         throw "Server Error pls retry later";
       case 403:
         throw 'Invalid token header. No credentials provided.';
-      case 500:
       default:
         throw 'Error occurred retry';
     }
