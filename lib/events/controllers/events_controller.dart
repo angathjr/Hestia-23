@@ -41,6 +41,7 @@ class EventsController extends GetxController {
   void onReady() {
     super.onReady();
     selectedCategory = categories[0];
+
     fetchDepartments();
   }
 
@@ -53,6 +54,8 @@ class EventsController extends GetxController {
 
   void fetchEvents() async {
     eventsLoading(true);
+    setDepartmentIndex(0);
+    date.value = eventDates.first;
     final Response response = await api
         .getApi('/api/events/all/?event_category=${selectedCategory.code}');
 
@@ -61,7 +64,7 @@ class EventsController extends GetxController {
     // parsed.forEach((element) => print(element.slug));
     events.value = parsed;
     allEvents.value = parsed;
-    setDepartmentIndex(0);
+
     eventsLoading(false);
   }
 

@@ -28,6 +28,7 @@ class EventsSearchController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    date.value = eventDates.first;
     editingController = TextEditingController();
     fetchAllEvents();
   }
