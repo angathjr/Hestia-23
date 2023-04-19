@@ -122,11 +122,13 @@ class LeaderBoard extends StatelessWidget {
     return Column(
       children: [
         Center(child: Image.asset('assets/images/future_lb.png')),
+        SizedBox(height: h*0.05,),
         Padding(
           padding: const EdgeInsets.all(15),
           child: TextField(
             controller: null,
             decoration: InputDecoration(
+
               contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
               prefixIcon: const Icon(
                 Icons.search,
@@ -134,6 +136,7 @@ class LeaderBoard extends StatelessWidget {
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
+
               ),
               hintStyle: const TextStyle(color: Colors.white),
               hintText: " Search for event",
