@@ -48,6 +48,7 @@ class EventDetailsScreen extends StatelessWidget {
                           width: width,
                           height: cardSize,
                           child: CachedNetworkImage(
+                            placeholder: (context, url) => primaryLoadingWidget,
                             imageUrl: '${eventsController.selectedEvent.image}',
                             fit: BoxFit.cover,
                           )),
@@ -260,22 +261,22 @@ class EventDetailsScreen extends StatelessWidget {
                     SizedBox(
                       height: height * 0.05,
                     ),
-                    // Container(
-                    //   alignment: Alignment.center,
-                    //   width: width,
-                    //   height: height * 0.06,
-                    //   decoration: BoxDecoration(
-                    //       color: const Color(0xffDEFD72),
-                    //       borderRadius: BorderRadius.circular(127)),
-                    //   child: Text(
-                    //     "REGISTER NOW >>",
-                    //     style: FutTheme.font5.copyWith(
-                    //         color: Colors.black, fontSize: height * 0.024),
-                    //   ),
-                    // ),
-                    // SizedBox(
-                    //   height: height * 0.05,
-                    // ),
+                    Container(
+                      alignment: Alignment.center,
+                      width: width,
+                      height: height * 0.06,
+                      decoration: BoxDecoration(
+                          color: const Color(0xffDEFD72),
+                          borderRadius: BorderRadius.circular(127)),
+                      child: Text(
+                        "REGISTER NOW >>",
+                        style: FutTheme.font5.copyWith(
+                            color: Colors.black, fontSize: height * 0.024),
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * 0.05,
+                    ),
                   ],
                 ),
               )

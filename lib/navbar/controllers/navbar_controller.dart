@@ -11,6 +11,7 @@ class NavBarController extends GetxController {
   void changePage(int index, PageController controller) {
     controller.jumpToPage(index);
     anim.start(true);
-    anim.loadAnimation();
+    if (index == 3) anim.loadProfileAnimation();
+    if (index == 1) anim.loadScheduleAnimation();
   }
 }

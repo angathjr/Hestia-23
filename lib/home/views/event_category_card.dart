@@ -51,6 +51,13 @@ class CategoryCard extends StatelessWidget {
                         clipBehavior: Clip.hardEdge,
                         clipper: CustomClipPath(),
                         child: CachedNetworkImage(
+                          progressIndicatorBuilder:
+                              (context, url, downloadProgress) => Center(
+                            child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation(
+                                    FutTheme.primaryColor),
+                                value: downloadProgress.progress),
+                          ),
                           imageUrl: categoryModel.imgUrl,
                           fit: BoxFit.cover,
                         )),

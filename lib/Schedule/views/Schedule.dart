@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/Schedule/controller/schedule_controller.dart';
 import 'package:hestia_23/core/Constants..dart';
+import 'package:hestia_23/core/animation_controller.dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/events/models/event.dart';
 import 'package:intl/intl.dart';
@@ -97,7 +98,7 @@ class Schedule extends StatelessWidget {
                           height: h * 0.6,
                           width: w,
                           child: Center(
-                            child: loadingWidget,
+                            child: primaryLoadingWidget,
                           ))),
             ))
       ],
@@ -119,7 +120,7 @@ class TimeLineofEvents extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const CustomTimeLine(),
+        CustomTimeLine(),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,47 +134,36 @@ class TimeLineofEvents extends StatelessWidget {
               ),
               GestureDetector(
                   onTap: () => eventsController.goToEvent(event),
-                  child: Obx(
-                    () => eventsController.eventsLoading.value == false
-                        ? Container(
-                            clipBehavior: Clip.hardEdge,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: CachedNetworkImageProvider(
-                                      event.image!,
-                                    ),
-                                    fit: BoxFit.cover,
-                                    opacity: 0.7),
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(20))),
-                            height: h * 0.15,
-                            width: double.infinity,
-                            child: Padding(
-                              padding: EdgeInsets.only(left: w * 0.04),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    event.title ?? '',
-                                    style: FutTheme.font3.copyWith(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: h * 0.024),
-                                  ),
-                                  Text(event.shortDesc ?? ''),
-                                  Text(event.venue?.title ?? '')
-                                ],
-                              ),
+                  child: Container(
+                    clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: CachedNetworkImageProvider(
+                              event.image!,
                             ),
-                          )
-                        : Container(
-                            width: double.infinity,
-                            height: h * 0.15,
-                            decoration: BoxDecoration(
-                                color: FutTheme.primaryBg,
-                                borderRadius: BorderRadius.circular(20)),
+                            fit: BoxFit.cover,
+                            opacity: 0.7),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20))),
+                    height: h * 0.15,
+                    width: double.infinity,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: w * 0.04),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            event.title ?? '',
+                            style: FutTheme.font3.copyWith(
+                                fontWeight: FontWeight.bold,
+                                fontSize: h * 0.024),
                           ),
+                          Text(event.shortDesc ?? ''),
+                          Text(event.venue?.title ?? '')
+                        ],
+                      ),
+                    ),
                   ))
             ],
           ),
@@ -237,19 +227,27 @@ class Dates extends StatelessWidget {
 }
 
 //Custom Line with circular end
+
 class CustomTimeLine extends StatelessWidget {
-  const CustomTimeLine({
+  CustomTimeLine({
     super.key,
   });
+
+  final AnimController anim = Get.find();
+
   @override
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
-    return SizedBox(
-      height: h * 0.25,
-      width: w * 0.09,
-      child: CustomPaint(
-        painter: LineCircle(),
+    return Obx(
+      () => AnimatedContainer(
+        curve: Curves.easeOutCubic,
+        duration: const Duration(milliseconds: 500),
+        height: (anim.start.value == false) ? h * 0.25 : 0,
+        width: w * 0.09,
+        child: CustomPaint(
+          painter: LineCircle(),
+        ),
       ),
     );
   }
