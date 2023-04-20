@@ -8,6 +8,7 @@ import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/stories/controllers/stories_controller.dart';
 import 'package:hestia_23/stories/model/stories.dart';
 import 'package:hestia_23/stories/views/story_view.dart';
+import 'package:story_view/story_view.dart';
 
 class Stories extends StatelessWidget {
   Stories({super.key});
@@ -93,12 +94,13 @@ class Stories extends StatelessWidget {
 }
 
 class StoriesCard extends StatelessWidget {
-  const StoriesCard({
+  StoriesCard({
     Key? key,
     required this.story,
   }) : super(key: key);
 
   final StoryModel story;
+  final StoriesController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -108,11 +110,7 @@ class StoriesCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(_width * 0.01),
       child: GestureDetector(
-        onTap: () {
-          Get.to(
-            StoriesViewScreen(),
-          );
-        },
+        onTap: () => controller.goToStory(story),
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(

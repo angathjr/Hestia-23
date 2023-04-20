@@ -22,11 +22,17 @@ class StoriesController extends GetxController {
 
   var stories = <StoryModel>[].obs;
   var storiesLoading = false.obs;
+  late StoryModel selectedStory;
 
   @override
   void onInit() {
     super.onInit();
     fetchAllStories();
+  }
+
+  void goToStory(StoryModel story) {
+    selectedStory = story;
+    Get.toNamed('/story-view');
   }
 
   void fetchAllStories() async {
