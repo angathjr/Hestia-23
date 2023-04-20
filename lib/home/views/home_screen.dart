@@ -24,7 +24,6 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      // endDrawerEnableOpenDragGesture: true,
       body: SafeArea(
         child: CustomScrollView(
           physics: const NeverScrollableScrollPhysics(),

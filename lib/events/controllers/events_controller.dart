@@ -88,11 +88,11 @@ class EventsController extends GetxController {
               event.eventStart?.day == int.parse(date.value.split(' ')[0]))
           .toList());
     }
-
-    print(events.value);
+   
   }
 
   //TODO: fetch all dept
+  
   void fetchDepartments() async {
     final Response response = await api.getApi('/api/events/department/all/');
     List<DepartmentModel> parsed =

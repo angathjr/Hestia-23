@@ -188,6 +188,7 @@ class LeaderBoard extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           elevation: 0,
         ),

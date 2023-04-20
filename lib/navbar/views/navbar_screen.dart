@@ -25,6 +25,7 @@ class NavBarPage extends StatelessWidget {
     double navHeight = height * 0.063;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
         body: SizedBox(
       width: width,
       height: height,
