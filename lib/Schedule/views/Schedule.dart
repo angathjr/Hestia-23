@@ -173,7 +173,6 @@ class TimeLineofEvents extends StatelessWidget {
   }
 }
 
-//Container for date box
 
 class Dates extends StatelessWidget {
    Dates(
