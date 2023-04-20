@@ -24,7 +24,6 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("PROFILE", style: FutTheme.categoryFont),
-        backgroundColor: Colors.black,
         centerTitle: true,
       ),
       body: Obx(
@@ -109,7 +108,8 @@ class ProfileScreen extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: const Color.fromRGBO(26, 26, 26, 1)),
+                      color:
+                          const Color.fromRGBO(26, 26, 26, 1).withOpacity(0.4)),
                   // width: _width - 2 * (_width / 25),
                   height: _height / 9,
                   child: Padding(
@@ -150,7 +150,7 @@ class ProfileScreen extends StatelessWidget {
                   height: _height / 2.4,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: const Color.fromRGBO(26, 26, 26, 1),
+                    color: const Color.fromRGBO(26, 26, 26, 1).withOpacity(0.4),
                   ),
                   child: Padding(
                     padding: EdgeInsets.only(left: _width / 14),

@@ -5,12 +5,9 @@ import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
+import 'package:hestia_23/profile/controllers/profile_controller.dart';
 import 'package:hestia_23/stories/views/stories_widget.dart';
-import 'leaderboard_card.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
-import 'package:hestia_23/fcm/controllers/fcm_controller.dart';
-import 'package:hestia_23/profile/views/profile_completion_screen.dart';
-
 import 'event_category_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,6 +15,7 @@ class HomeScreen extends StatelessWidget {
 
   final EventsController eventController = Get.find();
   final AuthController authController = Get.find();
+  final ProfileController profController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -25,21 +23,58 @@ class HomeScreen extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      // endDrawerEnableOpenDragGesture: true,
       body: SafeArea(
         child: CustomScrollView(
+          physics: const NeverScrollableScrollPhysics(),
           slivers: [
             SliverAppBar(
+              pinned: true,
+              snap: false,
+              primary: true,
               automaticallyImplyLeading: false,
-              title: Image.asset(
-                "assets/images/mascot.png",
-                scale: 2.2,
+              title: Row(
+                children: [
+                  Image.asset(
+                    "assets/images/mascot.png",
+                    scale: 2.2,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "hi ${profController.user.name.split(' ').first}",
+                        style: FutTheme.categoryFont
+                            .copyWith(fontSize: width * 0.04),
+                      ),
+                      FittedBox(
+                        child: Text("welcome to the timeless oddessey",
+                            style: FutTheme.categoryFont
+                                .copyWith(fontSize: width * 0.02)),
+                      ),
+                    ],
+                  )
+                ],
               ),
               actions: [
-                IconButton(
-                  onPressed: () => Get.toNamed('/search'),
-                  icon: const Icon(
-                    CupertinoIcons.search
-                  )
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: FutTheme.primaryBg.withOpacity(0.6)),
+                  child: Row(children: [
+                    IconButton(
+                      onPressed: () => Get.toNamed('/search'),
+                      icon: const Icon(CupertinoIcons.search),
+                    ),
+                    IconButton(
+                      onPressed: () => Get.toNamed('notification-1'),
+                      icon: const Icon(Icons.notifications),
+                    ),
+                  ]),
                 ),
               ],
             ),
@@ -49,13 +84,10 @@ class HomeScreen extends StatelessWidget {
                 delegate: SliverChildListDelegate(
                   [
                     Container(
-                      height: height*1.7,
+                      height: height,
                       decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/bg.png")
-                        )
-                      ),
-
+                          image: DecorationImage(
+                              image: AssetImage("assets/images/bg.png"))),
                       child: Column(
                         children: [
                           SizedBox(
@@ -66,15 +98,19 @@ class HomeScreen extends StatelessWidget {
                             child: Stories(),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top: height*0.04,bottom: height*0.03),
+                            padding: EdgeInsets.only(
+                                top: height * 0.04, bottom: height * 0.03),
                             child: Container(
                               alignment: Alignment.center,
-                              width: width,
+                              // width: width,
                               // height: height * 0.08,
-                              child:  Text("EXPLORE EVENTS",style: FutTheme.categoryFont.copyWith(fontSize:width*0.08 ),),
+                              child: Text(
+                                "EXPLORE EVENTS",
+                                style: FutTheme.categoryFont
+                                    .copyWith(fontSize: width * 0.08),
+                              ),
                             ),
                           ),
-
 
                           //the category screen placed here
 
@@ -106,15 +142,8 @@ class HomeScreen extends StatelessWidget {
                                   enlargeCenterPage: true),
                             ),
                           ),
-                          SizedBox(
-                            height: height * 0.2,
-                          ),
+
                           //leaderboard
-                          SizedBox(
-                            width: width,
-                            child: LeaderBoard.futureLeaderboard(
-                                height*0.8, context),
-                          ),
                         ],
                       ),
                     ),

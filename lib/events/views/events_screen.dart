@@ -148,6 +148,16 @@ class EventScreen extends StatelessWidget {
                                     height: squareCard,
                                     decoration: const BoxDecoration(),
                                     child: CachedNetworkImage(
+                                      progressIndicatorBuilder:
+                                          (context, url, downloadProgress) =>
+                                              Center(
+                                        child: CircularProgressIndicator(
+                                            valueColor: AlwaysStoppedAnimation(
+                                                FutTheme.primaryColor),
+                                            value: downloadProgress.progress),
+                                      ),
+                                      errorWidget: (context, url, error) =>
+                                          Icon(Icons.error),
                                       imageUrl:
                                           '${controller.events[index].image}',
                                       fit: BoxFit.cover,
@@ -217,7 +227,7 @@ class EventScreen extends StatelessWidget {
                           height: height * 0.6,
                           width: width,
                           child: Center(
-                            child: loadingWidget,
+                            child: primaryLoadingWidget,
                           ))),
             ),
           ),

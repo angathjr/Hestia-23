@@ -1,7 +1,10 @@
+import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/Schedule/views/Schedule.dart';
+import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/home/views/home_screen.dart';
+import 'package:hestia_23/home/views/leaderboard_card.dart';
 import 'package:hestia_23/notifications/views/notification_screen.dart';
 import 'package:hestia_23/profile/views/profile_screen.dart';
 
@@ -38,7 +41,7 @@ class NavBarPage extends StatelessWidget {
               children: [
                 HomeScreen(),
                 Schedule(),
-                NotificationScreen(),
+                LeaderBoard(),
                 ProfileScreen()
               ],
             ),
@@ -59,39 +62,33 @@ class NavBarPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Obx(
-                        () => buildNavIcons(
-                          navHeight: navHeight,
-                          index: 0,
-                          selectedIcon: const Icon(Icons.home_filled),
-                          unselectedIcon: const Icon(Icons.home_outlined),
-                        ),
+                      buildNavIcons(
+                        navHeight: navHeight,
+                        index: 0,
+                        selectedIcon: const Icon(CarbonIcons.home),
+                        unselectedIcon: const Icon(Icons.home_outlined),
                       ),
-                      Obx(
-                        () => buildNavIcons(
+                      buildNavIcons(
+                        navHeight: navHeight,
+                        index: 1,
+                        selectedIcon: const Icon(CarbonIcons.calendar),
+                        unselectedIcon:
+                            const Icon(Icons.calendar_today_outlined),
+                      ),
+                      buildNavIcons(
                           navHeight: navHeight,
-                          index: 1,
-                          selectedIcon:
-                              const Icon(Icons.calendar_today_rounded),
+                          index: 2,
+                          selectedIcon: const Icon(Icons.leaderboard_rounded),
                           unselectedIcon:
-                              const Icon(Icons.calendar_today_outlined),
+                              const Icon(Icons.leaderboard_rounded)),
+                      buildNavIcons(
+                        navHeight: navHeight,
+                        index: 3,
+                        selectedIcon: const Icon(
+                          CarbonIcons.user,
                         ),
-                      ),
-                      Obx(
-                        () => buildNavIcons(
-                            navHeight: navHeight,
-                            index: 2,
-                            selectedIcon: const Icon(Icons.notifications),
-                            unselectedIcon:
-                                const Icon(Icons.notifications_none_outlined)),
-                      ),
-                      Obx(() => buildNavIcons(
-                            navHeight: navHeight,
-                            index: 3,
-                            selectedIcon: const Icon(Icons.person),
-                            unselectedIcon:
-                                const Icon(Icons.person_outline_rounded),
-                          ))
+                        unselectedIcon: const Icon(CarbonIcons.user),
+                      )
                     ],
                   ),
                 ),
@@ -103,23 +100,28 @@ class NavBarPage extends StatelessWidget {
     ));
   }
 
-  InkWell buildNavIcons(
+  Widget buildNavIcons(
       {required double navHeight,
       required Icon selectedIcon,
       required Icon unselectedIcon,
       required int index}) {
-    return InkWell(
-      onTap: () {
-        navBarController.changePage(index, navBarController.controller);
-        navBarController.index.value = index;
-      },
-      child: SizedBox(
-          width: navHeight,
-          height: navHeight,
-          child: (navBarController.index.value == index)
-              ? selectedIcon
-              : unselectedIcon),
-    );
+    return SizedBox(
+        width: navHeight,
+        height: navHeight,
+        child: Obx(
+          () => IconButton(
+            icon: selectedIcon,
+            onPressed: () {
+              navBarController.changePage(index, navBarController.controller);
+              navBarController.index.value = index;
+            },
+            color: Colors.grey.shade400,
+            enableFeedback: true,
+            splashRadius: 5,
+            isSelected: (index == navBarController.index.value) ? true : false,
+            disabledColor: Colors.red,
+          ),
+        ));
   }
 }
 

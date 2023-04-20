@@ -9,6 +9,7 @@ import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_search_screen.dart';
 
 import 'package:hestia_23/navbar/views/navbar_screen.dart';
+import 'package:hestia_23/notifications/views/notification_screen.dart';
 import 'package:hestia_23/profile/views/profile_screen.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 import 'package:hestia_23/stories/views/story_view.dart';
@@ -65,9 +66,18 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/schedule", page: () => Schedule()),
         GetPage(name: '/login', page: () => LoginScreen()),
         GetPage(name: '/profile', page: () => ProfileScreen()),
-        GetPage(name: '/search', page: () => EventsSearchScreen()),
+        GetPage(
+            name: '/search',
+            page: () => EventsSearchScreen(),
+            transition: Transition.rightToLeftWithFade,
+            transitionDuration:const  Duration(milliseconds: 500)),
         GetPage(name: '/event', page: () => EventDetailsScreen()),
         GetPage(name: '/story-view', page: () => StoriesViewScreen()),
+        GetPage(
+            name: '/notification-1',
+            page: () => NotificationScreen(),
+            transition: Transition.leftToRightWithFade,
+            transitionDuration:const  Duration(milliseconds: 500)),
       ],
     );
   }

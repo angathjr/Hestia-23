@@ -174,6 +174,14 @@ class EventsSearchScreen extends StatelessWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
                                 child: CachedNetworkImage(
+                                  progressIndicatorBuilder:
+                                      (context, url, downloadProgress) =>
+                                          Center(
+                                    child: CircularProgressIndicator(
+                                        valueColor: AlwaysStoppedAnimation(
+                                            FutTheme.primaryColor),
+                                        value: downloadProgress.progress),
+                                  ),
                                   imageUrl:
                                       '${searchController.events[index].image}',
                                   fit: BoxFit.cover,
