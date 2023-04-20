@@ -81,17 +81,25 @@ class Schedule extends StatelessWidget {
               w * 0.04,
               w * 0.07,
             ),
-            sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-              childCount: controller.events.length,
-              (context, index) {
-                return Obx(
-                  () => TimeLineofEvents(
-                    event: controller.events[index],
-                  ),
-                );
-              },
-            )))
+            sliver: Obx(
+              () => (controller.eventsLoading.value == false)
+                  ? SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                      childCount: controller.events.length,
+                      (context, index) {
+                        return TimeLineofEvents(
+                          event: controller.events[index],
+                        );
+                      },
+                    ))
+                  : SliverToBoxAdapter(
+                      child: SizedBox(
+                          height: h * 0.6,
+                          width: w,
+                          child: Center(
+                            child: loadingWidget,
+                          ))),
+            ))
       ],
     ));
   }
