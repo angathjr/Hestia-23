@@ -176,7 +176,7 @@ class TimeLineofEvents extends StatelessWidget {
 //Container for date box
 
 class Dates extends StatelessWidget {
-  const Dates(
+   Dates(
       {super.key,
       required this.date,
       required this.index,
@@ -184,6 +184,7 @@ class Dates extends StatelessWidget {
   final int index;
   final ScheduleDate date;
   final ScheduleController controller;
+  final AnimController anim =Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -192,6 +193,8 @@ class Dates extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         controller.setdate(index);
+        anim.start(true);
+        anim.loadScheduleAnimation();
       },
       child: Obx(
         () => Container(
@@ -200,7 +203,6 @@ class Dates extends StatelessWidget {
               color: controller.selectedDateIndex.value == index
                   ? FutTheme.primaryColor
                   : FutTheme.primaryBg,
-              // border: Border.all(color: Colors.white),
               borderRadius: const BorderRadius.all(Radius.circular(8))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
