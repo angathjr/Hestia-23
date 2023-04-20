@@ -5,7 +5,7 @@ class AnimController extends GetxController {
   var start = true.obs;
 
   void loadAnimation() async {
-    await Future.delayed(const Duration(milliseconds: 200), () {
+    await Future.delayed(const Duration(milliseconds: 500), () {
       start.value = false;
     });
   }

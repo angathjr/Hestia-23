@@ -30,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
       body: Obx(
         () => AnimatedPadding(
           curve: Curves.easeIn,
-          duration: const Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 500),
           padding: EdgeInsets.symmetric(
               horizontal:
                   (anim.start.value == false) ? _width * 0.06 : _width * 0.04),
