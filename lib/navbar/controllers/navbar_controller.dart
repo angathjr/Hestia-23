@@ -12,6 +12,6 @@ class NavBarController extends GetxController {
     controller.jumpToPage(index);
     anim.start(true);
     if (index == 3) anim.loadProfileAnimation();
-    if (index == 1) anim.loadScheduleAnimation();
+    if (index == 1) anim.loadScheduleAnimation(); 
   }
 }
