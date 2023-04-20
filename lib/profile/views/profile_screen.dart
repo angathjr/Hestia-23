@@ -33,7 +33,7 @@ class ProfileScreen extends StatelessWidget {
           duration: const Duration(milliseconds: 200),
           padding: EdgeInsets.symmetric(
               horizontal:
-                  (anim.start.value == false) ? _width * 0.06 : _width * 0.02),
+                  (anim.start.value == false) ? _width * 0.06 : _width * 0.04),
           child: SizedBox(
             width: _width,
             child: Column(
