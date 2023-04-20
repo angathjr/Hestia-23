@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:stories_editor/stories_editor.dart';
+import 'package:story_view/story_view.dart';
 
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/stories/controllers/stories_controller.dart';
 import 'package:hestia_23/stories/model/stories.dart';
 import 'package:hestia_23/stories/views/story_view.dart';
-import 'package:story_view/story_view.dart';
 
 class Stories extends StatelessWidget {
   Stories({super.key});
@@ -81,6 +81,7 @@ class Stories extends StatelessWidget {
                 } else {
                   index = index - 1;
                   return StoriesCard(
+                    index: index,
                     story: controller.stories[index],
                   );
                 }
@@ -97,9 +98,11 @@ class StoriesCard extends StatelessWidget {
   StoriesCard({
     Key? key,
     required this.story,
+    required this.index,
   }) : super(key: key);
 
   final StoryModel story;
+  final int index;
   final StoriesController controller = Get.find();
 
   @override
@@ -110,7 +113,7 @@ class StoriesCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(_width * 0.01),
       child: GestureDetector(
-        onTap: () => controller.goToStory(story),
+        onTap: () => controller.goToStory(index),
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
