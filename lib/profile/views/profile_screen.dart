@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
@@ -42,9 +43,8 @@ class ProfileScreen extends StatelessWidget {
                   backgroundColor: const Color.fromRGBO(51, 51, 51, 1),
                   radius: _width / 8,
                   child: CircleAvatar(
-                    backgroundImage: NetworkImage(
+                    backgroundImage: CachedNetworkImageProvider(
                       controller.user.profileImage,
-                      // fit: BoxFit.f,
                     ),
                     radius: _width / 9.5,
                   ),

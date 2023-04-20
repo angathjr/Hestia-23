@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/Schedule/controller/schedule_controller.dart';
@@ -124,7 +125,7 @@ class TimeLineofEvents extends StatelessWidget {
                 clipBehavior: Clip.hardEdge,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: NetworkImage(event.image!),
+                        image: CachedNetworkImageProvider(event.image!),
                         fit: BoxFit.cover,
                         opacity: 0.7),
                     borderRadius: const BorderRadius.all(Radius.circular(20))),

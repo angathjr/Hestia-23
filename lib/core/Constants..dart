@@ -38,6 +38,7 @@ class FutTheme {
   static TextStyle font7 = GoogleFonts.oxanium();
   static Color primaryColor = const Color(0xffDEFD72);
   static Color primaryBg = const Color(0xff1A1A1A);
+  static Color secondaryColor=const Color(0xffFFD730);
 }
 
 class ThemeColor {

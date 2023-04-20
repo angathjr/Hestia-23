@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
@@ -19,7 +20,7 @@ class EventsSearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    double cardHeight = height * 0.55;
+    double cardHeight = height * 0.2;
     double squareCard = width - (2 * width * 0.04) - (2 * width * 0.05);
 
     return Scaffold(
@@ -67,12 +68,12 @@ class EventsSearchScreen extends StatelessWidget {
                       width: width,
                       decoration: BoxDecoration(
                           color: const Color(0xff1E1E1E),
-                          borderRadius: BorderRadius.circular(8)),
+                          borderRadius: BorderRadius.circular(20)),
                       child: TextField(
                         style: FutTheme.font3,
-                        decoration: const InputDecoration(contentPadding: EdgeInsets.only(left: 20),
-                          border: InputBorder.none
-                        ),
+                        decoration: const InputDecoration(
+                            contentPadding: EdgeInsets.only(left: 20),
+                            border: InputBorder.none),
                         onChanged: (value) =>
                             searchController.textFieldOnChanged(),
                         controller: searchController.editingController,
@@ -104,7 +105,7 @@ class EventsSearchScreen extends StatelessWidget {
                             height: height * 0.047,
                             width: width * 0.3,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(33),
+                                borderRadius: BorderRadius.circular(20),
                                 border:
                                     Border.all(color: const Color(0xffFFD730))),
                             child: Obx(
@@ -112,7 +113,7 @@ class EventsSearchScreen extends StatelessWidget {
                                 child: ButtonTheme(
                                   alignedDropdown: true,
                                   child: DropdownButton(
-                                    borderRadius: BorderRadius.circular(15),
+                                    borderRadius: BorderRadius.circular(20),
                                     isExpanded: true,
                                     isDense: false,
                                     value: searchController.date.value,
@@ -154,86 +155,74 @@ class EventsSearchScreen extends StatelessWidget {
                     childCount: searchController.events.length,
                     (BuildContext context, index) {
                   return Padding(
-                    padding: EdgeInsets.only(bottom: height * 0.02),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                      height: cardHeight,
-                      width: width,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: const Color(0xffFFD730)),
-                          borderRadius: BorderRadius.circular(40)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(40),
-                                topRight: Radius.circular(40)),
+                      padding: EdgeInsets.only(bottom: height * 0.02),
+                      child: Container(
+                        height: cardHeight,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: FutTheme.secondaryColor),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Row(children: [
+                          Expanded(
                             child: Container(
-                              width: squareCard,
-                              height: squareCard,
-                              decoration: const BoxDecoration(),
-                              child: Image.network(
-                                '${searchController.events[index].image}',
-                                fit: BoxFit.cover,
+                              width: width * 0.4,
+                              margin: EdgeInsets.all(width * 0.025),
+                              decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                      color: FutTheme.secondaryColor)),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                      '${searchController.events[index].image}',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
-                          SizedBox(
-                              width: width * 0.6,
-                              child: Text(
-                                "${searchController.events[index].title}",
-                                style: FutTheme.mFont
-                                    .copyWith(color: Colors.white),
-                                softWrap: true,
-                                textAlign: TextAlign.center,
-                              )),
-                          GestureDetector(
-                            onTap: () {
-                              eventsController
-                                  .goToEvent(searchController.events[index]);
-                            },
+                          Expanded(
                             child: Container(
-                              height: cardHeight * 0.1,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(43),
-                                  color: const Color(0xffFFD730)),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  const Spacer(
-                                    flex: 9,
-                                  ),
-                                  Text("View Details", style: FutTheme.mFont),
-                                  const Spacer(
-                                    flex: 5,
-                                  ),
-                                  Container(
-                                    height: cardHeight * 0.082,
-                                    width: cardHeight * 0.1,
-                                    decoration: BoxDecoration(
-                                        color: Colors.black,
-                                        borderRadius:
-                                            BorderRadius.circular(29)),
-                                    child: Transform.rotate(
-                                      angle: pi / 3,
-                                      child: const Icon(
-                                        Icons.arrow_upward_rounded,
-                                        color: Colors.white,
+                                width: width * 0.4,
+                                margin: EdgeInsets.all(width * 0.025),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    SizedBox(
+                                      child: Text(
+                                        "${searchController.events[index].title}",
+                                        style: FutTheme.mFont.copyWith(
+                                            color: Colors.white,
+                                            fontSize: width * 0.045),
+                                        softWrap: true,
+                                        textAlign: TextAlign.center,
                                       ),
                                     ),
-                                  ),
-                                  const Spacer()
-                                ],
-                              ),
-                            ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        eventsController.goToEvent(
+                                            searchController.events[index]);
+                                      },
+                                      child: Container(
+                                        height: height * 0.045,
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: width * 0.02),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: FutTheme.secondaryColor),
+                                        alignment: Alignment.center,
+                                        child: Text("View Details",
+                                            style: FutTheme.mFont),
+                                      ),
+                                    )
+                                  ],
+                                )),
                           )
-                        ],
-                      ),
-                    ),
-                  );
+                        ]),
+                      ));
                 }),
               ),
             ),
@@ -266,7 +255,7 @@ class EventsSearchScreen extends StatelessWidget {
                                 index
                             ? const Color(0xffFFD730)
                             : null,
-                        borderRadius: BorderRadius.circular(33),
+                        borderRadius: BorderRadius.circular(20),
                         border: Border.all(color: const Color(0xffFFD730))),
                     child: eventsController.departmentLoading.value == true
                         ? Text(
