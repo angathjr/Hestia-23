@@ -13,6 +13,7 @@ import 'package:hestia_23/home/views/leaderboard_card.dart';
 import 'package:hestia_23/navbar/views/navbar_screen.dart';
 import 'package:hestia_23/profile/views/profile_screen.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
+import 'package:hestia_23/stories/views/story_view.dart';
 import 'auth/views/login_screen.dart';
 import 'getx_di.dart';
 
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/profile', page: () => ProfileScreen()),
         GetPage(name: '/search', page: () => EventsSearchScreen()),
         GetPage(name: '/event', page: () => EventDetailsScreen()),
+        GetPage(name: '/story-view', page: () => StoriesViewScreen()),
       ],
     );
   }

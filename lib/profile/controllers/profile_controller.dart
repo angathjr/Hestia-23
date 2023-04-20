@@ -30,6 +30,6 @@ class ProfileController extends GetxController {
   void fetchRegCount() async {
     final Response response = await api.getApi("/api/events/reg/events/");
 
-    registeredEventCount = response.body['count'];
+    registeredEventCount.value = response.body['count'];
   }
 }
