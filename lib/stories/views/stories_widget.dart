@@ -49,7 +49,9 @@ class Stories extends StatelessWidget {
                           giphyKey: "RvvTK8aN4SOt6rLKzpx9uVrq9tLFBWyv",
                           onDone: (uri) {
                             debugPrint(uri);
-                            Share.shareFiles([uri]);
+
+                            //! Compress Image
+                            controller.compressImage(uri);
                           },
                           middleBottomWidget: Text(
                             "Hestia",
