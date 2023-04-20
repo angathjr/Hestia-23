@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
@@ -44,13 +45,12 @@ class EventDetailsScreen extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: SizedBox(
-                        width: width,
-                        height: cardSize,
-                        child: Image.network(
-                          '${eventsController.selectedEvent.image}',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                          width: width,
+                          height: cardSize,
+                          child: CachedNetworkImage(
+                            imageUrl: '${eventsController.selectedEvent.image}',
+                            fit: BoxFit.cover,
+                          )),
                     ),
 
                     //Event name and venue

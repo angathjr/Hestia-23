@@ -10,9 +10,9 @@ import '../controllers/navbar_controller.dart';
 class NavBarPage extends StatelessWidget {
   NavBarPage({Key? key}) : super(key: key);
 
-  var pages = [HomeScreen(), Schedule(), NotificationScreen(), ProfileScreen()];
+  // var pages = [HomeScreen(), Schedule(), NotificationScreen(), ProfileScreen()];
 
-  final navController = Get.put(NavBarController());
+  final NavBarController navBarController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +34,13 @@ class NavBarPage extends StatelessWidget {
             height: height,
             child: PageView(
               physics: const NeverScrollableScrollPhysics(),
-              controller: navController.controller,
-              children: pages,
+              controller: navBarController.controller,
+              children: [
+                HomeScreen(),
+                Schedule(),
+                NotificationScreen(),
+                ProfileScreen()
+              ],
             ),
           ),
 
@@ -105,13 +110,13 @@ class NavBarPage extends StatelessWidget {
       required int index}) {
     return InkWell(
       onTap: () {
-        navController.changePage(index, navController.controller);
-        navController.index.value = index;
+        navBarController.changePage(index, navBarController.controller);
+        navBarController.index.value = index;
       },
       child: SizedBox(
           width: navHeight,
           height: navHeight,
-          child: (navController.index.value == index)
+          child: (navBarController.index.value == index)
               ? selectedIcon
               : unselectedIcon),
     );

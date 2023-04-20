@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
@@ -146,8 +147,9 @@ class EventScreen extends StatelessWidget {
                                     width: squareCard,
                                     height: squareCard,
                                     decoration: const BoxDecoration(),
-                                    child: Image.network(
-                                      '${controller.events[index].image}',
+                                    child: CachedNetworkImage(
+                                      imageUrl:
+                                          '${controller.events[index].image}',
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -214,10 +216,8 @@ class EventScreen extends StatelessWidget {
                       child: SizedBox(
                           height: height * 0.6,
                           width: width,
-                          child: const Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.grey,
-                            ),
+                          child: Center(
+                            child: loadingWidget,
                           ))),
             ),
           ),
