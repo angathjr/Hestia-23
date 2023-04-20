@@ -254,7 +254,7 @@ class EventDetailsScreen extends StatelessWidget {
                           width: width * 0.11,
                         ),
                         contactDetails(width, height,
-                            '${eventsController.selectedEvent.coordinator1?.committeeName}'),
+                            '${eventsController.selectedEvent.coordinator2?.committeeName}'),
                       ],
                     ),
 
