@@ -124,36 +124,49 @@ class TimeLineofEvents extends StatelessWidget {
                 height: h * 0.03,
               ),
               GestureDetector(
-                onTap: () => eventsController.goToEvent(event),
-                child: Container(
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(event.image!),
-                          fit: BoxFit.cover,
-                          opacity: 0.7),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(20))),
-                  height: h * 0.15,
-                  width: double.infinity,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: w * 0.04),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          event.title ?? '',
-                          style: FutTheme.font3.copyWith(
-                              fontWeight: FontWeight.bold, fontSize: h * 0.024),
-                        ),
-                        Text(event.shortDesc ?? ''),
-                        Text(event.venue?.title ?? '')
-                      ],
-                    ),
-                  ),
-                ),
-              )
+                  onTap: () => eventsController.goToEvent(event),
+                  child: Obx(
+                    () => eventsController.eventsLoading.value == false
+                        ? Container(
+                            clipBehavior: Clip.hardEdge,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: CachedNetworkImageProvider(
+                                      event.image!,
+                                    ),
+                                    fit: BoxFit.cover,
+                                    opacity: 0.7),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20))),
+                            height: h * 0.15,
+                            width: double.infinity,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: w * 0.04),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    event.title ?? '',
+                                    style: FutTheme.font3.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: h * 0.024),
+                                  ),
+                                  Text(event.shortDesc ?? ''),
+                                  Text(event.venue?.title ?? '')
+                                ],
+                              ),
+                            ),
+                          )
+                        : Container(
+                            width: double.infinity,
+                            height: h * 0.15,
+                            decoration: BoxDecoration(
+                                color: FutTheme.primaryBg,
+                                borderRadius: BorderRadius.circular(20)),
+                          ),
+                  ))
             ],
           ),
         )

@@ -168,7 +168,6 @@ class EventsSearchScreen extends StatelessWidget {
                               width: width * 0.4,
                               margin: EdgeInsets.all(width * 0.025),
                               decoration: BoxDecoration(
-                                  color: Colors.green,
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(
                                       color: FutTheme.secondaryColor)),
