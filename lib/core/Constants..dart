@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -42,3 +43,8 @@ class FutTheme {
 class ThemeColor {
   static const color1 = Color.fromRGBO(123, 126, 130, 1);
 }
+
+Widget loadingWidget = CupertinoActivityIndicator(
+  radius: 20,
+  color: FutTheme.primaryColor.withOpacity(0.5),
+);

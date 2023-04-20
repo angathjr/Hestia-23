@@ -214,10 +214,8 @@ class EventScreen extends StatelessWidget {
                       child: SizedBox(
                           height: height * 0.6,
                           width: width,
-                          child: const Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.grey,
-                            ),
+                          child: Center(
+                            child: loadingWidget,
                           ))),
             ),
           ),
