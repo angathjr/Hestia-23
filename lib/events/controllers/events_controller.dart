@@ -98,8 +98,10 @@ class EventsController extends GetxController {
     List<DepartmentModel> parsed =
         departmentModelFromJson(response.body['results']);
     departments.value = parsed;
-    departments.value.insert(
+    departments.insert(
         0, DepartmentModel(id: 0, title: 'ALL', shortForm: 'ALL', slug: 'ALL'));
+    departments.removeWhere(
+        (element) => element.title?.toUpperCase() == 'MERCHANDISE');
     setDepartmentIndex(0);
     departmentLoading(true);
   }
