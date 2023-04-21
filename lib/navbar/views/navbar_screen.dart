@@ -7,6 +7,7 @@ import 'package:hestia_23/home/views/home_screen.dart';
 import 'package:hestia_23/home/views/leaderboard_card.dart';
 import 'package:hestia_23/notifications/views/notification_screen.dart';
 import 'package:hestia_23/profile/views/profile_screen.dart';
+import 'package:hestia_23/profile/views/profile_screen2.dart';
 
 import '../controllers/navbar_controller.dart';
 
