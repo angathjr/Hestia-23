@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:hestia_23/events/models/category.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:hestia_23/events/models/department_list..dart';
 
 import '../../core/api_provider.dart';
@@ -124,6 +125,48 @@ class EventsController extends GetxController {
       return '${price.toDouble() / 1000}K'.replaceAll(regex, '');
     }
     return '$price';
+  }
+
+  void launchUrlInWeb() async {
+    const baseUrl = 'https://hestiatkmce.live/events';
+    String category = '';
+    switch (selectedEvent.eventCategory) {
+      case 'T':
+        category = 'technical';
+        break;
+      case 'G':
+        category = 'general';
+        break;
+      case 'W':
+        category = 'workshops';
+        break;
+      case 'PR':
+        category = 'technical';
+        break;
+    }
+
+    final url = '$baseUrl/$category/${selectedEvent.slug}';
+    try {
+      await launchUrl(
+        Uri.parse(url),
+      );
+    } catch (e) {
+      //TODO: ERROR WIDGET
+    }
+  }
+
+  void launchPhoneDialer(String? phoneNumber) async {
+    if (phoneNumber == null) return;
+    const url = 'tel:';
+    final uri = Uri.parse('tel:$phoneNumber');
+    print(uri);
+    try {
+      await launchUrl(
+        uri,
+      );
+    } catch (e) {
+      //TODO: ERROR WIDGET
+    }
   }
 
   // void fetchEvents() {}
