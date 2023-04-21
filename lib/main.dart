@@ -13,6 +13,7 @@ import 'package:hestia_23/notifications/views/notification_screen.dart';
 import 'package:hestia_23/profile/views/profile_screen.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 import 'package:hestia_23/stories/views/story_view.dart';
+import 'Schedule/filter/schedule_filter_view.dart';
 import 'auth/views/login_screen.dart';
 import 'getx_di.dart';
 
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(
               color: Colors.black, scrolledUnderElevation: 0)),
       // home: NavBarPage(),
+      initialRoute: '/',
       getPages: [
         GetPage(
             name: '/',
@@ -70,14 +72,15 @@ class MyApp extends StatelessWidget {
             name: '/search',
             page: () => EventsSearchScreen(),
             transition: Transition.rightToLeftWithFade,
-            transitionDuration:const  Duration(milliseconds: 500)),
+            transitionDuration: const Duration(milliseconds: 500)),
         GetPage(name: '/event', page: () => EventDetailsScreen()),
         GetPage(name: '/story-view', page: () => StoriesViewScreen()),
+        GetPage(name: '/filter', page: () => const Filter()),
         GetPage(
             name: '/notification-1',
             page: () => NotificationScreen(),
             transition: Transition.leftToRightWithFade,
-            transitionDuration:const  Duration(milliseconds: 500)),
+            transitionDuration: const Duration(milliseconds: 500)),
       ],
     );
   }
