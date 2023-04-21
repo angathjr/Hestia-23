@@ -6,6 +6,7 @@ import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/core/animation_controller.dart';
 import 'package:hestia_23/fcm/controllers/fcm_controller.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
+import 'package:hestia_23/profile/controllers/profile_edit_controller.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 import 'package:hestia_23/core/Constants..dart';
 
@@ -43,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                   radius: _width / 8,
                   child: CircleAvatar(
                     backgroundImage: CachedNetworkImageProvider(
-                      controller.user.profileImage,
+                      '${controller.user.value.profileImage}',
                     ),
                     radius: _width / 9.5,
                   ),
@@ -52,7 +53,7 @@ class ProfileScreen extends StatelessWidget {
                   height: _height / 100,
                 ),
                 Text(
-                  controller.user.name,
+                  '${controller.user.value.name}',
                   style: FutTheme.font3.copyWith(
                       color: const Color.fromRGBO(153, 153, 153, 1),
                       letterSpacing: 2,
@@ -72,7 +73,7 @@ class ProfileScreen extends StatelessWidget {
                       width: _width / 80,
                     ),
                     Text(
-                      controller.user.phoneNumber,
+                      '${controller.user.value.phoneNumber?.replaceAll('+91', '')}',
                       style: FutTheme.font3.copyWith(
                         color: const Color.fromRGBO(153, 153, 153, 1),
                         letterSpacing: 2,
@@ -94,7 +95,7 @@ class ProfileScreen extends StatelessWidget {
                       width: _width / 80,
                     ),
                     Text(
-                      controller.user.email,
+                      '${controller.user.value.email}',
                       style: FutTheme.font3.copyWith(
                         color: const Color.fromRGBO(153, 153, 153, 1),
                         letterSpacing: 1,
@@ -159,11 +160,8 @@ class ProfileScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         GestureDetector(
-                          onTap: () {
-                            Get.to(
-                              ProfileCompletion(),
-                            );
-                          },
+                          onTap: () => Get.to(() => ProfileCompletion(),
+                              arguments: [true]),
                           child: Row(
                             children: [
                               const CircleAvatar(

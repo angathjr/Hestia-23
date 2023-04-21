@@ -4,10 +4,13 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/auth/models/user.dart';
 import 'package:hestia_23/core/api_provider.dart';
+import 'package:hestia_23/profile/controllers/profile_controller.dart';
+import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 
 class ProfileEditController extends GetxController {
   final _storage = GetStorage();
   final ApiProvider api = Get.find();
+  final ProfileController profileController = Get.find();
 
   var name = ''.obs;
   var phoneNumber = ''.obs;
@@ -19,6 +22,7 @@ class ProfileEditController extends GetxController {
   var phoneNumberError = ''.obs;
   var collegeError = ''.obs;
   var departmentError = ''.obs;
+  bool isEdit = false;
 
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
@@ -76,7 +80,8 @@ class ProfileEditController extends GetxController {
       await _storage.write('user', user.toJson());
       await _storage.write('isComplete', true);
       print(_storage.read('isComplete'));
-      Get.offAllNamed('/');
+
+      isEdit ? Get.back() : Get.offAllNamed('/');
     } else {
       Get.snackbar(
         'Error has occured',
@@ -86,13 +91,20 @@ class ProfileEditController extends GetxController {
     }
   }
 
+  void goToEditScreen() {
+    isEdit = true;
+    Get.to(() => ProfileCompletion());
+  }
+
   @override
   void onInit() {
     super.onInit();
 
     user = userModelFromJson(_storage.read('user'));
+    isEdit = _storage.read('isComplete') ?? false;
     nameController = TextEditingController(text: user.name);
-    phoneController = TextEditingController(text: user.phoneNumber);
+    phoneController =
+        TextEditingController(text: user.phoneNumber?.replaceAll('+91', ''));
     collegeController = TextEditingController(text: user.collegeName);
     departmentController = TextEditingController(text: user.deptName);
   }

@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "hi ${profController.user.name.split(' ').first}",
+                        "hi ${profController.user.value.name?.split(' ').first}",
                         style: FutTheme.categoryFont
                             .copyWith(fontSize: width * 0.04),
                       ),
