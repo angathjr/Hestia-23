@@ -1,8 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/core/widgets/back_button_widget.dart';
 import 'package:hestia_23/notifications/controllers/notification_controller.dart';
@@ -16,13 +13,6 @@ class NotificationScreen extends StatelessWidget {
   final NotificationController notificationController = Get.find();
   final ProfileController profileController = Get.find();
 
-  final style1 = const TextStyle(
-    fontWeight: FontWeight.bold,
-  );
-  final style2 = const TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.bold,
-  );
   @override
   Widget build(BuildContext context) {
     final h = MediaQuery.of(context).size.height -
