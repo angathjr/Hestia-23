@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
           transitionDuration: const Duration(milliseconds: 1000),
         ),
 
-        GetPage(name: '/event', page: () => EventDetailsScreen2()),
+        GetPage(name: '/event', page: () => EventDetailsScreen()),
         GetPage(name: '/story-view', page: () => StoriesViewScreen()),
         GetPage(
           name: '/notification-1',

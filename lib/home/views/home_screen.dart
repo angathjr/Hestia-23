@@ -9,6 +9,7 @@ import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/events/views/events_search_screen.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
+import 'package:hestia_23/profile/views/profile_screen.dart';
 import 'package:hestia_23/stories/views/stories_widget.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
 import 'event_category_card.dart';
@@ -69,7 +70,8 @@ class HomeScreen extends StatelessWidget {
                       color: FutTheme.primaryBg.withOpacity(0.7)),
                   child: Row(children: [
                     IconButton(
-                      onPressed: () => Get.toNamed('/search'),
+                      onPressed: () => Navigator.push(
+                          context, SizeTransition5(ProfileScreen())),
                       icon: const Icon(FeatherIcons.search),
                     ),
                     IconButton(

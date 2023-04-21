@@ -40,7 +40,7 @@ class GeneralNotificationsScreen extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: h * 0.01),
                   child: Container(
-                    height: cardHeight,
+                    // height: cardHeight,
                     decoration: BoxDecoration(
                       color: FutTheme.primaryBg,
                       borderRadius: const BorderRadius.all(Radius.circular(20)),

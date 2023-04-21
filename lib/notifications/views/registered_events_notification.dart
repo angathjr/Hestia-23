@@ -42,7 +42,7 @@ class RegisteredEventsNotificatonScreen extends StatelessWidget {
                     onTap: () => notificationController
                         .goToNotification(profileController.regEvents[index]),
                     child: Container(
-                      height: cardHeight,
+                      // height: cardHeight,
                       decoration: BoxDecoration(
                         color: FutTheme.primaryBg,
                         borderRadius:
@@ -101,11 +101,13 @@ class RegisteredEventsNotificatonScreen extends StatelessWidget {
                                         color: Colors.grey.withOpacity(0.2),
                                         borderRadius:
                                             BorderRadius.circular(20)),
-                                    child: Text(
-                                     "${profileController.regEvents[index].title}",
-                                      style: FutTheme.font5.copyWith(
-                                          color: FutTheme.secondaryColor,
-                                          overflow: TextOverflow.clip),
+                                    child: FittedBox(
+                                      child: Text(
+                                        "${profileController.regEvents[index].title}",
+                                        style: FutTheme.font5.copyWith(
+                                            color: FutTheme.secondaryColor,
+                                            overflow: TextOverflow.clip),
+                                      ),
                                     ),
                                   )
                                 ],

@@ -7,6 +7,7 @@ import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/core/widgets/back_button_widget.dart';
 import 'package:hestia_23/notifications/controllers/notification_controller.dart';
 import 'package:hestia_23/notifications/views/general_notifications.dart';
+import 'package:hestia_23/notifications/views/registered_events_notification.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
 
 class NotificationScreen extends StatelessWidget {
@@ -61,7 +62,7 @@ class NotificationScreen extends StatelessWidget {
                 unselectedLabelColor: Colors.grey,
                 indicatorColor: const Color.fromARGB(255, 226, 222, 169),
                 dividerColor: Colors.transparent,
-                padding: EdgeInsets.only(right: width * 0.3),
+                padding: EdgeInsets.only(right: width * 0.2),
                 tabs: [
                   Tab(
                     child: Row(
@@ -123,90 +124,7 @@ class NotificationScreen extends StatelessWidget {
               children: [
                 //tab bar view for general events
                 GeneralNotificationsScreen(),
-
-                ListView.builder(
-                  itemCount: profileController.regEvents.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
-                      onTap: () => notificationController
-                          .goToNotification(profileController.regEvents[index]),
-                      child: Container(
-                        margin: const EdgeInsets.only(bottom: 30),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(255, 33, 32, 32)),
-                        height: h * 0.45,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Text(
-                                'WORKSHOP ABOUT TO START',
-                                style: GoogleFonts.questrial(textStyle: style2),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: RichText(
-                                text: const TextSpan(
-                                  text:
-                                      "All registered people head to college ground DJ Rizz proshow will start by 2:00 pm...",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                  ),
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                        text: ' Read more',
-                                        style: TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 236, 217, 15))),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(
-                                    '12:34',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  Container(
-                                    margin: const EdgeInsets.all(10),
-                                    padding: const EdgeInsets.all(10),
-                                    alignment: Alignment.center,
-                                    decoration: const BoxDecoration(
-                                        color: Color.fromARGB(255, 70, 67, 67),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(
-                                                10.0)), // Set rounded corner radius
-                                        boxShadow: [
-                                          BoxShadow(
-                                              blurRadius: 10,
-                                              color: Colors.black,
-                                              offset: Offset(1, 3))
-                                        ] // Make rounded corner of border
-                                        ),
-                                    child: Text(
-                                      "${profileController.regEvents[index].title}",
-                                      style: GoogleFonts.questrial(
-                                          textStyle: const TextStyle(
-                                              color: Colors.white)),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                )
+                RegisteredEventsNotificatonScreen(),
               ],
             ),
           ),
