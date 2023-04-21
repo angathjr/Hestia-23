@@ -153,7 +153,8 @@ class EventDetailsScreen extends StatelessWidget {
                                           color: Colors.black),
                                     ),
                                     Text(
-                                      '${eventsController.selectedEvent.prize}',
+                                      eventsController.formatPrice(
+                                          eventsController.selectedEvent.prize),
                                       style: FutTheme.font1.copyWith(
                                           fontSize: height * 0.03,
                                           fontWeight: FontWeight.w700,
