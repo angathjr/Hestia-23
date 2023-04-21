@@ -7,6 +7,8 @@ import 'package:hestia_23/core/widgets/back_button_widget.dart';
 import 'package:hestia_23/notifications/controllers/notification_controller.dart';
 import 'package:intl/intl.dart';
 
+import '../../core/Constants..dart';
+
 class NotificationScreenTwo extends StatelessWidget {
   NotificationScreenTwo({super.key});
 
@@ -31,7 +33,7 @@ class NotificationScreenTwo extends StatelessWidget {
         centerTitle: true,
         title: Text(
           notificationController.selectedNotEvent.title ?? '',
-          style: GoogleFonts.questrial(textStyle: style1),
+          style: FutTheme.categoryFont,
         ),
       ),
       body: Obx(

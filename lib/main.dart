@@ -7,6 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/Schedule/views/Schedule.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_search_screen.dart';
+import 'package:hestia_23/home/views/leaderboard_card.dart';
 
 import 'package:hestia_23/navbar/views/navbar_screen.dart';
 import 'package:hestia_23/notifications/views/notification_screen.dart';
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.black,
           appBarTheme: const AppBarTheme(
               color: Colors.black, scrolledUnderElevation: 0)),
-      // home: NavBarPage(),
+      //home: LeaderBoard(),
       getPages: [
         GetPage(
             name: '/',
@@ -70,14 +71,14 @@ class MyApp extends StatelessWidget {
             name: '/search',
             page: () => EventsSearchScreen(),
             transition: Transition.rightToLeftWithFade,
-            transitionDuration:const  Duration(milliseconds: 500)),
+            transitionDuration: const Duration(milliseconds: 500)),
         GetPage(name: '/event', page: () => EventDetailsScreen()),
         GetPage(name: '/story-view', page: () => StoriesViewScreen()),
         GetPage(
             name: '/notification-1',
             page: () => NotificationScreen(),
             transition: Transition.leftToRightWithFade,
-            transitionDuration:const  Duration(milliseconds: 500)),
+            transitionDuration: const Duration(milliseconds: 500)),
       ],
     );
   }

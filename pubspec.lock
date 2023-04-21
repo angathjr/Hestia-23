@@ -97,6 +97,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
+  circular_profile_avatar:
+    dependency: "direct main"
+    description:
+      name: circular_profile_avatar
+      sha256: "2ba47732e1d54b557e3ff033ab8ae58946b17d4bc268f6e3e6e3f58a90ac93c7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.5"
   clock:
     dependency: transitive
     description:
@@ -310,6 +318,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  flutter_polygon:
+    dependency: "direct main"
+    description:
+      name: flutter_polygon
+      sha256: c10c39b31c96c8ec5cd7f93bee07659e0e306f4af9d6139a30e3769acea9cc5d
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0+2"
   flutter_screenutil:
     dependency: transitive
     description:

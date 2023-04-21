@@ -5,6 +5,8 @@ import 'package:hestia_23/notifications/controllers/notification_controller.dart
 import 'package:hestia_23/notifications/views/notification_screen_two.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
 
+import '../../core/Constants..dart';
+
 class NotificationScreen extends StatelessWidget {
   NotificationScreen({super.key});
 
@@ -35,7 +37,7 @@ class NotificationScreen extends StatelessWidget {
               indicatorWeight: 1,
               indicatorSize: TabBarIndicatorSize.label,
               unselectedLabelColor: Colors.grey,
-              indicatorColor: const Color.fromARGB(255, 226, 222, 169),
+              indicatorColor: const Color.fromRGBO(222, 253, 114, 1),
               dividerColor: Colors.transparent,
               tabs: [
                 Tab(
@@ -53,7 +55,7 @@ class NotificationScreen extends StatelessWidget {
                         width: 20,
                         decoration: const BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Color.fromARGB(255, 236, 217, 15)),
+                            color: Color.fromRGBO(222, 253, 114, 1)),
                         child: const Center(
                             child: Text(
                           '${4}',
@@ -78,7 +80,7 @@ class NotificationScreen extends StatelessWidget {
                       width: 20,
                       decoration: const BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Color.fromARGB(255, 236, 217, 15)),
+                          color: Color.fromRGBO(222, 253, 114, 1)),
                       child: const Center(
                           child: Text(
                         '${4}',
@@ -91,7 +93,7 @@ class NotificationScreen extends StatelessWidget {
             ),
             title: Text(
               'NOTIFICATIONS',
-              style: GoogleFonts.questrial(textStyle: style1),
+              style: FutTheme.categoryFont,
             ),
           ),
           body: Padding(
@@ -131,8 +133,8 @@ class NotificationScreen extends StatelessWidget {
                                   TextSpan(
                                       text: ' Read more',
                                       style: TextStyle(
-                                          color: Color.fromARGB(
-                                              255, 236, 217, 15))),
+                                          color: Color.fromRGBO(
+                                              222, 253, 114, 1))),
                                 ],
                               ),
                             ),
@@ -212,8 +214,8 @@ class NotificationScreen extends StatelessWidget {
                                     TextSpan(
                                         text: ' Read more',
                                         style: TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 236, 217, 15))),
+                                            color: Color.fromRGBO(
+                                                222, 253, 114, 1))),
                                   ],
                                 ),
                               ),
