@@ -51,6 +51,7 @@ dependencies:
   cached_network_image: ^3.2.3
   carbon_icons: ^0.0.1+2
   url_launcher: ^6.1.10
+  feather_icons: ^1.2.0
   
 
 dev_dependencies:

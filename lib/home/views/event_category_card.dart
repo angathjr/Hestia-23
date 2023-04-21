@@ -9,11 +9,9 @@ class CategoryCard extends StatelessWidget {
   const CategoryCard({
     Key? key,
     required this.categoryModel,
-    required this.onTap,
   }) : super(key: key);
 
   final CategoryModel categoryModel;
-  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +36,7 @@ class CategoryCard extends StatelessWidget {
                       child: Text(
                         categoryModel.name,
                         style: FutTheme.categoryFont
-                            .copyWith(fontSize: cardHeight * 0.08),
+                            .copyWith(fontSize: cardHeight * 0.067),
                       ),
                     ),
                   ),
@@ -80,18 +78,12 @@ class CategoryCard extends StatelessWidget {
               ),
             ),
           ),
-
-          //TODO : need to make new clips for the check it out
-
           Expanded(
               flex: 5,
-              child: GestureDetector(
-                onTap: () => onTap(),
-                child: Container(
-                    padding: EdgeInsets.only(left: w * 0.07),
-                    alignment: Alignment.centerLeft,
-                    child: Image.asset("assets/images/checkitout.png")),
-              ))
+              child: Container(
+                  padding: EdgeInsets.only(left: w * 0.07),
+                  alignment: Alignment.centerLeft,
+                  child: Image.asset("assets/images/checkitout.png")))
         ],
       ),
     );

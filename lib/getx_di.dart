@@ -9,7 +9,7 @@ import 'package:hestia_23/profile/controllers/profile_controller.dart';
 import 'package:hestia_23/profile/controllers/profile_edit_controller.dart';
 import 'package:hestia_23/stories/controllers/stories_controller.dart';
 import 'auth/controllers/auth_controller.dart';
-import 'core/animation_controller.dart';
+import 'animations/controllers/animation_controller.dart';
 import 'events/controllers/events_controller.dart';
 import 'core/api_provider.dart';
 import 'core/api_provider_no_auth.dart';

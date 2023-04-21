@@ -1,10 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hestia_23/animations/views/side_transitions.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
+import 'package:hestia_23/events/views/events_search_screen.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
 import 'package:hestia_23/stories/views/stories_widget.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
@@ -63,15 +66,15 @@ class HomeScreen extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: FutTheme.primaryBg.withOpacity(0.6)),
+                      color: FutTheme.primaryBg.withOpacity(0.7)),
                   child: Row(children: [
                     IconButton(
                       onPressed: () => Get.toNamed('/search'),
-                      icon: const Icon(CupertinoIcons.search),
+                      icon: const Icon(FeatherIcons.search),
                     ),
                     IconButton(
                       onPressed: () => Get.toNamed('notification-1'),
-                      icon: const Icon(Icons.notifications),
+                      icon: const Icon(FeatherIcons.bell),
                     ),
                   ]),
                 ),
@@ -106,7 +109,7 @@ class HomeScreen extends StatelessWidget {
                               child: Text(
                                 "EXPLORE EVENTS",
                                 style: FutTheme.categoryFont
-                                    .copyWith(fontSize: width * 0.08),
+                                    .copyWith(fontSize: width * 0.075),
                               ),
                             ),
                           ),
@@ -120,7 +123,7 @@ class HomeScreen extends StatelessWidget {
                               itemCount: eventController.categories.length,
                               itemBuilder: (BuildContext context, int index,
                                   int realIndex) {
-                                return CategoryCard(
+                                return GestureDetector(
                                   onTap: () {
                                     eventController.selectedCategory =
                                         eventController.categories[index];
@@ -129,8 +132,10 @@ class HomeScreen extends StatelessWidget {
                                         arguments: eventController
                                             .categories[index].name);
                                   },
-                                  categoryModel:
-                                      eventController.categories[index],
+                                  child: CategoryCard(
+                                    categoryModel:
+                                        eventController.categories[index],
+                                  ),
                                 );
                               },
                               options: CarouselOptions(

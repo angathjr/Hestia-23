@@ -1,14 +1,11 @@
-import 'dart:math';
-
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carbon_icons/carbon_icons.dart';
+import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/events/controllers/events_search_controller.dart';
-import 'package:hestia_23/events/views/event_details_screen.dart';
 
 import '../../core/widgets/back_button_widget.dart';
 
@@ -23,7 +20,7 @@ class EventsSearchScreen extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     double cardHeight = height * 0.2;
-    double squareCard = width - (2 * width * 0.04) - (2 * width * 0.05);
+    double searchHeight = height * 0.06;
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -37,9 +34,9 @@ class EventsSearchScreen extends StatelessWidget {
 
             SliverAppBar(
               automaticallyImplyLeading: false,
-              pinned: false,
-              floating: true,
-              snap: true,
+              pinned: true,
+              floating: false,
+              snap: false,
               titleSpacing: 20,
               title: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -55,15 +52,12 @@ class EventsSearchScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            SliverPadding(
-                padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                sliver: SliverToBoxAdapter(
+              bottom: PreferredSize(
+                preferredSize: Size.fromHeight(searchHeight + 10),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: height * 0.01,
-                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -101,13 +95,26 @@ class EventsSearchScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(20),
                                   color: const Color(0xff1E1E1E)),
                               child: IconButton(
-                                  icon: Icon(CarbonIcons.filter,
+                                  icon: Icon(FeatherIcons.filter,
                                       size: width * 0.06),
                                   onPressed: () {}),
                             ),
                           )
                         ],
                       ),
+                      SizedBox(
+                        height: 10,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SliverPadding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+                sliver: SliverToBoxAdapter(
+                  child: Column(
+                    children: [
                       SizedBox(
                         height: height * 0.03,
                       ),
