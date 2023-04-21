@@ -36,7 +36,7 @@ class CategoryCard extends StatelessWidget {
                       child: Text(
                         categoryModel.name,
                         style: FutTheme.categoryFont
-                            .copyWith(fontSize: cardHeight * 0.08),
+                            .copyWith(fontSize: cardHeight * 0.067),
                       ),
                     ),
                   ),

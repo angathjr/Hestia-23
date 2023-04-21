@@ -1,4 +1,3 @@
-import 'package:carbon_icons/carbon_icons.dart';
 import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -65,7 +64,8 @@ class NavBarPage extends StatelessWidget {
                           buildNavIcons(
                             navHeight: navHeight,
                             index: 0,
-                            selectedIcon: const Icon(FeatherIcons.home),
+                            selectedIcon:
+                                 const Icon(FeatherIcons.home),
                             unselectedIcon: const Icon(Icons.home_outlined),
                           ),
                           buildNavIcons(
@@ -85,8 +85,11 @@ class NavBarPage extends StatelessWidget {
                           buildNavIcons(
                             navHeight: navHeight,
                             index: 3,
-                            selectedIcon: const Icon(FeatherIcons.user),
-                            unselectedIcon: const Icon(FeatherIcons.user),
+                            selectedIcon: const Icon(
+                              FeatherIcons.user,
+                              fill: 1,
+                            ),
+                            unselectedIcon:const  Icon(FeatherIcons.user,),
                           )
                         ],
                       ),

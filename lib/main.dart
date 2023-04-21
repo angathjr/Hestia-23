@@ -5,9 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/Schedule/views/Schedule.dart';
+import 'package:hestia_23/animations/views/side_transitions.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_search_screen.dart';
-
 import 'package:hestia_23/navbar/views/navbar_screen.dart';
 import 'package:hestia_23/notifications/views/notification_screen.dart';
 import 'package:hestia_23/profile/views/profile_screen.dart';
@@ -67,17 +67,18 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/login', page: () => LoginScreen()),
         GetPage(name: '/profile', page: () => ProfileScreen()),
         GetPage(
-            name: '/search',
-            page: () => EventsSearchScreen(),
-            transition: Transition.rightToLeftWithFade,
-            transitionDuration:const  Duration(milliseconds: 500)),
+          name: '/search',
+          page: () => EventsSearchScreen(),
+          curve: Curves.fastLinearToSlowEaseIn,
+          transitionDuration: const Duration(milliseconds: 1000),
+        ),
+
         GetPage(name: '/event', page: () => EventDetailsScreen()),
         GetPage(name: '/story-view', page: () => StoriesViewScreen()),
         GetPage(
-            name: '/notification-1',
-            page: () => NotificationScreen(),
-            transition: Transition.leftToRightWithFade,
-            transitionDuration:const  Duration(milliseconds: 500)),
+          name: '/notification-1',
+          page: () => NotificationScreen(),
+        ),
       ],
     );
   }

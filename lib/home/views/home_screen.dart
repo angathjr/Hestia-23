@@ -3,9 +3,11 @@ import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hestia_23/animations/views/side_transitions.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
+import 'package:hestia_23/events/views/events_search_screen.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
 import 'package:hestia_23/stories/views/stories_widget.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
@@ -104,20 +106,10 @@ class HomeScreen extends StatelessWidget {
                               alignment: Alignment.center,
                               // width: width,
                               // height: height * 0.08,
-                              child: ShaderMask(
-                                shaderCallback: (Rect bounds) {
-                                  return LinearGradient(
-                                    colors: [
-                                      FutTheme.primaryColor,
-                                      FutTheme.secondaryColor
-                                    ],
-                                  ).createShader(bounds);
-                                },
-                                child: Text(
-                                  "EXPLORE EVENTS",
-                                  style: FutTheme.categoryFont
-                                      .copyWith(fontSize: width * 0.08),
-                                ),
+                              child: Text(
+                                "EXPLORE EVENTS",
+                                style: FutTheme.categoryFont
+                                    .copyWith(fontSize: width * 0.075),
                               ),
                             ),
                           ),
@@ -141,7 +133,6 @@ class HomeScreen extends StatelessWidget {
                                             .categories[index].name);
                                   },
                                   child: CategoryCard(
-                                  
                                     categoryModel:
                                         eventController.categories[index],
                                   ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/Schedule/controller/schedule_controller.dart';
 import 'package:hestia_23/core/Constants..dart';
-import 'package:hestia_23/core/animation_controller.dart';
+import 'package:hestia_23/animations/controllers/animation_controller.dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/events/models/event.dart';
 import 'package:intl/intl.dart';
