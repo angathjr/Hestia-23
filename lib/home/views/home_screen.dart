@@ -71,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                   child: Row(children: [
                     IconButton(
                       onPressed: () => Navigator.push(
-                          context, SizeTransition5(ProfileScreen())),
+                          context, SizeTransition5(EventsSearchScreen())),
                       icon: const Icon(FeatherIcons.search),
                     ),
                     IconButton(

@@ -292,6 +292,7 @@ class EventsSearchScreen extends StatelessWidget {
                 () => GestureDetector(
                   onTap: () => searchController.setDepartmentIndex(index),
                   child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
                     alignment: Alignment.center,
                     width: width * 0.35,
                     decoration: BoxDecoration(
@@ -302,14 +303,18 @@ class EventsSearchScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(color: const Color(0xffFFD730))),
                     child: eventsController.departmentLoading.value == true
-                        ? Text(
-                            "${eventsController.departments[index].title?.toUpperCase()}",
-                            style: searchController
-                                        .selectedDepartmentIndex.value !=
-                                    index
-                                ? FutTheme.font6
-                                : FutTheme.font6
-                                    .copyWith(color: const Color(0xff373737)),
+                        ? FittedBox(
+                            child: Text(
+                              "${eventsController.departments[index].title?.toUpperCase()}",
+                              style: searchController
+                                          .selectedDepartmentIndex.value !=
+                                      index
+                                  ? FutTheme.font6
+                                  : FutTheme.font6
+                                      .copyWith(color: const Color(0xff373737)),
+                              overflow: TextOverflow.clip,
+                              maxLines: 1,
+                            ),
                           )
                         : const Text("....."),
                   ),
