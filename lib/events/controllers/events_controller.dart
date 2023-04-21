@@ -88,11 +88,10 @@ class EventsController extends GetxController {
               event.eventStart?.day == int.parse(date.value.split(' ')[0]))
           .toList());
     }
-   
   }
 
   //TODO: fetch all dept
-  
+
   void fetchDepartments() async {
     final Response response = await api.getApi('/api/events/department/all/');
     List<DepartmentModel> parsed =
@@ -117,6 +116,14 @@ class EventsController extends GetxController {
   void setDate(String date) {
     this.date.value = date;
     filterEvents();
+  }
+
+  String formatPrice(int price) {
+    RegExp regex = RegExp(r'([.]*0)(?!.*\d)');
+    if (price > 999) {
+      return '${price.toDouble() / 1000}K'.replaceAll(regex, '');
+    }
+    return '$price';
   }
 
   // void fetchEvents() {}
