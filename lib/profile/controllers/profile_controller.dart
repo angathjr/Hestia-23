@@ -3,12 +3,13 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/auth/models/user.dart';
 import 'package:hestia_23/core/api_provider.dart';
 import 'package:hestia_23/events/models/event.dart';
+import 'package:hestia_23/profile/controllers/profile_edit_controller.dart';
 
 class ProfileController extends GetxController {
   final ApiProvider api = Get.find();
   final _storage = GetStorage();
 
-  late UserModel user;
+  var user = (UserModel()).obs;
   var registeredEventCount = 0.obs;
   var regEventsSlug = [].obs;
   var regEvents = <EventModel>[].obs;
@@ -17,7 +18,10 @@ class ProfileController extends GetxController {
   void onInit() {
     super.onInit();
     fetchRegCount();
-    user = UserModel.fromJson(_storage.read('user'));
+    _storage.listenKey('user', (value) {
+      user.value = UserModel.fromJson(_storage.read('user'));
+    });
+    user.value = UserModel.fromJson(_storage.read('user'));
   }
 
   void fetchUser() async {
@@ -27,7 +31,7 @@ class ProfileController extends GetxController {
         userModelFromJson(userResponse.body['results'][0]);
     _storage.write('user', userModel.toJson());
 
-    user = userModel;
+    user.value = userModel;
   }
 
   void fetchRegCount() async {

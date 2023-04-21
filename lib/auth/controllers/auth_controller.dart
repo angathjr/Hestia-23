@@ -46,7 +46,7 @@ class AuthController extends GetxController {
       log(userModel.toString());
       _storage.write('user', userModel.toJson());
 
-      if (userModel.isCompleted) {
+      if (userModel.isCompleted ?? false) {
         _storage.write('isComplete', true);
       } else {
         _storage.write('isComplete', false);

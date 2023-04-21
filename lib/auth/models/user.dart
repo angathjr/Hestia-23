@@ -12,28 +12,28 @@ String userModelToJson(UserModel data) => json.encode(data.toJson());
 
 class UserModel {
   UserModel({
-    required this.username,
-    required this.phoneNumber,
-    required this.name,
-    required this.url,
-    required this.email,
-    required this.profileImage,
-    required this.collegeName,
-    required this.deptName,
-    required this.isCompleted,
-    required this.accommodation,
+    this.username,
+    this.phoneNumber,
+    this.name,
+    this.url,
+    this.email,
+    this.profileImage,
+    this.collegeName,
+    this.deptName,
+    this.isCompleted,
+    this.accommodation,
   });
 
-  final String username;
-  final String phoneNumber;
-  final String name;
-  final String url;
-  final String email;
-  final String profileImage;
-  final String collegeName;
-  final String deptName;
-  final bool isCompleted;
-  final bool accommodation;
+  String? username;
+  String? phoneNumber;
+  String? name;
+  String? url;
+  String? email;
+  String? profileImage;
+  String? collegeName;
+  String? deptName;
+  bool? isCompleted;
+  bool? accommodation;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         username: json["username"] ?? '',

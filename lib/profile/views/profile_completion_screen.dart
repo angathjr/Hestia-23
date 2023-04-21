@@ -10,6 +10,7 @@ class ProfileCompletion extends StatelessWidget {
 
   final ProfileEditController profileEditController = Get.find();
   final AuthController authController = Get.find();
+  final isEdit = Get.arguments[0] ?? false;
 
   Widget gap() => const SizedBox(
         height: 20,
@@ -75,32 +76,33 @@ class ProfileCompletion extends StatelessWidget {
                 Row(
                   children: [
                     const Spacer(),
-                    GestureDetector(
-                      onTap: () => authController.signout(),
-                      child: Container(
-                        margin: const EdgeInsets.only(right: 20),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 10,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1.5,
-                            color: const Color.fromRGBO(222, 253, 114, 1),
+                    if (!profileEditController.isEdit)
+                      GestureDetector(
+                        onTap: () => authController.signout(),
+                        child: Container(
+                          margin: const EdgeInsets.only(right: 20),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
                           ),
-                          borderRadius: BorderRadius.circular(14),
-                          // color: const Color.fromRGBO(222, 253, 114, 1),
-                        ),
-                        child: Text(
-                          'Logout',
-                          style: FutTheme.font3.copyWith(
-                            // color: Colors.black,
-                            color: const Color.fromRGBO(222, 253, 114, 1),
-                            fontWeight: FontWeight.w500,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 1.5,
+                              color: const Color.fromRGBO(222, 253, 114, 1),
+                            ),
+                            borderRadius: BorderRadius.circular(14),
+                            // color: const Color.fromRGBO(222, 253, 114, 1),
+                          ),
+                          child: Text(
+                            'Logout',
+                            style: FutTheme.font3.copyWith(
+                              // color: Colors.black,
+                              color: const Color.fromRGBO(222, 253, 114, 1),
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),
-                    ),
                     GestureDetector(
                       onTap: () => profileEditController.save(),
                       child: Container(
@@ -175,7 +177,7 @@ class EditTextWidget extends StatelessWidget {
               color: const Color.fromRGBO(153, 153, 153, 1),
             ),
             decoration: InputDecoration(
-              errorBorder:OutlineInputBorder(
+              errorBorder: OutlineInputBorder(
                   borderSide: const BorderSide(color: Colors.red),
                   borderRadius: BorderRadius.circular(10)),
               focusedBorder: OutlineInputBorder(
