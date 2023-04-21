@@ -24,81 +24,85 @@ class NavBarPage extends StatelessWidget {
 
     double navHeight = height * 0.063;
 
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-        body: SizedBox(
-      width: width,
-      height: height,
-      child: Stack(
-        children: [
-          //pageview
-
-          SizedBox(
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: SizedBox(
             width: width,
             height: height,
-            child: PageView(
-              physics: const NeverScrollableScrollPhysics(),
-              controller: navBarController.controller,
+            child: Stack(
               children: [
-                HomeScreen(),
-                Schedule(),
-                LeaderBoard(),
-                ProfileScreen()
-              ],
-            ),
-          ),
+                //pageview
 
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: width * 0.06, vertical: height * 0.008),
-                child: Container(
-                  height: height * 0.065,
-                  decoration: BoxDecoration(
-                    color: const Color(0xff111111),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                SizedBox(
+                  width: width,
+                  height: height,
+                  child: PageView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    controller: navBarController.controller,
                     children: [
-                      buildNavIcons(
-                        navHeight: navHeight,
-                        index: 0,
-                        selectedIcon: const Icon(CarbonIcons.home),
-                        unselectedIcon: const Icon(Icons.home_outlined),
-                      ),
-                      buildNavIcons(
-                        navHeight: navHeight,
-                        index: 1,
-                        selectedIcon: const Icon(CarbonIcons.calendar),
-                        unselectedIcon:
-                            const Icon(Icons.calendar_today_outlined),
-                      ),
-                      buildNavIcons(
-                          navHeight: navHeight,
-                          index: 2,
-                          selectedIcon: const Icon(Icons.leaderboard_rounded),
-                          unselectedIcon:
-                              const Icon(Icons.leaderboard_rounded)),
-                      buildNavIcons(
-                        navHeight: navHeight,
-                        index: 3,
-                        selectedIcon: const Icon(
-                          CarbonIcons.user,
-                        ),
-                        unselectedIcon: const Icon(CarbonIcons.user),
-                      )
+                      HomeScreen(),
+                      Schedule(),
+                      LeaderBoard(),
+                      ProfileScreen()
                     ],
                   ),
                 ),
-              )
-            ],
-          )
-        ],
-      ),
-    ));
+
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: width * 0.06, vertical: height * 0.008),
+                      child: Container(
+                        height: height * 0.065,
+                        decoration: BoxDecoration(
+                          color: const Color(0xff111111),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            buildNavIcons(
+                              navHeight: navHeight,
+                              index: 0,
+                              selectedIcon: const Icon(CarbonIcons.home),
+                              unselectedIcon: const Icon(Icons.home_outlined),
+                            ),
+                            buildNavIcons(
+                              navHeight: navHeight,
+                              index: 1,
+                              selectedIcon: const Icon(CarbonIcons.calendar),
+                              unselectedIcon:
+                                  const Icon(Icons.calendar_today_outlined),
+                            ),
+                            buildNavIcons(
+                                navHeight: navHeight,
+                                index: 2,
+                                selectedIcon:
+                                    const Icon(Icons.leaderboard_rounded),
+                                unselectedIcon:
+                                    const Icon(Icons.leaderboard_rounded)),
+                            buildNavIcons(
+                              navHeight: navHeight,
+                              index: 3,
+                              selectedIcon: const Icon(
+                                CarbonIcons.user,
+                              ),
+                              unselectedIcon: const Icon(CarbonIcons.user),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          )),
+    );
   }
 
   Widget buildNavIcons(
