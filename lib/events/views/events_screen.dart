@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
@@ -121,107 +122,123 @@ class EventScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: width * 0.05),
             sliver: Obx(
               () => (controller.eventsLoading.value == false)
-                  ? SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                          childCount: controller.events.length,
-                          (BuildContext context, index) {
-                        return Padding(
-                          padding: EdgeInsets.only(bottom: height * 0.02),
-                          child: Container(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: width * 0.05),
-                            height: cardHeight,
-                            width: width,
-                            decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: const Color(0xffFFD730)),
-                                borderRadius: BorderRadius.circular(30)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(30),
-                                      topRight: Radius.circular(30)),
+                  ? AnimationLimiter(
+                    child: SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                            childCount: controller.events.length,
+                            (BuildContext context, index) {
+                          return AnimationConfiguration.staggeredList(
+                            position: index,
+                            duration: const Duration(milliseconds: 100),
+                            child: SlideAnimation(
+                              curve: Curves.fastLinearToSlowEaseIn,
+                              duration: const Duration(milliseconds: 2500),
+                              verticalOffset: -250,
+                              child: ScaleAnimation(
+                                duration: const Duration(milliseconds: 1500),
+                                curve: Curves.fastLinearToSlowEaseIn,
+                                child: Padding(
+                                  padding: EdgeInsets.only(bottom: height * 0.02),
                                   child: Container(
-                                    width: squareCard,
-                                    height: squareCard,
-                                    decoration: const BoxDecoration(),
-                                    child: CachedNetworkImage(
-                                      progressIndicatorBuilder:
-                                          (context, url, downloadProgress) =>
-                                              Center(
-                                        child: CircularProgressIndicator(
-                                            valueColor: AlwaysStoppedAnimation(
-                                                FutTheme.primaryColor),
-                                            value: downloadProgress.progress),
-                                      ),
-                                      errorWidget: (context, url, error) =>
-                                          Icon(Icons.error),
-                                      imageUrl:
-                                          '${controller.events[index].image}',
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                    width: width * 0.6,
-                                    child: Text(
-                                      "${controller.events[index].title}",
-                                      style: FutTheme.mFont
-                                          .copyWith(color: Colors.white),
-                                      softWrap: true,
-                                      textAlign: TextAlign.center,
-                                    )),
-                                GestureDetector(
-                                  onTap: () {
-                                    controller
-                                        .goToEvent(controller.events[index]);
-                                  },
-                                  child: Container(
-                                    height: cardHeight * 0.1,
-                                    width: double.infinity,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: width * 0.05),
+                                    height: cardHeight,
+                                    width: width,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: const Color(0xffFFD730)),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
+                                      boxShadow:[ BoxShadow(blurRadius: 40,spreadRadius: 10,color: Colors.black.withOpacity(0.1))],
+                                        border:
+                                            Border.all(color: const Color(0xffFFD730)),
+                                        borderRadius: BorderRadius.circular(30)),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                                       children: [
-                                        const Spacer(
-                                          flex: 9,
-                                        ),
-                                        Text("View Details",
-                                            style: FutTheme.mFont),
-                                        const Spacer(
-                                          flex: 5,
-                                        ),
-                                        Container(
-                                          height: cardHeight * 0.082,
-                                          width: cardHeight * 0.1,
-                                          decoration: BoxDecoration(
-                                              color: Colors.black,
-                                              borderRadius:
-                                                  BorderRadius.circular(23)),
-                                          child: Transform.rotate(
-                                            angle: pi / 3,
-                                            child: const Icon(
-                                              Icons.arrow_upward_rounded,
-                                              color: Colors.white,
+                                        ClipRRect(
+                                          borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(30),
+                                              topRight: Radius.circular(30)),
+                                          child: Container(
+                                            width: squareCard,
+                                            height: squareCard,
+                                            decoration: const BoxDecoration(),
+                                            child: CachedNetworkImage(
+                                              progressIndicatorBuilder:
+                                                  (context, url, downloadProgress) =>
+                                                      Center(
+                                                child: CircularProgressIndicator(
+                                                    valueColor: AlwaysStoppedAnimation(
+                                                        FutTheme.primaryColor),
+                                                    value: downloadProgress.progress),
+                                              ),
+                                              errorWidget: (context, url, error) =>
+                                                  Icon(Icons.error),
+                                              imageUrl:
+                                                  '${controller.events[index].image}',
+                                              fit: BoxFit.cover,
                                             ),
                                           ),
                                         ),
-                                        const Spacer()
+                                        SizedBox(
+                                            width: width * 0.6,
+                                            child: Text(
+                                              "${controller.events[index].title}",
+                                              style: FutTheme.mFont
+                                                  .copyWith(color: Colors.white),
+                                              softWrap: true,
+                                              textAlign: TextAlign.center,
+                                            )),
+                                        GestureDetector(
+                                          onTap: () {
+                                            controller
+                                                .goToEvent(controller.events[index]);
+                                          },
+                                          child: Container(
+                                            height: cardHeight * 0.1,
+                                            width: double.infinity,
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(10),
+                                                color: const Color(0xffFFD730)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                const Spacer(
+                                                  flex: 9,
+                                                ),
+                                                Text("View Details",
+                                                    style: FutTheme.mFont),
+                                                const Spacer(
+                                                  flex: 5,
+                                                ),
+                                                Container(
+                                                  height: cardHeight * 0.082,
+                                                  width: cardHeight * 0.1,
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.black,
+                                                      borderRadius:
+                                                          BorderRadius.circular(23)),
+                                                  child: Transform.rotate(
+                                                    angle: pi / 3,
+                                                    child: const Icon(
+                                                      Icons.arrow_upward_rounded,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                ),
+                                                const Spacer()
+                                              ],
+                                            ),
+                                          ),
+                                        )
                                       ],
                                     ),
                                   ),
-                                )
-                              ],
+                                ),
+                              ),
                             ),
-                          ),
-                        );
-                      }),
-                    )
+                          );
+                        }),
+                      ),
+                  )
                   : SliverToBoxAdapter(
                       child: SizedBox(
                           height: height * 0.6,
