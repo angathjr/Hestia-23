@@ -2,6 +2,7 @@ import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/Schedule/views/Schedule.dart';
+import 'package:hestia_23/fcm/controllers/fcm_controller.dart';
 import 'package:hestia_23/home/views/home_screen.dart';
 import 'package:hestia_23/home/views/leaderboard_card.dart';
 import 'package:hestia_23/profile/views/profile_screen.dart';
@@ -14,6 +15,7 @@ class NavBarPage extends StatelessWidget {
   // var pages = [HomeScreen(), Schedule(), NotificationScreen(), ProfileScreen()];
 
   final NavBarController navBarController = Get.find();
+  final FCMController fcmController = Get.find();
 
   @override
   Widget build(BuildContext context) {
