@@ -14,6 +14,7 @@ import 'package:hestia_23/profile/views/profile_screen.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 import 'package:hestia_23/stories/views/story_view.dart';
 import 'auth/views/login_screen.dart';
+import 'events/views/event_detail_screen2.dart';
 import 'getx_di.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -73,7 +74,7 @@ class MyApp extends StatelessWidget {
           transitionDuration: const Duration(milliseconds: 1000),
         ),
 
-        GetPage(name: '/event', page: () => EventDetailsScreen()),
+        GetPage(name: '/event', page: () => EventDetailsScreen2()),
         GetPage(name: '/story-view', page: () => StoriesViewScreen()),
         GetPage(
           name: '/notification-1',
