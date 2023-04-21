@@ -1,9 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/Schedule/controller/schedule_controller.dart';
 import 'package:hestia_23/core/Constants..dart';
+import 'package:hestia_23/core/animation_controller.dart';
+import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/events/models/event.dart';
 import 'package:intl/intl.dart';
 
@@ -16,158 +17,165 @@ class Schedule extends StatelessWidget {
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
+    double dateContainerHeight = h * 0.1;
+    double navHeight = h * 0.063;
+
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          children: [
-            SizedBox(
-              height: h * 0.08,
-              width: double.infinity,
-            ),
-            Text(
+        body: CustomScrollView(
+      physics: const BouncingScrollPhysics(),
+      slivers: [
+        SliverAppBar(
+            pinned: true,
+            floating: true,
+            centerTitle: true,
+            title: Text(
               "Schedule",
-              style: FutTheme.font1.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: h * 0.03),
+              style: FutTheme.categoryFont,
             ),
-            SizedBox(
-              height: h * 0.03,
-              width: double.infinity,
-            ),
-            SizedBox(
-              height: h * 0.07,
-              child: Center(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => Dates(
-                    date: controller.dates[index],
-                    index: index,
-                    controller: controller,
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(dateContainerHeight),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: w * 0.04),
+                child: Container(
+                  padding: EdgeInsets.only(bottom: h * 0.006),
+                  height: dateContainerHeight,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Expanded(
+                        child: Dates(
+                          date: controller.dates[0],
+                          index: 0,
+                          controller: controller,
+                        ),
+                      ),
+                      Expanded(
+                        child: Dates(
+                          date: controller.dates[1],
+                          index: 1,
+                          controller: controller,
+                        ),
+                      ),
+                      Expanded(
+                        child: Dates(
+                          date: controller.dates[2],
+                          index: 2,
+                          controller: controller,
+                        ),
+                      ),
+                      Expanded(
+                        child: Dates(
+                          date: controller.dates[3],
+                          index: 3,
+                          controller: controller,
+                        ),
+                      ),
+                    ],
                   ),
-                  itemCount: 4,
                 ),
               ),
+            )),
+        SliverPadding(
+            padding: EdgeInsets.fromLTRB(
+              w * 0.04,
+              w * 0.04,
+              w * 0.04,
+              w * 0.07,
             ),
-            SizedBox(
-              height: h * 0.02,
-              width: double.infinity,
-            ),
-            Obx(
-              () => Expanded(
-                child: ListView.builder(
-                  itemBuilder: (context, index) => TimeLineofEvents(
-                    event: controller.events[index],
-                  ),
-                  itemCount: controller.events.length,
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.black,
-        child: SizedBox(
-          height: h * 0.1,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.home_outlined),
-                color: Colors.white,
-                disabledColor: Colors.grey,
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.format_list_bulleted),
-                color: Colors.white,
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.menu),
-                color: Colors.white,
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.person),
-                color: Colors.white,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+            sliver: Obx(
+              () => (controller.eventsLoading.value == false)
+                  ? SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                      childCount: controller.events.length,
+                      (context, index) {
+                        return TimeLineofEvents(
+                          event: controller.events[index],
+                        );
+                      },
+                    ))
+                  : SliverToBoxAdapter(
+                      child: SizedBox(
+                          height: h * 0.6,
+                          width: w,
+                          child: Center(
+                            child: primaryLoadingWidget,
+                          ))),
+            ))
+      ],
+    ));
   }
 }
 
 //Full EventSchedule with Line and images
 class TimeLineofEvents extends StatelessWidget {
-  const TimeLineofEvents({super.key, required this.event});
+  TimeLineofEvents({super.key, required this.event});
 
   final EventModel event;
+  final EventsController eventsController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
-    return Container(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const CustomTimeLine(),
-          Column(
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CustomTimeLine(),
+        Expanded(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "${DateFormat('h:mm a').format(event.eventStart!)}",
-                style: TextStyle(color: Colors.grey),
+                DateFormat('h:mm a').format(event.eventStart!),
+                style: const TextStyle(color: Colors.grey),
               ),
               SizedBox(
                 height: h * 0.03,
               ),
-              Container(
-                clipBehavior: Clip.hardEdge,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage(event.image!),
-                        fit: BoxFit.cover,
-                        opacity: 0.7),
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
-                height: h * 0.15,
-                width: w * 0.8,
-                child: Padding(
-                  padding: EdgeInsets.only(left: w * 0.04),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        event.title ?? '',
-                        style: FutTheme.font3.copyWith(
-                            fontWeight: FontWeight.bold, fontSize: h * 0.024),
+              GestureDetector(
+                  onTap: () => eventsController.goToEvent(event),
+                  child: Container(
+                    clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: CachedNetworkImageProvider(
+                              event.image!,
+                            ),
+                            fit: BoxFit.cover,
+                            opacity: 0.7),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20))),
+                    height: h * 0.15,
+                    width: double.infinity,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: w * 0.04),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            event.title ?? '',
+                            style: FutTheme.font3.copyWith(
+                                fontWeight: FontWeight.bold,
+                                fontSize: h * 0.024),
+                          ),
+                          Text(event.shortDesc ?? ''),
+                          Text(event.venue?.title ?? '')
+                        ],
                       ),
-                      Text(event.shortDesc ?? ''),
-                      Text(event.venue?.title ?? '')
-                    ],
-                  ),
-                ),
-              )
+                    ),
+                  ))
             ],
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }
 
-//Conatiner for date box
+
 class Dates extends StatelessWidget {
-  const Dates(
+   Dates(
       {super.key,
       required this.date,
       required this.index,
@@ -175,6 +183,7 @@ class Dates extends StatelessWidget {
   final int index;
   final ScheduleDate date;
   final ScheduleController controller;
+  final AnimController anim =Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -183,35 +192,33 @@ class Dates extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         controller.setdate(index);
+        anim.start(true);
+        anim.loadScheduleAnimation();
       },
       child: Obx(
         () => Container(
-          margin: EdgeInsets.symmetric(horizontal: w * 0.04),
-          height: h * 0.06,
-          width: w * 0.15,
+          margin: EdgeInsets.symmetric(horizontal: w * 0.02),
           decoration: BoxDecoration(
               color: controller.selectedDateIndex.value == index
-                  ? Colors.white
-                  : null,
-              border: Border.all(color: Colors.white),
-              borderRadius: BorderRadius.all(Radius.circular(10))),
+                  ? FutTheme.primaryColor
+                  : FutTheme.primaryBg,
+              borderRadius: const BorderRadius.all(Radius.circular(8))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text(
-                "${date.date}",
-                style: TextStyle(
-                    color: controller.selectedDateIndex.value == index
-                        ? Colors.black
-                        : Colors.white),
-              ),
-              Text(
-                "${date.day}",
-                style: TextStyle(
-                    color: controller.selectedDateIndex.value == index
-                        ? Colors.black
-                        : Colors.white),
-              )
+              Text(date.date,
+                  style: FutTheme.font3.copyWith(
+                      fontSize: w * 0.05,
+                      fontWeight: FontWeight.w600,
+                      color: controller.selectedDateIndex.value == index
+                          ? Colors.black
+                          : Colors.white)),
+              Text(date.day,
+                  style: FutTheme.font3.copyWith(
+                      fontSize: w * 0.036,
+                      color: controller.selectedDateIndex.value == index
+                          ? Colors.black
+                          : Colors.white))
             ],
           ),
         ),
@@ -221,19 +228,27 @@ class Dates extends StatelessWidget {
 }
 
 //Custom Line with circular end
+
 class CustomTimeLine extends StatelessWidget {
-  const CustomTimeLine({
+  CustomTimeLine({
     super.key,
   });
+
+  final AnimController anim = Get.find();
+
   @override
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
-    return Container(
-      height: h * 0.25,
-      width: w * 0.09,
-      child: CustomPaint(
-        painter: LineCircle(),
+    return Obx(
+      () => AnimatedContainer(
+        curve: Curves.easeOutCubic,
+        duration: const Duration(milliseconds: 500),
+        height: (anim.start.value == false) ? h * 0.25 : 0,
+        width: w * 0.09,
+        child: CustomPaint(
+          painter: LineCircle(),
+        ),
       ),
     );
   }

@@ -118,10 +118,13 @@ class LeaderBoard extends StatelessWidget {
   }
 
   //leaderboard widget-future theme
- static Widget futureLeaderboard(num h, BuildContext context) {
+  static Widget futureLeaderboard(num h, BuildContext context) {
     return Column(
       children: [
         Center(child: Image.asset('assets/images/future_lb.png')),
+        SizedBox(
+          height: h * 0.06,
+        ),
         Padding(
           padding: const EdgeInsets.all(15),
           child: TextField(
@@ -139,6 +142,9 @@ class LeaderBoard extends StatelessWidget {
               hintText: " Search for event",
             ),
           ),
+        ),
+        SizedBox(
+          height: h * 0.02,
         ),
         Padding(
           padding: const EdgeInsets.all(15.0),
@@ -182,7 +188,11 @@ class LeaderBoard extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        body: pastLeaderboard(height, context),
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          elevation: 0,
+        ),
+        body: futureLeaderboard(height, context),
       ),
     );
   }

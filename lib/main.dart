@@ -6,16 +6,15 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/Schedule/views/Schedule.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
-import 'package:hestia_23/events/views/events_screen.dart';
-import 'package:hestia_23/home/views/leaderboard_card.dart';
-import 'package:hestia_23/home/views/notification_screen.dart';
+import 'package:hestia_23/events/views/events_search_screen.dart';
+
 import 'package:hestia_23/navbar/views/navbar_screen.dart';
+import 'package:hestia_23/notifications/views/notification_screen.dart';
 import 'package:hestia_23/profile/views/profile_screen.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
-import 'package:hestia_23/testscreen.dart';
+import 'package:hestia_23/stories/views/story_view.dart';
 import 'auth/views/login_screen.dart';
 import 'getx_di.dart';
-import './home/views/home_screen.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -52,9 +51,9 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           brightness: Brightness.dark,
           scaffoldBackgroundColor: Colors.black,
-          appBarTheme: const AppBarTheme(color: Colors.black)),
-      initialRoute: '/schedule',
-      home: NavBarPage(),
+          appBarTheme: const AppBarTheme(
+              color: Colors.black, scrolledUnderElevation: 0)),
+      // home: NavBarPage(),
       getPages: [
         GetPage(
             name: '/',
@@ -67,6 +66,18 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/schedule", page: () => Schedule()),
         GetPage(name: '/login', page: () => LoginScreen()),
         GetPage(name: '/profile', page: () => ProfileScreen()),
+        GetPage(
+            name: '/search',
+            page: () => EventsSearchScreen(),
+            transition: Transition.rightToLeftWithFade,
+            transitionDuration:const  Duration(milliseconds: 500)),
+        GetPage(name: '/event', page: () => EventDetailsScreen()),
+        GetPage(name: '/story-view', page: () => StoriesViewScreen()),
+        GetPage(
+            name: '/notification-1',
+            page: () => NotificationScreen(),
+            transition: Transition.leftToRightWithFade,
+            transitionDuration:const  Duration(milliseconds: 500)),
       ],
     );
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -32,17 +33,23 @@ class FutTheme {
     color: Colors.black,
   );
 
-  static TextStyle categoryFont=const TextStyle(
-    fontFamily: 'Azonix'
-  );
+  static TextStyle categoryFont = const TextStyle(fontFamily: 'Azonix');
 
-  static TextStyle  font7= GoogleFonts.oxanium(
-
-  );
+  static TextStyle font7 = GoogleFonts.oxanium();
+  static Color primaryColor = const Color(0xffDEFD72);
+  static Color primaryBg = const Color(0xff1A1A1A);
+  static Color secondaryColor = const Color(0xffFFD730);
 }
 
 class ThemeColor {
   static const color1 = Color.fromRGBO(123, 126, 130, 1);
-
-
 }
+
+Widget primaryLoadingWidget = CupertinoActivityIndicator(
+  radius: 20,
+  color: FutTheme.primaryColor.withOpacity(0.5),
+);
+
+Widget secondaryLoadingWidget = CircularProgressIndicator(
+  color: FutTheme.primaryColor.withOpacity(0.5),
+);

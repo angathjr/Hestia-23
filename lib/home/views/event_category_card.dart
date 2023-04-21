@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:hestia_23/core/Constants..dart';
@@ -47,15 +48,19 @@ class CategoryCard extends StatelessWidget {
                   child: SizedBox(
                     height: cardHeight * 0.6,
                     child: ClipPath(
-                      clipBehavior: Clip.hardEdge,
-                      clipper: CustomClipPath(),
-                      child: const Image(
-                        image: AssetImage(
-                          "assets/images/Eventcategory1.png",
-                        ),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                        clipBehavior: Clip.hardEdge,
+                        clipper: CustomClipPath(),
+                        child: CachedNetworkImage(
+                          progressIndicatorBuilder:
+                              (context, url, downloadProgress) => Center(
+                            child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation(
+                                    FutTheme.primaryColor),
+                                value: downloadProgress.progress),
+                          ),
+                          imageUrl: categoryModel.imgUrl,
+                          fit: BoxFit.cover,
+                        )),
                   ),
                 )
               ],

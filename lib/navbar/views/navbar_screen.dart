@@ -1,8 +1,11 @@
+import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hestia_23/events/views/event_details_screen.dart';
-import 'package:hestia_23/events/views/events_screen.dart';
+import 'package:hestia_23/Schedule/views/Schedule.dart';
+import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/home/views/home_screen.dart';
+import 'package:hestia_23/home/views/leaderboard_card.dart';
+import 'package:hestia_23/notifications/views/notification_screen.dart';
 import 'package:hestia_23/profile/views/profile_screen.dart';
 
 import '../controllers/navbar_controller.dart';
@@ -10,14 +13,9 @@ import '../controllers/navbar_controller.dart';
 class NavBarPage extends StatelessWidget {
   NavBarPage({Key? key}) : super(key: key);
 
-  var pages = [
-    HomeScreen(),
-    EventDetailsScreen(),
-    EventScreen(),
-    ProfileScreen()
-  ];
+  // var pages = [HomeScreen(), Schedule(), NotificationScreen(), ProfileScreen()];
 
-  final navController = Get.put(NavBarController());
+  final NavBarController navBarController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -26,100 +24,109 @@ class NavBarPage extends StatelessWidget {
 
     double navHeight = height * 0.063;
 
-    return Scaffold(
-        body: SizedBox(
-      width: width,
-      height: height,
-      child: Stack(
-        children: [
-          //pageview
-
-          SizedBox(
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: SizedBox(
             width: width,
             height: height,
-            child: PageView(
-              physics: const NeverScrollableScrollPhysics(),
-              controller: navController.controller,
-              children: pages,
-            ),
-          ),
+            child: Stack(
+              children: [
+                //pageview
 
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: width * 0.06, vertical: height * 0.006),
-                child: Container(
-                  height: height * 0.065,
-                  decoration: BoxDecoration(
-                    color: const Color(0xff111111),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                SizedBox(
+                  width: width,
+                  height: height,
+                  child: PageView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    controller: navBarController.controller,
                     children: [
-                      Obx(
-                        () => buildNavIcons(
-                          navHeight: navHeight,
-                          index: 0,
-                          selectedIcon: const Icon(Icons.home_filled),
-                          unselectedIcon: const Icon(Icons.home_outlined),
-                        ),
-                      ),
-                      Obx(
-                        () => buildNavIcons(
-                          navHeight: navHeight,
-                          index: 1,
-                          selectedIcon:
-                              const Icon(Icons.calendar_today_rounded),
-                          unselectedIcon:
-                              const Icon(Icons.calendar_today_outlined),
-                        ),
-                      ),
-                      Obx(
-                        () => buildNavIcons(
-                            navHeight: navHeight,
-                            index: 2,
-                            selectedIcon: const Icon(Icons.notifications),
-                            unselectedIcon:
-                                const Icon(Icons.notifications_none_outlined)),
-                      ),
-                      Obx(() => buildNavIcons(
-                            navHeight: navHeight,
-                            index: 3,
-                            selectedIcon: const Icon(Icons.person),
-                            unselectedIcon:
-                                const Icon(Icons.person_outline_rounded),
-                          ))
+                      HomeScreen(),
+                      Schedule(),
+                      LeaderBoard(),
+                      ProfileScreen()
                     ],
                   ),
                 ),
-              )
-            ],
-          )
-        ],
-      ),
-    ));
+
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: width * 0.06, vertical: height * 0.008),
+                      child: Container(
+                        height: height * 0.065,
+                        decoration: BoxDecoration(
+                          color: const Color(0xff111111),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            buildNavIcons(
+                              navHeight: navHeight,
+                              index: 0,
+                              selectedIcon: const Icon(CarbonIcons.home),
+                              unselectedIcon: const Icon(Icons.home_outlined),
+                            ),
+                            buildNavIcons(
+                              navHeight: navHeight,
+                              index: 1,
+                              selectedIcon: const Icon(CarbonIcons.calendar),
+                              unselectedIcon:
+                                  const Icon(Icons.calendar_today_outlined),
+                            ),
+                            buildNavIcons(
+                                navHeight: navHeight,
+                                index: 2,
+                                selectedIcon:
+                                    const Icon(Icons.leaderboard_rounded),
+                                unselectedIcon:
+                                    const Icon(Icons.leaderboard_rounded)),
+                            buildNavIcons(
+                              navHeight: navHeight,
+                              index: 3,
+                              selectedIcon: const Icon(
+                                CarbonIcons.user,
+                              ),
+                              unselectedIcon: const Icon(CarbonIcons.user),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          )),
+    );
   }
 
-  InkWell buildNavIcons(
+  Widget buildNavIcons(
       {required double navHeight,
       required Icon selectedIcon,
       required Icon unselectedIcon,
       required int index}) {
-    return InkWell(
-      onTap: () {
-        navController.changePage(index, navController.controller);
-        navController.index.value = index;
-      },
-      child: SizedBox(
-          width: navHeight,
-          height: navHeight,
-          child: (navController.index.value == index)
-              ? selectedIcon
-              : unselectedIcon),
-    );
+    return SizedBox(
+        width: navHeight,
+        height: navHeight,
+        child: Obx(
+          () => IconButton(
+            icon: selectedIcon,
+            onPressed: () {
+              navBarController.changePage(index, navBarController.controller);
+              navBarController.index.value = index;
+            },
+            color: Colors.grey.shade400,
+            enableFeedback: true,
+            splashRadius: 5,
+            isSelected: (index == navBarController.index.value) ? true : false,
+            disabledColor: Colors.red,
+          ),
+        ));
   }
 }
 

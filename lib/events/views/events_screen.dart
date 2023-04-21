@@ -1,11 +1,10 @@
 import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
-import 'package:hestia_23/events/views/event_details_screen.dart';
-
 import '../../core/widgets/back_button_widget.dart';
 
 class EventScreen extends StatelessWidget {
@@ -57,27 +56,11 @@ class EventScreen extends StatelessWidget {
                       height: height * 0.01,
                     ),
 
-                    //TODO: search needed to be implemented
-
-                    Container(
-                      height: height * 0.065,
-                      width: width,
-                      decoration: BoxDecoration(
-                          color: const Color(0xff1E1E1E),
-                          borderRadius: BorderRadius.circular(8)),
-                    ),
-                    SizedBox(
-                      height: height * 0.03,
-                    ),
-
                     // list of department
-
                     departmentSection(height, width),
-
                     SizedBox(
                       height: height * 0.02,
                     ),
-
                     Row(
                       children: [
                         Text(
@@ -116,7 +99,7 @@ class EventScreen extends StatelessWidget {
                                       );
                                     }).toList(),
                                     onChanged: (value) {
-                                      controller.date.value = value!;
+                                      controller.setDate(value!);
                                     },
                                   ),
                                 ),
@@ -137,94 +120,115 @@ class EventScreen extends StatelessWidget {
           SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: width * 0.05),
             sliver: Obx(
-              () => SliverList(
-                delegate: SliverChildBuilderDelegate(
-                    childCount: controller.events.length,
-                    (BuildContext context, index) {
-                  return Padding(
-                    padding: EdgeInsets.only(bottom: height * 0.02),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                      height: cardHeight,
-                      width: width,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: const Color(0xffFFD730)),
-                          borderRadius: BorderRadius.circular(40)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(40),
-                                topRight: Radius.circular(40)),
-                            child: Container(
-                              width: squareCard,
-                              height: squareCard,
-                              decoration: const BoxDecoration(),
-                              child: Image.network(
-                                '${controller.events[index].image}',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                              width: width * 0.6,
-                              child: Text(
-                                "${controller.events[index].title}",
-                                style: FutTheme.mFont
-                                    .copyWith(color: Colors.white),
-                                softWrap: true,
-                                textAlign: TextAlign.center,
-                              )),
-                          GestureDetector(
-                            onTap: () {
-                              controller.selectedEvent =
-                                  controller.events[index];
-                              Get.to(EventDetailsScreen());
-                            },
-                            child: Container(
-                              height: cardHeight * 0.1,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(43),
-                                  color: const Color(0xffFFD730)),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  const Spacer(
-                                    flex: 9,
-                                  ),
-                                  Text("View Details", style: FutTheme.mFont),
-                                  const Spacer(
-                                    flex: 5,
-                                  ),
-                                  Container(
-                                    height: cardHeight * 0.082,
-                                    width: cardHeight * 0.1,
-                                    decoration: BoxDecoration(
-                                        color: Colors.black,
-                                        borderRadius:
-                                            BorderRadius.circular(29)),
-                                    child: Transform.rotate(
-                                      angle: pi / 3,
-                                      child: const Icon(
-                                        Icons.arrow_upward_rounded,
-                                        color: Colors.white,
+              () => (controller.eventsLoading.value == false)
+                  ? SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                          childCount: controller.events.length,
+                          (BuildContext context, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(bottom: height * 0.02),
+                          child: Container(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: width * 0.05),
+                            height: cardHeight,
+                            width: width,
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: const Color(0xffFFD730)),
+                                borderRadius: BorderRadius.circular(30)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(30),
+                                      topRight: Radius.circular(30)),
+                                  child: Container(
+                                    width: squareCard,
+                                    height: squareCard,
+                                    decoration: const BoxDecoration(),
+                                    child: CachedNetworkImage(
+                                      progressIndicatorBuilder:
+                                          (context, url, downloadProgress) =>
+                                              Center(
+                                        child: CircularProgressIndicator(
+                                            valueColor: AlwaysStoppedAnimation(
+                                                FutTheme.primaryColor),
+                                            value: downloadProgress.progress),
                                       ),
+                                      errorWidget: (context, url, error) =>
+                                          Icon(Icons.error),
+                                      imageUrl:
+                                          '${controller.events[index].image}',
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
-                                  const Spacer()
-                                ],
-                              ),
+                                ),
+                                SizedBox(
+                                    width: width * 0.6,
+                                    child: Text(
+                                      "${controller.events[index].title}",
+                                      style: FutTheme.mFont
+                                          .copyWith(color: Colors.white),
+                                      softWrap: true,
+                                      textAlign: TextAlign.center,
+                                    )),
+                                GestureDetector(
+                                  onTap: () {
+                                    controller
+                                        .goToEvent(controller.events[index]);
+                                  },
+                                  child: Container(
+                                    height: cardHeight * 0.1,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: const Color(0xffFFD730)),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        const Spacer(
+                                          flex: 9,
+                                        ),
+                                        Text("View Details",
+                                            style: FutTheme.mFont),
+                                        const Spacer(
+                                          flex: 5,
+                                        ),
+                                        Container(
+                                          height: cardHeight * 0.082,
+                                          width: cardHeight * 0.1,
+                                          decoration: BoxDecoration(
+                                              color: Colors.black,
+                                              borderRadius:
+                                                  BorderRadius.circular(23)),
+                                          child: Transform.rotate(
+                                            angle: pi / 3,
+                                            child: const Icon(
+                                              Icons.arrow_upward_rounded,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                        const Spacer()
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-              ),
+                          ),
+                        );
+                      }),
+                    )
+                  : SliverToBoxAdapter(
+                      child: SizedBox(
+                          height: height * 0.6,
+                          width: width,
+                          child: Center(
+                            child: primaryLoadingWidget,
+                          ))),
             ),
           ),
         ],

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
@@ -44,13 +45,13 @@ class EventDetailsScreen extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: SizedBox(
-                        width: width,
-                        height: cardSize,
-                        child: Image.network(
-                          '${eventsController.selectedEvent.image}',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                          width: width,
+                          height: cardSize,
+                          child: CachedNetworkImage(
+                            placeholder: (context, url) => primaryLoadingWidget,
+                            imageUrl: '${eventsController.selectedEvent.image}',
+                            fit: BoxFit.cover,
+                          )),
                     ),
 
                     //Event name and venue
@@ -253,29 +254,29 @@ class EventDetailsScreen extends StatelessWidget {
                           width: width * 0.11,
                         ),
                         contactDetails(width, height,
-                            '${eventsController.selectedEvent.coordinator1?.committeeName}'),
+                            '${eventsController.selectedEvent.coordinator2?.committeeName}'),
                       ],
                     ),
 
                     SizedBox(
                       height: height * 0.05,
                     ),
-                    // Container(
-                    //   alignment: Alignment.center,
-                    //   width: width,
-                    //   height: height * 0.06,
-                    //   decoration: BoxDecoration(
-                    //       color: const Color(0xffDEFD72),
-                    //       borderRadius: BorderRadius.circular(127)),
-                    //   child: Text(
-                    //     "REGISTER NOW >>",
-                    //     style: FutTheme.font5.copyWith(
-                    //         color: Colors.black, fontSize: height * 0.024),
-                    //   ),
-                    // ),
-                    // SizedBox(
-                    //   height: height * 0.05,
-                    // ),
+                    Container(
+                      alignment: Alignment.center,
+                      width: width,
+                      height: height * 0.06,
+                      decoration: BoxDecoration(
+                          color: const Color(0xffDEFD72),
+                          borderRadius: BorderRadius.circular(127)),
+                      child: Text(
+                        "REGISTER NOW >>",
+                        style: FutTheme.font5.copyWith(
+                            color: Colors.black, fontSize: height * 0.024),
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * 0.05,
+                    ),
                   ],
                 ),
               )
