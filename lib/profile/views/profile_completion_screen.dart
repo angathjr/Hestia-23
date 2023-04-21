@@ -10,7 +10,6 @@ class ProfileCompletion extends StatelessWidget {
 
   final ProfileEditController profileEditController = Get.find();
   final AuthController authController = Get.find();
-  final isEdit = Get.arguments[0] ?? false;
 
   Widget gap() => const SizedBox(
         height: 20,
