@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/Schedule/views/Schedule.dart';
-import 'package:hestia_23/animations/views/side_transitions.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_search_screen.dart';
 import 'package:hestia_23/navbar/views/navbar_screen.dart';
@@ -14,7 +13,6 @@ import 'package:hestia_23/profile/views/profile_screen.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 import 'package:hestia_23/stories/views/story_view.dart';
 import 'auth/views/login_screen.dart';
-import 'events/views/event_detail_screen2.dart';
 import 'getx_di.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -46,6 +44,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       enableLog: true,
       title: 'Hestia 23',
       theme: ThemeData(
@@ -54,7 +53,6 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.black,
           appBarTheme: const AppBarTheme(
               color: Colors.black, scrolledUnderElevation: 0)),
-      // home: NavBarPage(),
       getPages: [
         GetPage(
             name: '/',
@@ -73,7 +71,6 @@ class MyApp extends StatelessWidget {
           curve: Curves.fastLinearToSlowEaseIn,
           transitionDuration: const Duration(milliseconds: 1000),
         ),
-
         GetPage(name: '/event', page: () => EventDetailsScreen()),
         GetPage(name: '/story-view', page: () => StoriesViewScreen()),
         GetPage(

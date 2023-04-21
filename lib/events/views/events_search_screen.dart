@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
@@ -102,7 +103,7 @@ class EventsSearchScreen extends StatelessWidget {
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       )
                     ],
@@ -186,88 +187,147 @@ class EventsSearchScreen extends StatelessWidget {
             SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: width * 0.05),
               sliver: Obx(
-                () => SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                      childCount: searchController.events.length,
-                      (BuildContext context, index) {
-                    return Padding(
-                        padding: EdgeInsets.only(bottom: height * 0.02),
-                        child: Container(
-                          height: cardHeight,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: FutTheme.secondaryColor),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(children: [
-                            Expanded(
-                              child: Container(
-                                width: width * 0.4,
-                                margin: EdgeInsets.all(width * 0.025),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(
-                                        color: FutTheme.secondaryColor)),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: CachedNetworkImage(
-                                    progressIndicatorBuilder:
-                                        (context, url, downloadProgress) =>
-                                            Center(
-                                      child: CircularProgressIndicator(
-                                          valueColor: AlwaysStoppedAnimation(
-                                              FutTheme.primaryColor),
-                                          value: downloadProgress.progress),
-                                    ),
-                                    imageUrl:
-                                        '${searchController.events[index].image}',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                  width: width * 0.4,
-                                  margin: EdgeInsets.all(width * 0.025),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      SizedBox(
-                                        child: Text(
-                                          "${searchController.events[index].title}",
-                                          style: FutTheme.mFont.copyWith(
-                                              color: Colors.white,
-                                              fontSize: width * 0.045),
-                                          softWrap: true,
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          eventsController.goToEvent(
-                                              searchController.events[index]);
-                                        },
+                () => (searchController.eventsLoading.value == false)
+                    ? AnimationLimiter(
+                        child:
+                        SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                              childCount: searchController.events.length,
+                              (BuildContext context, index) {
+                            return AnimationConfiguration.staggeredList(
+                              position: index,
+                              duration: const Duration(milliseconds: 100),
+                              child: SlideAnimation(
+                                curve: Curves.fastLinearToSlowEaseIn,
+                                duration: const Duration(milliseconds: 2500),
+                                verticalOffset: 300,
+                                horizontalOffset: 30,
+                                child: FlipAnimation(
+                                    flipAxis: FlipAxis.y,
+                                    duration:
+                                        const Duration(milliseconds: 1500),
+                                    curve: Curves.fastLinearToSlowEaseIn,
+                                    child: Padding(
+                                        padding: EdgeInsets.only(
+                                            bottom: height * 0.02),
                                         child: Container(
-                                          height: height * 0.045,
-                                          margin: EdgeInsets.symmetric(
-                                              horizontal: width * 0.02),
+                                          height: cardHeight,
                                           decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              color: FutTheme.secondaryColor),
-                                          alignment: Alignment.center,
-                                          child: Text("View Details",
-                                              style: FutTheme.mFont),
-                                        ),
-                                      )
-                                    ],
-                                  )),
-                            )
-                          ]),
-                        ));
-                  }),
-                ),
+                                            border: Border.all(
+                                                color: FutTheme.secondaryColor),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Row(children: [
+                                            Expanded(
+                                              child: Container(
+                                                width: width * 0.4,
+                                                margin: EdgeInsets.all(
+                                                    width * 0.025),
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    border: Border.all(
+                                                        color: FutTheme
+                                                            .secondaryColor)),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  child: CachedNetworkImage(
+                                                    progressIndicatorBuilder:
+                                                        (context, url,
+                                                                downloadProgress) =>
+                                                            Center(
+                                                      child: CircularProgressIndicator(
+                                                          valueColor:
+                                                              AlwaysStoppedAnimation(
+                                                                  FutTheme
+                                                                      .primaryColor),
+                                                          value:
+                                                              downloadProgress
+                                                                  .progress),
+                                                    ),
+                                                    imageUrl:
+                                                        '${searchController.events[index].image}',
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Container(
+                                                  width: width * 0.4,
+                                                  margin: EdgeInsets.all(
+                                                      width * 0.025),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceAround,
+                                                    children: [
+                                                      SizedBox(
+                                                        child: Text(
+                                                          "${searchController.events[index].title}",
+                                                          style: FutTheme.mFont
+                                                              .copyWith(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize:
+                                                                      width *
+                                                                          0.045),
+                                                          softWrap: true,
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        ),
+                                                      ),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          eventsController
+                                                              .goToEvent(
+                                                                  searchController
+                                                                          .events[
+                                                                      index]);
+                                                        },
+                                                        child: Container(
+                                                          height:
+                                                              height * 0.045,
+                                                          margin: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      width *
+                                                                          0.02),
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20),
+                                                              color: FutTheme
+                                                                  .secondaryColor),
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Text(
+                                                              "View Details",
+                                                              style: FutTheme
+                                                                  .mFont),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  )),
+                                            )
+                                          ]),
+                                        ))),
+                              ),
+                            );
+                          }),
+                        ),
+                      )
+                    : SliverToBoxAdapter(
+                        child: SizedBox(
+                            height: height * 0.6,
+                            width: width,
+                            child: Center(
+                              child: primaryLoadingWidget,
+                            ))),
               ),
             ),
           ],
