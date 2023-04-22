@@ -53,6 +53,7 @@ dependencies:
   carbon_icons: ^0.0.1+2
   flutter_polygon: ^0.3.0+2
   circular_profile_avatar: ^2.0.5
+  upgrader: ^6.2.0
 
 dev_dependencies:
   flutter_test:

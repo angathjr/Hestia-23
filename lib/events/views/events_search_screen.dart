@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
+import 'package:hestia_23/Schedule/filter/schedule_filter_view.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/events/controllers/events_search_controller.dart';
@@ -98,7 +99,8 @@ class EventsSearchScreen extends StatelessWidget {
                               child: IconButton(
                                   icon: Icon(FeatherIcons.filter,
                                       size: width * 0.06),
-                                  onPressed: () {}),
+                                  onPressed: () =>
+                                      Get.to(() => FilterScreen())),
                             ),
                           )
                         ],
@@ -189,8 +191,7 @@ class EventsSearchScreen extends StatelessWidget {
               sliver: Obx(
                 () => (searchController.eventsLoading.value == false)
                     ? AnimationLimiter(
-                        child:
-                        SliverList(
+                        child: SliverList(
                           delegate: SliverChildBuilderDelegate(
                               childCount: searchController.events.length,
                               (BuildContext context, index) {
