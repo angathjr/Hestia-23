@@ -21,7 +21,7 @@ class Themes {
     return futureTheme;
   }
 
-  int _loadThemeFromBox() => _box.read(_key) ?? 0;
+  int _loadThemeFromBox() => _box.read(_key) ?? 1;
 
   _saveThemeToBox(int index) => _box.write(_key, index);
 

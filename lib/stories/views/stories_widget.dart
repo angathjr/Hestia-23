@@ -28,6 +28,9 @@ class Stories extends StatelessWidget {
               "STORIES",
               style: Theme.of(context).textTheme.bodyMedium,
             ),
+            SizedBox(
+              height: _height / 30,
+            ),
           ],
         ),
         SizedBox(
@@ -126,7 +129,7 @@ class StoriesCard extends StatelessWidget {
           child: Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
-              padding: EdgeInsets.all(4),
+              padding: EdgeInsets.all(8),
               child: Text(
                 "${story.username}",
                 style: TextStyle(
