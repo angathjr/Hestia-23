@@ -88,6 +88,4 @@ class Themes {
       bodySmall: GoogleFonts.oxanium(fontWeight: FontWeight.w300),
     ),
   );
-
-  
 }
