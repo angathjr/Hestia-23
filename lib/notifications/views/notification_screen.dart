@@ -22,8 +22,8 @@ class NotificationScreen extends StatelessWidget {
         kToolbarHeight;
 
     double width = MediaQuery.of(context).size.width;
-    return Obx(
-      () => DefaultTabController(
+    return Scaffold(
+      body: DefaultTabController(
         length: 2,
         child: Padding(
             padding: const EdgeInsets.all(13.0),
@@ -38,7 +38,7 @@ class NotificationScreen extends StatelessWidget {
                       ),
                       Text(
                         'NOTIFICATIONS',
-                        style: FutTheme.categoryFont,
+                        style: context.theme.textTheme.titleLarge,
                       ),
                     ],
                   ),
@@ -68,16 +68,18 @@ class NotificationScreen extends StatelessWidget {
                               const SizedBox(
                                 width: 10,
                               ),
-                              Container(
-                                width: 20,
-                                decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Color.fromARGB(255, 236, 217, 15)),
-                                child: Center(
-                                    child: Text(
-                                  '${notificationController.generalNotifications.length}',
-                                  style: const TextStyle(color: Colors.black),
-                                )),
+                              Obx(
+                                () => Container(
+                                  width: 20,
+                                  decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color.fromARGB(255, 236, 217, 15)),
+                                  child: Center(
+                                      child: Text(
+                                    '${notificationController.generalNotifications.length}',
+                                    style: const TextStyle(color: Colors.black),
+                                  )),
+                                ),
                               )
                             ],
                           ),
@@ -93,16 +95,18 @@ class NotificationScreen extends StatelessWidget {
                             const SizedBox(
                               width: 10,
                             ),
-                            Container(
-                              width: 20,
-                              decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Color.fromARGB(255, 236, 217, 15)),
-                              child: Center(
-                                  child: Text(
-                                '${profileController.regEvents.length}',
-                                style: const TextStyle(color: Colors.black),
-                              )),
+                            Obx(
+                              () => Container(
+                                width: 20,
+                                decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Color.fromARGB(255, 236, 217, 15)),
+                                child: Center(
+                                    child: Text(
+                                  '${profileController.regEvents.length}',
+                                  style: const TextStyle(color: Colors.black),
+                                )),
+                              ),
                             )
                           ],
                         )),

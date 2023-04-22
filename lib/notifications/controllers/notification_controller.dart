@@ -58,6 +58,7 @@ class NotificationController extends GetxController {
     final data = query.docs.map((e) => e.data()).toList();
 
     notifications.value = notificationModelFromJson(data);
+    notificationsLoading(false);
   }
 
   void fetchRegEvents() async {

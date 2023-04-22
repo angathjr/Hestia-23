@@ -24,7 +24,7 @@ class GeneralNotificationsScreen extends StatelessWidget {
     double cardHeight = h * 0.2;
 
     return Obx(
-      () => AnimationLimiter(
+      () => (notificationController.generalNotificationsLoading.value)?primaryLoadingWidget:AnimationLimiter(
         child: ListView.builder(
           physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics()),
@@ -112,7 +112,7 @@ class GeneralNotificationsScreen extends StatelessWidget {
                                     child: Text(
                                       notification.eventName ?? 'General',
                                       style: FutTheme.font5.copyWith(
-                                          color: FutTheme.secondaryColor,
+                                          color: context.theme.canvasColor,
                                           overflow: TextOverflow.clip),
                                     ),
                                   )
