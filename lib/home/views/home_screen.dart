@@ -196,14 +196,10 @@ class HomeScreen extends StatelessWidget {
                                         arguments: eventController
                                             .categories[index].name);
                                   },
-                                  child: Eventcardpresent(
-                                      categoryModel:
-                                          eventController.categories[index])
-                                  // CategoryCard(
-                                  //   categoryModel:
-                                  //       eventController.categories[index],
-                                  // ),
-                                  );
+                                  child: CategoryCard(
+                                    categoryModel:
+                                        eventController.categories[index],
+                                  ));
                             },
                             options: CarouselOptions(
                                 // autoPlay: true,
