@@ -38,7 +38,7 @@ class NotificationScreen extends StatelessWidget {
                       ),
                       Text(
                         'NOTIFICATIONS',
-                        style: FutTheme.categoryFont,
+                        style: context.theme.textTheme.titleLarge,
                       ),
                     ],
                   ),

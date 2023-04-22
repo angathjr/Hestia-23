@@ -177,8 +177,7 @@ class EventScreen extends StatelessWidget {
                                                 child: CircularProgressIndicator(
                                                     valueColor:
                                                         AlwaysStoppedAnimation(
-                                                            FutTheme
-                                                                .primaryColor),
+                                                           context.theme.primaryColor),
                                                     value: downloadProgress
                                                         .progress),
                                               ),

@@ -24,7 +24,7 @@ class ProfileScreen extends StatelessWidget {
     final _width = _size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text("PROFILE", style: FutTheme.categoryFont),
+        title: Text("PROFILE", style: context.theme.textTheme.titleLarge),
         centerTitle: true,
       ),
       body: Padding(

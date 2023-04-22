@@ -31,7 +31,7 @@ class Schedule extends StatelessWidget {
             centerTitle: true,
             title: Text(
               "Schedule",
-              style: FutTheme.categoryFont,
+              style: context.theme.textTheme.titleLarge,
             ),
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(dateContainerHeight),

@@ -22,7 +22,7 @@ class ProfileCompletion extends StatelessWidget {
         backgroundColor: Colors.black,
         title: Text(
           'EDIT PROFILE',
-          style: FutTheme.categoryFont.copyWith(
+          style: context.theme.textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.w700,
           ),
         ),

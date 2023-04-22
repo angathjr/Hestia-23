@@ -112,7 +112,7 @@ class GeneralNotificationsScreen extends StatelessWidget {
                                     child: Text(
                                       notification.eventName ?? 'General',
                                       style: FutTheme.font5.copyWith(
-                                          color: FutTheme.secondaryColor,
+                                          color: context.theme.canvasColor,
                                           overflow: TextOverflow.clip),
                                     ),
                                   )

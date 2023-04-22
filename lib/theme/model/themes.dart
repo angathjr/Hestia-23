@@ -12,13 +12,13 @@ class Themes {
   ThemeData get theme {
     switch (_loadThemeFromBox()) {
       case 0:
-        return presentTheme;
-      case 1:
         return futureTheme;
-      case 2:
+      case 1:
         return presentTheme;
+      case 2:
+        return pastTheme;
     }
-    return presentTheme;
+    return futureTheme;
   }
 
   int _loadThemeFromBox() => _box.read(_key) ?? 0;
@@ -46,6 +46,7 @@ class Themes {
     iconTheme: const IconThemeData(color: Colors.white),
     focusColor: Colors.grey,
     primaryColor: const Color(0xffDEFD72),
+    canvasColor: const Color(0xffFFD730),
     cardColor: const Color(0xff1C1C1C),
     secondaryHeaderColor: const Color(0xff1A1A1A),
 
@@ -90,7 +91,8 @@ class Themes {
     scaffoldBackgroundColor: Colors.black,
     iconTheme: const IconThemeData(color: Colors.white),
     primaryColor: const Color(0xffD5BA95),
-    secondaryHeaderColor: const Color(0xff731714),
+    cardColor: const Color(0xff1C1C1C),
+    secondaryHeaderColor: const Color(0xff1A1A1A),
 
     //text themes
 
@@ -114,4 +116,51 @@ class Themes {
       bodySmall: GoogleFonts.oxanium(fontWeight: FontWeight.w300),
     ),
   );
+
+  //PAST THEME
+
+  static final pastTheme = ThemeData.dark().copyWith(
+    useMaterial3: true,
+
+    //appbar
+
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.black,
+      scrolledUnderElevation: 0,
+    ),
+
+    //styles
+
+    scaffoldBackgroundColor: Colors.black,
+    iconTheme: const IconThemeData(color: Colors.white),
+    primaryColor: const Color(0xffD5BA95),
+    cardColor: const Color(0xff1C1C1C),
+    secondaryHeaderColor: const Color(0xff1A1A1A),
+
+    //text themes
+
+    textTheme: TextTheme(
+      headlineMedium: const TextStyle(
+        fontFamily: 'Geomanist',
+      ),
+      titleLarge: const TextStyle(fontFamily: 'Gangof3'),
+      titleMedium: GoogleFonts.poppins(
+        fontWeight: FontWeight.w500,
+        // color: Colors.white,
+      ),
+      titleSmall: GoogleFonts.montserrat(
+        fontWeight: FontWeight.w300,
+      ),
+      bodyLarge: GoogleFonts.poppins(
+          fontWeight: FontWeight.w700, color: const Color(0xffDEFD72)),
+      bodyMedium: GoogleFonts.montserrat(
+        fontWeight: FontWeight.w600,
+      ),
+      bodySmall: GoogleFonts.oxanium(fontWeight: FontWeight.w300),
+    ),
+  );
+
+  static TextStyle futureFont = const TextStyle(fontFamily: 'Azonix');
+  static TextStyle pastFont = const TextStyle(fontFamily: 'Gangof3');
+  static TextStyle presentFont = const TextStyle(fontFamily: 'Sandy');
 }
