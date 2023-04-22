@@ -8,6 +8,8 @@ import 'package:hestia_23/notifications/controllers/notification_controller.dart
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
 import 'package:hestia_23/profile/controllers/profile_edit_controller.dart';
 import 'package:hestia_23/stories/controllers/stories_controller.dart';
+import 'package:hestia_23/theme/controllers/theme_animation_controller.dart';
+import 'package:hestia_23/theme/controllers/theme_controller.dart';
 import 'auth/controllers/auth_controller.dart';
 import 'animations/controllers/animation_controller.dart';
 import 'events/controllers/events_controller.dart';
@@ -30,6 +32,7 @@ class GetXDependancyInjector {
     Get.lazyPut(() => AnimController(), fenix: true);
     Get.lazyPut(() => NavBarController(), fenix: true);
     Get.lazyPut(() => NotificationController(), fenix: true);
-   
+    Get.lazyPut(() => ThemeAnimationController(), fenix: true);
+    Get.lazyPut(() => ThemeController(), fenix: true);
   }
 }

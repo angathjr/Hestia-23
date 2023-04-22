@@ -12,11 +12,11 @@ class Themes {
   ThemeData get theme {
     switch (_loadThemeFromBox()) {
       case 0:
-        return futureTheme;
-      case 1:
-        return presentTheme;
-      case 2:
         return pastTheme;
+      case 1:
+        return futureTheme;
+      case 2:
+        return presentTheme;
     }
     return futureTheme;
   }
@@ -28,7 +28,8 @@ class Themes {
   void switchTheme(int index) async {
     await _saveThemeToBox(index);
     Get.changeTheme(theme);
-    print(index.toString());
+    Get.forceAppUpdate();
+    Get.back();
   }
 
   static final futureTheme = ThemeData.dark().copyWith(
@@ -46,10 +47,11 @@ class Themes {
     scaffoldBackgroundColor: Colors.black,
     iconTheme: const IconThemeData(color: Colors.white),
     focusColor: Colors.grey,
+
     primaryColor: const Color(0xffDEFD72),
-    canvasColor: const Color(0xffFFD730),
+    secondaryHeaderColor: const Color(0xffFFD730),
+    canvasColor: const Color(0xff1A1A1A),
     cardColor: const Color(0xff1C1C1C),
-    secondaryHeaderColor: const Color(0xff1A1A1A),
 
     //text themes
 
@@ -91,9 +93,9 @@ class Themes {
 
     scaffoldBackgroundColor: Colors.black,
     iconTheme: const IconThemeData(color: Colors.white),
-    primaryColor: const Color(0xffD5BA95),
+    primaryColor: const Color(0xffFFD730),
+    canvasColor: const Color(0xff1A1A1A),
     cardColor: const Color(0xff1C1C1C),
-    secondaryHeaderColor: const Color(0xff1A1A1A),
 
     //text themes
 
@@ -134,9 +136,9 @@ class Themes {
 
     scaffoldBackgroundColor: Colors.black,
     iconTheme: const IconThemeData(color: Colors.white),
-    primaryColor: const Color(0xffD5BA95),
-    cardColor: const Color(0xff1C1C1C),
-    secondaryHeaderColor: const Color(0xff1A1A1A),
+    primaryColor: const Color(0xffF7CD93),
+    canvasColor: const Color(0xff1A1A1A),
+    cardColor: const Color(0xff1A1A1A),
 
     //text themes
 

@@ -77,8 +77,8 @@ class EventScreen extends StatelessWidget {
                             width: width * 0.3,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(33),
-                                border:
-                                    Border.all(color: const Color(0xffFFD730))),
+                                border: Border.all(
+                                    color: context.theme.primaryColor)),
                             child: Obx(
                               () => DropdownButtonHideUnderline(
                                 child: ButtonTheme(
@@ -154,7 +154,7 @@ class EventScreen extends StatelessWidget {
                                                   Colors.black.withOpacity(0.1))
                                         ],
                                         border: Border.all(
-                                            color: const Color(0xffFFD730)),
+                                            color: context.theme.primaryColor),
                                         borderRadius:
                                             BorderRadius.circular(30)),
                                     child: Column(
@@ -177,7 +177,8 @@ class EventScreen extends StatelessWidget {
                                                 child: CircularProgressIndicator(
                                                     valueColor:
                                                         AlwaysStoppedAnimation(
-                                                           context.theme.primaryColor),
+                                                            context.theme
+                                                                .primaryColor),
                                                     value: downloadProgress
                                                         .progress),
                                               ),
@@ -210,7 +211,8 @@ class EventScreen extends StatelessWidget {
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
-                                                color: const Color(0xffFFD730)),
+                                                color:
+                                                    context.theme.primaryColor),
                                             child: Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceEvenly,
@@ -289,10 +291,10 @@ class EventScreen extends StatelessWidget {
                     width: width * 0.35,
                     decoration: BoxDecoration(
                         color: controller.selectedDepartmentIndex.value == index
-                            ? const Color(0xffFFD730)
+                            ? context.theme.primaryColor
                             : null,
                         borderRadius: BorderRadius.circular(33),
-                        border: Border.all(color: const Color(0xffFFD730))),
+                        border: Border.all(color: context.theme.primaryColor)),
                     child: controller.departmentLoading.value == true
                         ? Text(
                             "${controller.departments[index].title?.toUpperCase()}",
