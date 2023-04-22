@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
+import 'package:hestia_23/home/views/event_category_card_present.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
 import 'package:hestia_23/stories/views/stories_widget.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
@@ -60,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                             themeController.animationController,
                         builder: (context) => BackdropFilter(
                             filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-                            child:  SwitchThemeScreen()),
+                            child: SwitchThemeScreen()),
                       );
                     },
                     child: Image.asset(
@@ -158,19 +159,22 @@ class HomeScreen extends StatelessWidget {
                             itemBuilder: (BuildContext context, int index,
                                 int realIndex) {
                               return GestureDetector(
-                                onTap: () {
-                                  eventController.selectedCategory =
-                                      eventController.categories[index];
-                                  eventController.fetchEvents();
-                                  Get.to(() => EventScreen(),
-                                      arguments: eventController
-                                          .categories[index].name);
-                                },
-                                child: CategoryCard(
-                                  categoryModel:
-                                      eventController.categories[index],
-                                ),
-                              );
+                                  onTap: () {
+                                    eventController.selectedCategory =
+                                        eventController.categories[index];
+                                    eventController.fetchEvents();
+                                    Get.to(() => EventScreen(),
+                                        arguments: eventController
+                                            .categories[index].name);
+                                  },
+                                  child: Eventcardpresent(
+                                      categoryModel:
+                                          eventController.categories[index])
+                                  // CategoryCard(
+                                  //   categoryModel:
+                                  //       eventController.categories[index],
+                                  // ),
+                                  );
                             },
                             options: CarouselOptions(
                                 // autoPlay: true,
