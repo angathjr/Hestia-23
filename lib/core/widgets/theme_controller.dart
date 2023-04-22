@@ -6,7 +6,4 @@ class ThemeService {
   final _box = GetStorage();
   final _theme = 'isThemeMode';
 
-
-
-
 }

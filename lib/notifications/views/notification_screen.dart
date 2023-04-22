@@ -26,103 +26,102 @@ class NotificationScreen extends StatelessWidget {
       () => DefaultTabController(
         length: 2,
         child: Padding(
-          padding: const EdgeInsets.all(13.0),
-          child: Scaffold(
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              title: Row(
-                children: [
-                  const BackButtonWidget(),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    'NOTIFICATIONS',
-                    style: FutTheme.categoryFont,
-                  ),
-                ],
-              ),
-
-              //tab bar is placed here
-
-              bottom: PreferredSize(
-                preferredSize: Size.fromHeight(h * 0.09),
-                child: TabBar(
-                  isScrollable: false,
-                  labelColor: Colors.white,
-                  indicatorWeight: 2,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  unselectedLabelColor: Colors.grey,
-                  indicatorColor: const Color.fromARGB(255, 226, 222, 169),
-                  dividerColor: Colors.transparent,
-                  padding: EdgeInsets.only(right: width * 0.2),
-                  tabs: [
-                    Tab(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'General',
-                            style: FutTheme.font3,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            width: 20,
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color.fromARGB(255, 236, 217, 15)),
-                            child: Center(
-                                child: Text(
-                              '${notificationController.generalNotifications.length}',
-                              style: const TextStyle(color: Colors.black),
-                            )),
-                          )
-                        ],
+            padding: const EdgeInsets.all(13.0),
+            child: Scaffold(
+                appBar: AppBar(
+                  automaticallyImplyLeading: false,
+                  title: Row(
+                    children: [
+                      const BackButtonWidget(),
+                      const SizedBox(
+                        width: 20,
                       ),
-                    ),
-                    Tab(
-                        child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          'My Events',
-                          style: FutTheme.font3,
+                      Text(
+                        'NOTIFICATIONS',
+                        style: FutTheme.categoryFont,
+                      ),
+                    ],
+                  ),
+
+                  //tab bar is placed here
+
+                  bottom: PreferredSize(
+                    preferredSize: Size.fromHeight(h * 0.09),
+                    child: TabBar(
+                      isScrollable: false,
+                      labelColor: Colors.white,
+                      indicatorWeight: 2,
+                      indicatorSize: TabBarIndicatorSize.label,
+                      unselectedLabelColor: Colors.grey,
+                      indicatorColor: const Color.fromARGB(255, 226, 222, 169),
+                      dividerColor: Colors.transparent,
+                      padding: EdgeInsets.only(right: width * 0.2),
+                      tabs: [
+                        Tab(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                'General',
+                                style: FutTheme.font3,
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                width: 20,
+                                decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Color.fromARGB(255, 236, 217, 15)),
+                                child: Center(
+                                    child: Text(
+                                  '${notificationController.generalNotifications.length}',
+                                  style: const TextStyle(color: Colors.black),
+                                )),
+                              )
+                            ],
+                          ),
                         ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          width: 20,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Color.fromARGB(255, 236, 217, 15)),
-                          child: Center(
-                              child: Text(
-                            '${profileController.regEvents.length}',
-                            style: const TextStyle(color: Colors.black),
-                          )),
-                        )
+                        Tab(
+                            child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'My Events',
+                              style: FutTheme.font3,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              width: 20,
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Color.fromARGB(255, 236, 217, 15)),
+                              child: Center(
+                                  child: Text(
+                                '${profileController.regEvents.length}',
+                                style: const TextStyle(color: Colors.black),
+                              )),
+                            )
+                          ],
+                        )),
                       ],
-                    )),
-                  ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            body: Padding(
-              padding: EdgeInsets.fromLTRB(
-                  width * 0.04, width * 0.04, width * 0.04, 0),
-              child: TabBarView(
-                children: [
-                  //tab bar view for general events
-                  GeneralNotificationsScreen(),
-                  RegisteredEventsNotificatonScreen(),
-                ],
-              ),
-            ),
-          ),
-        ),
+                body: Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      width * 0.04, width * 0.04, width * 0.04, 0),
+                  child: TabBarView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [
+                      //tab bar view for general events
+                      GeneralNotificationsScreen(),
+                      RegisteredEventsNotificatonScreen(),
+                    ],
+                  ),
+                ))),
       ),
     );
   }
