@@ -7,6 +7,8 @@ import 'package:hestia_23/notifications/views/general_notifications.dart';
 import 'package:hestia_23/notifications/views/registered_events_notification.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
 
+import '../../core/Constants..dart';
+
 class NotificationScreen extends StatelessWidget {
   NotificationScreen({super.key});
 
@@ -94,7 +96,7 @@ class NotificationScreen extends StatelessWidget {
                         width: 20,
                         decoration: const BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Color.fromARGB(255, 236, 217, 15)),
+                            color: Color.fromRGBO(222, 253, 114, 1)),
                         child: const Center(
                             child: Text(
                           '${4}',
