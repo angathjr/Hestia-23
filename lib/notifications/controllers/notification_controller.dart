@@ -24,6 +24,8 @@ class NotificationController extends GetxController {
 
   late EventModel selectedNotEvent;
   var notificationsLoading = false.obs;
+  var generalNotificationsLoading = false.obs;
+  var generalNotifications = <NotificationModel>[].obs;
   var notifications = <NotificationModel>[].obs;
 
   ///notifications/groups/CUSTOM-EVENT-FOR-APP-TEST/M5gZdjPQ6ktaPMbc6mlg
@@ -35,6 +37,13 @@ class NotificationController extends GetxController {
   //   stories.value = storyModelFromJson(data);
   //   storiesLoading(false);
   // }
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchRegEvents();
+    fetchGeneralNotifications();
+  }
 
   void goToNotification(EventModel event) {
     selectedNotEvent = event;
@@ -55,10 +64,12 @@ class NotificationController extends GetxController {
     print(await profileController.fetchRegEventsSlugs());
   }
 
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-    fetchRegEvents();
+  void fetchGeneralNotifications() async {
+    generalNotificationsLoading(true);
+    final query =
+        await generealRef.orderBy('createdAt', descending: true).get();
+    final data = query.docs.map((e) => e.data()).toList();
+    generalNotifications.value = notificationModelFromJson(data);
+    generalNotificationsLoading(false);
   }
 }
