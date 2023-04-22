@@ -29,6 +29,7 @@ class StoriesController extends GetxController {
   late StoryModel selectedStory;
   late int selectedStoryIndex;
   var storyItems = <StoryItem>[].obs;
+  var currentStoryDateTime = DateTime.now().obs;
 
   @override
   void onInit() {
@@ -62,9 +63,10 @@ class StoriesController extends GetxController {
     storyItems.value = userStories
         .map(
           (e) => StoryItem.pageImage(
-              url: e.imageUrl ?? '',
-              controller: controller,
-              caption: e.username),
+            imageFit: BoxFit.cover,
+            url: e.imageUrl ?? '',
+            controller: controller,
+          ),
         )
         .toList();
     userStoriesLoading(false);
@@ -77,6 +79,11 @@ class StoriesController extends GetxController {
     final data = query.docs.map((e) => e.data()).toList();
     stories.value = storyModelFromJson(data);
     storiesLoading(false);
+  }
+
+  void updateCurrentStoryDateTime(StoryItem value) {
+    int index = storyItems.indexOf(value);
+    currentStoryDateTime.value = userStories[index].createdAt!;
   }
 
   // void compressImage(String uri) async {

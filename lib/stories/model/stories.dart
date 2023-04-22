@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 List<StoryModel> storyModelFromJson(List<dynamic> str) =>
     List<StoryModel>.from(str.map((x) => StoryModel.fromJson(x)));
 
@@ -11,16 +13,22 @@ class StoryModel {
     this.imageUrl,
     this.email,
     this.username,
+    this.createdAt,
+    this.userImage,
   });
 
   String? imageUrl;
   String? email;
   String? username;
+  DateTime? createdAt;
+  String? userImage;
 
   factory StoryModel.fromJson(Map<String, dynamic> json) => StoryModel(
         imageUrl: json["imageUrl"],
         email: json["email"],
         username: json["username"],
+        createdAt: (json["createdAt"] ?? Timestamp.now()).toDate(),
+        userImage: json["userImage"],
       );
 
   Map<String, dynamic> toJson() => {
