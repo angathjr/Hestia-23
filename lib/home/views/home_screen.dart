@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
+import 'package:hestia_23/notifications/controllers/notification_controller.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
 import 'package:hestia_23/stories/views/stories_widget.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
@@ -21,6 +22,7 @@ class HomeScreen extends StatelessWidget {
   final AuthController authController = Get.find();
   final ProfileController profController = Get.find();
   final ThemeController themeController = Get.put(ThemeController());
+  final NotificationController notificationController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -74,8 +76,12 @@ class HomeScreen extends StatelessWidget {
                               .textTheme
                               .titleLarge
                               ?.copyWith(fontSize: width * 0.04)),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       FittedBox(
-                        child: Text("welcome to the timeless oddessey",
+                        clipBehavior: Clip.antiAlias,
+                        child: Text("Welcome to the Timeless Odessey",
                             style: context.theme.textTheme.titleLarge
                                 ?.copyWith(fontSize: width * 0.02)),
                       ),
@@ -90,21 +96,46 @@ class HomeScreen extends StatelessWidget {
                           topLeft: Radius.circular(15),
                           bottomLeft: Radius.circular(15)),
                       color: FutTheme.primaryBg.withOpacity(0.7)),
-                  child: Row(children: [
-                    IconButton(
-                      onPressed: () => Get.toNamed('search'),
-                      //  Navigator.push(
-                      //     context, SizeTransition5(EventsSearchScreen())),
-                      icon: const Icon(FeatherIcons.search),
-                    ),
-                    IconButton(
-                      onPressed: () => Get.toNamed('notification-1'),
-                      icon: const Icon(
-                        FeatherIcons.bell,
-                        color: Colors.white,
+                  child: Row(
+                    children: [
+                      IconButton(
+                        onPressed: () => Get.toNamed('search'),
+                        //  Navigator.push(
+                        //     context, SizeTransition5(EventsSearchScreen())),
+                        icon: const Icon(FeatherIcons.search),
                       ),
-                    ),
-                  ]),
+                      IconButton(
+                        onPressed: () => Get.toNamed('notification-1'),
+                        icon: Obx(
+                          () => Stack(
+                            children: [
+                              if (notificationController
+                                      .generalNotifications.isNotEmpty ||
+                                  profController.regEvents.isNotEmpty)
+                                Positioned(
+                                  right: width * 0.007,
+                                  top: height * 0.005,
+                                  child: Container(
+                                    height: 7,
+                                    width: 7,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(100),
+                                      color: context.theme.primaryColor,
+                                    ),
+                                  ),
+                                ),
+                              const Center(
+                                child: Icon(
+                                  FeatherIcons.bell,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

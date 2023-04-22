@@ -2,6 +2,7 @@ import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/Schedule/views/Schedule.dart';
+import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/fcm/controllers/fcm_controller.dart';
 import 'package:hestia_23/home/views/home_screen.dart';
 import 'package:hestia_23/home/views/leaderboard_card.dart';
@@ -78,34 +79,30 @@ class NavBarPage extends StatelessWidget {
                               buildNavIcons(
                                 navHeight: navHeight,
                                 index: 0,
-                                selectedIcon: const Icon(FeatherIcons.home),
-                                unselectedIcon: const Icon(Icons.home_outlined),
-                              ),
-                              buildNavIcons(
-                                navHeight: navHeight,
-                                index: 1,
-                                selectedIcon: const Icon(FeatherIcons.calendar),
-                                unselectedIcon:
-                                    const Icon(Icons.calendar_today_outlined),
+                                icon: const Icon(FeatherIcons.home),
+                                width: width,
+                                color: context.theme.primaryColor,
                               ),
                               buildNavIcons(
                                   navHeight: navHeight,
-                                  index: 2,
-                                  selectedIcon:
-                                      const Icon(Icons.leaderboard_outlined),
-                                  unselectedIcon:
-                                      const Icon(Icons.leaderboard_rounded)),
+                                  index: 1,
+                                  icon: const Icon(FeatherIcons.calendar),
+                                  width: width,
+                                  color: context.theme.primaryColor),
                               buildNavIcons(
-                                navHeight: navHeight,
-                                index: 3,
-                                selectedIcon: const Icon(
-                                  FeatherIcons.user,
-                                  fill: 1,
-                                ),
-                                unselectedIcon: const Icon(
-                                  FeatherIcons.user,
-                                ),
-                              )
+                                  navHeight: navHeight,
+                                  index: 2,
+                                  icon: const Icon(
+                                    Icons.leaderboard_outlined,
+                                  ),
+                                  width: width,
+                                  color: context.theme.primaryColor),
+                              buildNavIcons(
+                                  navHeight: navHeight,
+                                  index: 3,
+                                  icon: const Icon(FeatherIcons.user),
+                                  width: width,
+                                  color: context.theme.primaryColor)
                             ],
                           ),
                         ),
@@ -121,15 +118,34 @@ class NavBarPage extends StatelessWidget {
 
   Widget buildNavIcons(
       {required double navHeight,
-      required Icon selectedIcon,
-      required Icon unselectedIcon,
+      required double width,
+      required Icon icon,
+      required Color color,
       required int index}) {
     return SizedBox(
         width: navHeight,
         height: navHeight,
         child: Obx(
           () => IconButton(
-            icon: selectedIcon,
+            icon: Stack(
+              children: [
+                Center(child: icon),
+                if (index == navBarController.index.value)
+                  Center(
+                    child: Container(
+                      width: width * 0.025,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            width: 1,
+                            color: color,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
             onPressed: () {
               navBarController.changePage(index, navBarController.controller);
               navBarController.index.value = index;
@@ -137,7 +153,6 @@ class NavBarPage extends StatelessWidget {
             color: Colors.grey.shade400,
             enableFeedback: true,
             splashRadius: 5,
-            isSelected: (index == navBarController.index.value) ? true : false,
             disabledColor: Colors.red,
           ),
         ));
