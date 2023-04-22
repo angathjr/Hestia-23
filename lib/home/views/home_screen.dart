@@ -75,15 +75,16 @@ class HomeScreen extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .titleLarge
-                              ?.copyWith(fontSize: width * 0.04)),
+                              ?.copyWith(fontSize: width * 0.035)),
                       const SizedBox(
-                        height: 10,
+                        height: 7,
                       ),
-                      FittedBox(
-                        clipBehavior: Clip.antiAlias,
-                        child: Text("Welcome to the Timeless Odessey",
+                      SizedBox(
+                        width: width * 0.5,
+                        child: Text("Welcome to the Timeless Odyssey",
+                            overflow: TextOverflow.clip,
                             style: context.theme.textTheme.titleLarge
-                                ?.copyWith(fontSize: width * 0.02)),
+                                ?.copyWith(fontSize: width * 0.022)),
                       ),
                     ],
                   )
@@ -113,8 +114,8 @@ class HomeScreen extends StatelessWidget {
                                       .generalNotifications.isNotEmpty ||
                                   profController.regEvents.isNotEmpty)
                                 Positioned(
-                                  right: width * 0.007,
-                                  top: height * 0.005,
+                                  right: 4,
+                                  top: 7,
                                   child: Container(
                                     height: 7,
                                     width: 7,
