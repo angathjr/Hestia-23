@@ -5,15 +5,11 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:hestia_23/auth/models/user.dart';
 import 'package:hestia_23/stories/model/stories.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:story_view/story_view.dart';
 
 class StoriesController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  final GetStorage _getStorage = GetStorage();
 
   CollectionReference storiesRef =
       FirebaseFirestore.instance.collection('stories');
@@ -83,58 +79,58 @@ class StoriesController extends GetxController {
     storiesLoading(false);
   }
 
-  void compressImage(String uri) async {
-    try {
-      File imageFile = File.fromUri(Uri.parse(uri));
-      final targetPath = '${imageFile.absolute.path}${DateTime.now()}.png';
+  // void compressImage(String uri) async {
+  //   try {
+  //     File imageFile = File.fromUri(Uri.parse(uri));
+  //     final targetPath = '${imageFile.absolute.path}${DateTime.now()}.png';
 
-      final result = await FlutterImageCompress.compressAndGetFile(
-        format: CompressFormat.png,
-        imageFile.absolute.path,
-        targetPath,
-        quality: 80,
-        minHeight: 640,
-        minWidth: 480,
-      );
+  //     final result = await FlutterImageCompress.compressAndGetFile(
+  //       format: CompressFormat.png,
+  //       imageFile.absolute.path,
+  //       targetPath,
+  //       quality: 80,
+  //       minHeight: 640,
+  //       minWidth: 480,
+  //     );
 
-      print('image Size: ' + imageFile.lengthSync().toString());
-      print('result Size: ${result?.lengthSync()}');
+  //     print('image Size: ' + imageFile.lengthSync().toString());
+  //     print('result Size: ${result?.lengthSync()}');
 
-      uploadStory(result!.absolute.path);
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
+  //     uploadStory(result!.absolute.path);
+  //   } catch (e) {
+  //     debugPrint(e.toString());
+  //   }
+  // }
 
-  void uploadStory(String uri) async {
-    Get.back();
-    try {
-      File imageFile = File.fromUri(Uri.parse(uri));
-      final user = userModelFromJson(_getStorage.read('user'));
+  // void uploadStory(String uri) async {
+  //   Get.back();
+  //   try {
+  //     File imageFile = File.fromUri(Uri.parse(uri));
+  //     final user = userModelFromJson(_getStorage.read('user'));
 
-      final imageLocation = imagesRef?.child('${user.email}-${DateTime.now()}');
+  //     final imageLocation = imagesRef?.child('${user.email}-${DateTime.now()}');
 
-      await imageLocation?.putFile(imageFile);
-      final imageUrl = await imageLocation!.getDownloadURL();
-      log(imageUrl);
+  //     await imageLocation?.putFile(imageFile);
+  //     final imageUrl = await imageLocation!.getDownloadURL();
+  //     log(imageUrl);
 
-      // Upload to cloud firestore
-      StoryModel storyModel = StoryModel(
-          imageUrl: imageUrl, email: user.email, username: user.username);
-      await storiesRef
-          .add({...storyModel.toJson(), 'createdAt': Timestamp.now()});
+  //     // Upload to cloud firestore
+  //     StoryModel storyModel = StoryModel(
+  //         imageUrl: imageUrl, email: user.email, username: user.username);
+  //     await storiesRef
+  //         .add({...storyModel.toJson(), 'createdAt': Timestamp.now()});
 
-      await userStoriesRef
-          .doc(user.email)
-          .set({...storyModel.toJson(), 'lastUploaded': Timestamp.now()});
+  //     await userStoriesRef
+  //         .doc(user.email)
+  //         .set({...storyModel.toJson(), 'lastUploaded': Timestamp.now()});
 
-      fetchAllStories();
-      Get.snackbar(
-        'Story Uploaded',
-        'Successful',
-      );
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
+  //     fetchAllStories();
+  //     Get.snackbar(
+  //       'Story Uploaded',
+  //       'Successful',
+  //     );
+  //   } catch (e) {
+  //     debugPrint(e.toString());
+  //   }
+  // }
 }
