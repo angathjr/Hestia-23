@@ -1,14 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:stories_editor/stories_editor.dart';
-import 'package:story_view/story_view.dart';
 
-import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/stories/controllers/stories_controller.dart';
 import 'package:hestia_23/stories/model/stories.dart';
-import 'package:hestia_23/stories/views/story_view.dart';
 
 class Stories extends StatelessWidget {
   Stories({super.key});
@@ -40,51 +35,51 @@ class Stories extends StatelessWidget {
             () => ListView.builder(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
-              itemCount: controller.stories.length + 1,
+              itemCount: controller.stories.length,
               itemBuilder: (context, index) {
-                if (index == 0) {
-                  return GestureDetector(
-                    onTap: () {
-                      Get.to(
-                        StoriesEditor(
-                          giphyKey: "RvvTK8aN4SOt6rLKzpx9uVrq9tLFBWyv",
-                          onDone: (uri) {
-                            debugPrint(uri);
+                // if (index == 0) {
+                //   return GestureDetector(
+                //     onTap: () {
+                //       Get.to(
+                //         StoriesEditor(
+                //           giphyKey: "RvvTK8aN4SOt6rLKzpx9uVrq9tLFBWyv",
+                //           onDone: (uri) {
+                //             debugPrint(uri);
 
-                            //! Compress Image
-                            controller.compressImage(uri);
-                          },
-                          middleBottomWidget: Text(
-                            "Hestia",
-                            style: FutTheme.font1
-                                .copyWith(fontSize: _width * 0.09),
-                          ),
-                        ),
-                      );
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.all(_width * 0.01),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey[800],
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        width: _width / 3.8,
-                        height: _height / 5.5,
-                        child: const Icon(
-                          Icons.add,
-                          size: 50,
-                        ),
-                      ),
-                    ),
-                  );
-                } else {
-                  index = index - 1;
-                  return StoriesCard(
-                    index: index,
-                    story: controller.stories[index],
-                  );
-                }
+                //             //! Compress Image
+                //             controller.compressImage(uri);
+                //           },
+                //           middleBottomWidget: Text(
+                //             "Hestia",
+                //             style: FutTheme.font1
+                //                 .copyWith(fontSize: _width * 0.09),
+                //           ),
+                //         ),
+                //       );
+                //     },
+                //     child: Padding(
+                //       padding: EdgeInsets.all(_width * 0.01),
+                //       child: Container(
+                //         decoration: BoxDecoration(
+                //           color: Colors.grey[800],
+                //           borderRadius: BorderRadius.circular(15),
+                //         ),
+                //         width: _width / 3.8,
+                //         height: _height / 5.5,
+                //         child: const Icon(
+                //           Icons.add,
+                //           size: 50,
+                //         ),
+                //       ),
+                //     ),
+                //   );
+                // }
+
+                // index = index - 1;
+                return StoriesCard(
+                  index: index,
+                  story: controller.stories[index],
+                );
               },
             ),
           ),

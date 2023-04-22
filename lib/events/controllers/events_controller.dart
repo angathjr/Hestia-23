@@ -42,6 +42,7 @@ class EventsController extends GetxController {
   var departments = <DepartmentModel>[].obs;
   late CategoryModel selectedCategory;
   var selectedDepartmentIndex = 0.obs;
+  bool isInit = true;
 
   static final List<String> eventDates = [
     '-- April',
@@ -73,10 +74,10 @@ class EventsController extends GetxController {
     events.value = parsed;
     allEvents.value = parsed;
     eventsLoading(false);
+    isInit = false;
   }
 
-  void filterEvents() {
-    eventsLoading(true);
+  void filterEvents() async {
     final dept = departments.value[selectedDepartmentIndex.value];
     events.value = dept.title == 'ALL'
         ? allEvents.value
@@ -89,8 +90,11 @@ class EventsController extends GetxController {
               event.eventStart?.day == int.parse(date.value.split(' ')[0]))
           .toList());
     }
-
-    eventsLoading(false);
+    if (!isInit) {
+      eventsLoading(true);
+      await Future.delayed(const Duration(milliseconds: 50));
+      eventsLoading(false);
+    }
   }
 
   //TODO: fetch all dept
