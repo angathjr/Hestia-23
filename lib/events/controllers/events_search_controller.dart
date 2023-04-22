@@ -40,14 +40,30 @@ class EventsSearchController extends GetxController {
         : RxList(
             allEvents.where((event) => event.dept?.id == dept.id).toList());
     events.value = events
-        .where((element) =>
-            element.title!.contains(editingController.text.toUpperCase()))
+        .where((element) => element.title!
+            .toUpperCase()
+            .contains(editingController.text.toUpperCase()))
         .toList();
     if (date.value != eventDates.first) {
       events.value = RxList(events
           .where((event) =>
               event.eventStart?.day == int.parse(date.value.split(' ')[0]))
           .toList());
+    }
+    // events.
+    if (editingController.text.isNotEmpty) {
+      events.sort((a, b) {
+        int index1 = a.title!
+            .toUpperCase()
+            .indexOf(editingController.text.toUpperCase());
+        int index2 = b.title!
+            .toUpperCase()
+            .indexOf(editingController.text.toUpperCase());
+        if (index1 - index2 == 0) {
+          return a.title!.toUpperCase().compareTo(b.title!.toUpperCase());
+        }
+        return index1 - index2;
+      });
     }
   }
 

@@ -30,5 +30,6 @@ class GetXDependancyInjector {
     Get.lazyPut(() => AnimController(), fenix: true);
     Get.lazyPut(() => NavBarController(), fenix: true);
     Get.lazyPut(() => NotificationController(), fenix: true);
+   
   }
 }

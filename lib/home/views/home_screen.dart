@@ -1,16 +1,15 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:feather_icons/feather_icons.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hestia_23/animations/views/side_transitions.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
-import 'package:hestia_23/events/views/events_search_screen.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
 import 'package:hestia_23/stories/views/stories_widget.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
+import '../../animations/views/side_transitions.dart';
+import '../../events/views/events_search_screen.dart';
 import 'event_category_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -65,16 +64,23 @@ class HomeScreen extends StatelessWidget {
               actions: [
                 Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(15),
+                          bottomLeft: Radius.circular(15)),
                       color: FutTheme.primaryBg.withOpacity(0.7)),
                   child: Row(children: [
                     IconButton(
-                      onPressed: () => Get.toNamed('/search'),
+                      onPressed: () => Get.toNamed('search'),
+                      //  Navigator.push(
+                      //     context, SizeTransition5(EventsSearchScreen())),
                       icon: const Icon(FeatherIcons.search),
                     ),
                     IconButton(
                       onPressed: () => Get.toNamed('notification-1'),
-                      icon: const Icon(FeatherIcons.bell),
+                      icon: const Icon(
+                        FeatherIcons.bell,
+                        color: Colors.white,
+                      ),
                     ),
                   ]),
                 ),
@@ -87,9 +93,13 @@ class HomeScreen extends StatelessWidget {
                   [
                     Container(
                       height: height,
+                      width: width,
                       decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage("assets/images/bg.png"))),
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                "assets/images/bg.png",
+                              ))),
                       child: Column(
                         children: [
                           SizedBox(
