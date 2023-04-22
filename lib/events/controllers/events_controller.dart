@@ -151,6 +151,7 @@ class EventsController extends GetxController {
     try {
       await launchUrl(
         Uri.parse(url),
+        mode: LaunchMode.externalApplication,
       );
     } catch (e) {
       //TODO: ERROR WIDGET
