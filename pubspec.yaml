@@ -103,9 +103,14 @@ flutter:
         - asset: assets/fonts/Azonix.otf
     #       - asset: fonts/TrajanPro_Bold.ttf
     #         weight: 700
+
     - family: Sandy
       fonts:
         - asset: assets/fonts/Sandy-Bold.otf
+
+    - family: Gangof3
+      fonts:
+        - asset: assets/fonts/Gangof3.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

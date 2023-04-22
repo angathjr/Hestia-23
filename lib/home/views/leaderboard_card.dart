@@ -106,7 +106,7 @@ class LeaderBoard extends StatelessWidget {
           title: Center(
             child: Text(
               'LEADERBOARD',
-              style: FutTheme.categoryFont,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
           elevation: 0,

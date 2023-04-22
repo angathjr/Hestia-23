@@ -33,7 +33,7 @@ class NotificationScreenTwo extends StatelessWidget {
         centerTitle: true,
         title: Text(
           notificationController.selectedNotEvent.title ?? '',
-          style: FutTheme.categoryFont,
+          style: context.theme.textTheme.titleLarge,
         ),
       ),
       body: Obx(

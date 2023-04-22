@@ -50,7 +50,7 @@ class EventsSearchScreen extends StatelessWidget {
                   ),
                   Text(
                     'SEARCH',
-                    style: FutTheme.categoryFont,
+                    style: context.theme.textTheme.titleLarge,
                   ),
                 ],
               ),
@@ -215,7 +215,7 @@ class EventsSearchScreen extends StatelessWidget {
                                           height: cardHeight,
                                           decoration: BoxDecoration(
                                             border: Border.all(
-                                                color: FutTheme.secondaryColor),
+                                                color: context.theme.canvasColor),
                                             borderRadius:
                                                 BorderRadius.circular(20),
                                           ),
@@ -230,8 +230,7 @@ class EventsSearchScreen extends StatelessWidget {
                                                         BorderRadius.circular(
                                                             10),
                                                     border: Border.all(
-                                                        color: FutTheme
-                                                            .secondaryColor)),
+                                                        color: context.theme.canvasColor)),
                                                 child: ClipRRect(
                                                   borderRadius:
                                                       BorderRadius.circular(10),
@@ -243,8 +242,9 @@ class EventsSearchScreen extends StatelessWidget {
                                                       child: CircularProgressIndicator(
                                                           valueColor:
                                                               AlwaysStoppedAnimation(
-                                                                  FutTheme
-                                                                      .primaryColor),
+                                                                  
+                                                                  context.theme.primaryColor
+                                                                  ),
                                                           value:
                                                               downloadProgress
                                                                   .progress),
@@ -302,8 +302,7 @@ class EventsSearchScreen extends StatelessWidget {
                                                                   BorderRadius
                                                                       .circular(
                                                                           20),
-                                                              color: FutTheme
-                                                                  .secondaryColor),
+                                                              color:context.theme.canvasColor),
                                                           alignment:
                                                               Alignment.center,
                                                           child: Text(

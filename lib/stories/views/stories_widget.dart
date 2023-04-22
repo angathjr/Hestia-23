@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,7 +26,7 @@ class Stories extends StatelessWidget {
             ),
             Text(
               "STORIES",
-              style: TextStyle(color: Colors.white, fontSize: 15),
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ],
         ),
@@ -33,6 +35,7 @@ class Stories extends StatelessWidget {
           height: _height / 6.5,
           child: Obx(
             () => ListView.builder(
+              padding: const EdgeInsets.only(left: 10),
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               itemCount: controller.stories.length,

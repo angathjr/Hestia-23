@@ -105,7 +105,7 @@ class RegisteredEventsNotificatonScreen extends StatelessWidget {
                                       child: Text(
                                         "${profileController.regEvents[index].title}",
                                         style: FutTheme.font5.copyWith(
-                                            color: FutTheme.secondaryColor,
+                                            color: context.theme.canvasColor,
                                             overflow: TextOverflow.clip),
                                       ),
                                     ),
