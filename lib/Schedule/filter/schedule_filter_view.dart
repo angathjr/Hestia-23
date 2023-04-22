@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
-class Filter extends StatelessWidget {
-  const Filter({super.key});
+class FilterScreen extends StatelessWidget {
+  const FilterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +46,7 @@ class Filter extends StatelessWidget {
                                       scrollDirection: Axis.horizontal,
                                       itemCount: 5,
                                       itemBuilder: ((context, index) {
-                                        return const Filter_List_Widget();
+                                        return const FilterListWidget();
                                       })),
                                 ),
                                 SizedBox(
@@ -64,7 +62,7 @@ class Filter extends StatelessWidget {
                                       scrollDirection: Axis.horizontal,
                                       itemCount: 5,
                                       itemBuilder: ((context, index) {
-                                        return const Filter_List_Widget();
+                                        return const FilterListWidget();
                                       })),
                                 ),
                               ],
@@ -78,8 +76,9 @@ class Filter extends StatelessWidget {
 }
 
 //Single Category widget
-class Filter_List_Widget extends StatelessWidget {
-  const Filter_List_Widget({
+
+class FilterListWidget extends StatelessWidget {
+  const FilterListWidget({
     super.key,
   });
 
