@@ -55,7 +55,6 @@ class MyApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(
               color: Colors.black, scrolledUnderElevation: 0)),
       // home: NavBarPage(),
-      initialRoute: '/',
       getPages: [
         GetPage(
             name: '/',
@@ -75,7 +74,6 @@ class MyApp extends StatelessWidget {
             transitionDuration: const Duration(milliseconds: 500)),
         GetPage(name: '/event', page: () => EventDetailsScreen()),
         GetPage(name: '/story-view', page: () => StoriesViewScreen()),
-        GetPage(name: '/filter', page: () => const Filter()),
         GetPage(
             name: '/notification-1',
             page: () => NotificationScreen(),
