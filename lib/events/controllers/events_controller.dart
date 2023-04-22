@@ -72,11 +72,11 @@ class EventsController extends GetxController {
     // parsed.forEach((element) => print(element.slug));
     events.value = parsed;
     allEvents.value = parsed;
-
     eventsLoading(false);
   }
 
   void filterEvents() {
+    eventsLoading(true);
     final dept = departments.value[selectedDepartmentIndex.value];
     events.value = dept.title == 'ALL'
         ? allEvents.value
@@ -89,6 +89,8 @@ class EventsController extends GetxController {
               event.eventStart?.day == int.parse(date.value.split(' ')[0]))
           .toList());
     }
+
+    eventsLoading(false);
   }
 
   //TODO: fetch all dept

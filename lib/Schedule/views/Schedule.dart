@@ -85,30 +85,30 @@ class Schedule extends StatelessWidget {
             ),
             sliver: Obx(
               () => (controller.eventsLoading.value == false)
-                  ?  SliverList(
-                delegate: SliverChildBuilderDelegate(
-                    childCount: controller.events.length,
-                        (BuildContext context, index) {
-                      return AnimationConfiguration.staggeredList(
-                        position: index,
-                        duration: const Duration(milliseconds: 100),
-                        child: SlideAnimation(
-                          curve: Curves.fastLinearToSlowEaseIn,
-                          duration: const Duration(milliseconds: 2500),
-                          // verticalOffset: 300,
-                          // horizontalOffset: 30,
-                          child: FadeInAnimation(
-                              duration:
-                              const Duration(milliseconds: 1500),
+                  ? AnimationLimiter(
+                      child: SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                            childCount: controller.events.length,
+                            (BuildContext context, index) {
+                          return AnimationConfiguration.staggeredList(
+                            position: index,
+                            duration: const Duration(milliseconds: 100),
+                            child: SlideAnimation(
                               curve: Curves.fastLinearToSlowEaseIn,
-                              child:TimeLineofEvents(
-                                event: controller.events[index],
-                              )
-                             ),
-                        ),
-                      );
-                    }),
-              )
+                              duration: const Duration(milliseconds: 2500),
+                              // verticalOffset: 300,
+                              // horizontalOffset: 30,
+                              child: FadeInAnimation(
+                                  duration: const Duration(milliseconds: 1500),
+                                  curve: Curves.fastLinearToSlowEaseIn,
+                                  child: TimeLineofEvents(
+                                    event: controller.events[index],
+                                  )),
+                            ),
+                          );
+                        }),
+                      ),
+                    )
                   : SliverToBoxAdapter(
                       child: SizedBox(
                           height: h * 0.6,
@@ -189,9 +189,8 @@ class TimeLineofEvents extends StatelessWidget {
   }
 }
 
-
 class Dates extends StatelessWidget {
-   Dates(
+  Dates(
       {super.key,
       required this.date,
       required this.index,
@@ -199,7 +198,7 @@ class Dates extends StatelessWidget {
   final int index;
   final ScheduleDate date;
   final ScheduleController controller;
-  final AnimController anim =Get.find();
+  final AnimController anim = Get.find();
 
   @override
   Widget build(BuildContext context) {
