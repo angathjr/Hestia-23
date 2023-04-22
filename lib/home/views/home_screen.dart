@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+              padding: EdgeInsets.symmetric(horizontal: 0),
               sliver: SliverList(
                 delegate: SliverChildListDelegate(
                   [
@@ -157,7 +157,7 @@ class HomeScreen extends StatelessWidget {
                                   // autoPlay: true,
                                   autoPlayCurve: Curves.linearToEaseOut,
                                   height: height * 0.46,
-                                  viewportFraction: 0.72,
+                                  viewportFraction: 0.68,
                                   enlargeCenterPage: true),
                             ),
                           ),

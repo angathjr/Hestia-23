@@ -24,7 +24,7 @@ class GeneralNotificationsScreen extends StatelessWidget {
     double cardHeight = h * 0.2;
 
     return Obx(
-      () => AnimationLimiter(
+      () => (notificationController.generalNotificationsLoading.value)?primaryLoadingWidget:AnimationLimiter(
         child: ListView.builder(
           physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics()),
