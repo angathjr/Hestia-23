@@ -216,7 +216,7 @@ class Dates extends StatelessWidget {
           decoration: BoxDecoration(
               color: controller.selectedDateIndex.value == index
                   ? context.theme.primaryColor
-                  : context.theme.secondaryHeaderColor,
+                  : context.theme.cardColor,
               borderRadius: const BorderRadius.all(Radius.circular(8))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

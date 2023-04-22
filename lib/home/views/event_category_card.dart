@@ -22,7 +22,7 @@ class CategoryCard extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).secondaryHeaderColor,
+        color: Theme.of(context).canvasColor,
       ),
       child: Column(
         children: [
@@ -56,7 +56,7 @@ class CategoryCard extends StatelessWidget {
                               (context, url, downloadProgress) => Center(
                             child: CircularProgressIndicator(
                                 valueColor: AlwaysStoppedAnimation(
-                                 context.theme.primaryColor),
+                                    context.theme.primaryColor),
                                 value: downloadProgress.progress),
                           ),
                           imageUrl: categoryModel.imgUrl,

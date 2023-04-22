@@ -10,7 +10,7 @@ import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
 import 'package:hestia_23/stories/views/stories_widget.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
-import 'package:hestia_23/theme/controllers/theme_controller.dart';
+import 'package:hestia_23/theme/controllers/theme_animation_controller.dart';
 import 'package:hestia_23/theme/views/switch_theme_screen.dart';
 import 'event_category_card.dart';
 
@@ -18,9 +18,13 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   final EventsController eventController = Get.find();
+
   final AuthController authController = Get.find();
+
   final ProfileController profController = Get.find();
-  final ThemeController themeController = Get.put(ThemeController());
+
+  final ThemeAnimationController themeController =
+      Get.put(ThemeAnimationController());
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +56,11 @@ class HomeScreen extends StatelessWidget {
                         isDismissible: true,
                         context: context,
                         backgroundColor: Colors.transparent,
+                        transitionAnimationController:
+                            themeController.animationController,
                         builder: (context) => BackdropFilter(
                             filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-                            child: const SwitchThemeScreen()),
+                            child:  SwitchThemeScreen()),
                       );
                     },
                     child: Image.asset(
