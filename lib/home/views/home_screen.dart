@@ -8,8 +8,7 @@ import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
 import 'package:hestia_23/stories/views/stories_widget.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
-import '../../animations/views/side_transitions.dart';
-import '../../events/views/events_search_screen.dart';
+
 import 'event_category_card.dart';
 
 class HomeScreen extends StatelessWidget {
