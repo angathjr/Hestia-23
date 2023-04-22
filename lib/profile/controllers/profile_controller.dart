@@ -17,7 +17,7 @@ class ProfileController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchRegCount();
+    fetchRegEventsSlugs();
     _storage.listenKey('user', (value) {
       user.value = UserModel.fromJson(_storage.read('user'));
     });
@@ -34,11 +34,11 @@ class ProfileController extends GetxController {
     user.value = userModel;
   }
 
-  void fetchRegCount() async {
-    final Response response = await api.getApi("/api/events/reg/events/");
+  // void fetchRegCount() async {
+  //   final Response response = await api.getApi("/api/events/reg/events/");
 
-    registeredEventCount.value = response.body['count'];
-  }
+  //   registeredEventCount.value = response.body['count'];
+  // }
 
   Future fetchRegEventsSlugs() async {
     final Response response = await api.getApi('/api/events/reg/events/');
@@ -48,6 +48,7 @@ class ProfileController extends GetxController {
       if (e['event'] != null) regEvents.add(EventModel.fromJson(e['event']));
     }
     this.regEvents.value = regEvents;
+    registeredEventCount.value = regEvents.length;
     return regEvents;
   }
 }

@@ -99,8 +99,9 @@ class EventsSearchScreen extends StatelessWidget {
                               child: IconButton(
                                   icon: Icon(FeatherIcons.filter,
                                       size: width * 0.06),
-                                  onPressed: () =>
-                                      Get.to(() => FilterScreen())),
+                                  onPressed: () {}
+                                  // Get.to(() => FilterScreen())
+                                  ),
                             ),
                           )
                         ],
@@ -215,7 +216,8 @@ class EventsSearchScreen extends StatelessWidget {
                                           height: cardHeight,
                                           decoration: BoxDecoration(
                                             border: Border.all(
-                                                color: context.theme.canvasColor),
+                                                color:
+                                                    context.theme.canvasColor),
                                             borderRadius:
                                                 BorderRadius.circular(20),
                                           ),
@@ -230,7 +232,8 @@ class EventsSearchScreen extends StatelessWidget {
                                                         BorderRadius.circular(
                                                             10),
                                                     border: Border.all(
-                                                        color: context.theme.canvasColor)),
+                                                        color: context.theme
+                                                            .canvasColor)),
                                                 child: ClipRRect(
                                                   borderRadius:
                                                       BorderRadius.circular(10),
@@ -242,9 +245,8 @@ class EventsSearchScreen extends StatelessWidget {
                                                       child: CircularProgressIndicator(
                                                           valueColor:
                                                               AlwaysStoppedAnimation(
-                                                                  
-                                                                  context.theme.primaryColor
-                                                                  ),
+                                                                  context.theme
+                                                                      .primaryColor),
                                                           value:
                                                               downloadProgress
                                                                   .progress),
@@ -302,7 +304,9 @@ class EventsSearchScreen extends StatelessWidget {
                                                                   BorderRadius
                                                                       .circular(
                                                                           20),
-                                                              color:context.theme.canvasColor),
+                                                              color: context
+                                                                  .theme
+                                                                  .canvasColor),
                                                           alignment:
                                                               Alignment.center,
                                                           child: Text(
@@ -352,7 +356,7 @@ class EventsSearchScreen extends StatelessWidget {
                 () => GestureDetector(
                   onTap: () => searchController.setDepartmentIndex(index),
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     alignment: Alignment.center,
                     width: width * 0.35,
                     decoration: BoxDecoration(

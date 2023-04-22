@@ -177,7 +177,8 @@ class EventScreen extends StatelessWidget {
                                                 child: CircularProgressIndicator(
                                                     valueColor:
                                                         AlwaysStoppedAnimation(
-                                                           context.theme.primaryColor),
+                                                            context.theme
+                                                                .primaryColor),
                                                     value: downloadProgress
                                                         .progress),
                                               ),
@@ -285,6 +286,7 @@ class EventScreen extends StatelessWidget {
                 () => GestureDetector(
                   onTap: () => controller.setDepartmentIndex(index),
                   child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     alignment: Alignment.center,
                     width: width * 0.35,
                     decoration: BoxDecoration(
@@ -294,13 +296,15 @@ class EventScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(33),
                         border: Border.all(color: const Color(0xffFFD730))),
                     child: controller.departmentLoading.value == true
-                        ? Text(
-                            "${controller.departments[index].title?.toUpperCase()}",
-                            style: controller.selectedDepartmentIndex.value !=
-                                    index
-                                ? FutTheme.font6
-                                : FutTheme.font6
-                                    .copyWith(color: const Color(0xff373737)),
+                        ? FittedBox(
+                            child: Text(
+                              "${controller.departments[index].title?.toUpperCase()}",
+                              style: controller.selectedDepartmentIndex.value !=
+                                      index
+                                  ? FutTheme.font6
+                                  : FutTheme.font6
+                                      .copyWith(color: const Color(0xff373737)),
+                            ),
                           )
                         : const Text("....."),
                   ),

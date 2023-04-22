@@ -28,6 +28,7 @@ class EventDetailsScreen extends StatelessWidget {
               automaticallyImplyLeading: false,
               pinned: false,
               floating: true,
+              centerTitle: false,
               snap: true,
               titleSpacing: 20,
               title: GestureDetector(
