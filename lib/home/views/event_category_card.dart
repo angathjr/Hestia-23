@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/models/category.dart';
@@ -9,11 +10,9 @@ class CategoryCard extends StatelessWidget {
   const CategoryCard({
     Key? key,
     required this.categoryModel,
-    required this.onTap,
   }) : super(key: key);
 
   final CategoryModel categoryModel;
-  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,9 @@ class CategoryCard extends StatelessWidget {
     var cardHeight = h * 0.46;
 
     return Container(
-      color: const Color(0xff1C1C1C),
+      decoration: BoxDecoration(
+        color: Theme.of(context).secondaryHeaderColor,
+      ),
       child: Column(
         children: [
           SizedBox(
@@ -38,7 +39,7 @@ class CategoryCard extends StatelessWidget {
                       child: Text(
                         categoryModel.name,
                         style: FutTheme.categoryFont
-                            .copyWith(fontSize: cardHeight * 0.08),
+                            .copyWith(fontSize: cardHeight * 0.067),
                       ),
                     ),
                   ),
@@ -80,18 +81,12 @@ class CategoryCard extends StatelessWidget {
               ),
             ),
           ),
-
-          //TODO : need to make new clips for the check it out
-
           Expanded(
               flex: 5,
-              child: GestureDetector(
-                onTap: () => onTap(),
-                child: Container(
-                    padding: EdgeInsets.only(left: w * 0.07),
-                    alignment: Alignment.centerLeft,
-                    child: Image.asset("assets/images/checkitout.png")),
-              ))
+              child: Container(
+                  padding: EdgeInsets.only(left: w * 0.07),
+                  alignment: Alignment.centerLeft,
+                  child: Image.asset("assets/images/checkitout.png")))
         ],
       ),
     );

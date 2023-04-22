@@ -69,8 +69,8 @@ class EventDetailsScreen extends StatelessWidget {
                           ),
                           Text(
                             "${eventsController.selectedEvent.title}",
-                            style: FutTheme.font1
-                                .copyWith(fontSize: height * 0.028),
+                            style: context.theme.textTheme.headlineMedium
+                                ?.copyWith(fontSize: height * 0.028),
                           ),
                           Text(
                             "${eventsController.selectedEvent.dept?.title}",
@@ -153,7 +153,8 @@ class EventDetailsScreen extends StatelessWidget {
                                           color: Colors.black),
                                     ),
                                     Text(
-                                      '${eventsController.selectedEvent.prize}',
+                                      eventsController.formatPrice(
+                                          eventsController.selectedEvent.prize),
                                       style: FutTheme.font1.copyWith(
                                           fontSize: height * 0.03,
                                           fontWeight: FontWeight.w700,
@@ -233,45 +234,60 @@ class EventDetailsScreen extends StatelessWidget {
                     ),
 
                     //Contact section
-
-                    Container(
-                      width: width,
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "CONTACT",
-                        style:
-                            FutTheme.font5.copyWith(fontSize: height * 0.023),
+                    if (eventsController.selectedEvent.coordinator1 != null ||
+                        eventsController.selectedEvent.coordinator2 != null)
+                      Container(
+                        width: width,
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "CONTACT",
+                          style:
+                              FutTheme.font5.copyWith(fontSize: height * 0.023),
+                        ),
                       ),
-                    ),
                     SizedBox(
                       height: height * 0.02,
                     ),
                     Row(
                       children: [
-                        contactDetails(width, height,
-                            '${eventsController.selectedEvent.coordinator1?.committeeName}'),
-                        SizedBox(
-                          width: width * 0.11,
-                        ),
-                        contactDetails(width, height,
-                            '${eventsController.selectedEvent.coordinator2?.committeeName}'),
+                        if (eventsController.selectedEvent.coordinator1 != null)
+                          contactDetails(
+                              phoneNumber: eventsController
+                                  .selectedEvent.coordinator1?.phoneNumber,
+                              width,
+                              height,
+                              '${eventsController.selectedEvent.coordinator1?.name}'),
+                        if (eventsController.selectedEvent.coordinator2 != null)
+                          SizedBox(
+                            width: width * 0.11,
+                          ),
+                        if (eventsController.selectedEvent.coordinator2 != null)
+                          contactDetails(
+                              phoneNumber: eventsController
+                                  .selectedEvent.coordinator2?.phoneNumber,
+                              width,
+                              height,
+                              '${eventsController.selectedEvent.coordinator2?.name}'),
                       ],
                     ),
 
                     SizedBox(
                       height: height * 0.05,
                     ),
-                    Container(
-                      alignment: Alignment.center,
-                      width: width,
-                      height: height * 0.06,
-                      decoration: BoxDecoration(
-                          color: const Color(0xffDEFD72),
-                          borderRadius: BorderRadius.circular(127)),
-                      child: Text(
-                        "REGISTER NOW >>",
-                        style: FutTheme.font5.copyWith(
-                            color: Colors.black, fontSize: height * 0.024),
+                    GestureDetector(
+                      onTap: () => eventsController.launchUrlInWeb(),
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: width,
+                        height: height * 0.06,
+                        decoration: BoxDecoration(
+                            color: const Color(0xffDEFD72),
+                            borderRadius: BorderRadius.circular(127)),
+                        child: Text(
+                          "REGISTER NOW >>",
+                          style: FutTheme.font5.copyWith(
+                              color: Colors.black, fontSize: height * 0.024),
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -287,30 +303,35 @@ class EventDetailsScreen extends StatelessWidget {
     );
   }
 
-  SizedBox contactDetails(double width, double height, String name) {
+  SizedBox contactDetails(double width, double height, String name,
+      {String? phoneNumber}) {
     return SizedBox(
-        width: width * 0.24,
-        height: height * 0.07,
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              width: width * 0.09,
-              height: width * 0.09,
-              decoration: const BoxDecoration(
-                  color: Color(0xffD1D1D1), shape: BoxShape.circle),
-              child: Icon(
-                Icons.call,
-                size: width * 0.05,
-                color: Colors.black,
-              ),
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        GestureDetector(
+          onTap: () => eventsController.launchPhoneDialer(phoneNumber),
+          child: Container(
+            width: width * 0.09,
+            height: width * 0.09,
+            decoration: const BoxDecoration(
+                color: Color(0xffD1D1D1), shape: BoxShape.circle),
+            child: Icon(
+              Icons.call,
+              size: width * 0.05,
+              color: Colors.black,
             ),
-            Text(
-              name,
-              style: FutTheme.font4.copyWith(fontSize: height * 0.02),
-            )
-          ],
-        ));
+          ),
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        Text(
+          name,
+          style: FutTheme.font4.copyWith(fontSize: height * 0.02),
+          overflow: TextOverflow.ellipsis,
+        )
+      ],
+    ));
   }
 }

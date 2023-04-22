@@ -7,6 +7,8 @@ import 'package:hestia_23/core/widgets/back_button_widget.dart';
 import 'package:hestia_23/notifications/controllers/notification_controller.dart';
 import 'package:intl/intl.dart';
 
+import '../../core/Constants..dart';
+
 class NotificationScreenTwo extends StatelessWidget {
   NotificationScreenTwo({super.key});
 
@@ -31,7 +33,7 @@ class NotificationScreenTwo extends StatelessWidget {
         centerTitle: true,
         title: Text(
           notificationController.selectedNotEvent.title ?? '',
-          style: GoogleFonts.questrial(textStyle: style1),
+          style: FutTheme.categoryFont,
         ),
       ),
       body: Obx(
@@ -40,46 +42,44 @@ class NotificationScreenTwo extends StatelessWidget {
           child: ListView.builder(
             itemCount: notificationController.notifications.length,
             itemBuilder: (BuildContext context, int index) {
+              final notification = notificationController.notifications[index];
               return Container(
                 margin: const EdgeInsets.only(bottom: 30),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 30,
+                  horizontal: 30,
+                ),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     color: const Color.fromARGB(255, 33, 32, 32)),
-                height: h * 0.23,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: Text(
-                        'Registration has begun',
-                        style: GoogleFonts.questrial(textStyle: style1),
+                    Text(
+                      '${notification.title}',
+                      style: GoogleFonts.questrial(textStyle: style1)
+                          .copyWith(fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        text: '${notification.message}',
+                        style: GoogleFonts.questrial(textStyle: style2),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: RichText(
-                        text: TextSpan(
-                          text:
-                              '${notificationController.notifications.value[index].message}',
-                          style: GoogleFonts.questrial(textStyle: style2),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          DateFormat('h:mm a').format(notificationController
+                                  .notifications[index].createdAt ??
+                              DateTime.now()),
+                          style: GoogleFonts.questrial(textStyle: style1),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            DateFormat('h:mm a').format(notificationController
-                                    .notifications[index].createdAt ??
-                                DateTime.now()),
-                            style: GoogleFonts.questrial(textStyle: style1),
-                          ),
-                        ],
-                      ),
+                      ],
                     )
                   ],
                 ),

@@ -42,15 +42,18 @@ dependencies:
   intl: ^0.18.0
   firebase_messaging: ^14.4.0
   firebase_core: ^2.9.0
-  share_plus: ^6.3.2
-  stories_editor: ^0.2.2
   story_view: ^0.14.0
   cloud_firestore: ^4.5.2
   firebase_storage: ^11.1.1
-  flutter_image_compress: ^1.1.3
   cached_network_image: ^3.2.3
+  url_launcher: ^6.1.10
+  feather_icons: ^1.2.0
+  firebase_crashlytics: ^3.1.1
+  flutter_staggered_animations: ^1.1.1
   carbon_icons: ^0.0.1+2
-  
+  flutter_polygon: ^0.3.0+2
+  circular_profile_avatar: ^2.0.5
+  upgrader: ^6.2.0
 
 dev_dependencies:
   flutter_test:
@@ -92,14 +95,17 @@ flutter:
   fonts:
     - family: Geomanist
       fonts:
-        - asset: assets\fonts\Geomanist-Bold .ttf
+        - asset: assets/fonts/Geomanist-Bold.ttf
     #       - asset: fonts/Schyler-Italic.ttf
     #         style: italic
     - family: Azonix
       fonts:
         - asset: assets/fonts/Azonix.otf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+    #       - asset: fonts/TrajanPro_Bold.ttf
+    #         weight: 700
+    - family: Sandy
+      fonts:
+        - asset: assets/fonts/Sandy-Bold.otf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/Schedule/controller/schedule_controller.dart';
 import 'package:hestia_23/core/Constants..dart';
-import 'package:hestia_23/core/animation_controller.dart';
+import 'package:hestia_23/animations/controllers/animation_controller.dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/events/models/event.dart';
 import 'package:intl/intl.dart';
@@ -84,15 +85,30 @@ class Schedule extends StatelessWidget {
             ),
             sliver: Obx(
               () => (controller.eventsLoading.value == false)
-                  ? SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                      childCount: controller.events.length,
-                      (context, index) {
-                        return TimeLineofEvents(
-                          event: controller.events[index],
-                        );
-                      },
-                    ))
+                  ? AnimationLimiter(
+                      child: SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                            childCount: controller.events.length,
+                            (BuildContext context, index) {
+                          return AnimationConfiguration.staggeredList(
+                            position: index,
+                            duration: const Duration(milliseconds: 100),
+                            child: SlideAnimation(
+                              curve: Curves.fastLinearToSlowEaseIn,
+                              duration: const Duration(milliseconds: 2500),
+                              // verticalOffset: 300,
+                              // horizontalOffset: 30,
+                              child: FadeInAnimation(
+                                  duration: const Duration(milliseconds: 1500),
+                                  curve: Curves.fastLinearToSlowEaseIn,
+                                  child: TimeLineofEvents(
+                                    event: controller.events[index],
+                                  )),
+                            ),
+                          );
+                        }),
+                      ),
+                    )
                   : SliverToBoxAdapter(
                       child: SizedBox(
                           height: h * 0.6,
@@ -173,9 +189,8 @@ class TimeLineofEvents extends StatelessWidget {
   }
 }
 
-
 class Dates extends StatelessWidget {
-   Dates(
+  Dates(
       {super.key,
       required this.date,
       required this.index,
@@ -183,7 +198,7 @@ class Dates extends StatelessWidget {
   final int index;
   final ScheduleDate date;
   final ScheduleController controller;
-  final AnimController anim =Get.find();
+  final AnimController anim = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -200,8 +215,8 @@ class Dates extends StatelessWidget {
           margin: EdgeInsets.symmetric(horizontal: w * 0.02),
           decoration: BoxDecoration(
               color: controller.selectedDateIndex.value == index
-                  ? FutTheme.primaryColor
-                  : FutTheme.primaryBg,
+                  ? context.theme.primaryColor
+                  : context.theme.secondaryHeaderColor,
               borderRadius: const BorderRadius.all(Radius.circular(8))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -243,7 +258,7 @@ class CustomTimeLine extends StatelessWidget {
     return Obx(
       () => AnimatedContainer(
         curve: Curves.easeOutCubic,
-        duration: const Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 1000),
         height: (anim.start.value == false) ? h * 0.25 : 0,
         width: w * 0.09,
         child: CustomPaint(

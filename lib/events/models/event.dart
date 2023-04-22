@@ -182,29 +182,25 @@ class EventModel {
 
 class Coordinator {
   Coordinator({
-    this.id,
-    this.user,
-    this.role,
-    this.committeeName,
+    this.name,
+    this.email,
+    this.phoneNumber,
   });
 
-  int? id;
-  String? user;
-  String? role;
-  String? committeeName;
+  String? name;
+  String? email;
+  String? phoneNumber;
 
   factory Coordinator.fromJson(Map<String, dynamic> json) => Coordinator(
-        id: json["id"],
-        user: json["user"],
-        role: json["role"],
-        committeeName: json["committee_name"],
+        name: json["name"],
+        email: json["email"],
+        phoneNumber: json["phone_number"],
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "user": user,
-        "role": role,
-        "committee_name": committeeName,
+        "name": name,
+        "email": email,
+        "committee_name": phoneNumber,
       };
 }
 
