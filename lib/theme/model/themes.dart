@@ -28,6 +28,7 @@ class Themes {
   void switchTheme(int index) async {
     await _saveThemeToBox(index);
     Get.changeTheme(theme);
+    print(index.toString());
   }
 
   static final futureTheme = ThemeData.dark().copyWith(
