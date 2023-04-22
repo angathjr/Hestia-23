@@ -30,7 +30,7 @@ class NavBarPage extends StatelessWidget {
       onWillPop: () async => false,
       child: UpgradeAlert(
         upgrader: Upgrader(
-          debugDisplayAlways: true,
+          durationUntilAlertAgain: Duration.zero,
           canDismissDialog: false,
           shouldPopScope: () => false,
           showIgnore: false,

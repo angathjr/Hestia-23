@@ -54,10 +54,12 @@ dependencies:
   flutter_polygon: ^0.3.0+2
   circular_profile_avatar: ^2.0.5
   upgrader: ^6.2.0
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  change_app_package_name: ^1.1.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.hestia_23">
+    package="com.tkmce.hestia22">
      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -15,7 +15,7 @@
         </intent>
     </queries>
    <application
-        android:label="hestia_23"
+        android:label="Hestia 23"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
