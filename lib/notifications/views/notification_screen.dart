@@ -113,6 +113,7 @@ class NotificationScreen extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(
                 width * 0.04, width * 0.04, width * 0.04, 0),
             child: TabBarView(
+              physics: const NeverScrollableScrollPhysics(),
               children: [
                 //tab bar view for general events
                 GeneralNotificationsScreen(),

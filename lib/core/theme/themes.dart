@@ -63,9 +63,8 @@ class Themes {
 
     scaffoldBackgroundColor: Colors.black,
     iconTheme: const IconThemeData(color: Colors.white),
-    focusColor: Colors.grey,
-    primaryColor: const Color(0xffFFD730),
-    cardColor: const Color(0xff1A1A1A),
+    primaryColor: const Color(0xffD5BA95),
+    secondaryHeaderColor: const Color(0xff731714),
 
     //text themes
 

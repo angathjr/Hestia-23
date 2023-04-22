@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
           name: '/notification-1',
           page: () => NotificationScreen(),
           curve: Curves.fastLinearToSlowEaseIn,
-          transitionDuration: const Duration(milliseconds: 1000),
+          transitionDuration: const Duration(milliseconds: 500),
         ),
       ],
     );
