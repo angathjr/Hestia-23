@@ -215,8 +215,8 @@ class Dates extends StatelessWidget {
           margin: EdgeInsets.symmetric(horizontal: w * 0.02),
           decoration: BoxDecoration(
               color: controller.selectedDateIndex.value == index
-                  ? FutTheme.primaryColor
-                  : FutTheme.primaryBg,
+                  ? context.theme.primaryColor
+                  : context.theme.secondaryHeaderColor,
               borderRadius: const BorderRadius.all(Radius.circular(8))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/models/category.dart';
@@ -20,7 +21,9 @@ class CategoryCard extends StatelessWidget {
     var cardHeight = h * 0.46;
 
     return Container(
-      color: const Color(0xff1C1C1C),
+      decoration: BoxDecoration(
+        color: Theme.of(context).secondaryHeaderColor,
+      ),
       child: Column(
         children: [
           SizedBox(

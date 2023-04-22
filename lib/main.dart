@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/Schedule/views/Schedule.dart';
+import 'package:hestia_23/core/theme/themes.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_search_screen.dart';
 import 'package:hestia_23/navbar/views/navbar_screen.dart';
@@ -48,12 +49,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       enableLog: true,
       title: 'Hestia 23',
-      theme: ThemeData(
-          useMaterial3: true,
-          brightness: Brightness.dark,
-          scaffoldBackgroundColor: Colors.black,
-          appBarTheme: const AppBarTheme(
-              color: Colors.black, scrolledUnderElevation: 0)),
+      theme: Themes.futureTheme,
+      // ThemeData(
+      //     useMaterial3: true,
+      //     brightness: Brightness.dark,
+      //     scaffoldBackgroundColor: Colors.black,
+      //     appBarTheme: const AppBarTheme(
+      //         color: Colors.black, scrolledUnderElevation: 0)),
       getPages: [
         GetPage(
             name: '/',

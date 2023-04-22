@@ -47,10 +47,15 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "hi ${profController.user.value.name?.split(' ').first}",
-                        style: FutTheme.categoryFont
-                            .copyWith(fontSize: width * 0.04),
-                      ),
+                          "hi ${profController.user.value.name?.split(' ').first}",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge
+                              ?.copyWith(fontSize: width * 0.04)
+
+                          // FutTheme.categoryFont
+                          //     .copyWith(fontSize: width * 0.04),
+                          ),
                       FittedBox(
                         child: Text("welcome to the timeless oddessey",
                             style: FutTheme.categoryFont
@@ -115,11 +120,12 @@ class HomeScreen extends StatelessWidget {
                               alignment: Alignment.center,
                               // width: width,
                               // height: height * 0.08,
-                              child: Text(
-                                "EXPLORE EVENTS",
-                                style: FutTheme.categoryFont
-                                    .copyWith(fontSize: width * 0.075),
-                              ),
+                              child: Text("EXPLORE EVENTS",
+                                  style: context.theme.textTheme.titleLarge
+                                      ?.copyWith(fontSize: width * 0.075)
+                                  //  FutTheme.categoryFont
+                                  //     .copyWith(fontSize: width * 0.075),
+                                  ),
                             ),
                           ),
 

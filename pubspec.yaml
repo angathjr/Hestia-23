@@ -96,14 +96,17 @@ flutter:
   fonts:
     - family: Geomanist
       fonts:
-        - asset: assets\fonts\Geomanist-Bold .ttf
+        - asset: assets/fonts/Geomanist-Bold.ttf
     #       - asset: fonts/Schyler-Italic.ttf
     #         style: italic
     - family: Azonix
       fonts:
         - asset: assets/fonts/Azonix.otf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+    #       - asset: fonts/TrajanPro_Bold.ttf
+    #         weight: 700
+    - family: Sandy
+      fonts:
+        - asset: assets/fonts/Sandy-Bold.otf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

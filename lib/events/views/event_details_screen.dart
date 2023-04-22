@@ -69,8 +69,8 @@ class EventDetailsScreen extends StatelessWidget {
                           ),
                           Text(
                             "${eventsController.selectedEvent.title}",
-                            style: FutTheme.font1
-                                .copyWith(fontSize: height * 0.028),
+                            style: context.theme.textTheme.headlineMedium
+                                ?.copyWith(fontSize: height * 0.028),
                           ),
                           Text(
                             "${eventsController.selectedEvent.dept?.title}",

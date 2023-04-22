@@ -43,7 +43,7 @@ class EventScreen extends StatelessWidget {
                 ),
                 Text(
                   Get.arguments.toString(),
-                  style: FutTheme.categoryFont,
+                  style: context.theme.textTheme.titleLarge,
                 ),
               ],
             ),
@@ -123,7 +123,7 @@ class EventScreen extends StatelessWidget {
             sliver: Obx(
               () => (controller.eventsLoading.value == false)
                   ? AnimationLimiter(
-                    child: SliverList(
+                      child: SliverList(
                         delegate: SliverChildBuilderDelegate(
                             childCount: controller.events.length,
                             (BuildContext context, index) {
@@ -138,19 +138,28 @@ class EventScreen extends StatelessWidget {
                                 duration: const Duration(milliseconds: 1500),
                                 curve: Curves.fastLinearToSlowEaseIn,
                                 child: Padding(
-                                  padding: EdgeInsets.only(bottom: height * 0.02),
+                                  padding:
+                                      EdgeInsets.only(bottom: height * 0.02),
                                   child: Container(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: width * 0.05),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: width * 0.05),
                                     height: cardHeight,
                                     width: width,
                                     decoration: BoxDecoration(
-                                      boxShadow:[ BoxShadow(blurRadius: 40,spreadRadius: 10,color: Colors.black.withOpacity(0.1))],
-                                        border:
-                                            Border.all(color: const Color(0xffFFD730)),
-                                        borderRadius: BorderRadius.circular(30)),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              blurRadius: 40,
+                                              spreadRadius: 10,
+                                              color:
+                                                  Colors.black.withOpacity(0.1))
+                                        ],
+                                        border: Border.all(
+                                            color: const Color(0xffFFD730)),
+                                        borderRadius:
+                                            BorderRadius.circular(30)),
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
                                       children: [
                                         ClipRRect(
                                           borderRadius: const BorderRadius.only(
@@ -162,15 +171,20 @@ class EventScreen extends StatelessWidget {
                                             decoration: const BoxDecoration(),
                                             child: CachedNetworkImage(
                                               progressIndicatorBuilder:
-                                                  (context, url, downloadProgress) =>
+                                                  (context, url,
+                                                          downloadProgress) =>
                                                       Center(
                                                 child: CircularProgressIndicator(
-                                                    valueColor: AlwaysStoppedAnimation(
-                                                        FutTheme.primaryColor),
-                                                    value: downloadProgress.progress),
+                                                    valueColor:
+                                                        AlwaysStoppedAnimation(
+                                                            FutTheme
+                                                                .primaryColor),
+                                                    value: downloadProgress
+                                                        .progress),
                                               ),
-                                              errorWidget: (context, url, error) =>
-                                                  Icon(Icons.error),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      Icon(Icons.error),
                                               imageUrl:
                                                   '${controller.events[index].image}',
                                               fit: BoxFit.cover,
@@ -181,21 +195,22 @@ class EventScreen extends StatelessWidget {
                                             width: width * 0.6,
                                             child: Text(
                                               "${controller.events[index].title}",
-                                              style: FutTheme.mFont
-                                                  .copyWith(color: Colors.white),
+                                              style: FutTheme.mFont.copyWith(
+                                                  color: Colors.white),
                                               softWrap: true,
                                               textAlign: TextAlign.center,
                                             )),
                                         GestureDetector(
                                           onTap: () {
-                                            controller
-                                                .goToEvent(controller.events[index]);
+                                            controller.goToEvent(
+                                                controller.events[index]);
                                           },
                                           child: Container(
                                             height: cardHeight * 0.1,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(10),
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
                                                 color: const Color(0xffFFD730)),
                                             child: Row(
                                               mainAxisAlignment:
@@ -215,11 +230,13 @@ class EventScreen extends StatelessWidget {
                                                   decoration: BoxDecoration(
                                                       color: Colors.black,
                                                       borderRadius:
-                                                          BorderRadius.circular(23)),
+                                                          BorderRadius.circular(
+                                                              23)),
                                                   child: Transform.rotate(
                                                     angle: pi / 3,
                                                     child: const Icon(
-                                                      Icons.arrow_upward_rounded,
+                                                      Icons
+                                                          .arrow_upward_rounded,
                                                       color: Colors.white,
                                                     ),
                                                   ),
@@ -238,7 +255,7 @@ class EventScreen extends StatelessWidget {
                           );
                         }),
                       ),
-                  )
+                    )
                   : SliverToBoxAdapter(
                       child: SizedBox(
                           height: height * 0.6,
