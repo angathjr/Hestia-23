@@ -12,6 +12,7 @@ import 'package:hestia_23/notifications/views/notification_screen.dart';
 import 'package:hestia_23/profile/views/profile_screen.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 import 'package:hestia_23/stories/views/story_view.dart';
+import 'Schedule/filter/schedule_filter_view.dart';
 import 'auth/views/login_screen.dart';
 import 'getx_di.dart';
 
