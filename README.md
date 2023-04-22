@@ -1,4 +1,4 @@
-# hestia_23
+# Hestia 23
 
 A new Flutter project.
 
