@@ -282,7 +282,7 @@ class EventDetailsScreen extends StatelessWidget {
                         width: width,
                         height: height * 0.06,
                         decoration: BoxDecoration(
-                            color: const Color(0xffDEFD72),
+                            color: context.theme.primaryColor,
                             borderRadius: BorderRadius.circular(127)),
                         child: Text(
                           "REGISTER NOW >>",

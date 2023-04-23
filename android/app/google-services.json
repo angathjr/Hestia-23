@@ -70,6 +70,13 @@
             {
               "client_id": "923172081312-72oimh67ua00856280jbud202453b825.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "923172081312-vai2fuiopn39cdle5b6tgs56ma16o9ir.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tkmce.hestia22"
+              }
             }
           ]
         }
@@ -115,6 +122,13 @@
             {
               "client_id": "923172081312-72oimh67ua00856280jbud202453b825.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "923172081312-vai2fuiopn39cdle5b6tgs56ma16o9ir.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tkmce.hestia22"
+              }
             }
           ]
         }
@@ -137,6 +151,14 @@
           }
         },
         {
+          "client_id": "923172081312-habggek9hg9oqou6os9qik69qvka3ig8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tkmce.hestia22",
+            "certificate_hash": "f84ca631e79fc5e5e9557a4954f34bd9fcd51076"
+          }
+        },
+        {
           "client_id": "923172081312-72oimh67ua00856280jbud202453b825.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -152,6 +174,13 @@
             {
               "client_id": "923172081312-72oimh67ua00856280jbud202453b825.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "923172081312-vai2fuiopn39cdle5b6tgs56ma16o9ir.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tkmce.hestia22"
+              }
             }
           ]
         }

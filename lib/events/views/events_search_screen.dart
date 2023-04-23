@@ -147,7 +147,7 @@ class EventsSearchScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   border: Border.all(
-                                      color: const Color(0xffFFD730))),
+                                      color: context.theme.primaryColor)),
                               child: Obx(
                                 () => DropdownButtonHideUnderline(
                                   child: ButtonTheme(
@@ -212,113 +212,116 @@ class EventsSearchScreen extends StatelessWidget {
                                     child: Padding(
                                         padding: EdgeInsets.only(
                                             bottom: height * 0.02),
-                                        child: Container(
-                                          height: cardHeight,
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color:
-                                                    context.theme.canvasColor),
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                          child: Row(children: [
-                                            Expanded(
-                                              child: Container(
-                                                width: width * 0.4,
-                                                margin: EdgeInsets.all(
-                                                    width * 0.025),
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    border: Border.all(
-                                                        color: context.theme
-                                                            .canvasColor)),
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  child: CachedNetworkImage(
-                                                    progressIndicatorBuilder:
-                                                        (context, url,
-                                                                downloadProgress) =>
-                                                            Center(
-                                                      child: CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation(
-                                                                  context.theme
-                                                                      .primaryColor),
-                                                          value:
-                                                              downloadProgress
-                                                                  .progress),
-                                                    ),
-                                                    imageUrl:
-                                                        '${searchController.events[index].image}',
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ),
-                                              ),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            eventsController.goToEvent(
+                                                searchController.events[index]);
+                                          },
+                                          child: Container(
+                                            height: cardHeight,
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: context
+                                                      .theme.primaryColor),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
                                             ),
-                                            Expanded(
-                                              child: Container(
+                                            child: Row(children: [
+                                              Expanded(
+                                                child: Container(
                                                   width: width * 0.4,
                                                   margin: EdgeInsets.all(
                                                       width * 0.025),
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceAround,
-                                                    children: [
-                                                      SizedBox(
-                                                        child: Text(
-                                                          "${searchController.events[index].title}",
-                                                          style: FutTheme.mFont
-                                                              .copyWith(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize:
-                                                                      width *
-                                                                          0.045),
-                                                          softWrap: true,
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                        ),
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      border: Border.all(
+                                                          color: context.theme
+                                                              .canvasColor)),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    child: CachedNetworkImage(
+                                                      progressIndicatorBuilder:
+                                                          (context, url,
+                                                                  downloadProgress) =>
+                                                              Center(
+                                                        child: CircularProgressIndicator(
+                                                            valueColor:
+                                                                AlwaysStoppedAnimation(
+                                                                    context
+                                                                        .theme
+                                                                        .primaryColor),
+                                                            value:
+                                                                downloadProgress
+                                                                    .progress),
                                                       ),
-                                                      GestureDetector(
-                                                        onTap: () {
-                                                          eventsController
-                                                              .goToEvent(
-                                                                  searchController
-                                                                          .events[
-                                                                      index]);
-                                                        },
-                                                        child: Container(
-                                                          height:
-                                                              height * 0.045,
-                                                          margin: EdgeInsets
-                                                              .symmetric(
-                                                                  horizontal:
-                                                                      width *
-                                                                          0.02),
-                                                          decoration: BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20),
-                                                              color: context
-                                                                  .theme
-                                                                  .canvasColor),
-                                                          alignment:
-                                                              Alignment.center,
+                                                      imageUrl:
+                                                          '${searchController.events[index].image}',
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Container(
+                                                    width: width * 0.4,
+                                                    margin: EdgeInsets.all(
+                                                        width * 0.025),
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      children: [
+                                                        SizedBox(
                                                           child: Text(
-                                                              "View Details",
-                                                              style: FutTheme
-                                                                  .mFont),
+                                                            "${searchController.events[index].title}",
+                                                            style: FutTheme
+                                                                .mFont
+                                                                .copyWith(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        width *
+                                                                            0.045),
+                                                            softWrap: true,
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                          ),
                                                         ),
-                                                      )
-                                                    ],
-                                                  )),
-                                            )
-                                          ]),
+
+                                                        //view deatils is commented here
+
+                                                        // Container(
+                                                        //   height:
+                                                        //       height * 0.045,
+                                                        //   margin: EdgeInsets
+                                                        //       .symmetric(
+                                                        //           horizontal:
+                                                        //               width *
+                                                        //                   0.02),
+                                                        //   decoration: BoxDecoration(
+                                                        //       borderRadius:
+                                                        //           BorderRadius
+                                                        //               .circular(
+                                                        //                   20),
+                                                        //       color: context
+                                                        //           .theme
+                                                        //           .primaryColor),
+                                                        //   alignment:
+                                                        //       Alignment.center,
+                                                        //   child: Text(
+                                                        //       "View Details",
+                                                        //       style: FutTheme
+                                                        //           .mFont),
+                                                        // )
+                                                      ],
+                                                    )),
+                                              )
+                                            ]),
+                                          ),
                                         ))),
                               ),
                             );
@@ -360,12 +363,13 @@ class EventsSearchScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     width: width * 0.35,
                     decoration: BoxDecoration(
-                        color: searchController.selectedDepartmentIndex.value ==
-                                index
-                            ? const Color(0xffFFD730)
-                            : null,
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: const Color(0xffFFD730))),
+                      color: searchController.selectedDepartmentIndex.value ==
+                              index
+                          ? context.theme.primaryColor
+                          : null,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: context.theme.primaryColor),
+                    ),
                     child: eventsController.departmentLoading.value == true
                         ? FittedBox(
                             child: Text(
