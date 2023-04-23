@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../core/constants..dart';
 import '../../profile/controllers/profile_controller.dart';
@@ -25,8 +26,10 @@ class RegisteredEventsNotificatonScreen extends StatelessWidget {
       child: ListView.builder(
         physics: const BouncingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics()),
-        itemCount: profileController.regEvents.length,
+        itemCount: notificationController.myEventsNotification.length,
         itemBuilder: (BuildContext context, int index) {
+          final notification =
+              notificationController.myEventsNotification[index];
           return AnimationConfiguration.staggeredList(
             position: index,
             delay: const Duration(milliseconds: 100),
@@ -39,8 +42,8 @@ class RegisteredEventsNotificatonScreen extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: h * 0.01),
                   child: GestureDetector(
-                    onTap: () => notificationController
-                        .goToNotification(profileController.regEvents[index]),
+                    onTap: () => notificationController.goToNotification(
+                        notificationController.myEventsNotification[index]),
                     child: Container(
                       // height: cardHeight,
                       decoration: BoxDecoration(
@@ -66,7 +69,7 @@ class RegisteredEventsNotificatonScreen extends StatelessWidget {
                               Container(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  "Pro show about to begin".toUpperCase(),
+                                  "${notification.title}".toUpperCase(),
                                   style: FutTheme.font5.copyWith(
                                       fontSize: h * 0.02, color: Colors.white),
                                   overflow: TextOverflow.ellipsis,
@@ -76,7 +79,7 @@ class RegisteredEventsNotificatonScreen extends StatelessWidget {
                                 height: cardHeight * 0.1,
                               ),
                               Text(
-                                "All registerd participants are requested to assemble at college auditohhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhrium",
+                                "${notification.message}",
                                 maxLines: 2,
                                 style: FutTheme.font2,
                                 overflow: TextOverflow.ellipsis,
@@ -86,7 +89,9 @@ class RegisteredEventsNotificatonScreen extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "9.30 PM",
+                                    DateFormat('h:mm a').format(
+                                        notification.createdAt ??
+                                            DateTime.now()),
                                     style: FutTheme.font6
                                         .copyWith(fontSize: width * 0.03),
                                   ),
@@ -103,7 +108,7 @@ class RegisteredEventsNotificatonScreen extends StatelessWidget {
                                             BorderRadius.circular(20)),
                                     child: FittedBox(
                                       child: Text(
-                                        "${profileController.regEvents[index].title}",
+                                        "${notification.eventName}",
                                         style: FutTheme.font5.copyWith(
                                             color: context.theme.canvasColor,
                                             overflow: TextOverflow.clip),

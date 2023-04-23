@@ -22,11 +22,12 @@ class NotificationController extends GetxController {
   DocumentReference groups =
       FirebaseFirestore.instance.collection('notifications').doc('groups');
 
-  late EventModel selectedNotEvent;
+  late NotificationModel selectedNotEvent;
   var notificationsLoading = false.obs;
   var generalNotificationsLoading = false.obs;
   var generalNotifications = <NotificationModel>[].obs;
   var notifications = <NotificationModel>[].obs;
+  var myEventsNotification = <NotificationModel>[].obs;
 
   ///notifications/groups/CUSTOM-EVENT-FOR-APP-TEST/M5gZdjPQ6ktaPMbc6mlg
 
@@ -42,18 +43,41 @@ class NotificationController extends GetxController {
   void onInit() {
     super.onInit();
     fetchRegEvents();
+    fetchMyEventsNotification();
     fetchGeneralNotifications();
   }
 
-  void goToNotification(EventModel event) {
-    selectedNotEvent = event;
+  void goToNotification(NotificationModel notification) {
+    selectedNotEvent = notification;
     Get.to(() => NotificationScreenTwo());
     fetchNotifications();
   }
 
+  void fetchMyEventsNotification() async {
+    final List<EventModel> regEvents =
+        await profileController.fetchRegEventsSlugs();
+    regEvents.forEach((event) async {
+      final colRef = groups.collection('${event.slug}');
+      final query =
+          await colRef.orderBy('createdAt', descending: true).limit(1).get();
+      final data = query.docs.map((e) => e.data()).toList();
+      print('data: ' + data.toString());
+      if (data.isNotEmpty) {
+        NotificationModel notification = notificationModelFromJson(data)[0];
+        notification.eventSlug = event.slug;
+        notification.eventName = event.title;
+        myEventsNotification.add(notification);
+      }
+    });
+
+    myEventsNotification.sort(
+      (a, b) => a.createdAt!.compareTo(b.createdAt!),
+    );
+  }
+
   void fetchNotifications() async {
     notificationsLoading(true);
-    final colRef = groups.collection('${selectedNotEvent.slug}');
+    final colRef = groups.collection('${selectedNotEvent.eventSlug}');
     final query = await colRef.orderBy('createdAt', descending: true).get();
     final data = query.docs.map((e) => e.data()).toList();
 
