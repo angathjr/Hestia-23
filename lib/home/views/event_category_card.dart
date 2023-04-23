@@ -55,8 +55,11 @@ class CategoryCard extends StatelessWidget {
                           progressIndicatorBuilder:
                               (context, url, downloadProgress) => Center(
                             child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation(
-                                    context.theme.primaryColor),
+                                valueColor:
+                                AlwaysStoppedAnimation(
+                                    context
+                                        .theme
+                                        .disabledColor),
                                 value: downloadProgress.progress),
                           ),
                           imageUrl: categoryModel.imgUrl,

@@ -95,10 +95,10 @@ class RegisteredEventScreen extends StatelessWidget {
                                                               Center(
                                                         child: CircularProgressIndicator(
                                                             valueColor:
-                                                                AlwaysStoppedAnimation(
-                                                                    context
-                                                                        .theme
-                                                                        .primaryColor),
+                                                            AlwaysStoppedAnimation(
+                                                                context
+                                                                    .theme
+                                                                    .disabledColor),
                                                             value:
                                                                 downloadProgress
                                                                     .progress),

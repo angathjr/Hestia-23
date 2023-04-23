@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 
 import 'package:hestia_23/stories/controllers/stories_controller.dart';
@@ -83,9 +84,22 @@ class Stories extends StatelessWidget {
                 // }
 
                 // index = index - 1;
-                return StoriesCard(
-                  index: index,
-                  story: controller.stories[index],
+                return AnimationConfiguration.staggeredList(
+                  position: index,
+                  duration: const Duration(milliseconds: 100),
+                  child: SlideAnimation(
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    duration: const Duration(milliseconds: 1500),
+                    horizontalOffset: -50,
+                    child: FadeInAnimation(
+                      curve: Curves.fastLinearToSlowEaseIn,
+                      duration: const Duration(milliseconds: 1500),
+                      child: StoriesCard(
+                        index: index,
+                        story: controller.stories[index],
+                      ),
+                    ),
+                  ),
                 );
               },
             ),

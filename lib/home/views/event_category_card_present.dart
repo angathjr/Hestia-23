@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../core/Constants..dart';
 import '../../events/models/category.dart';
@@ -115,8 +116,8 @@ class Eventcardpresent extends StatelessWidget {
                     progressIndicatorBuilder:
                         (context, url, downloadProgress) => Center(
                       child: CircularProgressIndicator(
-                          valueColor:
-                              AlwaysStoppedAnimation(FutTheme.primaryColor),
+                          valueColor: AlwaysStoppedAnimation(
+                              context.theme.disabledColor),
                           value: downloadProgress.progress),
                     ),
                     imageUrl: categoryModel.imgUrl,

@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/Constants..dart';
@@ -78,26 +79,32 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(
                       width: 10,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                            "HI ${profController.user.value.name?.split(' ').first.toUpperCase()}",
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineLarge
-                                ?.copyWith(fontSize: width * 0.038)),
-                        const SizedBox(
-                          height: 7,
+                    AnimationConfiguration.synchronized(
+                      child: FadeInAnimation(
+                        curve: Curves.fastLinearToSlowEaseIn,
+                        duration: const Duration(milliseconds: 1500),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                                "HI ${profController.user.value.name?.split(' ').first.toUpperCase()}",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineLarge
+                                    ?.copyWith(fontSize: width * 0.038)),
+                            const SizedBox(
+                              height: 7,
+                            ),
+                            SizedBox(
+                              width: width * 0.5,
+                              child: Text("WELCOME TO THE TIMELESS ODYSSEY",
+                                  overflow: TextOverflow.clip,
+                                  style: context.theme.textTheme.headlineMedium
+                                      ?.copyWith(fontSize: width * 0.025)),
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          width: width * 0.5,
-                          child: Text("WELCOME TO THE TIMELESS ODYSSEY",
-                              overflow: TextOverflow.clip,
-                              style: context.theme.textTheme.headlineMedium
-                                  ?.copyWith(fontSize: width * 0.025)),
-                        ),
-                      ],
+                      ),
                     )
                   ],
                 ),
@@ -186,19 +193,33 @@ class HomeScreen extends StatelessWidget {
                             itemCount: eventController.categories.length,
                             itemBuilder: (BuildContext context, int index,
                                 int realIndex) {
-                              return GestureDetector(
-                                  onTap: () {
-                                    eventController.selectedCategory =
-                                        eventController.categories[index];
-                                    eventController.fetchEvents();
-                                    Get.to(() => EventScreen(),
-                                        arguments: eventController
-                                            .categories[index].name);
-                                  },
-                                  child: CategoryCard(
-                                    categoryModel:
-                                        eventController.categories[index],
-                                  ));
+                              return AnimationConfiguration.staggeredList(
+                                position: index,
+                                duration: const Duration(milliseconds: 100),
+                                child: SlideAnimation(
+                                  curve: Curves.fastLinearToSlowEaseIn,
+                                  duration: const Duration(milliseconds: 1500),
+                                  verticalOffset: -50,
+                                  child: FadeInAnimation(
+                                    curve: Curves.fastLinearToSlowEaseIn,
+                                    duration:
+                                        const Duration(milliseconds: 1500),
+                                    child: GestureDetector(
+                                        onTap: () {
+                                          eventController.selectedCategory =
+                                              eventController.categories[index];
+                                          eventController.fetchEvents();
+                                          Get.to(() => EventScreen(),
+                                              arguments: eventController
+                                                  .categories[index].name);
+                                        },
+                                        child: CategoryCard(
+                                          categoryModel:
+                                              eventController.categories[index],
+                                        )),
+                                  ),
+                                ),
+                              );
                             },
                             options: CarouselOptions(
                                 // autoPlay: true,

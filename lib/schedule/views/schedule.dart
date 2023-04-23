@@ -109,7 +109,7 @@ class Schedule extends StatelessWidget {
                                 // horizontalOffset: 30,
                                 child: FadeInAnimation(
                                     duration:
-                                        const Duration(milliseconds: 1500),
+                                        const Duration(milliseconds: 2500),
                                     curve: Curves.fastLinearToSlowEaseIn,
                                     child: TimeLineofEvents(
                                       event: controller.events[index],

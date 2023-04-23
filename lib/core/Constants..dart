@@ -46,10 +46,11 @@ class ThemeColor {
 }
 
 Widget primaryLoadingWidget = CupertinoActivityIndicator(
-  radius: 20,
-  color: FutTheme.primaryColor.withOpacity(0.5),
+  radius: 16,
+  color: Colors.white.withOpacity(0.5),
 );
 
 Widget secondaryLoadingWidget = CircularProgressIndicator(
-  color: FutTheme.primaryColor.withOpacity(0.5),
+  value: 12,
+  color: Colors.white.withOpacity(0.5),
 );

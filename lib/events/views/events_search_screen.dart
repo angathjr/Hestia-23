@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/events/controllers/events_search_controller.dart';
-
 import '../../core/widgets/back_button_widget.dart';
 
 class EventsSearchScreen extends StatelessWidget {
@@ -72,10 +71,14 @@ class EventsSearchScreen extends StatelessWidget {
                                 style: FutTheme.font3,
                                 textAlignVertical: TextAlignVertical.center,
                                 decoration: InputDecoration(
-                                    prefixIcon: const Icon(CupertinoIcons.search),
+                                    prefixIcon:
+                                        const Icon(CupertinoIcons.search),
                                     hintText: "Search events here",
-                                    hintStyle: context.theme.textTheme.bodyMedium?.copyWith(color: Colors.grey),
-                                    contentPadding: const EdgeInsets.only(left: 20),
+                                    hintStyle: context
+                                        .theme.textTheme.bodyMedium
+                                        ?.copyWith(color: Colors.grey),
+                                    contentPadding:
+                                        const EdgeInsets.only(left: 20),
                                     border: InputBorder.none),
                                 onChanged: (value) =>
                                     searchController.textFieldOnChanged(),
@@ -200,14 +203,12 @@ class EventsSearchScreen extends StatelessWidget {
                               duration: const Duration(milliseconds: 100),
                               child: SlideAnimation(
                                 curve: Curves.fastLinearToSlowEaseIn,
-                                duration: const Duration(milliseconds: 2500),
-                                verticalOffset: 300,
-                                horizontalOffset: 30,
-                                child: FlipAnimation(
-                                    flipAxis: FlipAxis.y,
+                                duration: const Duration(milliseconds: 1500),
+                                verticalOffset: -50,
+                                child: FadeInAnimation(
+                                    curve: Curves.fastLinearToSlowEaseIn,
                                     duration:
                                         const Duration(milliseconds: 1500),
-                                    curve: Curves.fastLinearToSlowEaseIn,
                                     child: Padding(
                                         padding: EdgeInsets.only(
                                             bottom: height * 0.02),
@@ -252,7 +253,7 @@ class EventsSearchScreen extends StatelessWidget {
                                                                 AlwaysStoppedAnimation(
                                                                     context
                                                                         .theme
-                                                                        .primaryColor),
+                                                                        .disabledColor),
                                                             value:
                                                                 downloadProgress
                                                                     .progress),
