@@ -3,7 +3,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/auth/models/user.dart';
 import 'package:hestia_23/core/api_provider.dart';
 import 'package:hestia_23/events/models/event.dart';
-import 'package:hestia_23/profile/controllers/profile_edit_controller.dart';
 
 class ProfileController extends GetxController {
   final ApiProvider api = Get.find();
@@ -13,6 +12,8 @@ class ProfileController extends GetxController {
   var registeredEventCount = 0.obs;
   var regEventsSlug = [].obs;
   var regEvents = <EventModel>[].obs;
+  var regEventsLoading=false.obs;
+  
 
   @override
   void onInit() {
@@ -41,6 +42,7 @@ class ProfileController extends GetxController {
   }
 
   Future fetchRegEventsSlugs() async {
+    regEventsLoading(true);
     final Response response = await api.getApi('/api/events/reg/events/');
     final List responseBody = response.body['results'];
     List<EventModel> regEvents = [];
@@ -48,6 +50,10 @@ class ProfileController extends GetxController {
       if (e['event'] != null) regEvents.add(EventModel.fromJson(e['event']));
     }
     this.regEvents.value = regEvents;
+    regEventsLoading(false);
     return regEvents;
   }
+
+
+ 
 }

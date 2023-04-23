@@ -4,11 +4,9 @@ import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/animations/controllers/animation_controller.dart';
-import 'package:hestia_23/fcm/controllers/fcm_controller.dart';
+import 'package:hestia_23/events/views/registered_events.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
-import 'package:hestia_23/profile/controllers/profile_edit_controller.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
-import 'package:hestia_23/core/Constants..dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
@@ -101,40 +99,43 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(
                 height: _height / 30,
               ),
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color:
-                        const Color.fromRGBO(26, 26, 26, 1).withOpacity(0.4)),
-                // width: _width - 2 * (_width / 25),
-                height: _height / 9,
-                child: Padding(
-                  padding: EdgeInsets.all(_width / 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        "Number of events \nregistered",
-                        style: FutTheme.font3.copyWith(
-                          letterSpacing: 1,
-                          color: const Color.fromRGBO(204, 204, 204, 1),
-                          fontSize: _width * 0.04,
-                        ),
-                      ),
-                      Obx(
-                        () => Text(
-                          controller.registeredEventCount.value.toString(),
-                          style: FutTheme.font2.copyWith(
-                            fontSize: _width * 0.09,
-                            fontWeight: FontWeight.bold,
+              GestureDetector(
+                onTap: () => Get.to(() => RegisteredEventScreen()),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color:
+                          const Color.fromRGBO(26, 26, 26, 1).withOpacity(0.4)),
+                  // width: _width - 2 * (_width / 25),
+                  height: _height / 9,
+                  child: Padding(
+                    padding: EdgeInsets.all(_width / 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          "Number of events \nregistered",
+                          style: FutTheme.font3.copyWith(
+                            letterSpacing: 1,
+                            color: const Color.fromRGBO(204, 204, 204, 1),
+                            fontSize: _width * 0.04,
                           ),
                         ),
-                      ),
-                      const Icon(
-                        Icons.navigate_next_outlined,
-                        color: Color.fromRGBO(222, 253, 114, 1),
-                      )
-                    ],
+                        Obx(
+                          () => Text(
+                            controller.registeredEventCount.value.toString(),
+                            style: FutTheme.font2.copyWith(
+                              fontSize: _width * 0.09,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        const Icon(
+                          Icons.navigate_next_outlined,
+                          color: Color.fromRGBO(222, 253, 114, 1),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

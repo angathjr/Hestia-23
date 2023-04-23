@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hestia_23/core/widgets/back_button_widget.dart';
 import 'package:hestia_23/notifications/controllers/notification_controller.dart';
 import 'package:intl/intl.dart';
 
-import '../../core/Constants..dart';
 
 class NotificationScreenTwo extends StatelessWidget {
   NotificationScreenTwo({super.key});
@@ -21,9 +18,6 @@ class NotificationScreenTwo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final h = MediaQuery.of(context).size.height -
-        MediaQuery.of(context).padding.top -
-        kToolbarHeight;
     return Scaffold(
       appBar: AppBar(
         leading: const Padding(
