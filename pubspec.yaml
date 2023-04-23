@@ -55,6 +55,7 @@ dependencies:
   circular_profile_avatar: ^2.0.5
   upgrader: ^6.2.0
   
+  
 
 dev_dependencies:
   flutter_test:
