@@ -50,6 +50,7 @@ class Themes {
     await _saveThemeToBox(index);
     Get.changeTheme(theme);
     Get.forceAppUpdate();
+    await Future.delayed(const Duration(milliseconds: 500));
     Get.back();
   }
 
