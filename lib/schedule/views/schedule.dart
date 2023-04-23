@@ -227,7 +227,7 @@ class Dates extends StatelessWidget {
       },
       child: Obx(
         () => Container(
-          margin: EdgeInsets.symmetric(horizontal: w * 0.04),
+          margin: EdgeInsets.symmetric(horizontal: w * 0.025),
           decoration: BoxDecoration(
               color: controller.selectedDateIndex.value == index
                   ? context.theme.primaryColor
