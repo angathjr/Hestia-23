@@ -13,6 +13,8 @@ class ProfileController extends GetxController {
   var registeredEventCount = 0.obs;
   var regEventsSlug = [].obs;
   var regEvents = <EventModel>[].obs;
+  var regEventsLoading=false.obs;
+  
 
   @override
   void onInit() {
@@ -41,6 +43,7 @@ class ProfileController extends GetxController {
   }
 
   Future fetchRegEventsSlugs() async {
+    regEventsLoading(true);
     final Response response = await api.getApi('/api/events/reg/events/');
     final List responseBody = response.body['results'];
     List<EventModel> regEvents = [];
@@ -48,6 +51,10 @@ class ProfileController extends GetxController {
       if (e['event'] != null) regEvents.add(EventModel.fromJson(e['event']));
     }
     this.regEvents.value = regEvents;
+    regEventsLoading(false);
     return regEvents;
   }
+
+
+ 
 }
