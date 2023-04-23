@@ -1,8 +1,5 @@
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_polygon/flutter_polygon.dart';
 import '../../core/Constants..dart';
 
@@ -58,23 +55,23 @@ class LeaderBoard extends StatelessWidget {
                       style: FutTheme.categoryFont,
                     ),
                     children: <Widget>[
-                      Container(
+                      SizedBox(
                         height: h * 0.4,
                         child: Stack(
                           fit: StackFit.expand,
-                          children: [
+                          children: const [
                             Align(
-                              alignment: const Alignment(-1, 0),
+                              alignment: Alignment(-1, 0),
                               child: StackItem(
                                 number: 2,
                               ),
                             ),
                             Align(
-                              alignment: const Alignment(0, -0.4),
+                              alignment: Alignment(0, -0.4),
                               child: StackItem(large: true),
                             ),
                             Align(
-                              alignment: const Alignment(1, 0),
+                              alignment: Alignment(1, 0),
                               child: StackItem(
                                 number: 3,
                               ),
@@ -120,7 +117,7 @@ class LeaderBoard extends StatelessWidget {
 }
 
 class StackItem extends StatelessWidget {
-  StackItem({super.key, this.large = false, this.number = 1});
+  const StackItem({super.key, this.large = false, this.number = 1});
   final bool large;
   final num number;
   @override
@@ -128,7 +125,7 @@ class StackItem extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
+        SizedBox(
           width: large ? 90 : 70.0,
           height: large ? 90 : 70.0,
           child: Stack(
@@ -161,7 +158,7 @@ class StackItem extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Center(
-                        child: Text('${number}', style: FutTheme.categoryFont)),
+                        child: Text('$number', style: FutTheme.categoryFont)),
                   ),
                 ),
               ),

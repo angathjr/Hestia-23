@@ -31,8 +31,8 @@ class FilterScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Align(
-                                    child: Text("Filter"),
                                     alignment: Alignment.center,
+                                    child: Text("Filter"),
                                   ),
                                   SizedBox(
                                     height: h * 0.05,

@@ -1,10 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
-import 'package:hestia_23/Schedule/filter/schedule_filter_view.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/events/controllers/events_search_controller.dart';

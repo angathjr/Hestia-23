@@ -19,7 +19,6 @@ class Schedule extends StatelessWidget {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     double dateContainerHeight = h * 0.1;
-    double navHeight = h * 0.063;
 
     return Scaffold(
         body: CustomScrollView(
@@ -209,7 +208,6 @@ class Dates extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {

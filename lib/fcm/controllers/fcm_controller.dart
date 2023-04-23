@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:hestia_23/core/api_provider.dart';
-import 'package:hestia_23/events/models/event.dart';
 
 class FCMController extends GetxController {
   late FirebaseMessaging messaging;
