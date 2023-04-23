@@ -4,7 +4,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/widgets/back_button_widget.dart';
 
-import '../../core/Constants..dart';
+import '../../core/constants..dart';
 import '../../profile/controllers/profile_controller.dart';
 import '../controllers/events_controller.dart';
 

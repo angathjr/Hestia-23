@@ -78,8 +78,8 @@ class SwitchThemeScreen extends StatelessWidget {
                       Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                     Text(
                       "Present Theme",
-                      style: Themes.futureFont.copyWith(
-                          fontSize: width * 0.055,
+                      style: Themes.presentFont.copyWith(
+                          fontSize: width * 0.07,
                           color: themeController.selectedIndex.value == 1
                               ? Colors.black
                               : null),
@@ -114,8 +114,8 @@ class SwitchThemeScreen extends StatelessWidget {
                     ),
                     Text(
                       "Future Theme",
-                      style: Themes.presentFont.copyWith(
-                          fontSize: width * 0.07,
+                      style: Themes.futureFont.copyWith(
+                          fontSize: width * 0.055,
                           color: themeController.selectedIndex.value == 2
                               ? Colors.black
                               : null),

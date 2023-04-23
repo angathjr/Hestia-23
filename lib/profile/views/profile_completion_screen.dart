@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 
-import 'package:hestia_23/core/Constants..dart';
+import 'package:hestia_23/core/constants..dart';
 import 'package:hestia_23/profile/controllers/profile_edit_controller.dart';
 
 class ProfileCompletion extends StatelessWidget {

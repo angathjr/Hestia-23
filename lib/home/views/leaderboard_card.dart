@@ -4,7 +4,7 @@ import 'package:flutter_polygon/flutter_polygon.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/theme/model/themes.dart';
-import '../../core/Constants..dart';
+import '../../core/constants..dart';
 
 class LeaderBoard extends StatelessWidget {
   const LeaderBoard({super.key});

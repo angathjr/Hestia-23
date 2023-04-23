@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/Schedule/controller/schedule_controller.dart';
-import 'package:hestia_23/core/Constants..dart';
+import 'package:hestia_23/core/constants..dart';
 import 'package:hestia_23/animations/controllers/animation_controller.dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/events/models/event.dart';
@@ -104,12 +104,12 @@ class Schedule extends StatelessWidget {
                               duration: const Duration(milliseconds: 100),
                               child: SlideAnimation(
                                 curve: Curves.fastLinearToSlowEaseIn,
-                                duration: const Duration(milliseconds: 2500),
+                                duration: const Duration(milliseconds: 2000),
                                 // verticalOffset: 300,
                                 // horizontalOffset: 30,
                                 child: FadeInAnimation(
                                     duration:
-                                        const Duration(milliseconds: 2500),
+                                        const Duration(milliseconds: 2000),
                                     curve: Curves.fastLinearToSlowEaseIn,
                                     child: TimeLineofEvents(
                                       event: controller.events[index],
@@ -273,7 +273,7 @@ class CustomTimeLine extends StatelessWidget {
     return Obx(
       () => AnimatedContainer(
         curve: Curves.easeOutCubic,
-        duration: const Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 300),
         height: (anim.start.value == false) ? h * 0.2 : 0,
         width: w * 0.09,
         child: CustomPaint(

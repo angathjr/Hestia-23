@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../../core/Constants..dart';
+import '../../core/constants..dart';
 import '../../profile/controllers/profile_controller.dart';
 import '../controllers/notification_controller.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';

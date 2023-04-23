@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hestia_23/core/Constants..dart';
+import 'package:hestia_23/core/constants..dart';
 
 class ProfileView2 extends StatelessWidget {
   const ProfileView2({super.key});

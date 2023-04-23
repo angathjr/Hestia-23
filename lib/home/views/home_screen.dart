@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
-import 'package:hestia_23/core/Constants..dart';
+import 'package:hestia_23/core/constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/notifications/controllers/notification_controller.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
@@ -189,44 +189,46 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: height * 0.45,
                           width: width,
-                          child: CarouselSlider.builder(
-                            itemCount: eventController.categories.length,
-                            itemBuilder: (BuildContext context, int index,
-                                int realIndex) {
-                              return AnimationConfiguration.staggeredList(
-                                position: index,
-                                duration: const Duration(milliseconds: 100),
-                                child: SlideAnimation(
-                                  curve: Curves.fastLinearToSlowEaseIn,
-                                  duration: const Duration(milliseconds: 1500),
-                                  verticalOffset: -50,
-                                  child: FadeInAnimation(
+                          child: AnimationLimiter(
+                            child: CarouselSlider.builder(
+                              itemCount: eventController.categories.length,
+                              itemBuilder: (BuildContext context, int index,
+                                  int realIndex) {
+                                return AnimationConfiguration.staggeredList(
+                                  position: index,
+                                  duration: const Duration(milliseconds: 100),
+                                  child: SlideAnimation(
                                     curve: Curves.fastLinearToSlowEaseIn,
-                                    duration:
-                                        const Duration(milliseconds: 1500),
-                                    child: GestureDetector(
-                                        onTap: () {
-                                          eventController.selectedCategory =
-                                              eventController.categories[index];
-                                          eventController.fetchEvents();
-                                          Get.to(() => EventScreen(),
-                                              arguments: eventController
-                                                  .categories[index].name);
-                                        },
-                                        child: CategoryCard(
-                                          categoryModel:
-                                              eventController.categories[index],
-                                        )),
+                                    duration: const Duration(milliseconds: 1500),
+                                    verticalOffset: -50,
+                                    child: FadeInAnimation(
+                                      curve: Curves.fastLinearToSlowEaseIn,
+                                      duration:
+                                          const Duration(milliseconds: 1500),
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            eventController.selectedCategory =
+                                                eventController.categories[index];
+                                            eventController.fetchEvents();
+                                            Get.to(() => EventScreen(),
+                                                arguments: eventController
+                                                    .categories[index].name);
+                                          },
+                                          child: CategoryCard(
+                                            categoryModel:
+                                                eventController.categories[index],
+                                          )),
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                            options: CarouselOptions(
-                                // autoPlay: true,
-                                autoPlayCurve: Curves.linearToEaseOut,
-                                height: height * 0.46,
-                                viewportFraction: 0.66,
-                                enlargeCenterPage: true),
+                                );
+                              },
+                              options: CarouselOptions(
+                                  // autoPlay: true,
+                                  autoPlayCurve: Curves.linearToEaseOut,
+                                  height: height * 0.46,
+                                  viewportFraction: 0.66,
+                                  enlargeCenterPage: true),
+                            ),
                           ),
                         ),
 

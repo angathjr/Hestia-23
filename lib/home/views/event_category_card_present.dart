@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/Constants..dart';
+import '../../core/constants..dart';
 import '../../events/models/category.dart';
 
 class Eventcardpresent extends StatelessWidget {

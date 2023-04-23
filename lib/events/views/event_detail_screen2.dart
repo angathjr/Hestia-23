@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../../core/Constants..dart';
+import '../../core/constants..dart';
 import '../../core/widgets/back_button_widget.dart';
 import '../controllers/event_pages_controller.dart';
 import '../controllers/events_controller.dart';

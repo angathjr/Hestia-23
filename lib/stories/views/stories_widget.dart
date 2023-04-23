@@ -39,69 +39,71 @@ class Stories extends StatelessWidget {
           width: double.infinity,
           height: height / 6.5,
           child: Obx(
-            () => ListView.builder(
-              padding: const EdgeInsets.only(left: 10),
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              itemCount: controller.stories.length,
-              itemBuilder: (context, index) {
-                // if (index == 0) {
-                //   return GestureDetector(
-                //     onTap: () {
-                //       Get.to(
-                //         StoriesEditor(
-                //           giphyKey: "RvvTK8aN4SOt6rLKzpx9uVrq9tLFBWyv",
-                //           onDone: (uri) {
-                //             debugPrint(uri);
+            () => AnimationLimiter(
+              child: ListView.builder(
+                padding: const EdgeInsets.only(left: 10),
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemCount: controller.stories.length,
+                itemBuilder: (context, index) {
+                  // if (index == 0) {
+                  //   return GestureDetector(
+                  //     onTap: () {
+                  //       Get.to(
+                  //         StoriesEditor(
+                  //           giphyKey: "RvvTK8aN4SOt6rLKzpx9uVrq9tLFBWyv",
+                  //           onDone: (uri) {
+                  //             debugPrint(uri);
 
-                //             //! Compress Image
-                //             controller.compressImage(uri);
-                //           },
-                //           middleBottomWidget: Text(
-                //             "Hestia",
-                //             style: FutTheme.font1
-                //                 .copyWith(fontSize: _width * 0.09),
-                //           ),
-                //         ),
-                //       );
-                //     },
-                //     child: Padding(
-                //       padding: EdgeInsets.all(_width * 0.01),
-                //       child: Container(
-                //         decoration: BoxDecoration(
-                //           color: Colors.grey[800],
-                //           borderRadius: BorderRadius.circular(15),
-                //         ),
-                //         width: _width / 3.8,
-                //         height: _height / 5.5,
-                //         child: const Icon(
-                //           Icons.add,
-                //           size: 50,
-                //         ),
-                //       ),
-                //     ),
-                //   );
-                // }
+                  //             //! Compress Image
+                  //             controller.compressImage(uri);
+                  //           },
+                  //           middleBottomWidget: Text(
+                  //             "Hestia",
+                  //             style: FutTheme.font1
+                  //                 .copyWith(fontSize: _width * 0.09),
+                  //           ),
+                  //         ),
+                  //       );
+                  //     },
+                  //     child: Padding(
+                  //       padding: EdgeInsets.all(_width * 0.01),
+                  //       child: Container(
+                  //         decoration: BoxDecoration(
+                  //           color: Colors.grey[800],
+                  //           borderRadius: BorderRadius.circular(15),
+                  //         ),
+                  //         width: _width / 3.8,
+                  //         height: _height / 5.5,
+                  //         child: const Icon(
+                  //           Icons.add,
+                  //           size: 50,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   );
+                  // }
 
-                // index = index - 1;
-                return AnimationConfiguration.staggeredList(
-                  position: index,
-                  duration: const Duration(milliseconds: 100),
-                  child: SlideAnimation(
-                    curve: Curves.fastLinearToSlowEaseIn,
-                    duration: const Duration(milliseconds: 1500),
-                    horizontalOffset: -50,
-                    child: FadeInAnimation(
+                  // index = index - 1;
+                  return AnimationConfiguration.staggeredList(
+                    position: index,
+                    duration: const Duration(milliseconds: 100),
+                    child: SlideAnimation(
                       curve: Curves.fastLinearToSlowEaseIn,
                       duration: const Duration(milliseconds: 1500),
-                      child: StoriesCard(
-                        index: index,
-                        story: controller.stories[index],
+                      horizontalOffset: -50,
+                      child: FadeInAnimation(
+                        curve: Curves.fastLinearToSlowEaseIn,
+                        duration: const Duration(milliseconds: 1500),
+                        child: StoriesCard(
+                          index: index,
+                          story: controller.stories[index],
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
         ),
