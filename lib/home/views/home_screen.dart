@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
-import 'package:hestia_23/home/views/event_category_card_present.dart';
 import 'package:hestia_23/notifications/controllers/notification_controller.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
 import 'package:hestia_23/stories/views/stories_widget.dart';
@@ -111,7 +109,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () => Get.toNamed('notification-1'),
-                        icon: Obx(
+                        icon: Obx( 
                           () => Stack(
                             children: [
                               if (notificationController

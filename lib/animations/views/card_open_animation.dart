@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class MyCustomWidget extends StatefulWidget {
+  const MyCustomWidget({super.key});
+
   @override
   _MyCustomWidgetState createState() => _MyCustomWidgetState();
 }
@@ -27,7 +29,7 @@ class _MyCustomWidgetState extends State<MyCustomWidget>
                   ),
                 );
                 Timer(
-                  Duration(milliseconds: 300),
+                  const Duration(milliseconds: 300),
                   () {
                     // print('worked');
                     scaleController.reset();
@@ -49,7 +51,6 @@ class _MyCustomWidgetState extends State<MyCustomWidget>
 
   @override
   Widget build(BuildContext c) {
-    double _w = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Center(
         child: InkWell(

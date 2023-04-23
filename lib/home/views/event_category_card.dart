@@ -33,13 +33,13 @@ class CategoryCard extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: Container(
-                    alignment: Alignment.bottomCenter,
+                    alignment: Alignment.center,
                     child: RotatedBox(
                       quarterTurns: 3,
                       child: Text(
                         categoryModel.name,
-                        style: FutTheme.categoryFont
-                            .copyWith(fontSize: cardHeight * 0.067),
+                        style: context.theme.textTheme.titleLarge
+                            ?.copyWith(fontSize: cardHeight * 0.067),
                       ),
                     ),
                   ),
