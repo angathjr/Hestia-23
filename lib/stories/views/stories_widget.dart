@@ -2,14 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
-
 import 'package:hestia_23/stories/controllers/stories_controller.dart';
 import 'package:hestia_23/stories/model/stories.dart';
+import 'package:hestia_23/theme/controllers/theme_controller.dart';
 
 class Stories extends StatelessWidget {
   Stories({super.key});
 
   final StoriesController controller = Get.find();
+  final ThemeController themeController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,11 @@ class Stories extends StatelessWidget {
               width: width / 20,
             ),
             Text(
-              "HIGHLIGHTS",
+              themeController.selectedIndex.value == 0
+                  ? "MEMORIES"
+                  : themeController.selectedIndex.value == 1
+                      ? "HIGHLIGHTS"
+                      : "STORIES",
               style: Theme.of(context)
                   .textTheme
                   .titleMedium
@@ -122,6 +127,7 @@ class StoriesCard extends StatelessWidget {
   final StoryModel story;
   final int index;
   final StoriesController controller = Get.find();
+  final ThemeController themeController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +145,16 @@ class StoriesCard extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             color: Colors.grey[800],
-            borderRadius: BorderRadius.circular(15),
+            border: themeController.selectedIndex.value == 0
+                ? Border.all(color: context.theme.primaryColor, width: 3)
+                : themeController.selectedIndex.value == 1
+                    ? Border.all(color: Colors.white)
+                    : null,
+            borderRadius: themeController.selectedIndex.value == 0
+                ? BorderRadius.circular(20)
+                : themeController.selectedIndex.value == 1
+                    ? BorderRadius.circular(10)
+                    : BorderRadius.circular(5),
           ),
           width: width / 3.8,
           height: height / 5.5,

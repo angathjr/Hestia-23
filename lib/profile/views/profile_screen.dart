@@ -118,68 +118,11 @@ class ProfileScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: height / 18,
-                    ),
-                    SlideAnimation(
-                      curve: Curves.fastLinearToSlowEaseIn,
-                      duration: const Duration(milliseconds: 2500),
-                      verticalOffset: -20,
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(15),
-                        onTap: () => Get.to(() => RegisteredEventScreen()),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: context.theme.cardColor.withOpacity(0.9)),
-                          // width: _width - 2 * (_width / 25),
-                          height: height / 9,
-                          child: Padding(
-                            padding: EdgeInsets.all(width / 30),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Expanded(
-                                  flex: 5,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 20.0,
-                                    ),
-                                    child: Text(
-                                      "Number of events \nregistered",
-                                      style: context.theme.textTheme.bodyMedium
-                                          ?.copyWith(
-                                        fontSize: height * 0.016,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Obx(
-                                    () => Text(
-                                      controller.registeredEventCount.value
-                                          .toString(),
-                                      style: context.theme.textTheme.bodyMedium
-                                          ?.copyWith(
-                                        fontSize: width * 0.09,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.navigate_next_outlined,
-                                  color: context.theme.primaryColor,
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                      height: height / 20,
                     ),
                     Container(
                       width: width,
-                      height: height / 2.4,
+                      height: height / 2,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -187,6 +130,75 @@ class ProfileScreen extends StatelessWidget {
                         padding: EdgeInsets.all(width * 0.015),
                         child: Column(
                           children: [
+                            Expanded(
+                              flex: 3,
+                              child: SlideAnimation(
+                                curve: Curves.fastLinearToSlowEaseIn,
+                                duration: const Duration(milliseconds: 2500),
+                                verticalOffset: -20,
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(15),
+                                  onTap: () =>
+                                      Get.to(() => RegisteredEventScreen()),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: context.theme.cardColor
+                                            .withOpacity(0.9)),
+                                    // width: _width - 2 * (_width / 25),
+                                    height: height / 9,
+                                    child: Padding(
+                                      padding: EdgeInsets.all(width / 30),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                left: 20.0,
+                                              ),
+                                              child: Text(
+                                                "Number of events \nregistered",
+                                                style: context
+                                                    .theme.textTheme.bodyMedium
+                                                    ?.copyWith(
+                                                  fontSize: height * 0.016,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Obx(
+                                              () => Text(
+                                                controller
+                                                    .registeredEventCount.value
+                                                    .toString(),
+                                                style: context
+                                                    .theme.textTheme.bodyMedium
+                                                    ?.copyWith(
+                                                  fontSize: width * 0.09,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Icon(
+                                            Icons.navigate_next_outlined,
+                                            color: context.theme.primaryColor,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: width * 0.015,
+                            ),
                             Expanded(
                               flex: 8,
                               child: Row(
@@ -348,7 +360,7 @@ class ProfileScreen extends StatelessWidget {
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(15),
                                         color: context.theme.cardColor
-                                            .withOpacity(0.6),
+                                            .withOpacity(0.9),
                                       ),
                                       child: Text(
                                         "Log Out",

@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
+import 'package:hestia_23/home/views/event_category_card_past.dart';
 import 'package:hestia_23/home/views/event_category_card_present.dart';
 import 'package:hestia_23/notifications/controllers/notification_controller.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
@@ -223,7 +224,7 @@ class HomeScreen extends StatelessWidget {
                                           child: themeController
                                                       .selectedIndex.value ==
                                                   0
-                                              ? CategoryCardPresent(
+                                              ? CategoryCardPast(
                                                   categoryModel: eventController
                                                       .categories[index],
                                                 )

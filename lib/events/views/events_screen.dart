@@ -24,100 +24,100 @@ class EventScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: [
-          //app bar
-          SliverAppBar(
-            automaticallyImplyLeading: false,
-            pinned: false,
-            floating: true,
-            snap: true,
-            titleSpacing: 20,
-            backgroundColor: Colors.transparent,
-            title: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                InkWell(
-                    onTap: () => Get.back(), child: const BackButtonWidget()),
-                const SizedBox(
-                  width: 20,
-                ),
-                Text(
-                  Get.arguments.toString(),
-                  style: context.theme.textTheme.titleLarge,
-                ),
-              ],
+          physics: const BouncingScrollPhysics(),
+          slivers: [
+            //app bar
+            SliverAppBar(
+              automaticallyImplyLeading: false,
+              pinned: false,
+              floating: true,
+              snap: true,
+              titleSpacing: 20,
+              backgroundColor: Colors.transparent,
+              title: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  InkWell(
+                      onTap: () => Get.back(), child: const BackButtonWidget()),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    Get.arguments.toString(),
+                    style: context.theme.textTheme.titleLarge,
+                  ),
+                ],
+              ),
             ),
-          ),
-          SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-              sliver: SliverToBoxAdapter(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: height * 0.01,
-                    ),
+            SliverPadding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+                sliver: SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
 
-                    // list of department
-                    departmentSection(height, width),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Date",
-                          style: FutTheme.font6
-                              .copyWith(fontSize: width * 0.036),
-                        ),
-                        SizedBox(
-                          width: width * 0.02,
-                        ),
-                        Container(
-                            height: height * 0.04,
-                            width: width * 0.3,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(33),
-                                border: Border.all(
-                                    color: context.theme.primaryColor)),
-                            child: Obx(
-                              () => DropdownButtonHideUnderline(
-                                child: ButtonTheme(
-                                  alignedDropdown: true,
-                                  child: DropdownButton(
-                                    borderRadius: BorderRadius.circular(15),
-                                    isExpanded: true,
-                                    isDense: false,
-                                    value: controller.date.value,
-                                    elevation: 0,
-                                    items: EventsController.eventDates
-                                        .map<DropdownMenuItem<String>>(
-                                            (String value) {
-                                      return DropdownMenuItem(
-                                        value: value,
-                                        child: Text(value,
-                                            style: FutTheme.font3.copyWith(
-                                                fontSize: width * 0.033)),
-                                      );
-                                    }).toList(),
-                                    onChanged: (value) {
-                                      controller.setDate(value!);
-                                    },
+                      // list of department
+                      departmentSection(height, width),
+                      SizedBox(
+                        height: height * 0.02,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "Date",
+                            style: FutTheme.font6
+                                .copyWith(fontSize: width * 0.036),
+                          ),
+                          SizedBox(
+                            width: width * 0.02,
+                          ),
+                          Container(
+                              height: height * 0.04,
+                              width: width * 0.3,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(33),
+                                  border: Border.all(
+                                      color: context.theme.primaryColor)),
+                              child: Obx(
+                                () => DropdownButtonHideUnderline(
+                                  child: ButtonTheme(
+                                    alignedDropdown: true,
+                                    child: DropdownButton(
+                                      borderRadius: BorderRadius.circular(15),
+                                      isExpanded: true,
+                                      isDense: false,
+                                      value: controller.date.value,
+                                      elevation: 0,
+                                      items: EventsController.eventDates
+                                          .map<DropdownMenuItem<String>>(
+                                              (String value) {
+                                        return DropdownMenuItem(
+                                          value: value,
+                                          child: Text(value,
+                                              style: FutTheme.font3.copyWith(
+                                                  fontSize: width * 0.033)),
+                                        );
+                                      }).toList(),
+                                      onChanged: (value) {
+                                        controller.setDate(value!);
+                                      },
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ))
-                      ],
-                    ),
+                              ))
+                        ],
+                      ),
 
-                    SizedBox(
-                      height: height * 0.03,
-                    ),
-                  ],
-                ),
-              )),
+                      SizedBox(
+                        height: height * 0.03,
+                      ),
+                    ],
+                  ),
+                )),
 
-          // The list of cards are starts from here
+            // The list of cards are starts from here
 
             SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: width * 0.05),
@@ -155,90 +155,94 @@ class EventScreen extends StatelessWidget {
                                       child: Padding(
                                         padding: EdgeInsets.only(
                                             bottom: height * 0.02),
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: width * 0.05),
-                                          height: cardHeight,
-                                          width: width,
-                                          decoration: BoxDecoration(
-                                              boxShadow: [
-                                                BoxShadow(
-                                                    blurRadius: 40,
-                                                    spreadRadius: 10,
-                                                    color: Colors.black
-                                                        .withOpacity(0.1))
-                                              ],
-                                              border: Border.all(
-                                                  color: context
-                                                      .theme.primaryColor),
-                                              borderRadius:
-                                                  BorderRadius.circular(30)),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              ClipRRect(
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            controller.goToEvent(
+                                                controller.events[index]);
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: width * 0.05),
+                                            height: cardHeight,
+                                            width: width,
+                                            decoration: BoxDecoration(
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                      blurRadius: 40,
+                                                      spreadRadius: 10,
+                                                      color: Colors.black
+                                                          .withOpacity(0.1))
+                                                ],
+                                                border: Border.all(
+                                                    color: context
+                                                        .theme.primaryColor),
                                                 borderRadius:
-                                                    const BorderRadius.only(
-                                                        topLeft:
-                                                            Radius.circular(20),
-                                                        topRight:
-                                                            Radius.circular(
-                                                                20)),
-                                                child: Container(
-                                                  width: squareCard,
-                                                  height: squareCard,
-                                                  decoration:
-                                                      const BoxDecoration(),
-                                                  child: CachedNetworkImage(
-                                                    progressIndicatorBuilder:
-                                                        (context, url,
-                                                                downloadProgress) =>
-                                                            Center(
-                                                      child: CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation(
-                                                                  context.theme
-                                                                      .disabledColor),
-                                                          value:
-                                                              downloadProgress
-                                                                  .progress),
+                                                    BorderRadius.circular(30)),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: [
+                                                ClipRRect(
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  20),
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  20)),
+                                                  child: Container(
+                                                    width: squareCard,
+                                                    height: squareCard,
+                                                    decoration:
+                                                        const BoxDecoration(),
+                                                    child: CachedNetworkImage(
+                                                      progressIndicatorBuilder:
+                                                          (context, url,
+                                                                  downloadProgress) =>
+                                                              Center(
+                                                        child: CircularProgressIndicator(
+                                                            valueColor:
+                                                                AlwaysStoppedAnimation(
+                                                                    context
+                                                                        .theme
+                                                                        .disabledColor),
+                                                            value:
+                                                                downloadProgress
+                                                                    .progress),
+                                                      ),
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          const Icon(
+                                                              Icons.error),
+                                                      imageUrl:
+                                                          '${controller.events[index].image}',
+                                                      fit: BoxFit.cover,
                                                     ),
-                                                    errorWidget: (context, url,
-                                                            error) =>
-                                                        const Icon(Icons.error),
-                                                    imageUrl:
-                                                        '${controller.events[index].image}',
-                                                    fit: BoxFit.cover,
                                                   ),
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                  width: width * 0.6,
-                                                  child: Text(
-                                                    "${controller.events[index].title}",
-                                                    style: context.theme
-                                                        .textTheme.titleMedium
-                                                        ?.copyWith(
-                                                      color: Colors.white,
-                                                    ),
-                                                    softWrap: true,
-                                                    textAlign: TextAlign.center,
-                                                  )),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  controller.goToEvent(
-                                                      controller.events[index]);
-                                                },
-                                                child: Container(
+                                                SizedBox(
+                                                    width: width * 0.6,
+                                                    child: Text(
+                                                      "${controller.events[index].title}",
+                                                      style: context.theme
+                                                          .textTheme.titleMedium
+                                                          ?.copyWith(
+                                                        color: Colors.white,
+                                                      ),
+                                                      softWrap: true,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    )),
+                                                Container(
                                                   height: cardHeight * 0.1,
                                                   width: double.infinity,
                                                   decoration: BoxDecoration(
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      color: context
-                                                          .theme.primaryColor),
+                                                          BorderRadius
+                                                              .circular(10),
+                                                      color: context.theme
+                                                          .primaryColor),
                                                   child: Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
@@ -254,30 +258,34 @@ class EventScreen extends StatelessWidget {
                                                         flex: 5,
                                                       ),
                                                       Container(
-                                                        height:
-                                                            cardHeight * 0.082,
-                                                        width: cardHeight * 0.1,
+                                                        height: cardHeight *
+                                                            0.082,
+                                                        width:
+                                                            cardHeight * 0.1,
                                                         decoration: BoxDecoration(
-                                                            color: Colors.black,
+                                                            color:
+                                                                Colors.black,
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
                                                                         23)),
-                                                        child: Transform.rotate(
+                                                        child:
+                                                            Transform.rotate(
                                                           angle: pi / 3,
                                                           child: const Icon(
                                                             Icons
                                                                 .arrow_upward_rounded,
-                                                            color: Colors.white,
+                                                            color:
+                                                                Colors.white,
                                                           ),
                                                         ),
                                                       ),
                                                       const Spacer()
                                                     ],
                                                   ),
-                                                ),
-                                              )
-                                            ],
+                                                )
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -296,9 +304,8 @@ class EventScreen extends StatelessWidget {
                             ))),
               ),
             ),
-          
-        ],
-      ),
+          ],
+        ),
       ),
     );
   }

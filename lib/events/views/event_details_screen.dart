@@ -27,7 +27,7 @@ class EventDetailsScreen extends StatelessWidget {
         decoration: BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.cover,
-                opacity: 0.15,
+                opacity: 0.25,
                 image: Themes().backgroundImage)),
         child: SafeArea(
           child: CustomScrollView(
