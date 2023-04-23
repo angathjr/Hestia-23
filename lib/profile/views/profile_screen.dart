@@ -138,21 +138,32 @@ class ProfileScreen extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Text(
-                                  "Number of events \nregistered",
-                                  style: context.theme.textTheme.bodyMedium
-                                      ?.copyWith(
-                                    fontSize: height * 0.016,
+                                Expanded(
+                                  flex: 5,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 20.0,
+                                    ),
+                                    child: Text(
+                                      "Number of events \nregistered",
+                                      style: context.theme.textTheme.bodyMedium
+                                          ?.copyWith(
+                                        fontSize: height * 0.016,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                                Obx(
-                                  () => Text(
-                                    controller.registeredEventCount.value
-                                        .toString(),
-                                    style: context.theme.textTheme.bodyMedium
-                                        ?.copyWith(
-                                      fontSize: width * 0.09,
-                                      fontWeight: FontWeight.bold,
+                                Expanded(
+                                  flex: 1,
+                                  child: Obx(
+                                    () => Text(
+                                      controller.registeredEventCount.value
+                                          .toString(),
+                                      style: context.theme.textTheme.bodyMedium
+                                          ?.copyWith(
+                                        fontSize: width * 0.09,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                 ),
