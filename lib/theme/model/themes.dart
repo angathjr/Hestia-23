@@ -62,6 +62,7 @@ class Themes {
         fontFamily: 'Geomanist',
       ),
       titleLarge: const TextStyle(fontFamily: 'Azonix'),
+      
       titleMedium: GoogleFonts.poppins(
         fontWeight: FontWeight.w500,
         // color: Colors.white,
