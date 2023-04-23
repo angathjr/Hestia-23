@@ -20,13 +20,16 @@ class RegisteredEventScreen extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double squareCard = width - (2 * width * 0.04) - (2 * width * 0.05);
     double cardHeight = height * 0.2;
-    double searchHeight = height * 0.06;
 
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            SliverAppBar(),
+            const SliverAppBar(
+              title: BackButtonWidget(),
+              centerTitle: false,
+              automaticallyImplyLeading: false,
+            ),
             SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: width * 0.05),
               sliver: Obx(

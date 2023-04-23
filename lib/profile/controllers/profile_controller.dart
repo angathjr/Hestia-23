@@ -3,7 +3,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/auth/models/user.dart';
 import 'package:hestia_23/core/api_provider.dart';
 import 'package:hestia_23/events/models/event.dart';
-import 'package:hestia_23/profile/controllers/profile_edit_controller.dart';
 
 class ProfileController extends GetxController {
   final ApiProvider api = Get.find();

@@ -35,7 +35,6 @@ class AuthController extends GetxController {
       log(data.toString());
       final apiToken = response.body['key'];
 
-      print('Api Token: $apiToken');
 
       await _storage.write('authToken', apiToken);
 
@@ -54,7 +53,6 @@ class AuthController extends GetxController {
 
       Get.offAllNamed('/');
     } catch (error) {
-      print(error);
     }
   }
 }

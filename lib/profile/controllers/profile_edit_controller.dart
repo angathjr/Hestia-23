@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/auth/models/user.dart';
 import 'package:hestia_23/core/api_provider.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
@@ -79,7 +78,6 @@ class ProfileEditController extends GetxController {
     if (response.statusCode == 200) {
       await _storage.write('user', user.toJson());
       await _storage.write('isComplete', true);
-      print(_storage.read('isComplete'));
 
       isEdit ? Get.back() : Get.offAllNamed('/');
     } else {

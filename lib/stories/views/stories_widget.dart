@@ -1,6 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,28 +12,28 @@ class Stories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _size = MediaQuery.of(context).size;
-    final _height = _size.height;
-    final _width = _size.width;
+    final size = MediaQuery.of(context).size;
+    final height = size.height;
+    final width = size.width;
     return Column(
       children: [
         Row(
           children: [
             SizedBox(
-              width: _width / 20,
+              width: width / 20,
             ),
             Text(
               "STORIES",
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             SizedBox(
-              height: _height / 30,
+              height: height / 30,
             ),
           ],
         ),
         SizedBox(
           width: double.infinity,
-          height: _height / 6.5,
+          height: height / 6.5,
           child: Obx(
             () => ListView.builder(
               padding: const EdgeInsets.only(left: 10),
@@ -108,11 +106,11 @@ class StoriesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _size = MediaQuery.of(context).size;
-    final _height = _size.height;
-    final _width = _size.width;
+    final size = MediaQuery.of(context).size;
+    final height = size.height;
+    final width = size.width;
     return Padding(
-      padding: EdgeInsets.all(_width * 0.01),
+      padding: EdgeInsets.all(width * 0.01),
       child: GestureDetector(
         onTap: () => controller.goToStory(index),
         child: Container(
@@ -124,15 +122,15 @@ class StoriesCard extends StatelessWidget {
             color: Colors.grey[800],
             borderRadius: BorderRadius.circular(15),
           ),
-          width: _width / 3.8,
-          height: _height / 5.5,
+          width: width / 3.8,
+          height: height / 5.5,
           child: Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Text(
                 "${story.username}",
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                 ),
               ),
