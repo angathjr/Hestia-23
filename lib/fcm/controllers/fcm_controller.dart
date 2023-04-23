@@ -53,7 +53,7 @@ class FCMController extends GetxController {
       }
       eventSlugs.forEach((e) async {
         await messaging.subscribeToTopic('$e');
-        print('Subscribed to $e');
+       
       });
     } on Exception catch (e) {}
   }

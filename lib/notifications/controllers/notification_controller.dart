@@ -61,7 +61,7 @@ class NotificationController extends GetxController {
       final query =
           await colRef.orderBy('createdAt', descending: true).limit(1).get();
       final data = query.docs.map((e) => e.data()).toList();
-      print('data: ' + data.toString());
+    
       if (data.isNotEmpty) {
         NotificationModel notification = notificationModelFromJson(data)[0];
         notification.eventSlug = event.slug;
@@ -86,7 +86,7 @@ class NotificationController extends GetxController {
   }
 
   void fetchRegEvents() async {
-    print(await profileController.fetchRegEventsSlugs());
+    await profileController.fetchRegEventsSlugs();
   }
 
   void fetchGeneralNotifications() async {

@@ -2,20 +2,16 @@ import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/Schedule/views/schedule.dart';
-import 'package:hestia_23/core/constants..dart';
 import 'package:hestia_23/fcm/controllers/fcm_controller.dart';
 import 'package:hestia_23/home/views/home_screen.dart';
 import 'package:hestia_23/home/views/leaderboard_card.dart';
 import 'package:hestia_23/profile/views/profile_screen.dart';
-import 'package:hestia_23/profile/views/profile_screen2.dart';
 import 'package:upgrader/upgrader.dart';
 
 import '../controllers/navbar_controller.dart';
 
 class NavBarPage extends StatelessWidget {
   NavBarPage({Key? key}) : super(key: key);
-
-  // var pages = [HomeScreen(), Schedule(), NotificationScreen(), ProfileScreen()];
 
   final NavBarController navBarController = Get.find();
   final FCMController fcmController = Get.find();

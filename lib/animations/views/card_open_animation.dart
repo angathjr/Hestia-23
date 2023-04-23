@@ -31,7 +31,7 @@ class _MyCustomWidgetState extends State<MyCustomWidget>
                 Timer(
                   const Duration(milliseconds: 300),
                   () {
-                    // print('worked');
+                  
                     scaleController.reset();
                   },
                 );
