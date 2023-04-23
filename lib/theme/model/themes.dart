@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -67,8 +69,7 @@ class Themes {
       titleSmall: GoogleFonts.montserrat(
         fontWeight: FontWeight.w300,
       ),
-      bodyLarge: GoogleFonts.poppins(
-          fontWeight: FontWeight.w700, color: const Color(0xffDEFD72)),
+      bodyLarge: GoogleFonts.poppins(fontWeight: FontWeight.w700),
       bodyMedium: GoogleFonts.montserrat(
         fontWeight: FontWeight.w600,
       ),

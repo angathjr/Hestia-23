@@ -86,23 +86,26 @@ class EventsSearchScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              height: height * 0.06,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: const Color(0xff1E1E1E)),
-                              child: IconButton(
-                                  icon: Icon(FeatherIcons.filter,
-                                      size: width * 0.06),
-                                  onPressed: () =>
-                                      Get.to(() => FilterScreen())),
-                            ),
-                          )
+                          // const SizedBox(
+                          //   width: 5,
+                          // ),
+
+                          //code for filter
+
+                          // Expanded(
+                          //   flex: 2,
+                          //   child: Container(
+                          //     height: height * 0.06,
+                          //     decoration: BoxDecoration(
+                          //         borderRadius: BorderRadius.circular(20),
+                          //         color: const Color(0xff1E1E1E)),
+                          //     child: IconButton(
+                          //         icon: Icon(FeatherIcons.filter,
+                          //             size: width * 0.06),
+                          //         onPressed: () =>
+                          //             Get.to(() => FilterScreen())),
+                          //   ),
+                          // )
                         ],
                       ),
                       const SizedBox(
