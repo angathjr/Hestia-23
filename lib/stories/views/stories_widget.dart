@@ -146,7 +146,7 @@ class StoriesCard extends StatelessWidget {
             ),
             color: Colors.grey[800],
             border: themeController.selectedIndex.value == 0
-                ? Border.all(color: context.theme.primaryColor, width: 3)
+                ? Border.all(color: context.theme.primaryColor, width: 0)
                 : themeController.selectedIndex.value == 1
                     ? Border.all(color: Colors.white)
                     : null,

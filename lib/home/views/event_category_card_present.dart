@@ -29,7 +29,15 @@ class CategoryCardPresent extends StatelessWidget {
             margin: EdgeInsets.only(top: h * 0.05),
             padding: EdgeInsets.symmetric(horizontal: w * 0.05),
             decoration: BoxDecoration(
-                color: Colors.black, border: Border.all(color: Colors.white)),
+                boxShadow: [
+                  BoxShadow(
+                      blurRadius: 4,
+                      color: context.theme.primaryColor,
+                      spreadRadius: 1)
+                ],
+                color: Colors.black,
+                border: Border.all(
+                    color: context.theme.primaryColor.withOpacity(0.8))),
             height: cardHeight,
             width: w * 0.7,
             child: Column(
@@ -106,8 +114,9 @@ class CategoryCardPresent extends StatelessWidget {
                 height: h * 0.2,
                 width: w * 0.5,
                 decoration: BoxDecoration(
-                    color: Colors.black,
-                    border: Border.all(color: Colors.white)),
+                  color: Colors.black,
+                  //border: Border.all(color: context.theme.primaryColor)
+                ),
                 child: CachedNetworkImage(
                   progressIndicatorBuilder: (context, url, downloadProgress) =>
                       Center(

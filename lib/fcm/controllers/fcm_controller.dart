@@ -44,7 +44,7 @@ class FCMController extends GetxController {
 
   void subscribeToTopic() async {
     try {
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
       final Response response = await api.getApi('/api/events/reg/events/');
       final List responseBody = response.body['results'];
       List eventSlugs = [];

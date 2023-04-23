@@ -21,8 +21,8 @@ class CategoryCardPast extends StatelessWidget {
       alignment: Alignment.center,
       child: Container(
         decoration: BoxDecoration(
-            color: Colors.red.shade400,
-            border: Border.all(color: context.theme.primaryColor, width: 5),
+            color: Color.fromARGB(255, 44, 44, 40),
+            border: Border.all(color: context.theme.primaryColor, width: 2),
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
@@ -45,7 +45,7 @@ class CategoryCardPast extends StatelessWidget {
                           topRight: Radius.circular(20),
                         ),
                         border: Border.all(
-                            color: context.theme.primaryColor, width: 3)),
+                            color: context.theme.primaryColor, width: 2)),
                     child: ClipRRect(
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
