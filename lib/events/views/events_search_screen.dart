@@ -37,6 +37,7 @@ class EventsSearchScreen extends StatelessWidget {
               floating: false,
               snap: false,
               titleSpacing: 20,
+              backgroundColor: Colors.transparent,
               title: Row(
                 children: [
                   const BackButtonWidget(),

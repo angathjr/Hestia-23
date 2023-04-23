@@ -1,131 +1,126 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hestia_23/events/controllers/events_controller.dart';
+import 'package:hestia_23/events/views/events_screen.dart';
 
 import '../../core/constants..dart';
 import '../../events/models/category.dart';
 
-class Eventcardpresent extends StatelessWidget {
-  const Eventcardpresent({super.key, required this.categoryModel});
+class CategoryCardPresent extends StatelessWidget {
+  CategoryCardPresent({super.key, required this.categoryModel});
 
   final CategoryModel categoryModel;
+  final EventsController eventController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
-    return Container(
-      color: Colors.black,
-      child: Align(
+    var cardHeight = h * 0.5;
+
+    return Align(
+      alignment: Alignment.center,
+      child: Stack(
+        clipBehavior: Clip.none,
         alignment: Alignment.center,
-        child: Stack(
-          clipBehavior: Clip.none,
-          alignment: Alignment.center,
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: w * 0.03),
-              decoration: BoxDecoration(
-                  color: Colors.black, border: Border.all(color: Colors.white)),
-              height: h * 0.30,
-              width: w * 0.5,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    flex: 7,
-                    child: SizedBox(
-                      height: h * 0.13,
-                    ),
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: h * 0.05),
+            padding: EdgeInsets.symmetric(horizontal: w * 0.05),
+            decoration: BoxDecoration(
+                color: Colors.black, border: Border.all(color: Colors.white)),
+            height: cardHeight,
+            width: w * 0.7,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Expanded(
+                  flex: 7,
+                  child: SizedBox(),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Text(
+                    categoryModel.name,
+                    style: context.theme.textTheme.titleLarge
+                        ?.copyWith(fontSize: cardHeight * 0.067),
                   ),
-                  Expanded(
-                    flex: 2,
+                ),
+                Container(
+                  height: 5,
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/presentLine.png"),
+                          fit: BoxFit.fill)),
+                ),
+                SizedBox(
+                  height: h * 0.015,
+                ),
+                Expanded(
+                  flex: 3,
+                  child: SizedBox(
+                    width: w * 0.40,
                     child: Text(
-                      "Cultural",
-                      style: TextStyle(
-                          fontSize: w * 0.05,
-                          color: Colors.white,
-                          inherit: false),
+                      categoryModel.description,
+                      style: FutTheme.font7.copyWith(
+                          color: const Color.fromRGBO(255, 255, 255, 0.61),
+                          fontSize: w * 0.03),
+                      textAlign: TextAlign.start,
                     ),
                   ),
-                  Expanded(
-                    flex: 1,
-                    child: SizedBox(
-                      height: h * 0.015,
-                    ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: SizedBox(
+                    height: h * 0.02,
                   ),
-                  Expanded(
-                    flex: 1,
+                ),
+                Expanded(
+                  flex: 2,
+                  child: SizedBox(
+                    width: double.infinity,
                     child: Container(
-                      height: h * 0.0070,
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage("assets/diagrect.png"),
-                              fit: BoxFit.fill)),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: SizedBox(
-                      height: h * 0.02,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: SizedBox(
-                      width: w * 0.40,
-                      child: Text(
-                          style: TextStyle(
-                              inherit: false,
-                              fontSize: w * 0.02,
-                              color: Colors.white),
-                          "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et"),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: SizedBox(
-                      height: h * 0.02,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.yellow),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: context.theme.primaryColor,
+                      ),
+                      child: Center(
                         child: Text(
-                          categoryModel.name,
-                          style: const TextStyle(color: Colors.black),
+                          "Check It Out",
+                          style: context.theme.textTheme.titleSmall
+                              ?.copyWith(color: Colors.black87),
                         ),
                       ),
                     ),
                   ),
-                  const Expanded(flex: 1, child: SizedBox())
-                ],
-              ),
+                ),
+                const Expanded(flex: 1, child: SizedBox())
+              ],
             ),
-            Positioned(
-                bottom: h * 0.20,
-                child: SizedBox(
-                  height: h * 0.2,
-                  width: w * 0.45,
-                  child: CachedNetworkImage(
-                    progressIndicatorBuilder:
-                        (context, url, downloadProgress) => Center(
-                      child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation(
-                              context.theme.disabledColor),
-                          value: downloadProgress.progress),
-                    ),
-                    imageUrl: categoryModel.imgUrl,
-                    fit: BoxFit.cover,
+          ),
+          Positioned(
+              top: 0,
+              child: Container(
+                height: h * 0.2,
+                width: w * 0.5,
+                decoration: BoxDecoration(
+                    color: Colors.black,
+                    border: Border.all(color: Colors.white)),
+                child: CachedNetworkImage(
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      Center(
+                    child: CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation(context.theme.disabledColor),
+                        value: downloadProgress.progress),
                   ),
-                ))
-          ],
-        ),
+                  imageUrl: categoryModel.imgUrl,
+                  fit: BoxFit.cover,
+                ),
+              ))
+        ],
       ),
     );
   }

@@ -25,19 +25,19 @@ class Themes {
     switch (_loadThemeFromBox()) {
       case 0:
         return const AssetImage(
-          "assets/images/bg.png",
+          "assets/images/pastBg.png",
         );
       case 1:
         return const AssetImage(
-          "assets/images/bg.png",
+          "assets/images/presentBg.png",
         );
       case 2:
         return const AssetImage(
-          "assets/images/bg.png",
+          "assets/images/futureBg.png",
         );
       default:
         return const AssetImage(
-          "assets/images/bg.png",
+          "assets/images/presentBg.png",
         );
     }
   }

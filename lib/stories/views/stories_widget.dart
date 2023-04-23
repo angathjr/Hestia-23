@@ -24,7 +24,7 @@ class Stories extends StatelessWidget {
               width: width / 20,
             ),
             Text(
-              "HESTIA'23 LIVE",
+              "HIGHLIGHTS",
               style: Theme.of(context)
                   .textTheme
                   .titleMedium

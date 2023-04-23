@@ -23,32 +23,33 @@ class ProfileScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final height = size.height;
     final width = size.width;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "PROFILE",
-          style: context.theme.textTheme.titleLarge
-              ?.copyWith(fontSize: width * 0.064),
+    return Container(
+      height: height,
+      width: width,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.cover,
+              opacity: 0.25,
+              image: Themes().backgroundImage)),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          title: Text(
+            "PROFILE",
+            style: context.theme.textTheme.titleLarge
+                ?.copyWith(fontSize: width * 0.064),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: Container(
-        height: height,
-        width: width,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.cover,
-                opacity: 0.5,
-                image: Themes().backgroundImage)),
-        child: Padding(
+        body: Padding(
           padding: EdgeInsets.symmetric(horizontal: width * 0.06),
           child: SizedBox(
             width: width,
             child: AnimationConfiguration.synchronized(
               child: FadeInAnimation(
                 curve: Curves.fastLinearToSlowEaseIn,
-                duration:
-                const Duration(milliseconds: 2500),
+                duration: const Duration(milliseconds: 2500),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -68,7 +69,7 @@ class ProfileScreen extends StatelessWidget {
                     Text(
                       '${controller.user.value.name}',
                       style: context.theme.textTheme.titleLarge?.copyWith(
-                          color: const Color.fromRGBO(153, 153, 153, 1),
+                          color: Colors.white54,
                           letterSpacing: 2,
                           fontSize: width * 0.045),
                     ),
@@ -88,7 +89,7 @@ class ProfileScreen extends StatelessWidget {
                         Text(
                           '${controller.user.value.phoneNumber?.replaceAll('+91', '')}',
                           style: FutTheme.font3.copyWith(
-                            color: const Color.fromRGBO(153, 153, 153, 1),
+                            color: Colors.white54,
                             letterSpacing: 1.2,
                           ),
                         )
@@ -110,7 +111,7 @@ class ProfileScreen extends StatelessWidget {
                         Text(
                           '${controller.user.value.email}',
                           style: FutTheme.font3.copyWith(
-                            color: const Color.fromRGBO(153, 153, 153, 1),
+                            color: Colors.white54,
                             letterSpacing: 1,
                           ),
                         )
@@ -129,7 +130,7 @@ class ProfileScreen extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: context.theme.cardColor.withOpacity(0.6)),
+                              color: context.theme.cardColor.withOpacity(0.9)),
                           // width: _width - 2 * (_width / 25),
                           height: height / 9,
                           child: Padding(
@@ -137,18 +138,28 @@ class ProfileScreen extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Text(
-                                  "Number of events \nregistered",
-                                  style: FutTheme.font2.copyWith(
-                                    fontSize: height * 0.016,
+                                Expanded(
+                                  flex: 5,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 30.0),
+                                    child: Text(
+                                      "Number of events \nregistered",
+                                      style: FutTheme.font2.copyWith(
+                                        fontSize: height * 0.016,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                                Obx(
-                                  () => Text(
-                                    controller.registeredEventCount.value.toString(),
-                                    style: FutTheme.font2.copyWith(
-                                      fontSize: width * 0.09,
-                                      fontWeight: FontWeight.bold,
+                                Expanded(
+                                  flex: 1,
+                                  child: Obx(
+                                    () => Text(
+                                      controller.registeredEventCount.value
+                                          .toString(),
+                                      style: FutTheme.font2.copyWith(
+                                        fontSize: width * 0.09,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -184,22 +195,26 @@ class ProfileScreen extends StatelessWidget {
                                     flex: 2,
                                     child: SlideAnimation(
                                       curve: Curves.fastLinearToSlowEaseIn,
-                                      duration: const Duration(milliseconds: 2500),
+                                      duration:
+                                          const Duration(milliseconds: 2500),
                                       horizontalOffset: -20,
                                       child: Container(
                                         width: width,
                                         alignment: Alignment.center,
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(15),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
                                           color: context.theme.cardColor
-                                              .withOpacity(0.6),
+                                              .withOpacity(0.9),
                                         ),
                                         child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: [
                                             const Icon(
                                               FeatherIcons.award,
-                                              color: Color.fromRGBO(153, 153, 153, 1),
+                                              color: Color.fromRGBO(
+                                                  153, 153, 153, 1),
                                             ),
                                             SizedBox(
                                               height: width * 0.03,
@@ -223,13 +238,15 @@ class ProfileScreen extends StatelessWidget {
                                     flex: 2,
                                     child: SlideAnimation(
                                       curve: Curves.fastLinearToSlowEaseIn,
-                                      duration: const Duration(milliseconds: 2500),
+                                      duration:
+                                          const Duration(milliseconds: 2500),
                                       horizontalOffset: 20,
                                       child: Column(
                                         children: [
                                           Expanded(
                                             child: InkWell(
-                                              borderRadius: BorderRadius.circular(15),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
                                               onTap: () => Get.to(
                                                   () => ProfileCompletion(),
                                                   arguments: [true]),
@@ -239,7 +256,7 @@ class ProfileScreen extends StatelessWidget {
                                                   borderRadius:
                                                       BorderRadius.circular(15),
                                                   color: context.theme.cardColor
-                                                      .withOpacity(0.6),
+                                                      .withOpacity(0.9),
                                                 ),
                                                 child: Column(
                                                   mainAxisAlignment:
@@ -255,8 +272,10 @@ class ProfileScreen extends StatelessWidget {
                                                     ),
                                                     Text(
                                                       "Edit Profile",
-                                                      style: FutTheme.font2.copyWith(
-                                                        fontSize: height * 0.016,
+                                                      style: FutTheme.font2
+                                                          .copyWith(
+                                                        fontSize:
+                                                            height * 0.016,
                                                       ),
                                                     ),
                                                   ],
@@ -275,7 +294,7 @@ class ProfileScreen extends StatelessWidget {
                                                 borderRadius:
                                                     BorderRadius.circular(15),
                                                 color: context.theme.cardColor
-                                                    .withOpacity(0.6),
+                                                    .withOpacity(0.9),
                                               ),
                                               child: Column(
                                                 mainAxisAlignment:
@@ -291,7 +310,8 @@ class ProfileScreen extends StatelessWidget {
                                                   ),
                                                   Text(
                                                     "ID Card",
-                                                    style: FutTheme.font2.copyWith(
+                                                    style:
+                                                        FutTheme.font2.copyWith(
                                                       fontSize: height * 0.016,
                                                     ),
                                                   ),
@@ -323,8 +343,8 @@ class ProfileScreen extends StatelessWidget {
                                       width: width,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(15),
-                                        color:
-                                            context.theme.cardColor.withOpacity(0.6),
+                                        color: context.theme.cardColor
+                                            .withOpacity(0.8),
                                       ),
                                       child: Text(
                                         "Log Out",
