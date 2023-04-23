@@ -18,7 +18,28 @@ class Themes {
       case 2:
         return futureTheme;
     }
-    return futureTheme;
+    return presentTheme;
+  }
+
+  AssetImage get backgroundImage {
+    switch (_loadThemeFromBox()) {
+      case 0:
+        return const AssetImage(
+          "assets/images/bg.png",
+        );
+      case 1:
+        return const AssetImage(
+          "assets/images/bg.png",
+        );
+      case 2:
+        return const AssetImage(
+          "assets/images/bg.png",
+        );
+      default:
+        return const AssetImage(
+          "assets/images/bg.png",
+        );
+    }
   }
 
   int _loadThemeFromBox() => _box.read(_key) ?? 1;

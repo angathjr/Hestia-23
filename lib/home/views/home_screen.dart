@@ -11,6 +11,7 @@ import 'package:hestia_23/profile/controllers/profile_controller.dart';
 import 'package:hestia_23/stories/views/stories_widget.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
 import 'package:hestia_23/theme/controllers/theme_animation_controller.dart';
+import 'package:hestia_23/theme/model/themes.dart';
 import 'package:hestia_23/theme/views/switch_theme_screen.dart';
 import 'event_category_card.dart';
 
@@ -32,129 +33,129 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: CustomScrollView(
-          physics: const NeverScrollableScrollPhysics(),
-          slivers: [
-            SliverAppBar(
-              pinned: true,
-              snap: false,
-              primary: true,
-              automaticallyImplyLeading: false,
-              title: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      showModalBottomSheet(
-                        isScrollControlled: true,
-                        useSafeArea: true,
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20))),
-                        isDismissible: true,
-                        context: context,
-                        backgroundColor: Colors.transparent,
-                        transitionAnimationController:
-                            themeController.animationController,
-                        builder: (context) => BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-                            child: SwitchThemeScreen()),
-                      );
-                    },
-                    child: Image.asset(
-                      "assets/images/mascot.png",
-                      scale: 2.2,
+        child: Container(
+          height: height,
+          width: width,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  opacity: 0.5,
+                  image: Themes().backgroundImage)),
+          child: CustomScrollView(
+            physics: const NeverScrollableScrollPhysics(),
+            slivers: [
+              SliverAppBar(
+                pinned: true,
+                snap: false,
+                primary: true,
+                automaticallyImplyLeading: false,
+                title: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet(
+                          isScrollControlled: true,
+                          useSafeArea: true,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20))),
+                          isDismissible: true,
+                          context: context,
+                          backgroundColor: Colors.transparent,
+                          transitionAnimationController:
+                              themeController.animationController,
+                          builder: (context) => BackdropFilter(
+                              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                              child: SwitchThemeScreen()),
+                        );
+                      },
+                      child: Image.asset(
+                        "assets/images/mascot.png",
+                        scale: 2.2,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                          "HI ${profController.user.value.name?.split(' ').first.toUpperCase()}",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineLarge
-                              ?.copyWith(fontSize: width * 0.035)),
-                      const SizedBox(
-                        height: 7,
-                      ),
-                      SizedBox(
-                        width: width * 0.5,
-                        child: Text("WELCOME TO THE TIMELESS ODYSSEY",
-                            overflow: TextOverflow.clip,
-                            style: context.theme.textTheme.headlineMedium
-                                ?.copyWith(fontSize: width * 0.022)),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              actions: [
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(15),
-                          bottomLeft: Radius.circular(15)),
-                      color: FutTheme.primaryBg.withOpacity(0.7)),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        onPressed: () => Get.toNamed('search'),
-                        //  Navigator.push(
-                        //     context, SizeTransition5(EventsSearchScreen())),
-                        icon: const Icon(FeatherIcons.search),
-                      ),
-                      IconButton(
-                        onPressed: () => Get.toNamed('notification-1'),
-                        icon: Obx( 
-                          () => Stack(
-                            children: [
-                              if (notificationController
-                                      .generalNotifications.isNotEmpty ||
-                                  profController.regEvents.isNotEmpty)
-                                Positioned(
-                                  right: 4,
-                                  top: 7,
-                                  child: Container(
-                                    height: 7,
-                                    width: 7,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(100),
-                                      color: context.theme.primaryColor,
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                            "HI ${profController.user.value.name?.split(' ').first.toUpperCase()}",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineLarge
+                                ?.copyWith(fontSize: width * 0.038)),
+                        const SizedBox(
+                          height: 7,
+                        ),
+                        SizedBox(
+                          width: width * 0.5,
+                          child: Text("WELCOME TO THE TIMELESS ODYSSEY",
+                              overflow: TextOverflow.clip,
+                              style: context.theme.textTheme.headlineMedium
+                                  ?.copyWith(fontSize: width * 0.025)),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                actions: [
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(15),
+                            bottomLeft: Radius.circular(15)),
+                        color: FutTheme.primaryBg.withOpacity(0.7)),
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () => Get.toNamed('search'),
+                          //  Navigator.push(
+                          //     context, SizeTransition5(EventsSearchScreen())),
+                          icon: const Icon(FeatherIcons.search),
+                        ),
+                        IconButton(
+                          onPressed: () => Get.toNamed('notification-1'),
+                          icon: Obx(
+                            () => Stack(
+                              children: [
+                                if (notificationController
+                                        .generalNotifications.isNotEmpty ||
+                                    profController.regEvents.isNotEmpty)
+                                  Positioned(
+                                    right: 4,
+                                    top: 7,
+                                    child: Container(
+                                      height: 7,
+                                      width: 7,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        color: context.theme.primaryColor,
+                                      ),
                                     ),
                                   ),
+                                const Center(
+                                  child: Icon(
+                                    FeatherIcons.bell,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              const Center(
-                                child: Icon(
-                                  FeatherIcons.bell,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  Container(
-                    height: height,
-                    width: width,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(
-                              "assets/images/bg.png",
-                            ))),
-                    child: Column(
+                ],
+              ),
+              SliverList(
+                delegate: SliverChildListDelegate(
+                  [
+                    Column(
                       children: [
                         SizedBox(
                           height: height * 0.02,
@@ -165,7 +166,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         Padding(
                           padding: EdgeInsets.only(
-                              top: height * 0.04, bottom: height * 0.03),
+                              top: height * 0.05, bottom: height * 0.03),
                           child: Container(
                             alignment: Alignment.center,
                             // width: width,
@@ -179,7 +180,7 @@ class HomeScreen extends StatelessWidget {
                         //the category screen placed here
 
                         SizedBox(
-                          height: height * 0.5,
+                          height: height * 0.45,
                           width: width,
                           child: CarouselSlider.builder(
                             itemCount: eventController.categories.length,
@@ -211,11 +212,11 @@ class HomeScreen extends StatelessWidget {
                         //leaderboard
                       ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -23,11 +23,14 @@ class Stories extends StatelessWidget {
               width: width / 20,
             ),
             Text(
-              "STORIES",
-              style: Theme.of(context).textTheme.titleSmall,
+              "HESTIA'23 LIVE",
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium
+                  ?.copyWith(fontSize: height * 0.022),
             ),
             SizedBox(
-              height: height / 30,
+              height: height / 20,
             ),
           ],
         ),

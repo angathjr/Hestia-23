@@ -1,6 +1,8 @@
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polygon/flutter_polygon.dart';
+import 'package:get/get.dart';
+import 'package:hestia_23/theme/model/themes.dart';
 import '../../core/Constants..dart';
 
 class LeaderBoard extends StatelessWidget {
@@ -104,13 +106,45 @@ class LeaderBoard extends StatelessWidget {
           title: Center(
             child: Text(
               'LEADERBOARD',
-              style: Theme.of(context).textTheme.titleLarge
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
                   ?.copyWith(fontSize: w * 0.064),
             ),
           ),
           elevation: 0,
         ),
-        body: futureLeaderboard(height, context),
+        //body: futureLeaderboard(height, context),
+        body: Container(
+          height: height,
+          width: w,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  opacity: 0.5,
+                  image: Themes().backgroundImage)),
+          child: Center(
+            child: Container(
+              margin: EdgeInsets.only(
+                left: 30,
+                right: 30,
+                top: height * 0.03,
+                bottom: height * 0.1,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: context.theme.cardColor,
+              ),
+              child: Center(
+                child: Text(
+                  "Leaderboard will be active soon ;)",
+                  style: context.theme.textTheme.bodyMedium
+                      ?.copyWith(color: context.theme.disabledColor),
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
