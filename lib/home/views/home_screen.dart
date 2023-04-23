@@ -7,14 +7,16 @@ import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
+import 'package:hestia_23/home/views/event_category_card_present.dart';
 import 'package:hestia_23/notifications/controllers/notification_controller.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
 import 'package:hestia_23/stories/views/stories_widget.dart';
 import 'package:hestia_23/events/views/events_screen.dart';
 import 'package:hestia_23/theme/controllers/theme_animation_controller.dart';
+import 'package:hestia_23/theme/controllers/theme_controller.dart';
 import 'package:hestia_23/theme/model/themes.dart';
 import 'package:hestia_23/theme/views/switch_theme_screen.dart';
-import 'event_category_card.dart';
+import 'event_category_card_future.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -22,9 +24,10 @@ class HomeScreen extends StatelessWidget {
   final EventsController eventController = Get.find();
   final AuthController authController = Get.find();
   final ProfileController profController = Get.find();
-  final ThemeAnimationController themeController =
+  final ThemeAnimationController themeAnimationController =
       Get.put(ThemeAnimationController());
   final NotificationController notificationController = Get.find();
+  final ThemeController themeController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +36,15 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Container(
-          height: height,
-          width: width,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  fit: BoxFit.cover,
-                  opacity: 0.5,
-                  image: Themes().backgroundImage)),
+      body: Container(
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                fit: BoxFit.fitWidth,
+                opacity: 0.25,
+                image: Themes().backgroundImage)),
+        child: SafeArea(
           child: CustomScrollView(
             physics: const NeverScrollableScrollPhysics(),
             slivers: [
@@ -50,6 +53,7 @@ class HomeScreen extends StatelessWidget {
                 snap: false,
                 primary: true,
                 automaticallyImplyLeading: false,
+                backgroundColor: Colors.transparent,
                 title: Row(
                   children: [
                     GestureDetector(
@@ -65,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                           context: context,
                           backgroundColor: Colors.transparent,
                           transitionAnimationController:
-                              themeController.animationController,
+                              themeAnimationController.animationController,
                           builder: (context) => BackdropFilter(
                               filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                               child: SwitchThemeScreen()),
@@ -199,7 +203,8 @@ class HomeScreen extends StatelessWidget {
                                   duration: const Duration(milliseconds: 100),
                                   child: SlideAnimation(
                                     curve: Curves.fastLinearToSlowEaseIn,
-                                    duration: const Duration(milliseconds: 1500),
+                                    duration:
+                                        const Duration(milliseconds: 1500),
                                     verticalOffset: -50,
                                     child: FadeInAnimation(
                                       curve: Curves.fastLinearToSlowEaseIn,
@@ -208,16 +213,35 @@ class HomeScreen extends StatelessWidget {
                                       child: GestureDetector(
                                           onTap: () {
                                             eventController.selectedCategory =
-                                                eventController.categories[index];
+                                                eventController
+                                                    .categories[index];
                                             eventController.fetchEvents();
                                             Get.to(() => EventScreen(),
                                                 arguments: eventController
                                                     .categories[index].name);
                                           },
-                                          child: CategoryCard(
-                                            categoryModel:
-                                                eventController.categories[index],
-                                          )),
+                                          child: themeController
+                                                      .selectedIndex.value ==
+                                                  0
+                                              ? CategoryCardPresent(
+                                                  categoryModel: eventController
+                                                      .categories[index],
+                                                )
+                                              : themeController.selectedIndex
+                                                          .value ==
+                                                      1
+                                                  ? CategoryCardPresent(
+                                                      categoryModel:
+                                                          eventController
+                                                                  .categories[
+                                                              index],
+                                                    )
+                                                  : CategoryCardFuture(
+                                                      categoryModel:
+                                                          eventController
+                                                                  .categories[
+                                                              index],
+                                                    )),
                                     ),
                                   ),
                                 );

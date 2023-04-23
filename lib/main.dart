@@ -55,7 +55,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       enableLog: true,
       title: 'Hestia 23',
-      
       theme: Themes().theme,
       getPages: [
         GetPage(

@@ -100,35 +100,37 @@ class LeaderBoard extends StatelessWidget {
         kToolbarHeight;
     var w = MediaQuery.of(context).size.width;
 
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          title: Center(
-            child: Text(
-              'LEADERBOARD',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge
-                  ?.copyWith(fontSize: w * 0.064),
+    return Container(
+      height: height,
+      width: w,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.cover,
+              opacity: 0.25,
+              image: Themes().backgroundImage)),
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          resizeToAvoidBottomInset: false,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            title: Center(
+              child: Text(
+                'LEADERBOARD',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge
+                    ?.copyWith(fontSize: w * 0.064),
+              ),
             ),
+            elevation: 0,
           ),
-          elevation: 0,
-        ),
-        //body: futureLeaderboard(height, context),
-        body: AnimationConfiguration.synchronized(
-          child: FadeInAnimation(
-            duration:
-            const Duration(milliseconds: 2500),
-            curve: Curves.fastLinearToSlowEaseIn,
-            child: Container(
-              height: height,
-              width: w,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      opacity: 0.5,
-                      image: Themes().backgroundImage)),
+          //body: futureLeaderboard(height, context),
+          body: AnimationConfiguration.synchronized(
+            child: FadeInAnimation(
+              duration:
+              const Duration(milliseconds: 2500),
+              curve: Curves.fastLinearToSlowEaseIn,
               child: Center(
                 child: Container(
                   margin: EdgeInsets.only(
@@ -139,7 +141,7 @@ class LeaderBoard extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: context.theme.cardColor,
+                    color: context.theme.cardColor.withOpacity(0.9),
                   ),
                   child: Center(
                     child: Text(

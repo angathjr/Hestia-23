@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import 'package:hestia_23/core/constants..dart';
 import 'package:hestia_23/events/models/category.dart';
 
-class CategoryCard extends StatelessWidget {
-  const CategoryCard({
+class CategoryCardFuture extends StatelessWidget {
+  const CategoryCardFuture({
     Key? key,
     required this.categoryModel,
   }) : super(key: key);
@@ -55,11 +55,8 @@ class CategoryCard extends StatelessWidget {
                           progressIndicatorBuilder:
                               (context, url, downloadProgress) => Center(
                             child: CircularProgressIndicator(
-                                valueColor:
-                                AlwaysStoppedAnimation(
-                                    context
-                                        .theme
-                                        .disabledColor),
+                                valueColor: AlwaysStoppedAnimation(
+                                    context.theme.disabledColor),
                                 value: downloadProgress.progress),
                           ),
                           imageUrl: categoryModel.imgUrl,
@@ -76,7 +73,7 @@ class CategoryCard extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.fromLTRB(w * 0.08, 0, 0, 0),
               child: Text(
-                "Learn from the finest of skills from the best of mentors at our curated workshops and skill sessions",
+                categoryModel.description,
                 style: FutTheme.font7.copyWith(
                     color: const Color.fromRGBO(255, 255, 255, 0.61),
                     fontSize: w * 0.03),

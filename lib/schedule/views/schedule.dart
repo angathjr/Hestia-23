@@ -28,12 +28,13 @@ class Schedule extends StatelessWidget {
       decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.cover,
-              opacity: 0.5,
+              opacity: 0.25,
               image: Themes().backgroundImage)),
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
+              backgroundColor: Colors.transparent,
               pinned: true,
               floating: true,
               centerTitle: true,
@@ -169,7 +170,7 @@ class TimeLineofEvents extends StatelessWidget {
                               event.image!,
                             ),
                             fit: BoxFit.cover,
-                            opacity: 0.7),
+                            opacity: 0.9),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(20))),
                     height: h * 0.12,

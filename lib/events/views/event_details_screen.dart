@@ -21,20 +21,21 @@ class EventDetailsScreen extends StatelessWidget {
     double cardSize = (width - (2 * width * 0.04));
 
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          height: height,
-          width: width,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  fit: BoxFit.cover,
-                  opacity: 0.5,
-                  image: Themes().backgroundImage)),
+      body: Container(
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                fit: BoxFit.cover,
+                opacity: 0.15,
+                image: Themes().backgroundImage)),
+        child: SafeArea(
           child: CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [
               SliverAppBar(
                 automaticallyImplyLeading: false,
+                backgroundColor: Colors.transparent,
                 pinned: false,
                 floating: true,
                 snap: true,
@@ -50,15 +51,16 @@ class EventDetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       //The poster will be placed here
-
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: SizedBox(
                             width: width,
                             height: cardSize,
                             child: CachedNetworkImage(
-                              placeholder: (context, url) => primaryLoadingWidget,
-                              imageUrl: '${eventsController.selectedEvent.image}',
+                              placeholder: (context, url) =>
+                                  primaryLoadingWidget,
+                              imageUrl:
+                                  '${eventsController.selectedEvent.image}',
                               fit: BoxFit.cover,
                             )),
                       ),
@@ -126,7 +128,8 @@ class EventDetailsScreen extends StatelessWidget {
                             Expanded(
                               flex: 3,
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text(
                                     "Date",
@@ -163,7 +166,8 @@ class EventDetailsScreen extends StatelessWidget {
                                       ),
                                       Text(
                                         eventsController.formatPrice(
-                                            eventsController.selectedEvent.prize),
+                                            eventsController
+                                                .selectedEvent.prize),
                                         style: FutTheme.font1.copyWith(
                                             fontSize: height * 0.03,
                                             fontWeight: FontWeight.w700,
@@ -218,8 +222,9 @@ class EventDetailsScreen extends StatelessWidget {
                               '${eventsController.selectedEvent.desc}',
                               style: FutTheme.font7
                                   .copyWith(fontSize: height * 0.018),
-                              maxLines:
-                                  controller.isReadMore.value == false ? 4 : null,
+                              maxLines: controller.isReadMore.value == false
+                                  ? 4
+                                  : null,
                               overflow: TextOverflow.fade,
                               textAlign: TextAlign.justify,
                             ),
@@ -235,8 +240,8 @@ class EventDetailsScreen extends StatelessWidget {
                                     (!controller.isReadMore.value)
                                         ? "Read More "
                                         : "Read Less",
-                                    style: FutTheme.font4
-                                        .copyWith(color: const Color(0xffDEFD72)),
+                                    style: FutTheme.font4.copyWith(
+                                        color: const Color(0xffDEFD72)),
                                   )),
                             ),
                           ],
@@ -261,18 +266,21 @@ class EventDetailsScreen extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          if (eventsController.selectedEvent.coordinator1 != null)
+                          if (eventsController.selectedEvent.coordinator1 !=
+                              null)
                             contactDetails(
                                 phoneNumber: eventsController
                                     .selectedEvent.coordinator1?.phoneNumber,
                                 width,
                                 height,
                                 '${eventsController.selectedEvent.coordinator1?.name}'),
-                          if (eventsController.selectedEvent.coordinator2 != null)
+                          if (eventsController.selectedEvent.coordinator2 !=
+                              null)
                             SizedBox(
                               width: width * 0.11,
                             ),
-                          if (eventsController.selectedEvent.coordinator2 != null)
+                          if (eventsController.selectedEvent.coordinator2 !=
+                              null)
                             contactDetails(
                                 phoneNumber: eventsController
                                     .selectedEvent.coordinator2?.phoneNumber,
