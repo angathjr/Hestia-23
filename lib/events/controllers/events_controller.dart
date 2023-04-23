@@ -172,7 +172,7 @@ class EventsController extends GetxController {
     if (phoneNumber == null) return;
     const url = 'tel:';
     final uri = Uri.parse('tel:$phoneNumber');
-    print(uri);
+    
     try {
       await launchUrl(
         uri,

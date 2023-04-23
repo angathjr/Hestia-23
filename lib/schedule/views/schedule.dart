@@ -239,7 +239,7 @@ class Dates extends StatelessWidget {
             children: [
               Text(date.date,
                   style: FutTheme.font3.copyWith(
-                      fontSize: w * 0.04,
+                      fontSize: w * 0.048,
                       fontWeight: FontWeight.w600,
                       color: controller.selectedDateIndex.value == index
                           ? Colors.black

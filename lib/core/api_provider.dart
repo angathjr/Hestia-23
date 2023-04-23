@@ -24,10 +24,9 @@ class ApiProvider extends GetConnect {
     httpClient.addRequestModifier<dynamic>((request) {
       //add header
       final token = storage.read('authToken');
-      // log('AuthTOken: $token');
+   
       request.headers['Authorization'] = "token $token";
-      // log(request.headers.toString());
-      // log(request.url.toString());
+   
       return request;
     });
 
@@ -35,9 +34,7 @@ class ApiProvider extends GetConnect {
 
     // Response Modifiers
     httpClient.addResponseModifier((request, response) {
-      // debugPrint(
-      //  '${response.body}',
-      // );`
+
       errorHandler(response);
       return response;
     });

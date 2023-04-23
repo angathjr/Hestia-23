@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/events/models/event.dart';
 import 'package:hestia_23/notifications/models/notification.dart';
 import 'package:hestia_23/notifications/views/notification_screen_two.dart';
@@ -61,7 +60,7 @@ class NotificationController extends GetxController {
       final query =
           await colRef.orderBy('createdAt', descending: true).limit(1).get();
       final data = query.docs.map((e) => e.data()).toList();
-      print('data: ' + data.toString());
+    
       if (data.isNotEmpty) {
         NotificationModel notification = notificationModelFromJson(data)[0];
         notification.eventSlug = event.slug;
@@ -86,7 +85,7 @@ class NotificationController extends GetxController {
   }
 
   void fetchRegEvents() async {
-    print(await profileController.fetchRegEventsSlugs());
+    await profileController.fetchRegEventsSlugs();
   }
 
   void fetchGeneralNotifications() async {

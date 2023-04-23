@@ -118,7 +118,7 @@ class ProfileScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: height / 30,
+                      height: height / 18,
                     ),
                     SlideAnimation(
                       curve: Curves.fastLinearToSlowEaseIn,
@@ -138,28 +138,21 @@ class ProfileScreen extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Expanded(
-                                  flex: 5,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 30.0),
-                                    child: Text(
-                                      "Number of events \nregistered",
-                                      style: FutTheme.font2.copyWith(
-                                        fontSize: height * 0.016,
-                                      ),
-                                    ),
+                                Text(
+                                  "Number of events \nregistered",
+                                  style: context.theme.textTheme.bodyMedium
+                                      ?.copyWith(
+                                    fontSize: height * 0.016,
                                   ),
                                 ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Obx(
-                                    () => Text(
-                                      controller.registeredEventCount.value
-                                          .toString(),
-                                      style: FutTheme.font2.copyWith(
-                                        fontSize: width * 0.09,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                Obx(
+                                  () => Text(
+                                    controller.registeredEventCount.value
+                                        .toString(),
+                                    style: context.theme.textTheme.bodyMedium
+                                        ?.copyWith(
+                                      fontSize: width * 0.09,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
@@ -173,15 +166,11 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: height / 50,
-                    ),
                     Container(
                       width: width,
                       height: height / 2.4,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        // color: const Color.fromRGBO(26, 26, 26, 1).withOpacity(0.4),
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(width * 0.015),
@@ -221,7 +210,9 @@ class ProfileScreen extends StatelessWidget {
                                             ),
                                             Text(
                                               "View \nCertificates",
-                                              style: FutTheme.font2.copyWith(
+                                              style: context
+                                                  .theme.textTheme.bodyMedium
+                                                  ?.copyWith(
                                                 fontSize: height * 0.016,
                                               ),
                                               textAlign: TextAlign.center,
@@ -272,8 +263,9 @@ class ProfileScreen extends StatelessWidget {
                                                     ),
                                                     Text(
                                                       "Edit Profile",
-                                                      style: FutTheme.font2
-                                                          .copyWith(
+                                                      style: context.theme
+                                                          .textTheme.bodyMedium
+                                                          ?.copyWith(
                                                         fontSize:
                                                             height * 0.016,
                                                       ),
@@ -310,8 +302,9 @@ class ProfileScreen extends StatelessWidget {
                                                   ),
                                                   Text(
                                                     "ID Card",
-                                                    style:
-                                                        FutTheme.font2.copyWith(
+                                                    style: context.theme
+                                                        .textTheme.bodyMedium
+                                                        ?.copyWith(
                                                       fontSize: height * 0.016,
                                                     ),
                                                   ),
@@ -344,11 +337,13 @@ class ProfileScreen extends StatelessWidget {
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(15),
                                         color: context.theme.cardColor
-                                            .withOpacity(0.8),
+                                            .withOpacity(0.6),
                                       ),
                                       child: Text(
                                         "Log Out",
-                                        style: FutTheme.font2.copyWith(
+                                        style: context
+                                            .theme.textTheme.bodyMedium
+                                            ?.copyWith(
                                           fontSize: height * 0.016,
                                         ),
                                       ),

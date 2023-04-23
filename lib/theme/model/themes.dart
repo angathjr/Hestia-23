@@ -50,6 +50,7 @@ class Themes {
     await _saveThemeToBox(index);
     Get.changeTheme(theme);
     Get.forceAppUpdate();
+    await Future.delayed(const Duration(milliseconds: 500));
     Get.back();
   }
 
@@ -95,7 +96,7 @@ class Themes {
       ),
       bodyLarge: GoogleFonts.poppins(fontWeight: FontWeight.w700),
       bodyMedium: GoogleFonts.montserrat(
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
       ),
       bodySmall: GoogleFonts.oxanium(fontWeight: FontWeight.w300),
       labelMedium: GoogleFonts.questrial(),
@@ -144,7 +145,7 @@ class Themes {
       bodyLarge: GoogleFonts.poppins(
           fontWeight: FontWeight.w700, color: const Color(0xffDEFD72)),
       bodyMedium: GoogleFonts.montserrat(
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
       ),
       bodySmall: GoogleFonts.oxanium(fontWeight: FontWeight.w300),
     ),
@@ -192,7 +193,7 @@ class Themes {
       bodyLarge: GoogleFonts.poppins(
           fontWeight: FontWeight.w700, color: const Color(0xffDEFD72)),
       bodyMedium: GoogleFonts.montserrat(
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
       ),
       bodySmall: GoogleFonts.oxanium(fontWeight: FontWeight.w300),
     ),
