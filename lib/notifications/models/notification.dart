@@ -26,16 +26,18 @@ class NotificationModel {
   String? eventName;
   String? email;
   String? username;
+  String? eventSlug;
   DateTime? createdAt;
 
   factory NotificationModel.fromJson(Map<String, dynamic> json) =>
       NotificationModel(
-          message: json["message"],
-          email: json["email"],
-          username: json["username"],
-          createdAt: (json["createdAt"] as Timestamp).toDate(),
-          title: json["title"],
-          eventName: json["eventName"]);
+        message: json["message"],
+        email: json["email"],
+        username: json["username"],
+        createdAt: (json["createdAt"] as Timestamp).toDate(),
+        title: json["title"],
+        eventName: json["eventName"],
+      );
 
   Map<String, dynamic> toJson() => {
         "message": message,

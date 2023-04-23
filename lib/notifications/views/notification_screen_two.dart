@@ -5,7 +5,6 @@ import 'package:hestia_23/core/widgets/back_button_widget.dart';
 import 'package:hestia_23/notifications/controllers/notification_controller.dart';
 import 'package:intl/intl.dart';
 
-
 class NotificationScreenTwo extends StatelessWidget {
   NotificationScreenTwo({super.key});
 
@@ -63,6 +62,9 @@ class NotificationScreenTwo extends StatelessWidget {
                         text: '${notification.message}',
                         style: GoogleFonts.questrial(textStyle: style2),
                       ),
+                    ),
+                    const SizedBox(
+                      height: 10,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
