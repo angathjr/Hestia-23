@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/events/models/event.dart';
 import 'package:hestia_23/notifications/models/notification.dart';
 import 'package:hestia_23/notifications/views/notification_screen_two.dart';

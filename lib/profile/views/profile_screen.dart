@@ -116,7 +116,7 @@ class ProfileScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: height / 30,
+                      height: height / 18,
                     ),
                     SlideAnimation(
                       curve: Curves.fastLinearToSlowEaseIn,
@@ -164,15 +164,11 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: height / 50,
-                    ),
                     Container(
                       width: width,
                       height: height / 2.4,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        // color: const Color.fromRGBO(26, 26, 26, 1).withOpacity(0.4),
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(width * 0.015),
