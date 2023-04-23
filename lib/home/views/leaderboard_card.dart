@@ -98,6 +98,7 @@ class LeaderBoard extends StatelessWidget {
     final height = MediaQuery.of(context).size.height -
         MediaQuery.of(context).padding.top -
         kToolbarHeight;
+    var w = MediaQuery.of(context).size.width;
 
     return SafeArea(
       child: Scaffold(
@@ -106,7 +107,8 @@ class LeaderBoard extends StatelessWidget {
           title: Center(
             child: Text(
               'LEADERBOARD',
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.titleLarge
+                  ?.copyWith(fontSize: w * 0.064),
             ),
           ),
           elevation: 0,

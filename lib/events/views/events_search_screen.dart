@@ -41,10 +41,8 @@ class EventsSearchScreen extends StatelessWidget {
               snap: false,
               titleSpacing: 20,
               title: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  InkWell(
-                      onTap: () => Get.back(), child: const BackButtonWidget()),
+                  const BackButtonWidget(),
                   const SizedBox(
                     width: 20,
                   ),
@@ -67,7 +65,7 @@ class EventsSearchScreen extends StatelessWidget {
                             flex: 11,
                             child: Container(
                               alignment: Alignment.center,
-                              height: height * 0.06,
+                              height: height * 0.05,
                               decoration: BoxDecoration(
                                   color: const Color(0xff1E1E1E),
                                   borderRadius: BorderRadius.circular(20)),
@@ -75,10 +73,11 @@ class EventsSearchScreen extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: FutTheme.font3,
                                 textAlignVertical: TextAlignVertical.center,
-                                decoration: const InputDecoration(
-                                    prefixIcon: Icon(CupertinoIcons.search),
+                                decoration: InputDecoration(
+                                    prefixIcon: const Icon(CupertinoIcons.search),
                                     hintText: "Search events here",
-                                    contentPadding: EdgeInsets.only(left: 20),
+                                    hintStyle: context.theme.textTheme.bodyMedium?.copyWith(color: Colors.grey),
+                                    contentPadding: const EdgeInsets.only(left: 20),
                                     border: InputBorder.none),
                                 onChanged: (value) =>
                                     searchController.textFieldOnChanged(),
@@ -110,7 +109,7 @@ class EventsSearchScreen extends StatelessWidget {
                       ),
                       const SizedBox(
                         height: 10,
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -122,7 +121,7 @@ class EventsSearchScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: height * 0.03,
+                        height: height * 0.01,
                       ),
 
                       // list of department
@@ -144,7 +143,7 @@ class EventsSearchScreen extends StatelessWidget {
                             width: width * 0.02,
                           ),
                           Container(
-                              height: height * 0.047,
+                              height: height * 0.04,
                               width: width * 0.3,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
@@ -167,7 +166,7 @@ class EventsSearchScreen extends StatelessWidget {
                                           value: value,
                                           child: Text(value,
                                               style: FutTheme.font3.copyWith(
-                                                  fontSize: width * 0.035)),
+                                                  fontSize: width * 0.03)),
                                         );
                                       }).toList(),
                                       onChanged: (value) {
@@ -287,7 +286,7 @@ class EventsSearchScreen extends StatelessWidget {
                                                                         .white,
                                                                     fontSize:
                                                                         width *
-                                                                            0.045),
+                                                                            0.04),
                                                             softWrap: true,
                                                             textAlign: TextAlign
                                                                 .center,
@@ -347,7 +346,7 @@ class EventsSearchScreen extends StatelessWidget {
 
   SizedBox departmentSection(double height, double width) {
     return SizedBox(
-      height: height * 0.048,
+      height: height * 0.04,
       child: ListView.builder(
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,

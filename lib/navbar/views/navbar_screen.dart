@@ -1,7 +1,7 @@
 import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hestia_23/Schedule/views/Schedule.dart';
+import 'package:hestia_23/Schedule/views/schedule.dart';
 import 'package:hestia_23/core/Constants..dart';
 import 'package:hestia_23/fcm/controllers/fcm_controller.dart';
 import 'package:hestia_23/home/views/home_screen.dart';

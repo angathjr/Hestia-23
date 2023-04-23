@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -16,9 +14,9 @@ class Themes {
       case 0:
         return pastTheme;
       case 1:
-        return futureTheme;
-      case 2:
         return presentTheme;
+      case 2:
+        return futureTheme;
     }
     return futureTheme;
   }
@@ -58,15 +56,20 @@ class Themes {
     //text themes
 
     textTheme: TextTheme(
+      headlineLarge: const TextStyle(
+        fontFamily: 'Azonix',
+      ),
       headlineMedium: const TextStyle(
         fontFamily: 'Geomanist',
       ),
       titleLarge: const TextStyle(fontFamily: 'Azonix'),
-      titleMedium: GoogleFonts.poppins(
+      titleMedium: const TextStyle(
+        fontFamily: 'Azonix',
         fontWeight: FontWeight.w500,
         // color: Colors.white,
       ),
-      titleSmall: GoogleFonts.montserrat(
+      titleSmall: const TextStyle(
+        fontFamily: 'Azonix',
         fontWeight: FontWeight.w300,
       ),
       bodyLarge: GoogleFonts.poppins(fontWeight: FontWeight.w700),
@@ -101,15 +104,20 @@ class Themes {
     //text themes
 
     textTheme: TextTheme(
+      headlineLarge: const TextStyle(
+        fontFamily: 'Sandy',
+      ),
       headlineMedium: const TextStyle(
         fontFamily: 'Geomanist',
       ),
       titleLarge: const TextStyle(fontFamily: 'Sandy'),
-      titleMedium: GoogleFonts.poppins(
+      titleMedium: const TextStyle(
+        fontFamily: 'Sandy',
         fontWeight: FontWeight.w500,
         // color: Colors.white,
       ),
-      titleSmall: GoogleFonts.montserrat(
+      titleSmall: const TextStyle(
+        fontFamily: 'Sandy',
         fontWeight: FontWeight.w300,
       ),
       bodyLarge: GoogleFonts.poppins(
@@ -144,15 +152,20 @@ class Themes {
     //text themes
 
     textTheme: TextTheme(
+      headlineLarge: const TextStyle(
+        fontFamily: 'Gangof3',
+      ),
       headlineMedium: const TextStyle(
         fontFamily: 'Geomanist',
       ),
       titleLarge: const TextStyle(fontFamily: 'Gangof3'),
-      titleMedium: GoogleFonts.poppins(
+      titleMedium: const TextStyle(
+        fontFamily: 'Gangof3',
         fontWeight: FontWeight.w500,
         // color: Colors.white,
       ),
-      titleSmall: GoogleFonts.montserrat(
+      titleSmall: const TextStyle(
+        fontFamily: 'Gangof3',
         fontWeight: FontWeight.w300,
       ),
       bodyLarge: GoogleFonts.poppins(

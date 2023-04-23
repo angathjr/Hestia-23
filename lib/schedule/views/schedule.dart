@@ -31,14 +31,15 @@ class Schedule extends StatelessWidget {
             centerTitle: true,
             title: Text(
               "Schedule",
-              style: context.theme.textTheme.titleLarge,
+              style: context.theme.textTheme.titleLarge
+                  ?.copyWith(fontSize: w * 0.064),
             ),
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(dateContainerHeight),
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: w * 0.04),
                 child: Container(
-                  padding: EdgeInsets.only(bottom: h * 0.006),
+                  padding: EdgeInsets.only(bottom: h * 0.006, top: h * 0.01),
                   height: dateContainerHeight,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -146,7 +147,7 @@ class TimeLineofEvents extends StatelessWidget {
                 style: const TextStyle(color: Colors.grey),
               ),
               SizedBox(
-                height: h * 0.03,
+                height: h * 0.02,
               ),
               GestureDetector(
                   onTap: () => eventsController.goToEvent(event),
@@ -161,7 +162,7 @@ class TimeLineofEvents extends StatelessWidget {
                             opacity: 0.7),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(20))),
-                    height: h * 0.15,
+                    height: h * 0.12,
                     width: double.infinity,
                     child: Padding(
                       padding: EdgeInsets.only(left: w * 0.04),
@@ -173,10 +174,16 @@ class TimeLineofEvents extends StatelessWidget {
                             event.title ?? '',
                             style: FutTheme.font3.copyWith(
                                 fontWeight: FontWeight.bold,
-                                fontSize: h * 0.024),
+                                fontSize: h * 0.02),
                           ),
-                          Text(event.shortDesc ?? ''),
-                          Text(event.venue?.title ?? '')
+                          Text(
+                            event.shortDesc ?? '',
+                            style: FutTheme.font4,
+                          ),
+                          Text(
+                            event.venue?.title ?? '',
+                            style: FutTheme.font2,
+                          )
                         ],
                       ),
                     ),
@@ -212,25 +219,25 @@ class Dates extends StatelessWidget {
       },
       child: Obx(
         () => Container(
-          margin: EdgeInsets.symmetric(horizontal: w * 0.02),
+          margin: EdgeInsets.symmetric(horizontal: w * 0.04),
           decoration: BoxDecoration(
               color: controller.selectedDateIndex.value == index
                   ? context.theme.primaryColor
                   : context.theme.cardColor,
               borderRadius: const BorderRadius.all(Radius.circular(8))),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(date.date,
                   style: FutTheme.font3.copyWith(
-                      fontSize: w * 0.05,
+                      fontSize: w * 0.04,
                       fontWeight: FontWeight.w600,
                       color: controller.selectedDateIndex.value == index
                           ? Colors.black
                           : Colors.white)),
               Text(date.day,
                   style: FutTheme.font3.copyWith(
-                      fontSize: w * 0.036,
+                      fontSize: w * 0.03,
                       color: controller.selectedDateIndex.value == index
                           ? Colors.black
                           : Colors.white))
@@ -258,8 +265,8 @@ class CustomTimeLine extends StatelessWidget {
     return Obx(
       () => AnimatedContainer(
         curve: Curves.easeOutCubic,
-        duration: const Duration(milliseconds: 1000),
-        height: (anim.start.value == false) ? h * 0.25 : 0,
+        duration: const Duration(milliseconds: 500),
+        height: (anim.start.value == false) ? h * 0.2 : 0,
         width: w * 0.09,
         child: CustomPaint(
           painter: LineCircle(),

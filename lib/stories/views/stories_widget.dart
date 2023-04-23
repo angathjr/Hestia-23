@@ -26,7 +26,7 @@ class Stories extends StatelessWidget {
             ),
             Text(
               "STORIES",
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.titleSmall,
             ),
             SizedBox(
               height: _height / 30,

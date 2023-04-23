@@ -7,8 +7,6 @@ import 'package:hestia_23/notifications/views/general_notifications.dart';
 import 'package:hestia_23/notifications/views/registered_events_notification.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
 
-import '../../core/Constants..dart';
-
 class NotificationScreen extends StatelessWidget {
   NotificationScreen({super.key});
 

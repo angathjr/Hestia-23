@@ -73,19 +73,19 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                          "hi ${profController.user.value.name?.split(' ').first}",
+                          "HI ${profController.user.value.name?.split(' ').first.toUpperCase()}",
                           style: Theme.of(context)
                               .textTheme
-                              .titleLarge
+                              .headlineLarge
                               ?.copyWith(fontSize: width * 0.035)),
                       const SizedBox(
                         height: 7,
                       ),
                       SizedBox(
                         width: width * 0.5,
-                        child: Text("Welcome to the Timeless Odyssey",
+                        child: Text("WELCOME TO THE TIMELESS ODYSSEY",
                             overflow: TextOverflow.clip,
-                            style: context.theme.textTheme.titleLarge
+                            style: context.theme.textTheme.headlineMedium
                                 ?.copyWith(fontSize: width * 0.022)),
                       ),
                     ],

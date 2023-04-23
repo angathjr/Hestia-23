@@ -77,7 +77,7 @@ class SwitchThemeScreen extends StatelessWidget {
                   child:
                       Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                     Text(
-                      "Future Theme",
+                      "Present Theme",
                       style: Themes.futureFont.copyWith(
                           fontSize: width * 0.055,
                           color: themeController.selectedIndex.value == 1
@@ -86,7 +86,7 @@ class SwitchThemeScreen extends StatelessWidget {
                     ),
                     Container(
                       padding: const EdgeInsets.all(6),
-                      child: Image.asset("assets/images/future.png"),
+                      child: Image.asset("assets/images/Present.png"),
                     ),
                   ]),
                 ),
@@ -110,10 +110,10 @@ class SwitchThemeScreen extends StatelessWidget {
                   child: Row(children: [
                     Container(
                       padding: const EdgeInsets.all(6),
-                      child: Image.asset("assets/images/Present.png"),
+                      child: Image.asset("assets/images/future.png"),
                     ),
                     Text(
-                      "Present Theme",
+                      "Future Theme",
                       style: Themes.presentFont.copyWith(
                           fontSize: width * 0.07,
                           color: themeController.selectedIndex.value == 2
@@ -124,7 +124,6 @@ class SwitchThemeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            verticalSpace(),
             verticalSpace(),
           ]),
         ),
