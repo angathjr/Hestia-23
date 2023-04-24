@@ -110,7 +110,7 @@ class RegisteredEventsNotificatonScreen extends StatelessWidget {
                                       child: Text(
                                         "${notification.eventName}",
                                         style: FutTheme.font5.copyWith(
-                                            color: context.theme.canvasColor,
+                                            color: context.theme.primaryColor,
                                             overflow: TextOverflow.clip),
                                       ),
                                     ),

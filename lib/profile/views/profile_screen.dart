@@ -173,8 +173,7 @@ class ProfileScreen extends StatelessWidget {
                                             flex: 1,
                                             child: Obx(
                                               () => Text(
-                                                controller
-                                                    .registeredEventCount.value
+                                                controller.regEvents.length
                                                     .toString(),
                                                 style: context
                                                     .theme.textTheme.bodyMedium

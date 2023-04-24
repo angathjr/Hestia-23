@@ -37,9 +37,8 @@ class RegisteredEventScreen extends StatelessWidget {
                     ? AnimationLimiter(
                         child: SliverList(
                           delegate: SliverChildBuilderDelegate(
-                              childCount: _profileController
-                                  .registeredEventCount
-                                  .value, (BuildContext context, index) {
+                              childCount: _profileController.regEvents.length,
+                              (BuildContext context, index) {
                             return AnimationConfiguration.staggeredList(
                               position: index,
                               duration: const Duration(milliseconds: 100),
@@ -95,16 +94,20 @@ class RegisteredEventScreen extends StatelessWidget {
                                                               Center(
                                                         child: CircularProgressIndicator(
                                                             valueColor:
-                                                            AlwaysStoppedAnimation(
-                                                                context
-                                                                    .theme
-                                                                    .disabledColor),
+                                                                AlwaysStoppedAnimation(
+                                                                    context
+                                                                        .theme
+                                                                        .disabledColor),
                                                             value:
                                                                 downloadProgress
                                                                     .progress),
                                                       ),
                                                       imageUrl:
-                                                          '${_profileController.regEvents[index].image}',
+                                                          _profileController
+                                                                  .regEvents[
+                                                                      index]
+                                                                  ?.image ??
+                                                              NOIMAGE,
                                                       fit: BoxFit.cover,
                                                     ),
                                                   ),

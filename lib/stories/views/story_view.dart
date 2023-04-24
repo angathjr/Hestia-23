@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hestia_23/core/constants..dart';
 import 'package:hestia_23/stories/controllers/stories_controller.dart';
 import 'package:hestia_23/stories/model/stories.dart';
 import 'package:story_view/story_view.dart';
@@ -43,7 +44,7 @@ class StoriesViewScreen extends StatelessWidget {
         children: <Widget>[
           CircleAvatar(
             radius: 24,
-            backgroundImage: NetworkImage("${story.userImage}"),
+            backgroundImage: NetworkImage(story.userImage ?? NOIMAGE),
           ),
           const SizedBox(
             width: 16,

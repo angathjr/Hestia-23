@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+const String NOIMAGE =
+    'https://firebasestorage.googleapis.com/v0/b/hestia23.appspot.com/o/HomeScreenImages%2Fnoimage.png?alt=media&token=39752a3d-bb0f-483c-a388-9a7cde9e385a';
+
 class FutTheme {
   static TextStyle font1 = const TextStyle(
     fontFamily: 'Geomanist',

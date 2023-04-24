@@ -180,7 +180,7 @@ class EditTextWidget extends StatelessWidget {
                   borderSide: const BorderSide(color: Colors.red),
                   borderRadius: BorderRadius.circular(10)),
               focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: FutTheme.primaryColor),
+                  borderSide: BorderSide(color: context.theme.primaryColor),
                   borderRadius: BorderRadius.circular(10)),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide.none,

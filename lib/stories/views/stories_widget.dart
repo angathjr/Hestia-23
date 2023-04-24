@@ -193,6 +193,7 @@ class StoriesCard extends StatelessWidget {
                   style: const TextStyle(
                     color: Colors.white,
                   ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),
