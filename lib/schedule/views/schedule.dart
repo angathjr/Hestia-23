@@ -35,7 +35,6 @@ class Schedule extends StatelessWidget {
         slivers: [
           SliverAppBar(
               backgroundColor: Colors.transparent,
-              pinned: true,
               floating: true,
               centerTitle: true,
               title: Text(

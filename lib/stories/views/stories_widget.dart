@@ -28,8 +28,8 @@ class Stories extends StatelessWidget {
               themeController.selectedIndex.value == 0
                   ? "MEMORIES"
                   : themeController.selectedIndex.value == 1
-                      ? "HIGHLIGHTS"
-                      : "STORIES",
+                      ? "STORIES"
+                      : "HIGHLIGHTS",
               style: Theme.of(context)
                   .textTheme
                   .titleMedium
@@ -42,7 +42,9 @@ class Stories extends StatelessWidget {
         ),
         SizedBox(
           width: double.infinity,
-          height: height / 6.5,
+          height: themeController.selectedIndex.value == 0
+              ? height / 7.5
+              : height / 6.5,
           child: Obx(
             () => AnimationLimiter(
               child: ListView.builder(
@@ -135,41 +137,66 @@ class StoriesCard extends StatelessWidget {
     final height = size.height;
     final width = size.width;
     return Padding(
-      padding: EdgeInsets.all(width * 0.01),
+      padding: themeController.selectedIndex.value == 1
+          ? EdgeInsets.only(
+              top: width * 0.01,
+              bottom: width * 0.01,
+              left: width * 0.025,
+              right: width * 0.025,
+            )
+          : EdgeInsets.all(width * 0.01),
       child: GestureDetector(
         onTap: () => controller.goToStory(index),
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: NetworkImage('${story.imageUrl}'),
-              fit: BoxFit.cover,
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage('${story.imageUrl}'),
+                    fit: BoxFit.cover,
+                  ),
+                  color: Colors.grey[800],
+                  border: themeController.selectedIndex.value == 0
+                      ? Border.all(color: context.theme.primaryColor, width: 2)
+                      : themeController.selectedIndex.value == 1
+                          ? Border.all(color: context.theme.primaryColor)
+                          : null,
+                  borderRadius: themeController.selectedIndex.value == 0
+                      ? BorderRadius.circular(100)
+                      : themeController.selectedIndex.value == 1
+                          ? BorderRadius.circular(8)
+                          : BorderRadius.circular(0),
+                ),
+                width: themeController.selectedIndex.value == 0
+                    ? width / 5
+                    : width / 3.8,
+                height: themeController.selectedIndex.value == 0
+                    ? height / 11
+                    : height / 5.5,
+              ),
             ),
-            color: Colors.grey[800],
-            border: themeController.selectedIndex.value == 0
-                ? Border.all(color: context.theme.primaryColor, width: 0)
-                : themeController.selectedIndex.value == 1
-                    ? Border.all(color: Colors.white)
-                    : null,
-            borderRadius: themeController.selectedIndex.value == 0
-                ? BorderRadius.circular(20)
-                : themeController.selectedIndex.value == 1
-                    ? BorderRadius.circular(10)
-                    : BorderRadius.circular(5),
-          ),
-          width: width / 3.8,
-          height: height / 5.5,
-          child: Align(
-            alignment: Alignment.bottomLeft,
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: Text(
-                "${story.username}",
-                style: const TextStyle(
-                  color: Colors.white,
+            Positioned(
+              top: themeController.selectedIndex.value == 2 ? 0 : null,
+              bottom: themeController.selectedIndex.value == 0 ? 0 : 10,
+              width: themeController.selectedIndex.value == 0
+                  ? width / 5
+                  : width / 3.8,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(
+                  "${story.username}",
+                  textAlign: themeController.selectedIndex.value == 0
+                      ? TextAlign.center
+                      : TextAlign.start,
+                  style: const TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

@@ -76,13 +76,32 @@ class HomeScreen extends StatelessWidget {
                               child: SwitchThemeScreen()),
                         );
                       },
-                      child: Image.asset(
-                        "assets/images/mascot.png",
-                        scale: 2.2,
+                      child: CircleAvatar(
+                        backgroundColor: context.theme.primaryColor,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(height * 0.015),
+                            child: themeController.selectedIndex.value == 0
+                                ? Image.asset(
+                                    "assets/images/Past.png",
+                                    scale: height * 0.005,
+                                  )
+                                : themeController.selectedIndex.value == 1
+                                    ? Image.asset(
+                                        "assets/images/Present.png",
+                                        scale: height * 0.005,
+                                      )
+                                    : Image.asset(
+                                        "assets/images/future.png",
+                                        scale: height * 0.005,
+                                      ),
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(
-                      width: 10,
+                      width: 15,
                     ),
                     AnimationConfiguration.synchronized(
                       child: FadeInAnimation(

@@ -21,11 +21,11 @@ class CategoryCardPast extends StatelessWidget {
       alignment: Alignment.center,
       child: Container(
         decoration: BoxDecoration(
-            color: Color.fromARGB(255, 44, 44, 40),
+            color: const Color.fromARGB(255, 44, 44, 40),
             border: Border.all(color: context.theme.primaryColor, width: 2),
             borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
+              topLeft: Radius.circular(25),
+              topRight: Radius.circular(25),
             )),
         height: cardHeight,
         width: w * 0.7,
@@ -41,8 +41,8 @@ class CategoryCardPast extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
+                          topLeft: Radius.circular(25),
+                          topRight: Radius.circular(25),
                         ),
                         border: Border.all(
                             color: context.theme.primaryColor, width: 2)),
@@ -91,7 +91,7 @@ class CategoryCardPast extends StatelessWidget {
                     child: Text(
                       categoryModel.description,
                       style: FutTheme.font7.copyWith(
-                          color: Colors.black,
+                          color: Colors.white70,
                           fontWeight: FontWeight.w800,
                           fontSize: w * 0.03),
                       textAlign: TextAlign.center,
