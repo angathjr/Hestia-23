@@ -34,7 +34,7 @@ class ProfileScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          // backgroundColor: Colors.transparent,
           title: Text(
             "PROFILE",
             style: context.theme.textTheme.titleLarge

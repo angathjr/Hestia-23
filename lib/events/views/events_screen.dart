@@ -33,7 +33,7 @@ class EventScreen extends StatelessWidget {
               floating: true,
               snap: true,
               titleSpacing: 20,
-              backgroundColor: Colors.transparent,
+              // backgroundColor: Colors.transparent,
               title: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -77,7 +77,7 @@ class EventScreen extends StatelessWidget {
                               height: height * 0.04,
                               width: width * 0.3,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(33),
+                                borderRadius: BorderRadius.circular(33),
                                   border: Border.all(
                                       color: context.theme.primaryColor)),
                               child: Obx(
@@ -239,10 +239,10 @@ class EventScreen extends StatelessWidget {
                                                   width: double.infinity,
                                                   decoration: BoxDecoration(
                                                       borderRadius:
-                                                          BorderRadius
-                                                              .circular(10),
-                                                      color: context.theme
-                                                          .primaryColor),
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      color: context
+                                                          .theme.primaryColor),
                                                   child: Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
@@ -258,25 +258,21 @@ class EventScreen extends StatelessWidget {
                                                         flex: 5,
                                                       ),
                                                       Container(
-                                                        height: cardHeight *
-                                                            0.082,
-                                                        width:
-                                                            cardHeight * 0.1,
+                                                        height:
+                                                            cardHeight * 0.082,
+                                                        width: cardHeight * 0.1,
                                                         decoration: BoxDecoration(
-                                                            color:
-                                                                Colors.black,
+                                                            color: Colors.black,
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
                                                                         23)),
-                                                        child:
-                                                            Transform.rotate(
+                                                        child: Transform.rotate(
                                                           angle: pi / 3,
                                                           child: const Icon(
                                                             Icons
                                                                 .arrow_upward_rounded,
-                                                            color:
-                                                                Colors.white,
+                                                            color: Colors.white,
                                                           ),
                                                         ),
                                                       ),
