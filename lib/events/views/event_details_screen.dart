@@ -147,35 +147,41 @@ class EventDetailsScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Expanded(
-                                flex: 4,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: const Color(0xffd1d1d1)
-                                          .withOpacity(0.7)),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text(
-                                        "Prize",
-                                        style: FutTheme.font3.copyWith(
-                                            fontSize: height * 0.015,
-                                            color: Colors.black),
-                                      ),
-                                      Text(
-                                        eventsController.formatPrice(
-                                            eventsController
-                                                .selectedEvent.prize),
-                                        style: FutTheme.font1.copyWith(
-                                            fontSize: height * 0.03,
-                                            fontWeight: FontWeight.w700,
-                                            color: Colors.black),
-                                      )
-                                    ],
-                                  ),
-                                )),
+                            if (eventsController.selectedEvent.prize == 0)
+                              Container(
+                                color: Colors.white70,
+                                width: 1,
+                              )
+                            else
+                              Expanded(
+                                  flex: 4,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: const Color(0xffd1d1d1)
+                                            .withOpacity(0.7)),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          "Prize",
+                                          style: FutTheme.font3.copyWith(
+                                              fontSize: height * 0.015,
+                                              color: Colors.black),
+                                        ),
+                                        Text(
+                                          eventsController.formatPrice(
+                                              eventsController
+                                                  .selectedEvent.prize),
+                                          style: FutTheme.font1.copyWith(
+                                              fontSize: height * 0.03,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.black),
+                                        )
+                                      ],
+                                    ),
+                                  )),
                             Expanded(
                                 flex: 3,
                                 child: Column(
@@ -241,7 +247,7 @@ class EventDetailsScreen extends StatelessWidget {
                                         ? "Read More "
                                         : "Read Less",
                                     style: FutTheme.font4.copyWith(
-                                        color: const Color(0xffDEFD72)),
+                                        color: context.theme.primaryColor),
                                   )),
                             ),
                           ],
