@@ -34,7 +34,7 @@ class ProfileScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          // backgroundColor: Colors.transparent,
+          automaticallyImplyLeading: false,
           title: Text(
             "PROFILE",
             style: context.theme.textTheme.titleLarge
@@ -352,7 +352,33 @@ class ProfileScreen extends StatelessWidget {
                                   verticalOffset: 20,
                                   child: InkWell(
                                     borderRadius: BorderRadius.circular(15),
-                                    onTap: () => authController.signout(),
+                                    // onTap: () => authController.signout(),
+                                    onTap: () => Get.dialog(AlertDialog(
+                                      // backgroundColor: context.theme.cardColor,
+                                      title: Text(
+                                        "Log Out",
+                                        style: context
+                                            .theme.textTheme.bodyMedium
+                                            ?.copyWith(fontSize: 20),
+                                      ),
+                                      content: const Text(
+                                          "Are you sure you want to log out?"),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            authController.signout();
+                                            //Get.back();
+                                          },
+                                          child: const Text("Yes"),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            Get.back();
+                                          },
+                                          child: const Text("No"),
+                                        ),
+                                      ],
+                                    )),
                                     child: Container(
                                       alignment: Alignment.center,
                                       width: width,

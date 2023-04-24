@@ -130,7 +130,7 @@ class HomeScreen extends StatelessWidget {
                               height: 7,
                             ),
                             SizedBox(
-                              width: width * 0.5,
+                              // width: width * 0.5,
                               child: Text("WELCOME TO THE TIMELESS ODYSSEY",
                                   overflow: TextOverflow.clip,
                                   style: context.theme.textTheme.headlineMedium

@@ -167,14 +167,14 @@ class StoriesCard extends StatelessWidget {
                           bottomLeft: Radius.circular(20),
                         )
                       : themeController.selectedIndex.value == 1
-                          ? BorderRadius.circular(100)
+                          ? BorderRadius.circular(15)
                           : BorderRadius.circular(5),
                 ),
                 width: themeController.selectedIndex.value == 1
-                    ? width / 5
+                    ? width / 4.8
                     : width / 3.8,
                 height: themeController.selectedIndex.value == 1
-                    ? height / 11
+                    ? height / 4
                     : height / 5.5,
               ),
             ),

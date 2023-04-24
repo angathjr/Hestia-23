@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/Schedule/views/schedule.dart';
+import 'package:hestia_23/auth/views/splash_screen.dart';
 import 'package:hestia_23/events/views/event_details_screen.dart';
 import 'package:hestia_23/events/views/events_search_screen.dart';
 import 'package:hestia_23/navbar/views/navbar_screen.dart';
@@ -55,6 +56,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       enableLog: true,
       title: 'Hestia 23',
+      initialRoute: '/splash',
+      // home: SplashScreen(),
       theme: Themes().theme,
       getPages: [
         GetPage(
@@ -65,6 +68,8 @@ class MyApp extends StatelessWidget {
                     : ProfileCompletion()
                 : const LoginPage()),
         // GetPage(name: '/posts', page: () => PostsScreen()),
+        GetPage(name: '/navbar', page: () => NavBarPage()),
+        GetPage(name: '/splash', page: () => SplashScreen()),
         GetPage(name: "/schedule", page: () => Schedule()),
         GetPage(name: '/login', page: () => const LoginPage()),
         GetPage(name: '/profile', page: () => ProfileScreen()),
