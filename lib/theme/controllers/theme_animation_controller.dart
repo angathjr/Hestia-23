@@ -12,7 +12,7 @@ class ThemeAnimationController extends GetxController
       vsync: this,
       animationBehavior: AnimationBehavior.normal,
       duration: const Duration(milliseconds: 500),
-      reverseDuration: const Duration(milliseconds: 1000),
+      reverseDuration: const Duration(milliseconds: 500),
     );
 
     super.onInit();

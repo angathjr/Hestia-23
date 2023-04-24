@@ -36,7 +36,9 @@ class Schedule extends StatelessWidget {
           SliverAppBar(
               backgroundColor: Colors.transparent,
               floating: true,
+              snap: true,
               centerTitle: true,
+              pinned: false,
               title: Text(
                 "Schedule",
                 style: context.theme.textTheme.titleLarge
@@ -111,7 +113,7 @@ class Schedule extends StatelessWidget {
                                     duration:
                                         const Duration(milliseconds: 2000),
                                     curve: Curves.fastLinearToSlowEaseIn,
-                                    child: TimeLineofEvents(
+                                    child: TimeLineOfEvents(
                                       event: controller.events[index],
                                     )),
                               ),
@@ -134,8 +136,8 @@ class Schedule extends StatelessWidget {
 }
 
 //Full EventSchedule with Line and images
-class TimeLineofEvents extends StatelessWidget {
-  TimeLineofEvents({super.key, required this.event});
+class TimeLineOfEvents extends StatelessWidget {
+  TimeLineOfEvents({super.key, required this.event});
 
   final EventModel event;
   final EventsController eventsController = Get.find();
