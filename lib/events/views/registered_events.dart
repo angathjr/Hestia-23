@@ -25,10 +25,24 @@ class RegisteredEventScreen extends StatelessWidget {
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            const SliverAppBar(
-              title: BackButtonWidget(),
+            SliverAppBar(
+              title: Row(
+                children: [
+                  const BackButtonWidget(),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  Text(
+                    "Registered Events",
+                    style: context.theme.textTheme.titleLarge?.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
               centerTitle: false,
               automaticallyImplyLeading: false,
+              titleSpacing: 20,
             ),
             SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: width * 0.05),
