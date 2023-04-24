@@ -132,7 +132,7 @@ class NotificationScreen extends StatelessWidget {
                   child: TabBarView(
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
-                      //tab bar view for general events
+                      
                       GeneralNotificationsScreen(),
                       RegisteredEventsNotificatonScreen(),
                     ],
