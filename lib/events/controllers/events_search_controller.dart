@@ -50,7 +50,9 @@ class EventsSearchController extends GetxController {
               event.eventStart?.day == int.parse(date.value.split(' ')[0]))
           .toList());
     }
+
     // events.
+    
     if (editingController.text.isNotEmpty) {
       events.sort((a, b) {
         int index1 = a.title!

@@ -193,141 +193,159 @@ class EventsSearchScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: width * 0.05),
               sliver: Obx(
                 () => (searchController.eventsLoading.value == false)
-                    ? AnimationLimiter(
-                        child: SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                              childCount: searchController.events.length,
-                              (BuildContext context, index) {
-                            return AnimationConfiguration.staggeredList(
-                              position: index,
-                              duration: const Duration(milliseconds: 100),
-                              child: SlideAnimation(
-                                curve: Curves.fastLinearToSlowEaseIn,
-                                duration: const Duration(milliseconds: 1500),
-                                verticalOffset: -50,
-                                child: FadeInAnimation(
+                    ? (searchController.events.isEmpty)
+                        ? SliverToBoxAdapter(
+                            child: SizedBox(
+                              width: width,
+                              height: height * 0.5,
+                              child: Center(
+                                child: Text(
+                                  "No Results",
+                                  style: context.theme.textTheme.titleLarge
+                                      ?.copyWith(
+                                          color: Colors.white54,
+                                          fontSize: width * 0.05),
+                                ),
+                              ),
+                            ),
+                          )
+                        : AnimationLimiter(
+                            child: SliverList(
+                              delegate: SliverChildBuilderDelegate(
+                                  childCount: searchController.events.length,
+                                  (BuildContext context, index) {
+                                return AnimationConfiguration.staggeredList(
+                                  position: index,
+                                  duration: const Duration(milliseconds: 100),
+                                  child: SlideAnimation(
                                     curve: Curves.fastLinearToSlowEaseIn,
                                     duration:
                                         const Duration(milliseconds: 1500),
-                                    child: Padding(
-                                        padding: EdgeInsets.only(
-                                            bottom: height * 0.02),
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            eventsController.goToEvent(
-                                                searchController.events[index]);
-                                          },
-                                          child: Container(
-                                            height: cardHeight,
-                                            decoration: BoxDecoration(
-                                              border: Border.all(
-                                                  color: context
-                                                      .theme.primaryColor),
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                            ),
-                                            child: Row(children: [
-                                              Expanded(
-                                                child: Container(
-                                                  width: width * 0.4,
-                                                  margin: EdgeInsets.all(
-                                                      width * 0.025),
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      border: Border.all(
-                                                          color: context.theme
-                                                              .canvasColor)),
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    child: CachedNetworkImage(
-                                                      progressIndicatorBuilder:
-                                                          (context, url,
-                                                                  downloadProgress) =>
-                                                              Center(
-                                                        child: CircularProgressIndicator(
-                                                            valueColor:
-                                                                AlwaysStoppedAnimation(
-                                                                    context
-                                                                        .theme
-                                                                        .disabledColor),
-                                                            value:
-                                                                downloadProgress
+                                    verticalOffset: -50,
+                                    child: FadeInAnimation(
+                                        curve: Curves.fastLinearToSlowEaseIn,
+                                        duration:
+                                            const Duration(milliseconds: 1500),
+                                        child: Padding(
+                                            padding: EdgeInsets.only(
+                                                bottom: height * 0.02),
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                eventsController.goToEvent(
+                                                    searchController
+                                                        .events[index]);
+                                              },
+                                              child: Container(
+                                                height: cardHeight,
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: context
+                                                          .theme.primaryColor),
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                ),
+                                                child: Row(children: [
+                                                  Expanded(
+                                                    child: Container(
+                                                      width: width * 0.4,
+                                                      margin: EdgeInsets.all(
+                                                          width * 0.025),
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                          border: Border.all(
+                                                              color: context
+                                                                  .theme
+                                                                  .canvasColor)),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        child:
+                                                            CachedNetworkImage(
+                                                          progressIndicatorBuilder:
+                                                              (context, url,
+                                                                      downloadProgress) =>
+                                                                  Center(
+                                                            child: CircularProgressIndicator(
+                                                                valueColor:
+                                                                    AlwaysStoppedAnimation(
+                                                                        context
+                                                                            .theme
+                                                                            .disabledColor),
+                                                                value: downloadProgress
                                                                     .progress),
+                                                          ),
+                                                          imageUrl:
+                                                              '${searchController.events[index].image}',
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       ),
-                                                      imageUrl:
-                                                          '${searchController.events[index].image}',
-                                                      fit: BoxFit.cover,
                                                     ),
                                                   ),
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Container(
-                                                    width: width * 0.4,
-                                                    margin: EdgeInsets.all(
-                                                        width * 0.025),
-                                                    child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceAround,
-                                                      children: [
-                                                        SizedBox(
-                                                          child: Text(
-                                                            "${searchController.events[index].title}",
-                                                            style: FutTheme
-                                                                .mFont
-                                                                .copyWith(
+                                                  Expanded(
+                                                    child: Container(
+                                                        width: width * 0.4,
+                                                        margin: EdgeInsets.all(
+                                                            width * 0.025),
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceAround,
+                                                          children: [
+                                                            SizedBox(
+                                                              child: Text(
+                                                                "${searchController.events[index].title}",
+                                                                style: FutTheme.mFont.copyWith(
                                                                     color: Colors
                                                                         .white,
                                                                     fontSize:
                                                                         width *
                                                                             0.04),
-                                                            softWrap: true,
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                          ),
-                                                        ),
+                                                                softWrap: true,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                              ),
+                                                            ),
 
-                                                        //view deatils is commented here
+                                                            //view deatils is commented here
 
-                                                        // Container(
-                                                        //   height:
-                                                        //       height * 0.045,
-                                                        //   margin: EdgeInsets
-                                                        //       .symmetric(
-                                                        //           horizontal:
-                                                        //               width *
-                                                        //                   0.02),
-                                                        //   decoration: BoxDecoration(
-                                                        //       borderRadius:
-                                                        //           BorderRadius
-                                                        //               .circular(
-                                                        //                   20),
-                                                        //       color: context
-                                                        //           .theme
-                                                        //           .primaryColor),
-                                                        //   alignment:
-                                                        //       Alignment.center,
-                                                        //   child: Text(
-                                                        //       "View Details",
-                                                        //       style: FutTheme
-                                                        //           .mFont),
-                                                        // )
-                                                      ],
-                                                    )),
-                                              )
-                                            ]),
-                                          ),
-                                        ))),
-                              ),
-                            );
-                          }),
-                        ),
-                      )
+                                                            // Container(
+                                                            //   height:
+                                                            //       height * 0.045,
+                                                            //   margin: EdgeInsets
+                                                            //       .symmetric(
+                                                            //           horizontal:
+                                                            //               width *
+                                                            //                   0.02),
+                                                            //   decoration: BoxDecoration(
+                                                            //       borderRadius:
+                                                            //           BorderRadius
+                                                            //               .circular(
+                                                            //                   20),
+                                                            //       color: context
+                                                            //           .theme
+                                                            //           .primaryColor),
+                                                            //   alignment:
+                                                            //       Alignment.center,
+                                                            //   child: Text(
+                                                            //       "View Details",
+                                                            //       style: FutTheme
+                                                            //           .mFont),
+                                                            // )
+                                                          ],
+                                                        )),
+                                                  )
+                                                ]),
+                                              ),
+                                            ))),
+                                  ),
+                                );
+                              }),
+                            ),
+                          )
                     : SliverToBoxAdapter(
                         child: SizedBox(
                             height: height * 0.6,

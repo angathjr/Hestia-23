@@ -77,7 +77,7 @@ class EventScreen extends StatelessWidget {
                               height: height * 0.04,
                               width: width * 0.3,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(33),
+                                  borderRadius: BorderRadius.circular(33),
                                   border: Border.all(
                                       color: context.theme.primaryColor)),
                               child: Obx(
@@ -125,13 +125,17 @@ class EventScreen extends StatelessWidget {
                 () => (controller.eventsLoading.value == false)
                     ? (controller.events.isEmpty)
                         ? SliverToBoxAdapter(
-                            child: Center(
-                              child: Text(
-                                "No Events",
-                                style: context.theme.textTheme.titleLarge
-                                    ?.copyWith(
-                                        color: Colors.white54,
-                                        fontSize: width * 0.05),
+                            child: SizedBox(
+                              width: width,
+                              height: height * 0.6,
+                              child: Center(
+                                child: Text(
+                                  "No Events",
+                                  style: context.theme.textTheme.titleLarge
+                                      ?.copyWith(
+                                          color: Colors.white54,
+                                          fontSize: width * 0.05),
+                                ),
                               ),
                             ),
                           )
