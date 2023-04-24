@@ -54,6 +54,7 @@ dependencies:
   flutter_polygon: ^0.3.0+2
   circular_profile_avatar: ^2.0.5
   upgrader: ^6.2.0
+  lottie: ^2.3.2
   
 
 dev_dependencies:
@@ -80,6 +81,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/
     - assets/images/
   #   - images/a_dot_ham.jpeg
 
