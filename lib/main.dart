@@ -65,6 +65,7 @@ class MyApp extends StatelessWidget {
                     : ProfileCompletion()
                 : const LoginPage()),
         // GetPage(name: '/posts', page: () => PostsScreen()),
+        GetPage(name: '/navbar', page: () => NavBarPage()),
         GetPage(name: "/schedule", page: () => Schedule()),
         GetPage(name: '/login', page: () => const LoginPage()),
         GetPage(name: '/profile', page: () => ProfileScreen()),
