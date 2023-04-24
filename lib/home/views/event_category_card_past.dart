@@ -47,14 +47,14 @@ class CategoryCardPast extends StatelessWidget {
                           color: context.theme.primaryColor,
                         ),
                         borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(10),
-                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(5),
+                          topLeft: Radius.circular(5),
                         ),
                       ),
                       child: ClipRRect(
                         borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(10),
-                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(5),
+                          topLeft: Radius.circular(5),
                         ),
                         child: CachedNetworkImage(
                           progressIndicatorBuilder:
