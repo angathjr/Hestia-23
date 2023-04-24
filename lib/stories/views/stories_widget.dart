@@ -42,7 +42,7 @@ class Stories extends StatelessWidget {
         ),
         SizedBox(
           width: double.infinity,
-          height: themeController.selectedIndex.value == 0
+          height: themeController.selectedIndex.value == 1
               ? height / 7.5
               : height / 6.5,
           child: Obx(
@@ -137,14 +137,12 @@ class StoriesCard extends StatelessWidget {
     final height = size.height;
     final width = size.width;
     return Padding(
-      padding: themeController.selectedIndex.value == 1
-          ? EdgeInsets.only(
-              top: width * 0.01,
-              bottom: width * 0.01,
-              left: width * 0.025,
-              right: width * 0.025,
-            )
-          : EdgeInsets.all(width * 0.01),
+      padding: EdgeInsets.only(
+        left: width * 0.015,
+        right: width * 0.015,
+        bottom: height * 0.005,
+        top: height * 0.005,
+      ),
       child: GestureDetector(
         onTap: () => controller.goToStory(index),
         child: Stack(
@@ -158,42 +156,45 @@ class StoriesCard extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                   color: Colors.grey[800],
-                  border: themeController.selectedIndex.value == 0
-                      ? Border.all(color: context.theme.primaryColor, width: 2)
-                      : themeController.selectedIndex.value == 1
-                          ? Border.all(color: context.theme.primaryColor)
-                          : null,
+                  border: themeController.selectedIndex.value == 1
+                      ? Border.all(color: context.theme.primaryColor)
+                      : null,
                   borderRadius: themeController.selectedIndex.value == 0
-                      ? BorderRadius.circular(100)
+                      ? const BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(5),
+                          bottomRight: Radius.circular(20),
+                          bottomLeft: Radius.circular(5),
+                        )
                       : themeController.selectedIndex.value == 1
-                          ? BorderRadius.circular(8)
-                          : BorderRadius.circular(0),
+                          ? BorderRadius.circular(100)
+                          : BorderRadius.circular(5),
                 ),
-                width: themeController.selectedIndex.value == 0
+                width: themeController.selectedIndex.value == 1
                     ? width / 5
                     : width / 3.8,
-                height: themeController.selectedIndex.value == 0
+                height: themeController.selectedIndex.value == 1
                     ? height / 11
                     : height / 5.5,
               ),
             ),
             Positioned(
               top: themeController.selectedIndex.value == 2 ? 0 : null,
-              bottom: themeController.selectedIndex.value == 0 ? 0 : 10,
-              width: themeController.selectedIndex.value == 0
+              bottom: themeController.selectedIndex.value == 1 ? 0 : 10,
+              width: themeController.selectedIndex.value == 1
                   ? width / 5
                   : width / 3.8,
               child: Padding(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
                   "${story.username}",
-                  textAlign: themeController.selectedIndex.value == 0
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: themeController.selectedIndex.value == 1
                       ? TextAlign.center
                       : TextAlign.start,
                   style: const TextStyle(
                     color: Colors.white,
                   ),
-                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),

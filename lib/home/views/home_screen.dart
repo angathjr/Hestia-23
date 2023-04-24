@@ -76,26 +76,36 @@ class HomeScreen extends StatelessWidget {
                               child: SwitchThemeScreen()),
                         );
                       },
-                      child: CircleAvatar(
-                        backgroundColor: context.theme.primaryColor,
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(height * 0.015),
-                            child: themeController.selectedIndex.value == 0
-                                ? Image.asset(
-                                    "assets/images/Past.png",
-                                    scale: height * 0.005,
-                                  )
-                                : themeController.selectedIndex.value == 1
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white38,
+                          borderRadius: BorderRadius.circular(height * 0.03),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: CircleAvatar(
+                            backgroundColor: context.theme.primaryColor,
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.circular(height * 0.015),
+                                child: themeController.selectedIndex.value == 0
                                     ? Image.asset(
-                                        "assets/images/Present.png",
+                                        "assets/images/Past.png",
                                         scale: height * 0.005,
                                       )
-                                    : Image.asset(
-                                        "assets/images/future.png",
-                                        scale: height * 0.005,
-                                      ),
+                                    : themeController.selectedIndex.value == 1
+                                        ? Image.asset(
+                                            "assets/images/Present.png",
+                                            scale: height * 0.005,
+                                          )
+                                        : Image.asset(
+                                            "assets/images/future.png",
+                                            scale: height * 0.005,
+                                          ),
+                              ),
+                            ),
                           ),
                         ),
                       ),

@@ -24,129 +24,121 @@ class Schedule extends StatelessWidget {
     double dateContainerHeight = h * 0.1;
 
     return Scaffold(
-        body: SafeArea(
-      child: Container(
-        height: h,
-        width: w,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.cover,
-                opacity: 0.25,
-                image: Themes().backgroundImage)),
-        child: CustomScrollView(
-          physics: const BouncingScrollPhysics(),
-          slivers: [
-            SliverAppBar(
-                backgroundColor: Colors.transparent,
-                floating: true,
-                centerTitle: true,
-                pinned: true,
-                title: Text(
-                  "Schedule",
-                  style: context.theme.textTheme.titleLarge
-                      ?.copyWith(fontSize: w * 0.064),
-                ),
-                bottom: PreferredSize(
-                  preferredSize: Size.fromHeight(dateContainerHeight),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: w * 0.04),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: themeController.selectedIndex.value == 1
-                            ? Colors.black
-                            : Colors.white24,
-                      ),
-                      padding:
-                          EdgeInsets.only(bottom: h * 0.006, top: h * 0.01),
-                      height: dateContainerHeight,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Expanded(
-                            child: Dates(
-                              date: controller.dates[0],
-                              index: 0,
-                              controller: controller,
-                            ),
+        body: Container(
+      height: h,
+      width: w,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.cover,
+              opacity: 0.25,
+              image: Themes().backgroundImage)),
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          SliverAppBar(
+              backgroundColor: Colors.transparent,
+              floating: true,
+              centerTitle: true,
+              pinned: false,
+              title: Text(
+                "Schedule",
+                style: context.theme.textTheme.titleLarge
+                    ?.copyWith(fontSize: w * 0.064),
+              ),
+              bottom: PreferredSize(
+                preferredSize: Size.fromHeight(dateContainerHeight),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: w * 0.04),
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: h * 0.006, top: h * 0.01),
+                    height: dateContainerHeight,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                          child: Dates(
+                            date: controller.dates[0],
+                            index: 0,
+                            controller: controller,
                           ),
-                          Expanded(
-                            child: Dates(
-                              date: controller.dates[1],
-                              index: 1,
-                              controller: controller,
-                            ),
+                        ),
+                        Expanded(
+                          child: Dates(
+                            date: controller.dates[1],
+                            index: 1,
+                            controller: controller,
                           ),
-                          Expanded(
-                            child: Dates(
-                              date: controller.dates[2],
-                              index: 2,
-                              controller: controller,
-                            ),
+                        ),
+                        Expanded(
+                          child: Dates(
+                            date: controller.dates[2],
+                            index: 2,
+                            controller: controller,
                           ),
-                          Expanded(
-                            child: Dates(
-                              date: controller.dates[3],
-                              index: 3,
-                              controller: controller,
-                            ),
+                        ),
+                        Expanded(
+                          child: Dates(
+                            date: controller.dates[3],
+                            index: 3,
+                            controller: controller,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                )),
-            SliverPadding(
-                padding: EdgeInsets.fromLTRB(
-                  w * 0.04,
-                  w * 0.04,
-                  w * 0.04,
-                  w * 0.07,
                 ),
-                sliver: Obx(
-                  () => (controller.eventsLoading.value == false)
-                      ? AnimationLimiter(
-                          child: SliverList(
-                            delegate: SliverChildBuilderDelegate(
-                                childCount: controller.events.length,
-                                (BuildContext context, index) {
-                              return AnimationConfiguration.staggeredList(
-                                position: index,
-                                duration: const Duration(milliseconds: 100),
-                                child: SlideAnimation(
-                                  curve: Curves.fastLinearToSlowEaseIn,
-                                  duration: const Duration(milliseconds: 2000),
-                                  // verticalOffset: 300,
-                                  // horizontalOffset: 30,
-                                  child: FadeInAnimation(
-                                      duration:
-                                          const Duration(milliseconds: 2000),
-                                      curve: Curves.fastLinearToSlowEaseIn,
-                                      child: TimeLineofEvents(
-                                        event: controller.events[index],
-                                      )),
-                                ),
-                              );
-                            }),
-                          ),
-                        )
-                      : SliverToBoxAdapter(
-                          child: SizedBox(
-                              height: h * 0.6,
-                              width: w,
-                              child: Center(
-                                child: primaryLoadingWidget,
-                              ))),
-                ))
-          ],
-        ),
+              )),
+          SliverPadding(
+              padding: EdgeInsets.fromLTRB(
+                w * 0.04,
+                w * 0.04,
+                w * 0.04,
+                w * 0.07,
+              ),
+              sliver: Obx(
+                () => (controller.eventsLoading.value == false)
+                    ? AnimationLimiter(
+                        child: SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                              childCount: controller.events.length,
+                              (BuildContext context, index) {
+                            return AnimationConfiguration.staggeredList(
+                              position: index,
+                              duration: const Duration(milliseconds: 100),
+                              child: SlideAnimation(
+                                curve: Curves.fastLinearToSlowEaseIn,
+                                duration: const Duration(milliseconds: 2000),
+                                // verticalOffset: 300,
+                                // horizontalOffset: 30,
+                                child: FadeInAnimation(
+                                    duration:
+                                        const Duration(milliseconds: 2000),
+                                    curve: Curves.fastLinearToSlowEaseIn,
+                                    child: TimeLineOfEvents(
+                                      event: controller.events[index],
+                                    )),
+                              ),
+                            );
+                          }),
+                        ),
+                      )
+                    : SliverToBoxAdapter(
+                        child: SizedBox(
+                            height: h * 0.6,
+                            width: w,
+                            child: Center(
+                              child: primaryLoadingWidget,
+                            ))),
+              ))
+        ],
       ),
     ));
   }
 }
 
 //Full EventSchedule with Line and images
-class TimeLineofEvents extends StatelessWidget {
-  TimeLineofEvents({super.key, required this.event});
+class TimeLineOfEvents extends StatelessWidget {
+  TimeLineOfEvents({super.key, required this.event});
 
   final EventModel event;
   final EventsController eventsController = Get.find();

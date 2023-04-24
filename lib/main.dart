@@ -63,10 +63,10 @@ class MyApp extends StatelessWidget {
                 ? storage.read('isComplete') ?? false
                     ? NavBarPage()
                     : ProfileCompletion()
-                : LoginPage()),
+                : const LoginPage()),
         // GetPage(name: '/posts', page: () => PostsScreen()),
         GetPage(name: "/schedule", page: () => Schedule()),
-        GetPage(name: '/login', page: () => LoginPage()),
+        GetPage(name: '/login', page: () => const LoginPage()),
         GetPage(name: '/profile', page: () => ProfileScreen()),
         GetPage(
           name: '/search',
@@ -79,8 +79,8 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/notification-1',
           page: () => NotificationScreen(),
-          // curve: Curves.fastLinearToSlowEaseIn,
-          // transitionDuration: const Duration(milliseconds: 500),
+          curve: Curves.fastLinearToSlowEaseIn,
+          transitionDuration: const Duration(milliseconds: 1000),
         ),
       ],
     );
