@@ -53,6 +53,9 @@ class SwitchThemeScreen extends StatelessWidget {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
+                              SizedBox(
+                                height: height * 0.01,
+                              ),
                               Center(
                                 child: Text(
                                   "Past Theme",
@@ -89,7 +92,7 @@ class SwitchThemeScreen extends StatelessWidget {
                                                   0
                                               ? Colors.black38
                                               : Colors.white38,
-                                          fontSize: width * 0.027,
+                                          fontSize: width * 0.025,
                                         ),
                                       ),
                                     ),
@@ -126,6 +129,9 @@ class SwitchThemeScreen extends StatelessWidget {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
+                              SizedBox(
+                                height: height * 0.01,
+                              ),
                               Center(
                                 child: Text(
                                   "Present Theme",
@@ -199,6 +205,9 @@ class SwitchThemeScreen extends StatelessWidget {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
+                          SizedBox(
+                            height: height * 0.01,
+                          ),
                           Center(
                             child: Text(
                               "Future Theme",
