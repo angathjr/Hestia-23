@@ -51,27 +51,27 @@ class _LoginPageState extends State<LoginPage> {
                             _text = 'Logging you in...';
                           });
                           controller.handleSignIn();
-                          if (true) {
-                            setState(() {
-                              _text = 'Logged in';
-                            });
-                          } else {
-                            _text = 'Error logging in...';
+                          // if (true) {
+                          //   setState(() {
+                          //     _text = 'Logged in';
+                          //   });
+                          // } else {
+                          //   _text = 'Error logging in...';
 
-                            Future.delayed(const Duration(milliseconds: 1000),
-                                () {
-                              setState(() {
-                                _text = 'Try again...';
-                              });
-                            });
+                          //   Future.delayed(const Duration(milliseconds: 1000),
+                          //       () {
+                          //     setState(() {
+                          //       _text = 'Try again...';
+                          //     });
+                          //   });
 
-                            Future.delayed(const Duration(milliseconds: 2500),
-                                () {
-                              setState(() {
-                                _text = 'Continue with Google';
-                              });
-                            });
-                          }
+                          //   Future.delayed(const Duration(milliseconds: 2500),
+                          //       () {
+                          //     setState(() {
+                          //       _text = 'Continue with Google';
+                          //     });
+                          //   });
+                          // }
                         },
                       ),
                     ),
