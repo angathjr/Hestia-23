@@ -156,15 +156,16 @@ class StoriesCard extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                   color: Colors.grey[800],
-                  border: themeController.selectedIndex.value == 1
-                      ? Border.all(color: context.theme.primaryColor)
+                  border: themeController.selectedIndex.value == 0 ||
+                          themeController.selectedIndex.value == 1
+                      ? Border.all(color: context.theme.primaryColor, width: 2)
                       : null,
                   borderRadius: themeController.selectedIndex.value == 0
                       ? const BorderRadius.only(
                           topLeft: Radius.circular(20),
-                          topRight: Radius.circular(5),
+                          topRight: Radius.circular(20),
                           bottomRight: Radius.circular(20),
-                          bottomLeft: Radius.circular(5),
+                          bottomLeft: Radius.circular(20),
                         )
                       : themeController.selectedIndex.value == 1
                           ? BorderRadius.circular(100)

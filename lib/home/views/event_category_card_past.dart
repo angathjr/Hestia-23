@@ -33,40 +33,34 @@ class CategoryCardPast extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.topCenter,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: w * 0.07,
-                    right: w * 0.07,
-                  ),
-                  child: SizedBox(
-                    height: cardHeight * 0.35,
-                    width: double.infinity,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: context.theme.primaryColor,
-                        ),
-                        borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(5),
-                          topLeft: Radius.circular(5),
-                        ),
+                child: SizedBox(
+                  height: cardHeight * 0.45,
+                  width: double.infinity,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: context.theme.primaryColor,
                       ),
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(5),
-                          topLeft: Radius.circular(5),
+                      borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(10),
+                        topLeft: Radius.circular(30),
+                      ),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(10),
+                        topLeft: Radius.circular(30),
+                      ),
+                      child: CachedNetworkImage(
+                        progressIndicatorBuilder:
+                            (context, url, downloadProgress) => Center(
+                          child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation(
+                                  context.theme.disabledColor),
+                              value: downloadProgress.progress),
                         ),
-                        child: CachedNetworkImage(
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) => Center(
-                            child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation(
-                                    context.theme.disabledColor),
-                                value: downloadProgress.progress),
-                          ),
-                          imageUrl: categoryModel.imgUrl,
-                          fit: BoxFit.cover,
-                        ),
+                        imageUrl: categoryModel.imgUrl,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -79,13 +73,13 @@ class CategoryCardPast extends StatelessWidget {
                     border: Border.all(color: context.theme.primaryColor),
                     color: const Color.fromARGB(255, 44, 44, 40),
                     borderRadius: const BorderRadius.only(
-                      topRight: Radius.circular(50),
+                      topRight: Radius.circular(5),
                       topLeft: Radius.circular(50),
                       bottomLeft: Radius.circular(5),
-                      bottomRight: Radius.circular(5),
+                      bottomRight: Radius.circular(50),
                     ),
                   ),
-                  height: cardHeight * 0.55,
+                  height: cardHeight * 0.5,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
