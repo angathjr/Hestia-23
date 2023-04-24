@@ -26,6 +26,12 @@ class SwitchThemeScreen extends StatelessWidget {
         child: Obx(
           () => Column(
             children: [
+              const Text(
+                "Tap on the avatar to switch theme",
+                style: TextStyle(
+                  color: Colors.white38,
+                ),
+              ),
               SizedBox(
                 height: height * 0.03,
               ),
@@ -58,7 +64,7 @@ class SwitchThemeScreen extends StatelessWidget {
                               ),
                               Center(
                                 child: Text(
-                                  "Past Theme",
+                                  "Past",
                                   style: Themes.pastFont.copyWith(
                                       fontSize: width * 0.07,
                                       color:
@@ -134,7 +140,7 @@ class SwitchThemeScreen extends StatelessWidget {
                               ),
                               Center(
                                 child: Text(
-                                  "Present Theme",
+                                  "Present",
                                   style: Themes.presentFont.copyWith(
                                       fontSize: width * 0.07,
                                       color:
@@ -210,7 +216,7 @@ class SwitchThemeScreen extends StatelessWidget {
                           ),
                           Center(
                             child: Text(
-                              "Future Theme",
+                              "Future",
                               style: Themes.futureFont.copyWith(
                                   fontSize: width * 0.055,
                                   color:
