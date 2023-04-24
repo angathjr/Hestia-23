@@ -18,8 +18,9 @@ class Themes {
         return presentTheme;
       case 2:
         return futureTheme;
+      default:
+        return presentTheme;
     }
-    return presentTheme;
   }
 
   AssetImage get backgroundImage {
