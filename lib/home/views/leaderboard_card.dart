@@ -113,7 +113,7 @@ class LeaderBoard extends StatelessWidget {
           backgroundColor: Colors.transparent,
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
-            backgroundColor: Colors.transparent,
+            // backgroundColor: Colors.transparent,
             title: Center(
               child: Text(
                 'LEADERBOARD',

@@ -35,7 +35,7 @@ class EventDetailsScreen extends StatelessWidget {
             slivers: [
               SliverAppBar(
                 automaticallyImplyLeading: false,
-                backgroundColor: Colors.transparent,
+                // backgroundColor: Colors.transparent,
                 pinned: false,
                 floating: true,
                 snap: true,

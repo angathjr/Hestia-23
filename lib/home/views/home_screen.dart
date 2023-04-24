@@ -54,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                 snap: false,
                 primary: true,
                 automaticallyImplyLeading: false,
-                backgroundColor: Colors.transparent,
+                // backgroundColor: Colors.transparent,
                 title: Row(
                   children: [
                     GestureDetector(
@@ -153,9 +153,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         IconButton(
                           onPressed: () => Get.toNamed('search'),
-                          //  Navigator.push(
-                          //     context, SizeTransition5(EventsSearchScreen())),
-                          icon: const Icon(FeatherIcons.search),
+                          icon: Icon(FeatherIcons.search, size: width * 0.06),
                         ),
                         IconButton(
                           onPressed: () => Get.toNamed('notification-1'),
@@ -178,9 +176,10 @@ class HomeScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                const Center(
+                                Center(
                                   child: Icon(
                                     FeatherIcons.bell,
+                                    size: width * 0.06,
                                     color: Colors.white,
                                   ),
                                 ),

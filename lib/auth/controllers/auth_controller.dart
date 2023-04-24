@@ -12,6 +12,8 @@ class AuthController extends GetxController {
   final GetStorage _storage = GetStorage();
   final ApiProvider api = Get.find();
   final ApiProviderNoAuth apiNoAuth = Get.find();
+  var isSiginIn = false.obs;
+  var text = "Continue with Google".obs;
 
   @override
   void onInit() {
@@ -27,6 +29,7 @@ class AuthController extends GetxController {
 
   Future<void> handleSignIn() async {
     try {
+      isSiginIn(true);
       final result = await _googleSignIn.signIn();
       final auth = await result!.authentication;
 
@@ -34,7 +37,6 @@ class AuthController extends GetxController {
       final response = await apiNoAuth.postApi('/users/google/', data);
       log(data.toString());
       final apiToken = response.body['key'];
-
 
       await _storage.write('authToken', apiToken);
 
@@ -50,9 +52,18 @@ class AuthController extends GetxController {
       } else {
         _storage.write('isComplete', false);
       }
-
+      text.value = "Logged in";
+      isSiginIn(false);
       Get.offAllNamed('/');
     } catch (error) {
+      log(error.toString());
+      isSiginIn(false);
+      text.value = "Try Again";
+      await Future.delayed(const Duration(seconds: 2));
+      text.value = "Continue with Google";
+    } finally {
+      isSiginIn(false);
+      text.value = "Continue with Google";
     }
   }
 }
