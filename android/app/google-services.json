@@ -151,6 +151,14 @@
           }
         },
         {
+          "client_id": "923172081312-9omk4vd07e26p7m8r3i83sd0no399ct7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tkmce.hestia22",
+            "certificate_hash": "fe94e48966f081a01643a2399336eb4d34f2efad"
+          }
+        },
+        {
           "client_id": "923172081312-habggek9hg9oqou6os9qik69qvka3ig8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
