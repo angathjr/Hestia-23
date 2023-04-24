@@ -138,14 +138,18 @@ class ProfileScreen extends StatelessWidget {
                                 verticalOffset: -20,
                                 child: InkWell(
                                   borderRadius: BorderRadius.circular(15),
-                                  onTap: () =>
-                                      Get.to(() => RegisteredEventScreen()),
+                                  onTap: () => controller
+                                              .registeredEventCount.value ==
+                                          0
+                                      ? Get.snackbar("Hestia",
+                                          "You are not registered into any events",)
+                                      : Get.to(() => RegisteredEventScreen()),
                                   child: Container(
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
                                         color: context.theme.cardColor
                                             .withOpacity(0.9)),
-                                    // width: _width - 2 * (_width / 25),
+                                   
                                     height: height / 9,
                                     child: Padding(
                                       padding: EdgeInsets.all(width / 30),
