@@ -21,7 +21,7 @@ class CategoryCardPast extends StatelessWidget {
       alignment: Alignment.center,
       child: Container(
         decoration: BoxDecoration(
-            color: Color.fromARGB(255, 44, 44, 40),
+            color: const Color.fromARGB(255, 96, 96, 90).withOpacity(0.6),
             border: Border.all(color: context.theme.primaryColor, width: 2),
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),

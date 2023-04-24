@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hestia_23/theme/controllers/theme_controller.dart';
 
 class Themes {
   // FUTURE  THEME
-
+  final ThemeController themeController = Get.find();
   final _box = GetStorage();
   final _key = 'theme';
 
@@ -24,25 +25,29 @@ class Themes {
   AssetImage get backgroundImage {
     switch (_loadThemeFromBox()) {
       case 0:
+        themeController.selectedIndex.value = 0;
         return const AssetImage(
           "assets/images/pastBg.png",
         );
       case 1:
+        themeController.selectedIndex.value = 1;
         return const AssetImage(
           "assets/images/presentBg.png",
         );
       case 2:
+        themeController.selectedIndex.value = 2;
         return const AssetImage(
           "assets/images/futureBg.png",
         );
       default:
+        themeController.selectedIndex.value = 2;
         return const AssetImage(
           "assets/images/presentBg.png",
         );
     }
   }
 
-  int _loadThemeFromBox() => _box.read(_key) ?? 1;
+  int _loadThemeFromBox() => _box.read(_key) ?? 2;
 
   _saveThemeToBox(int index) => _box.write(_key, index);
 
