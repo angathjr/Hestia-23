@@ -60,7 +60,7 @@ class EventDetailsScreen extends StatelessWidget {
                               placeholder: (context, url) =>
                                   primaryLoadingWidget,
                               imageUrl:
-                                  '${eventsController.selectedEvent.image}',
+                                  '${eventsController.selectedEvent.image ?? NOIMAGE}',
                               fit: BoxFit.cover,
                             )),
                       ),
@@ -138,7 +138,8 @@ class EventDetailsScreen extends StatelessWidget {
                                   ),
                                   Text(
                                     DateFormat('MMM d').format(eventsController
-                                        .selectedEvent.eventStart!),
+                                            .selectedEvent.eventStart ??
+                                        DateTime.now()),
                                     // "${eventsController.selectedEvent.eventStart?.day} / ${eventsController.selectedEvent.eventStart?.month}",
                                     style: FutTheme.font1.copyWith(
                                         fontSize: height * 0.018,
