@@ -25,7 +25,7 @@ class GeneralNotificationsScreen extends StatelessWidget {
     return Obx(
       () => (notificationController.generalNotificationsLoading.value)
           ? primaryLoadingWidget
-          : AnimationLimiter(
+          : AnimationLimiter(  
               child: ListView.builder(
                 physics: const BouncingScrollPhysics(
                     parent: AlwaysScrollableScrollPhysics()),

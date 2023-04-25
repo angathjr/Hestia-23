@@ -280,7 +280,8 @@ class HomeScreen extends StatelessWidget {
                                   autoPlayCurve: Curves.linearToEaseOut,
                                   height: height * 0.46,
                                   viewportFraction: 0.66,
-                                  enlargeCenterPage: true),
+                                  enlargeCenterPage: true
+                                  ),
                             ),
                           ),
                         ),

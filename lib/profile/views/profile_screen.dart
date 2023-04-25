@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +11,7 @@ import 'package:hestia_23/animations/controllers/animation_controller.dart';
 import 'package:hestia_23/events/views/registered_events.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
+import 'package:hestia_23/profile/views/qr_screen.dart';
 import 'package:hestia_23/theme/model/themes.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -141,15 +144,16 @@ class ProfileScreen extends StatelessWidget {
                                   onTap: () => controller
                                               .registeredEventCount.value ==
                                           0
-                                      ? Get.snackbar("Hestia",
-                                          "You are not registered into any events",)
+                                      ? Get.snackbar(
+                                          "Hestia",
+                                          "You are not registered into any events",
+                                        )
                                       : Get.to(() => RegisteredEventScreen()),
                                   child: Container(
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
                                         color: context.theme.cardColor
                                             .withOpacity(0.9)),
-                                   
                                     height: height / 9,
                                     child: Padding(
                                       padding: EdgeInsets.all(width / 30),
@@ -305,36 +309,64 @@ class ProfileScreen extends StatelessWidget {
                                             height: width * 0.015,
                                           ),
                                           Expanded(
-                                            child: Container(
-                                              alignment: Alignment.center,
-                                              width: width,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(15),
-                                                color: context.theme.cardColor
-                                                    .withOpacity(0.9),
+                                            child: GestureDetector(
+                                              onTap: () => showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                useSafeArea: true,
+                                                shape:
+                                                    const RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        20),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        20))),
+                                                isDismissible: true,
+                                                context: context,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                builder: (context) =>
+                                                    BackdropFilter(
+                                                        filter:
+                                                            ImageFilter.blur(
+                                                                sigmaX: 20,
+                                                                sigmaY: 20),
+                                                        child: Qrscreen()),
                                               ),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  const Icon(
-                                                    Icons.qr_code,
-                                                    color: Color.fromRGBO(
-                                                        153, 153, 153, 1),
-                                                  ),
-                                                  SizedBox(
-                                                    height: width * 0.03,
-                                                  ),
-                                                  Text(
-                                                    "ID Card",
-                                                    style: context.theme
-                                                        .textTheme.bodyMedium
-                                                        ?.copyWith(
-                                                      fontSize: height * 0.016,
+                                              child: Container(
+                                                alignment: Alignment.center,
+                                                width: width,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                  color: context.theme.cardColor
+                                                      .withOpacity(0.9),
+                                                ),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    const Icon(
+                                                      Icons.qr_code,
+                                                      color: Color.fromRGBO(
+                                                          153, 153, 153, 1),
                                                     ),
-                                                  ),
-                                                ],
+                                                    SizedBox(
+                                                      height: width * 0.03,
+                                                    ),
+                                                    Text(
+                                                      "ID Card",
+                                                      style: context.theme
+                                                          .textTheme.bodyMedium
+                                                          ?.copyWith(
+                                                        fontSize:
+                                                            height * 0.016,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),
