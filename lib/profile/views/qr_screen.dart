@@ -19,59 +19,59 @@ class Qrscreen extends StatelessWidget {
       child: Column(children: [
         Obx(
           () => CarouselSlider.builder(
-              itemCount: profileController.regEvents.length,
-              itemBuilder: (BuildContext context, int index, int realIndex) {
-                return Container(
-                  width: width,
-                  height: height * 0.6,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: height * 0.01,
-                      ),
-                      Expanded(
-                        flex: 13,
-                        child: Container(
-                          // width: width * 0.8,
-                          margin: EdgeInsets.all(width * 0.03),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: QrImage(
-                            backgroundColor: Colors.white,
-                            padding: EdgeInsets.all(width * 0.05),
-                            data: profileController.regEvents[index].slug
-                                .toString(),
-                          ),
+            itemCount: profileController.regTeamSlug.length,
+            itemBuilder: (BuildContext context, int index, int realIndex) {
+              return Container(
+                width: width,
+                height: height * 0.6,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20)),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: height * 0.01,
+                    ),
+                    Expanded(
+                      flex: 13,
+                      child: Container(
+                        // width: width * 0.8,
+                        margin: EdgeInsets.all(width * 0.03),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: QrImage(
+                          backgroundColor: Colors.white,
+                          padding: EdgeInsets.all(width * 0.05),
+                          data: profileController.regTeamSlug[index].toString(),
                         ),
                       ),
-                      SizedBox(
-                        height: height * 0.015,
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          alignment: Alignment.center,
-                          child: Text(
-                            "${profileController.regEvents[index].title}",
-                            style: context.theme.textTheme.titleLarge
-                                ?.copyWith(color: Colors.black),
-                            textAlign: TextAlign.center,
-                          ),
+                    ),
+                    SizedBox(
+                      height: height * 0.015,
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "${profileController.regEvents[index].title}",
+                          style: context.theme.textTheme.titleLarge
+                              ?.copyWith(color: Colors.black),
+                          textAlign: TextAlign.center,
                         ),
-                      )
-                    ],
-                  ),
-                );
-              },
-              options: CarouselOptions(
-                  reverse: false,
-                  viewportFraction: 0.83,
-                  height: height * 0.5,
-                  enlargeCenterPage: true)),
+                      ),
+                    )
+                  ],
+                ),
+              );
+            },
+            options: CarouselOptions(
+                reverse: false,
+                viewportFraction: 0.83,
+                height: height * 0.5,
+                enlargeCenterPage: true),
+          ),
         ),
       ]),
     );

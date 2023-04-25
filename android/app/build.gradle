@@ -62,12 +62,12 @@ android {
     }
 
     signingConfigs {
-        debug {
-            storeFile file('key.jks')
-            storePassword 'hestia22'
-            keyAlias 'androiddebugkey'
-            keyPassword 'hestia22'
-        }
+        // debug {
+        //     storeFile file('key.jks')
+        //     storePassword 'hestia22'
+        //     keyAlias 'androiddebugkey'
+        //     keyPassword 'hestia22'
+        // }
         release {
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']

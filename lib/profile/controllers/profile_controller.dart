@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/auth/models/user.dart';
@@ -11,9 +13,9 @@ class ProfileController extends GetxController {
   var user = (UserModel()).obs;
   var registeredEventCount = 0.obs;
   var regEventsSlug = [].obs;
+  var regTeamSlug = [].obs;
   var regEvents = <EventModel>[].obs;
-  var regEventsLoading=false.obs;
-  
+  var regEventsLoading = false.obs;
 
   @override
   void onInit() {
@@ -46,14 +48,16 @@ class ProfileController extends GetxController {
     final Response response = await api.getApi('/api/events/reg/events/');
     final List responseBody = response.body['results'];
     List<EventModel> regEvents = [];
+    List<String> regTeam = [];
     for (var e in responseBody) {
-      if (e['event'] != null) regEvents.add(EventModel.fromJson(e['event']));
+      if (e['event'] != null) {
+        regEvents.add(EventModel.fromJson(e['event']));
+        regTeam.add(e['id']);
+      }
     }
+    regTeamSlug.value = regTeam;
     this.regEvents.value = regEvents;
     regEventsLoading(false);
     return regEvents;
   }
-
-
- 
 }
