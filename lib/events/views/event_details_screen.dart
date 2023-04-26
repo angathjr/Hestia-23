@@ -32,7 +32,8 @@ class EventDetailsScreen extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     double cardSize = (width - (2 * width * 0.04));
-    final textStyle = FutTheme.font7.copyWith(fontSize: height * 0.018);
+    final textStyle =
+        context.theme.textTheme.bodySmall?.copyWith(fontSize: height * 0.018);
 
     return Scaffold(
       body: Container(
@@ -254,7 +255,7 @@ class EventDetailsScreen extends StatelessWidget {
                               //  color: Colors.red,
                               child: (hasTextOverflow(
                                 '${eventsController.selectedEvent.desc}',
-                                textStyle,
+                                textStyle!,
                                 maxLines: 4,
                                 maxWidth: width,
                               ))
@@ -266,8 +267,11 @@ class EventDetailsScreen extends StatelessWidget {
                                         (!controller.isReadMore.value)
                                             ? "Read More "
                                             : "Read Less",
-                                        style: FutTheme.font4.copyWith(
-                                            color: context.theme.primaryColor),
+                                        style: context
+                                            .theme.textTheme.bodyMedium
+                                            ?.copyWith(
+                                                color:
+                                                    context.theme.primaryColor),
                                       ))
                                   : null,
                             )
