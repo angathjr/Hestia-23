@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
             image: DecorationImage(
                 fit: BoxFit.fitWidth,
                 opacity: themeController.selectedIndex.value == 0
-                    ? 0.5
+                    ? 0.3
                     : themeController.selectedIndex.value == 1
                         ? 0.2
                         : 0.4,
