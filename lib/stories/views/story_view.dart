@@ -54,7 +54,7 @@ class StoriesViewScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  "${story.username}",
+                  "${story.eventName}",
                   style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

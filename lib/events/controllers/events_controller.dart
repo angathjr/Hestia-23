@@ -14,25 +14,29 @@ class EventsController extends GetxController {
     CategoryModel(
         code: 'W',
         name: 'Workshops',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et',
+        description:
+            'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et',
         imgUrl:
             'https://firebasestorage.googleapis.com/v0/b/hestia23.appspot.com/o/HomeScreenImages%2Fworkshop.jpg?alt=media&token=c5339195-1dad-4fa7-8d02-30491781688a'),
     CategoryModel(
         code: 'T',
         name: 'Technicals',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et',
+        description:
+            'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et',
         imgUrl:
             'https://firebasestorage.googleapis.com/v0/b/hestia23.appspot.com/o/HomeScreenImages%2Ftechnical.jpg?alt=media&token=fbdfc46f-b879-4a8d-ad44-70ff0e8c2543'),
     CategoryModel(
         code: 'PR',
         name: 'Pro Shows',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et',
+        description:
+            'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et',
         imgUrl:
             'https://firebasestorage.googleapis.com/v0/b/hestia23.appspot.com/o/HomeScreenImages%2Fproshow.jpg?alt=media&token=59acf99c-252b-4d67-9805-e16f574e501b'),
     CategoryModel(
         code: 'G',
         name: 'General',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et',
+        description:
+            'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et',
         imgUrl:
             'https://firebasestorage.googleapis.com/v0/b/hestia23.appspot.com/o/HomeScreenImages%2Fgeneral.jpg?alt=media&token=187031d5-3221-4b8c-a071-fbf065144a18'),
     // CategoryModel(code: 'W', name: 'Workshops'),
@@ -164,21 +168,23 @@ class EventsController extends GetxController {
         mode: LaunchMode.externalApplication,
       );
     } catch (e) {
-      //TODO: ERROR WIDGET
+      Get.snackbar('Events', 'An unknown error occurred');
     }
   }
 
   void launchPhoneDialer(String? phoneNumber) async {
-    if (phoneNumber == null) return;
-    const url = 'tel:';
-    final uri = Uri.parse('tel:$phoneNumber');
-    
-    try {
-      await launchUrl(
-        uri,
-      );
-    } catch (e) {
-      //TODO: ERROR WIDGET
+    if (phoneNumber == null) {
+      Get.snackbar('Coordinator', 'Invalid phone number');
+    } else {
+      final uri = Uri.parse('tel:$phoneNumber');
+
+      try {
+        await launchUrl(
+          uri,
+        );
+      } catch (e) {
+        Get.snackbar('Coordinator', e.toString());
+      }
     }
   }
 
