@@ -333,12 +333,12 @@ class EventDetailsScreen extends StatelessWidget {
   SizedBox contactDetails(double width, double height, String name,
       {String? phoneNumber}) {
     return SizedBox(
-        child: Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        GestureDetector(
-          onTap: () => eventsController.launchPhoneDialer(phoneNumber),
-          child: Container(
+        child: GestureDetector(
+      onTap: () => eventsController.launchPhoneDialer(phoneNumber),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
             width: width * 0.09,
             height: width * 0.09,
             decoration: const BoxDecoration(
@@ -349,16 +349,16 @@ class EventDetailsScreen extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        Text(
-          name,
-          style: FutTheme.font4.copyWith(fontSize: height * 0.02),
-          overflow: TextOverflow.ellipsis,
-        )
-      ],
+          const SizedBox(
+            width: 10,
+          ),
+          Text(
+            name,
+            style: FutTheme.font4.copyWith(fontSize: height * 0.02),
+            overflow: TextOverflow.ellipsis,
+          )
+        ],
+      ),
     ));
   }
 }
