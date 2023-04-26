@@ -146,7 +146,7 @@ class ProfileScreen extends StatelessWidget {
                                           0
                                       ? Get.snackbar(
                                           "Hestia",
-                                          "You have not registered any events",
+                                          "You are not registered into any events",
                                         )
                                       : Get.to(() => RegisteredEventScreen()),
                                   child: Container(
@@ -310,39 +310,31 @@ class ProfileScreen extends StatelessWidget {
                                           ),
                                           Expanded(
                                             child: GestureDetector(
-                                              onTap: () => controller
-                                                      .regEventsSlug.isEmpty
-                                                  ? Get.snackbar(
-                                                      "Hestia",
-                                                      "You have not registered any events",
-                                                    )
-                                                  : showModalBottomSheet(
-                                                      isScrollControlled: true,
-                                                      useSafeArea: true,
-                                                      shape: const RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius.only(
-                                                                  topLeft: Radius
-                                                                      .circular(
-                                                                          20),
-                                                                  topRight: Radius
-                                                                      .circular(
-                                                                          20))),
-                                                      isDismissible: true,
-                                                      context: context,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      builder: (context) =>
-                                                          BackdropFilter(
-                                                              filter: ImageFilter
-                                                                  .blur(
-                                                                      sigmaX:
-                                                                          20,
-                                                                      sigmaY:
-                                                                          20),
-                                                              child:
-                                                                  Qrscreen()),
-                                                    ),
+                                              onTap: () => showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                useSafeArea: true,
+                                                shape:
+                                                    const RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        20),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        20))),
+                                                isDismissible: true,
+                                                context: context,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                builder: (context) =>
+                                                    BackdropFilter(
+                                                        filter:
+                                                            ImageFilter.blur(
+                                                                sigmaX: 20,
+                                                                sigmaY: 20),
+                                                        child: Qrscreen()),
+                                              ),
                                               child: Container(
                                                 alignment: Alignment.center,
                                                 width: width,
