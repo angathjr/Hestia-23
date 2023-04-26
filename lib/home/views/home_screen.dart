@@ -166,8 +166,8 @@ class HomeScreen extends StatelessWidget {
                             () => Stack(
                               children: [
                                 if (notificationController
-                                        .generalNotifications.isNotEmpty ||
-                                    profController.regEvents.isNotEmpty)
+                                        .unseenGeneralNotificationCount.value !=
+                                    0)
                                   Positioned(
                                     right: 4,
                                     top: 7,

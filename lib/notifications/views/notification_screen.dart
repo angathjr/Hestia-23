@@ -20,58 +20,98 @@ class NotificationScreen extends StatelessWidget {
         kToolbarHeight;
 
     double width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      body: DefaultTabController(
-        length: 2,
-        child: Padding(
-            padding: const EdgeInsets.all(13.0),
-            child: Scaffold(
-                appBar: AppBar(
-                  automaticallyImplyLeading: false,
-                  title: Row(
-                    children: [
-                      const BackButtonWidget(),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Text(
-                        'NOTIFICATIONS',
-                        style: context.theme.textTheme.titleLarge,
-                      ),
-                    ],
-                  ),
 
-                  //tab bar is placed here
+    return WillPopScope(
+      onWillPop: () async {
+        notificationController.seeNotifications();
+        return true;
+      },
+      child: Scaffold(
+        body: DefaultTabController(
+          length: 2,
+          child: Padding(
+              padding: const EdgeInsets.all(13.0),
+              child: Scaffold(
+                  appBar: AppBar(
+                    automaticallyImplyLeading: false,
+                    title: Row(
+                      children: [
+                        const BackButtonWidget(),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          'NOTIFICATIONS',
+                          style: context.theme.textTheme.titleLarge,
+                        ),
+                      ],
+                    ),
 
-                  bottom: PreferredSize(
-                    preferredSize: Size.fromHeight(h * 0.09),
-                    child: TabBar(
-                      isScrollable: false,
-                      labelColor: Colors.white,
-                      indicatorWeight: 2,
-                      indicatorSize: TabBarIndicatorSize.label,
-                      unselectedLabelColor: Colors.grey,
-                      indicatorColor: const Color.fromARGB(255, 226, 222, 169),
-                      dividerColor: Colors.transparent,
-                      padding: EdgeInsets.only(right: width * 0.2),
-                      tabs: [
-                        Tab(
-                          child: Row(
+                    //tab bar is placed here
+
+                    bottom: PreferredSize(
+                      preferredSize: Size.fromHeight(h * 0.09),
+                      child: TabBar(
+                        isScrollable: false,
+                        labelColor: Colors.white,
+                        indicatorWeight: 2,
+                        indicatorSize: TabBarIndicatorSize.label,
+                        unselectedLabelColor: Colors.grey,
+                        indicatorColor:
+                            const Color.fromARGB(255, 226, 222, 169),
+                        dividerColor: Colors.transparent,
+                        padding: EdgeInsets.only(right: width * 0.2),
+                        tabs: [
+                          Tab(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'General',
+                                  style: FutTheme.font3,
+                                ),
+                                Obx(() => notificationController
+                                        .generalNotifications.isNotEmpty
+                                    ? const SizedBox(
+                                        width: 10,
+                                      )
+                                    : const SizedBox()),
+                                Obx(
+                                  () => notificationController
+                                          .generalNotifications.isNotEmpty
+                                      ? Container(
+                                          width: 20,
+                                          decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Color.fromARGB(
+                                                  255, 236, 217, 15)),
+                                          child: Center(
+                                              child: Text(
+                                            '${notificationController.unseenGeneralNotificationCount.value}',
+                                            style: const TextStyle(
+                                                color: Colors.black),
+                                          )),
+                                        )
+                                      : const SizedBox(),
+                                )
+                              ],
+                            ),
+                          ),
+                          Tab(
+                              child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'General',
+                                'My Events',
                                 style: FutTheme.font3,
                               ),
-                              Obx(() => notificationController
-                                      .generalNotifications.isNotEmpty
+                              Obx(() => profileController.regEvents.isNotEmpty
                                   ? const SizedBox(
                                       width: 10,
                                     )
                                   : const SizedBox()),
                               Obx(
-                                () => notificationController
-                                        .generalNotifications.isNotEmpty
+                                () => profileController.regEvents.isNotEmpty
                                     ? Container(
                                         width: 20,
                                         decoration: const BoxDecoration(
@@ -80,7 +120,7 @@ class NotificationScreen extends StatelessWidget {
                                                 255, 236, 217, 15)),
                                         child: Center(
                                             child: Text(
-                                          '${notificationController.generalNotifications.length}',
+                                          '${notificationController.unseenMyEventsNotificationCount.value}',
                                           style: const TextStyle(
                                               color: Colors.black),
                                         )),
@@ -88,56 +128,23 @@ class NotificationScreen extends StatelessWidget {
                                     : const SizedBox(),
                               )
                             ],
-                          ),
-                        ),
-                        Tab(
-                            child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'My Events',
-                              style: FutTheme.font3,
-                            ),
-                            Obx(() => profileController.regEvents.isNotEmpty
-                                ? const SizedBox(
-                                    width: 10,
-                                  )
-                                : const SizedBox()),
-                            Obx(
-                              () => profileController.regEvents.isNotEmpty
-                                  ? Container(
-                                      width: 20,
-                                      decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Color.fromARGB(
-                                              255, 236, 217, 15)),
-                                      child: Center(
-                                          child: Text(
-                                        '${profileController.regEvents.length}',
-                                        style: const TextStyle(
-                                            color: Colors.black),
-                                      )),
-                                    )
-                                  : const SizedBox(),
-                            )
-                          ],
-                        )),
-                      ],
+                          )),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                body: Padding(
-                  padding: EdgeInsets.fromLTRB(
-                      width * 0.04, width * 0.04, width * 0.04, 0),
-                  child: TabBarView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      
-                      GeneralNotificationsScreen(),
-                      RegisteredEventsNotificatonScreen(),
-                    ],
-                  ),
-                ))),
+                  body: Padding(
+                    padding: EdgeInsets.fromLTRB(
+                        width * 0.04, width * 0.04, width * 0.04, 0),
+                    child: TabBarView(
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: [
+                        GeneralNotificationsScreen(),
+                        RegisteredEventsNotificatonScreen(),
+                      ],
+                    ),
+                  ))),
+        ),
       ),
     );
   }

@@ -83,6 +83,7 @@ class AuthController extends GetxController {
           AppleIDAuthorizationScopes.fullName,
         ],
       );
+
       // final auth = await result!.authentication;
       //
       // Map data = {'access_token': auth.accessToken};
