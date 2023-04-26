@@ -260,7 +260,9 @@ class EventDetailsScreen extends StatelessWidget {
                                       eventsController.selectedEvent.desc
                                           .toString(),
                                       FutTheme.font7
-                                          .copyWith(fontSize: height * 0.018), maxWidth: width, maxLines: 4)
+                                          .copyWith(fontSize: height * 0.018),
+                                      maxWidth: width,
+                                      maxLines: 4)
                                   ? GestureDetector(
                                       onTap: () {
                                         controller.readMore();
