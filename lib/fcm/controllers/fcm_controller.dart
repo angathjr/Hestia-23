@@ -33,11 +33,11 @@ class FCMController extends GetxController {
 
   void onListen() {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('Got a message whilst in the foreground!');
-      print('Message data: ${message.data}');
+      log('Got a message whilst in the foreground!');
+      log('Message data: ${message.data}');
 
       if (message.notification != null) {
-        print('Message also contained a notification: ${message.notification}');
+        log('Message also contained a notification: ${message.notification}');
       }
     });
   }
@@ -53,9 +53,10 @@ class FCMController extends GetxController {
       }
       eventSlugs.forEach((e) async {
         await messaging.subscribeToTopic('$e');
-       
       });
-    } on Exception catch (e) {}
+    } on Exception catch (e) {
+      Get.snackbar('Network Error', "Please check your network connectivity.");
+    }
   }
 
   void fetchToken() async {

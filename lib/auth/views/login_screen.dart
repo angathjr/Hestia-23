@@ -11,8 +11,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String _text = "Continue with Google";
-
   final AuthController controller = Get.find();
 
   @override
@@ -36,22 +34,44 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                        color: Color(0xff121212),
-                        borderRadius: BorderRadius.all(Radius.circular(25))),
-                    height: 70,
-                    width: 280,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(25),
-                      child: RoundedButton(
-                        text: _text,
-                        press: () async {
-                          setState(() {
-                            _text = 'Logging you in...';
-                          });
-                          controller.handleSignIn();
-                        },
+                  Obx(
+                    () => Container(
+                      decoration: const BoxDecoration(
+                          color: Color(0xff121212),
+                          borderRadius: BorderRadius.all(Radius.circular(25))),
+                      height: 70,
+                      width: 280,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(25),
+                        child: RoundedButton(
+                          lottie: 'google',
+                          text: controller.text1.value,
+                          press: () async {
+                            controller.googleSignIn();
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Obx(
+                    () => Container(
+                      decoration: const BoxDecoration(
+                          color: Color(0xff121212),
+                          borderRadius: BorderRadius.all(Radius.circular(25))),
+                      height: 70,
+                      width: 280,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(25),
+                        child: RoundedButton(
+                          lottie: 'apple',
+                          text: controller.text2.value,
+                          press: () async {
+                            controller.appleSignIn();
+                          },
+                        ),
                       ),
                     ),
                   ),
@@ -71,6 +91,7 @@ class _LoginPageState extends State<LoginPage> {
 
 class RoundedButton extends StatelessWidget {
   final String text;
+  final String lottie;
   final Color? color, textColor;
   final void Function() press;
   const RoundedButton({
@@ -79,6 +100,7 @@ class RoundedButton extends StatelessWidget {
     this.textColor = Colors.white,
     this.color,
     required this.press,
+    required this.lottie,
   }) : super(key: key);
 
   @override
@@ -89,14 +111,10 @@ class RoundedButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(
-            width: 10,
-          ),
           Container(
-            //color: Colors.blue,
             child: Lottie.asset(
-              'assets/google.json',
-              width: 50,
+              'assets/lottie/$lottie.json',
+              width: 65,
               height: 80,
             ),
           ),
@@ -111,9 +129,6 @@ class RoundedButton extends StatelessWidget {
                 fontSize: 16,
               ),
             ),
-          ),
-          const SizedBox(
-            width: 10,
           ),
         ],
       ),

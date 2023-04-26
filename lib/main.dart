@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +30,7 @@ void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
     await GetStorage.init();
-    GetXDependancyInjector().onInit();
+    GetXDependencyInjector().onInit();
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
     await SystemChrome.setPreferredOrientations([
@@ -69,7 +68,7 @@ class MyApp extends StatelessWidget {
                 : const LoginPage()),
         // GetPage(name: '/posts', page: () => PostsScreen()),
         GetPage(name: '/navbar', page: () => NavBarPage()),
-        GetPage(name: '/splash', page: () => SplashScreen()),
+        GetPage(name: '/splash', page: () => const SplashScreen()),
         GetPage(name: "/schedule", page: () => Schedule()),
         GetPage(name: '/login', page: () => const LoginPage()),
         GetPage(name: '/profile', page: () => ProfileScreen()),

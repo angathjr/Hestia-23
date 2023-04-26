@@ -77,7 +77,7 @@ class ProfileCompletion extends StatelessWidget {
                     const Spacer(),
                     if (!profileEditController.isEdit)
                       GestureDetector(
-                        onTap: () => authController.signout(),
+                        onTap: () => authController.signOut(),
                         child: Container(
                           margin: const EdgeInsets.only(right: 20),
                           padding: const EdgeInsets.symmetric(
