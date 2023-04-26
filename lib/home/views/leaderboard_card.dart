@@ -12,32 +12,36 @@ class LeaderBoard extends StatelessWidget {
   //leaderboard widget-future theme
   static Widget futureLeaderboard(num h, BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(13.0),
+      padding: const EdgeInsets.all(10),
       child: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(13.0),
-            child: TextField(
-              controller: null,
-              decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
-                prefixIcon: const Icon(
-                  Icons.search,
-                  color: Colors.grey,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                hintStyle: context.theme.textTheme.titleMedium,
-                hintText: " Search for event",
-              ),
+            child: Container(
+              alignment: Alignment.center,
+              height: h * 0.06,
+              decoration: BoxDecoration(
+                  color: const Color(0xff1E1E1E),
+                  borderRadius: BorderRadius.circular(20)),
+              child: TextField(
+                  textAlign: TextAlign.left,
+                  style: FutTheme.font3,
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration(
+                      prefixIcon: const Icon(FeatherIcons.search),
+                      hintText: "Search events here",
+                      hintStyle: context.theme.textTheme.bodyMedium
+                          ?.copyWith(color: Colors.grey),
+                      contentPadding: const EdgeInsets.only(left: 20),
+                      border: InputBorder.none),
+                  onChanged: null),
             ),
           ),
           SizedBox(
             height: h * 0.02,
           ),
           Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(10.0),
             child: Container(
               height: MediaQuery.of(context).orientation == Orientation.portrait
                   ? h * 0.72
@@ -49,13 +53,14 @@ class LeaderBoard extends StatelessWidget {
                 itemCount: 2,
                 itemBuilder: (BuildContext context, int index) {
                   return ExpansionTile(
-                    trailing: Icon(
-                      FeatherIcons.arrowDownCircle,
-                      color: context.theme.primaryColor,
+                    trailing: const Icon(
+                      Icons.arrow_drop_down,
+                      color: Colors.grey,
                     ),
                     title: Text(
                       "Logo Designing",
-                      style: FutTheme.categoryFont,
+                      style: context.theme.textTheme.bodyMedium?.copyWith(
+                          fontSize: h * 0.022, color: Colors.grey.shade400),
                     ),
                     children: <Widget>[
                       SizedBox(
@@ -109,54 +114,59 @@ class LeaderBoard extends StatelessWidget {
               opacity: 0.25,
               image: Themes().backgroundImage)),
       child: SafeArea(
-        child: Scaffold(
-            backgroundColor: Colors.transparent,
-            resizeToAvoidBottomInset: false,
-            appBar: AppBar(
-              // backgroundColor: Colors.transparent,
-              title: Center(
-                child: Text(
-                  'LEADERBOARD',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleLarge
-                      ?.copyWith(fontSize: w * 0.064),
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
+          child: Scaffold(
+              backgroundColor: Colors.transparent,
+              resizeToAvoidBottomInset: false,
+              appBar: AppBar(
+                // backgroundColor: Colors.transparent,
+                title: Center(
+                  child: Text(
+                    'LEADERBOARD',
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge
+                        ?.copyWith(fontSize: w * 0.064),
+                  ),
                 ),
+                elevation: 0,
               ),
-              elevation: 0,
-            ),
-            //body: futureLeaderboard(height, context),
-            body: futureLeaderboard(height, context)
+              //body: futureLeaderboard(height, context),
+              body: futureLeaderboard(height, context)
 
-            //  AnimationConfiguration.synchronized(
-            //   child: FadeInAnimation(
-            //     duration:
-            //     const Duration(milliseconds: 2500),
-            //     curve: Curves.fastLinearToSlowEaseIn,
-            //     child: Center(
-            //       child: Container(
-            //         margin: EdgeInsets.only(
-            //           left: 30,
-            //           right: 30,
-            //           top: height * 0.03,
-            //           bottom: height * 0.1,
-            //         ),
-            //         decoration: BoxDecoration(
-            //           borderRadius: BorderRadius.circular(10),
-            //           color: context.theme.cardColor.withOpacity(0.9),
-            //         ),
-            //         child: Center(
-            //           child: Text(
-            //             "Leaderboard will be active soon ;)",
-            //             style: context.theme.textTheme.bodyMedium
-            //                 ?.copyWith(color: context.theme.disabledColor),
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            ),
+              //  AnimationConfiguration.synchronized(
+              //   child: FadeInAnimation(
+              //     duration:
+              //     const Duration(milliseconds: 2500),
+              //     curve: Curves.fastLinearToSlowEaseIn,
+              //     child: Center(
+              //       child: Container(
+              //         margin: EdgeInsets.only(
+              //           left: 30,
+              //           right: 30,
+              //           top: height * 0.03,
+              //           bottom: height * 0.1,
+              //         ),
+              //         decoration: BoxDecoration(
+              //           borderRadius: BorderRadius.circular(10),
+              //           color: context.theme.cardColor.withOpacity(0.9),
+              //         ),
+              //         child: Center(
+              //           child: Text(
+              //             "Leaderboard will be active soon ;)",
+              //             style: context.theme.textTheme.bodyMedium
+              //                 ?.copyWith(color: context.theme.disabledColor),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              ),
+        ),
       ),
     );
   }
