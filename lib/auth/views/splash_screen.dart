@@ -5,7 +5,7 @@ class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   void loadPages() async {
-    await Future.delayed(const Duration(milliseconds: 2500));
+    await Future.delayed(const Duration(milliseconds: 2600));
     Get.offAllNamed('/');
   }
 

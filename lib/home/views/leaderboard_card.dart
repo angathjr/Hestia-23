@@ -9,106 +9,6 @@ import '../../core/constants..dart';
 class LeaderBoard extends StatelessWidget {
   const LeaderBoard({super.key});
 
-  //leaderboard widget-future theme
-  static Widget futureLeaderboard(num h, BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(13.0),
-            child: Container(
-              alignment: Alignment.center,
-              height: h * 0.06,
-              decoration: BoxDecoration(
-                  color: const Color(0xff1E1E1E),
-                  borderRadius: BorderRadius.circular(20)),
-              child: TextField(
-                  textAlign: TextAlign.left,
-                  style: FutTheme.font3,
-                  textAlignVertical: TextAlignVertical.center,
-                  decoration: InputDecoration(
-                      prefixIcon: const Icon(FeatherIcons.search),
-                      hintText: "Search events here",
-                      hintStyle: context.theme.textTheme.bodyMedium
-                          ?.copyWith(color: Colors.grey),
-                      contentPadding: const EdgeInsets.only(left: 20),
-                      border: InputBorder.none),
-                  onChanged: null),
-            ),
-          ),
-          SizedBox(
-            height: h * 0.02,
-          ),
-          SizedBox(
-            height: h * 0.7,
-            child: const Center(
-              child: Text(
-                "Leaderboard will be active soon.",
-                style: TextStyle(
-                  color: Colors.grey,
-                ),
-              ),
-            ),
-          ),
-          // Padding(
-          //   padding: const EdgeInsets.all(10.0),
-          //   child: Container(
-          //     height: MediaQuery.of(context).orientation == Orientation.portrait
-          //         ? h * 0.72
-          //         : h * 0.35,
-          //     decoration: const BoxDecoration(
-          //         borderRadius: BorderRadius.all(Radius.circular(12)),
-          //         color: Color.fromARGB(255, 23, 22, 22)),
-          //     child: ListView.builder(
-          //       itemCount: 2,
-          //       itemBuilder: (BuildContext context, int index) {
-          //         return ExpansionTile(
-          //           trailing: const Icon(
-          //             Icons.arrow_drop_down,
-          //             color: Colors.grey,
-          //           ),
-          //           title: Text(
-          //             "Logo Designing",
-          //             style: context.theme.textTheme.bodyMedium?.copyWith(
-          //                 fontSize: h * 0.022, color: Colors.grey.shade400),
-          //           ),
-          //           children: <Widget>[
-          //             SizedBox(
-          //               height: h * 0.4,
-          //               child: Stack(
-          //                 fit: StackFit.expand,
-          //                 children: const [
-          //                   Align(
-          //                     alignment: Alignment(-1, 0),
-          //                     child: StackItem(
-          //                       number: 2,
-          //                     ),
-          //                   ),
-          //                   Align(
-          //                     alignment: Alignment(0, -0.4),
-          //                     child: StackItem(large: true),
-          //                   ),
-          //                   Align(
-          //                     alignment: Alignment(1, 0),
-          //                     child: StackItem(
-          //                       number: 3,
-          //                     ),
-          //                   )
-          //                 ],
-          //               ),
-          //             )
-          //           ],
-          //         );
-          //       },
-          //     ),
-          //   ),
-          // )
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height -
@@ -145,38 +45,7 @@ class LeaderBoard extends StatelessWidget {
                 ),
                 elevation: 0,
               ),
-              //body: futureLeaderboard(height, context),
-              body: futureLeaderboard(height, context)
-
-            //  AnimationConfiguration.synchronized(
-            //   child: FadeInAnimation(
-            //     duration:
-            //     const Duration(milliseconds: 2500),
-            //     curve: Curves.fastLinearToSlowEaseIn,
-            //     child: Center(
-            //       child: Container(
-            //         margin: EdgeInsets.only(
-            //           left: 30,
-            //           right: 30,
-            //           top: height * 0.03,
-            //           bottom: height * 0.1,
-            //         ),
-            //         decoration: BoxDecoration(
-            //           borderRadius: BorderRadius.circular(10),
-            //           color: context.theme.cardColor.withOpacity(0.9),
-            //         ),
-            //         child: Center(
-            //           child: Text(
-            //             "Leaderboard will be active soon ;)",
-            //             style: context.theme.textTheme.bodyMedium
-            //                 ?.copyWith(color: context.theme.disabledColor),
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-          ),
+              body: futureLeaderboard(height, context)),
         ),
       ),
     );
@@ -243,4 +112,103 @@ class StackItem extends StatelessWidget {
       ],
     );
   }
+}
+
+Widget futureLeaderboard(num h, BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(10),
+    child: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(13.0),
+          child: Container(
+            alignment: Alignment.center,
+            height: h * 0.06,
+            decoration: BoxDecoration(
+                color: const Color(0xff1E1E1E),
+                borderRadius: BorderRadius.circular(20)),
+            child: TextField(
+                textAlign: TextAlign.left,
+                style: FutTheme.font3,
+                textAlignVertical: TextAlignVertical.center,
+                decoration: InputDecoration(
+                    prefixIcon: const Icon(FeatherIcons.search),
+                    hintText: "Search events here",
+                    hintStyle: context.theme.textTheme.bodyMedium
+                        ?.copyWith(color: Colors.grey),
+                    contentPadding: const EdgeInsets.only(left: 20),
+                    border: InputBorder.none),
+                onChanged: null),
+          ),
+        ),
+        SizedBox(
+          height: h * 0.02,
+        ),
+        SizedBox(
+          height: h * 0.7,
+          child: const Center(
+            child: Text(
+              "Leaderboard will be active soon.",
+              style: TextStyle(
+                color: Colors.grey,
+              ),
+            ),
+          ),
+        ),
+        // Padding(
+        //   padding: const EdgeInsets.all(10.0),
+        //   child: Container(
+        //     height: MediaQuery.of(context).orientation == Orientation.portrait
+        //         ? h * 0.72
+        //         : h * 0.35,
+        //     decoration: const BoxDecoration(
+        //         borderRadius: BorderRadius.all(Radius.circular(12)),
+        //         color: Color.fromARGB(255, 23, 22, 22)),
+        //     child: ListView.builder(
+        //       itemCount: 2,
+        //       itemBuilder: (BuildContext context, int index) {
+        //         return ExpansionTile(
+        //           trailing: const Icon(
+        //             Icons.arrow_drop_down,
+        //             color: Colors.grey,
+        //           ),
+        //           title: Text(
+        //             "Logo Designing",
+        //             style: context.theme.textTheme.bodyMedium?.copyWith(
+        //                 fontSize: h * 0.022, color: Colors.grey.shade400),
+        //           ),
+        //           children: <Widget>[
+        //             SizedBox(
+        //               height: h * 0.4,
+        //               child: Stack(
+        //                 fit: StackFit.expand,
+        //                 children: const [
+        //                   Align(
+        //                     alignment: Alignment(-1, 0),
+        //                     child: StackItem(
+        //                       number: 2,
+        //                     ),
+        //                   ),
+        //                   Align(
+        //                     alignment: Alignment(0, -0.4),
+        //                     child: StackItem(large: true),
+        //                   ),
+        //                   Align(
+        //                     alignment: Alignment(1, 0),
+        //                     child: StackItem(
+        //                       number: 3,
+        //                     ),
+        //                   )
+        //                 ],
+        //               ),
+        //             )
+        //           ],
+        //         );
+        //       },
+        //     ),
+        //   ),
+        // )
+      ],
+    ),
+  );
 }
