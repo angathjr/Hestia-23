@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/constants..dart';
-import 'package:hestia_23/core/widgets/back_button_widget.dart';
 import 'package:hestia_23/notifications/controllers/notification_controller.dart';
 import 'package:hestia_23/notifications/views/general_notifications.dart';
 import 'package:hestia_23/notifications/views/registered_events_notification.dart';
