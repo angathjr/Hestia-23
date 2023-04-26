@@ -10,10 +10,10 @@ class NotificationController extends GetxController {
 
   final ProfileController profileController = Get.find();
 
-  CollectionReference notfRef =
+  CollectionReference notificationReference =
       FirebaseFirestore.instance.collection('notifications');
 
-  CollectionReference generealRef = FirebaseFirestore.instance
+  CollectionReference generalRef = FirebaseFirestore.instance
       .collection('notifications')
       .doc('groups')
       .collection('general');
@@ -21,7 +21,7 @@ class NotificationController extends GetxController {
   DocumentReference groups =
       FirebaseFirestore.instance.collection('notifications').doc('groups');
 
-  late NotificationModel selectedNotEvent;
+  late NotificationModel selectedNotificationEvent;
   var notificationsLoading = false.obs;
   var generalNotificationsLoading = false.obs;
   var generalNotifications = <NotificationModel>[].obs;
@@ -47,7 +47,7 @@ class NotificationController extends GetxController {
   }
 
   void goToNotification(NotificationModel notification) {
-    selectedNotEvent = notification;
+    selectedNotificationEvent = notification;
     Get.to(() => NotificationScreenTwo());
     fetchNotifications();
   }
@@ -76,7 +76,7 @@ class NotificationController extends GetxController {
 
   void fetchNotifications() async {
     notificationsLoading(true);
-    final colRef = groups.collection('${selectedNotEvent.eventSlug}');
+    final colRef = groups.collection('${selectedNotificationEvent.eventSlug}');
     final query = await colRef.orderBy('createdAt', descending: true).get();
     final data = query.docs.map((e) => e.data()).toList();
 
@@ -91,7 +91,7 @@ class NotificationController extends GetxController {
   void fetchGeneralNotifications() async {
     generalNotificationsLoading(true);
     final query =
-        await generealRef.orderBy('createdAt', descending: true).get();
+        await generalRef.orderBy('createdAt', descending: true).get();
     final data = query.docs.map((e) => e.data()).toList();
     generalNotifications.value = notificationModelFromJson(data);
     generalNotificationsLoading(false);
