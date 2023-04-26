@@ -126,34 +126,36 @@ class LeaderBoard extends StatelessWidget {
             elevation: 0,
           ),
           //body: futureLeaderboard(height, context),
-          body: AnimationConfiguration.synchronized(
-            child: FadeInAnimation(
-              duration:
-              const Duration(milliseconds: 2500),
-              curve: Curves.fastLinearToSlowEaseIn,
-              child: Center(
-                child: Container(
-                  margin: EdgeInsets.only(
-                    left: 30,
-                    right: 30,
-                    top: height * 0.03,
-                    bottom: height * 0.1,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: context.theme.cardColor.withOpacity(0.9),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Leaderboard will be active soon ;)",
-                      style: context.theme.textTheme.bodyMedium
-                          ?.copyWith(color: context.theme.disabledColor),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
+          body:futureLeaderboard(height, context)
+          
+          //  AnimationConfiguration.synchronized(
+          //   child: FadeInAnimation(
+          //     duration:
+          //     const Duration(milliseconds: 2500),
+          //     curve: Curves.fastLinearToSlowEaseIn,
+          //     child: Center(
+          //       child: Container(
+          //         margin: EdgeInsets.only(
+          //           left: 30,
+          //           right: 30,
+          //           top: height * 0.03,
+          //           bottom: height * 0.1,
+          //         ),
+          //         decoration: BoxDecoration(
+          //           borderRadius: BorderRadius.circular(10),
+          //           color: context.theme.cardColor.withOpacity(0.9),
+          //         ),
+          //         child: Center(
+          //           child: Text(
+          //             "Leaderboard will be active soon ;)",
+          //             style: context.theme.textTheme.bodyMedium
+          //                 ?.copyWith(color: context.theme.disabledColor),
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ),
       ),
     );
