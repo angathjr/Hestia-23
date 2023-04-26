@@ -180,21 +180,36 @@ class StoriesCard extends StatelessWidget {
             ),
             Positioned(
               top: themeController.selectedIndex.value == 2 ? 0 : null,
-              bottom: themeController.selectedIndex.value == 1 ? 0 : 10,
+              bottom: 10,
               width: themeController.selectedIndex.value == 1
                   ? width / 5
                   : width / 3.8,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "${story.username}",
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: themeController.selectedIndex.value == 1
-                      ? TextAlign.center
-                      : TextAlign.start,
-                  style: const TextStyle(
-                    color: Colors.white,
-                  ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        "${story.eventName}",
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: themeController.selectedIndex.value == 1
+                            ? TextAlign.center
+                            : TextAlign.start,
+                        style: const TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: width * 0.003,
+                    ),
+                    if (story.isVerified)
+                      Icon(
+                        Icons.verified,
+                        size: height * 0.018,
+                      ),
+                  ],
                 ),
               ),
             ),

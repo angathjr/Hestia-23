@@ -13,27 +13,35 @@ class StoryModel {
     this.imageUrl,
     this.email,
     this.username,
+    this.eventName,
     this.createdAt,
     this.userImage,
+    required this.isVerified,
   });
 
   String? imageUrl;
   String? email;
   String? username;
+  String? eventName;
   DateTime? createdAt;
   String? userImage;
+  bool isVerified;
 
   factory StoryModel.fromJson(Map<String, dynamic> json) => StoryModel(
         imageUrl: json["imageUrl"],
         email: json["email"],
         username: json["username"],
+        eventName: json["eventName"] ?? "EVENT NAME", //TODO
         createdAt: (json["createdAt"] ?? Timestamp.now()).toDate(),
         userImage: json["userImage"],
+        isVerified: json['isVerified'] ?? false,
       );
 
   Map<String, dynamic> toJson() => {
         "imageUrl": imageUrl,
         "email": email,
         "username": username,
+        "eventName": eventName,
+        "isVerified": isVerified,
       };
 }
