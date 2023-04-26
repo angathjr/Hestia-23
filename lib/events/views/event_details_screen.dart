@@ -10,6 +10,7 @@ import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/theme/model/themes.dart';
 import 'package:intl/intl.dart';
 import '../controllers/event_pages_controller.dart';
+import 'dart:ui' as ui;
 
 class EventDetailsScreen extends StatelessWidget {
   EventDetailsScreen({Key? key}) : super(key: key);
@@ -17,6 +18,18 @@ class EventDetailsScreen extends StatelessWidget {
   final EventsController eventsController = Get.find();
   final AuthController authController = Get.find();
   final controller = Get.put(EventPagesController());
+
+  bool hasTextOverflow(String text, TextStyle style,
+      {double minWidth = 0,
+      double maxWidth = double.infinity,
+      int maxLines = 2}) {
+    final TextPainter textPainter = TextPainter(
+      text: TextSpan(text: text, style: style),
+      maxLines: maxLines,
+      textDirection: ui.TextDirection.ltr,
+    )..layout(minWidth: minWidth, maxWidth: maxWidth);
+    return textPainter.didExceedMaxLines;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -239,22 +252,26 @@ class EventDetailsScreen extends StatelessWidget {
                               overflow: TextOverflow.fade,
                               textAlign: TextAlign.justify,
                             ),
-                            Container(
-                              alignment: Alignment.topRight,
-                              height: height * 0.023,
-                              //  color: Colors.red,
-                              child: GestureDetector(
-                                  onTap: () {
-                                    controller.readMore();
-                                  },
-                                  child: Text(
-                                    (!controller.isReadMore.value)
-                                        ? "Read More "
-                                        : "Read Less",
-                                    style: FutTheme.font4.copyWith(
-                                        color: context.theme.primaryColor),
-                                  )),
-                            ),
+                            if (hasTextOverflow(
+                                eventsController.selectedEvent.desc.toString(),
+                                FutTheme.font7
+                                    .copyWith(fontSize: height * 0.018)))
+                              Container(
+                                alignment: Alignment.topRight,
+                                height: height * 0.023,
+                                //  color: Colors.red,
+                                child: GestureDetector(
+                                    onTap: () {
+                                      controller.readMore();
+                                    },
+                                    child: Text(
+                                      (!controller.isReadMore.value)
+                                          ? "Read More "
+                                          : "Read Less",
+                                      style: FutTheme.font4.copyWith(
+                                          color: context.theme.primaryColor),
+                                    )),
+                              ),
                           ],
                         ),
                       ),
