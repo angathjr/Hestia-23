@@ -40,59 +40,70 @@ class LeaderBoard extends StatelessWidget {
           SizedBox(
             height: h * 0.02,
           ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              height: MediaQuery.of(context).orientation == Orientation.portrait
-                  ? h * 0.72
-                  : h * 0.35,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                  color: Color.fromARGB(255, 23, 22, 22)),
-              child: ListView.builder(
-                itemCount: 2,
-                itemBuilder: (BuildContext context, int index) {
-                  return ExpansionTile(
-                    trailing: const Icon(
-                      Icons.arrow_drop_down,
-                      color: Colors.grey,
-                    ),
-                    title: Text(
-                      "Logo Designing",
-                      style: context.theme.textTheme.bodyMedium?.copyWith(
-                          fontSize: h * 0.022, color: Colors.grey.shade400),
-                    ),
-                    children: <Widget>[
-                      SizedBox(
-                        height: h * 0.4,
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: const [
-                            Align(
-                              alignment: Alignment(-1, 0),
-                              child: StackItem(
-                                number: 2,
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment(0, -0.4),
-                              child: StackItem(large: true),
-                            ),
-                            Align(
-                              alignment: Alignment(1, 0),
-                              child: StackItem(
-                                number: 3,
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  );
-                },
+          SizedBox(
+            height: h * 0.7,
+            child: const Center(
+              child: Text(
+                "Leaderboard will be active soon.",
+                style: TextStyle(
+                  color: Colors.grey,
+                ),
               ),
             ),
-          )
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.all(10.0),
+          //   child: Container(
+          //     height: MediaQuery.of(context).orientation == Orientation.portrait
+          //         ? h * 0.72
+          //         : h * 0.35,
+          //     decoration: const BoxDecoration(
+          //         borderRadius: BorderRadius.all(Radius.circular(12)),
+          //         color: Color.fromARGB(255, 23, 22, 22)),
+          //     child: ListView.builder(
+          //       itemCount: 2,
+          //       itemBuilder: (BuildContext context, int index) {
+          //         return ExpansionTile(
+          //           trailing: const Icon(
+          //             Icons.arrow_drop_down,
+          //             color: Colors.grey,
+          //           ),
+          //           title: Text(
+          //             "Logo Designing",
+          //             style: context.theme.textTheme.bodyMedium?.copyWith(
+          //                 fontSize: h * 0.022, color: Colors.grey.shade400),
+          //           ),
+          //           children: <Widget>[
+          //             SizedBox(
+          //               height: h * 0.4,
+          //               child: Stack(
+          //                 fit: StackFit.expand,
+          //                 children: const [
+          //                   Align(
+          //                     alignment: Alignment(-1, 0),
+          //                     child: StackItem(
+          //                       number: 2,
+          //                     ),
+          //                   ),
+          //                   Align(
+          //                     alignment: Alignment(0, -0.4),
+          //                     child: StackItem(large: true),
+          //                   ),
+          //                   Align(
+          //                     alignment: Alignment(1, 0),
+          //                     child: StackItem(
+          //                       number: 3,
+          //                     ),
+          //                   )
+          //                 ],
+          //               ),
+          //             )
+          //           ],
+          //         );
+          //       },
+          //     ),
+          //   ),
+          // )
         ],
       ),
     );
