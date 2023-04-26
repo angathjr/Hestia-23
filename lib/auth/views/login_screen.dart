@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
@@ -34,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  if (!controller.isReview.value)
+                  if (!controller.isReview.value || Platform.isAndroid)
                     Obx(
                       () => Container(
                         decoration: const BoxDecoration(
@@ -58,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  if (controller.isReview.value)
+                  if (controller.isReview.value && !Platform.isAndroid)
                     Obx(
                       () => Container(
                         decoration: const BoxDecoration(
