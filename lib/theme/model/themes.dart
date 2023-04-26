@@ -6,6 +6,7 @@ import 'package:hestia_23/theme/controllers/theme_controller.dart';
 
 Color futureColor = const Color(0xffDEFD72);
 Color pastColor = const Color(0xffF7CD93);
+// Color pastColor = const Color(0xffe63946);
 Color presentColor = const Color(0xffFFD730);
 
 class Themes {
@@ -81,7 +82,6 @@ class Themes {
     focusColor: Colors.grey,
     textSelectionTheme:
         const TextSelectionThemeData(cursorColor: Color(0xffDEFD72)),
-
 
     primaryColor: futureColor,
     secondaryHeaderColor: presentColor,
