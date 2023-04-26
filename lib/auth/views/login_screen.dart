@@ -53,28 +53,28 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Obx(
-                    () => Container(
-                      decoration: const BoxDecoration(
-                          color: Color(0xff121212),
-                          borderRadius: BorderRadius.all(Radius.circular(25))),
-                      height: 70,
-                      width: 280,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(25),
-                        child: RoundedButton(
-                          lottie: 'apple',
-                          text: controller.text2.value,
-                          press: () async {
-                            controller.appleSignIn();
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // Obx(
+                  //   () => Container(
+                  //     decoration: const BoxDecoration(
+                  //         color: Color(0xff121212),
+                  //         borderRadius: BorderRadius.all(Radius.circular(25))),
+                  //     height: 70,
+                  //     width: 280,
+                  //     child: ClipRRect(
+                  //       borderRadius: BorderRadius.circular(25),
+                  //       child: RoundedButton(
+                  //         lottie: 'apple',
+                  //         text: controller.text2.value,
+                  //         press: () async {
+                  //           controller.appleSignIn();
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   const SizedBox(
                     height: 50,
                   ),
