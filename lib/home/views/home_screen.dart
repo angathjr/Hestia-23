@@ -94,7 +94,7 @@ class HomeScreen extends StatelessWidget {
                               alignment: Alignment.bottomCenter,
                               child: ClipRRect(
                                 borderRadius:
-                                    BorderRadius.circular(height * 0.015),
+                                    BorderRadius.circular(height * 0.03),
                                 child: themeController.selectedIndex.value == 0
                                     ? Image.asset(
                                         "assets/images/Past.png",

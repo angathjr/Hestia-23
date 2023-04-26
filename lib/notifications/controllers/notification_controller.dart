@@ -150,8 +150,9 @@ class NotificationController extends GetxController {
 
   void seeNotifications() {
     _box.write('seenGeneralNotificationCount', generalNotifications.length);
-    _box.write('seenMyEventsNotificationCount', myEventsNotificationCount);
-    unseenGeneralNotificationCount(0);
-    unseenMyEventsNotificationCount(0);
+    _box.write(
+        'seenMyEventsNotificationCount', myEventsNotificationCount.value);
+    unseenGeneralNotificationCount.value = 0;
+    unseenMyEventsNotificationCount.value = 0;
   }
 }

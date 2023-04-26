@@ -36,7 +36,24 @@ class NotificationScreen extends StatelessWidget {
                     automaticallyImplyLeading: false,
                     title: Row(
                       children: [
-                        const BackButtonWidget(),
+                        GestureDetector(
+                          onTap: () {
+                            notificationController.seeNotifications();
+                            Get.back();
+                          },
+                          child: Container(
+                              width: width * 0.09,
+                              height: width * 0.09,
+                              decoration: const BoxDecoration(
+                                color: Color(0xff202020),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                Icons.arrow_back_ios_rounded,
+                                color: Colors.white,
+                                size: h * 0.022,
+                              )),
+                        ),
                         const SizedBox(
                           width: 20,
                         ),
@@ -52,6 +69,11 @@ class NotificationScreen extends StatelessWidget {
                     bottom: PreferredSize(
                       preferredSize: Size.fromHeight(h * 0.09),
                       child: TabBar(
+                        onTap: (index) {
+                          if (index == 1) {
+                            notificationController.seeNotifications();
+                          }
+                        },
                         isScrollable: false,
                         labelColor: Colors.white,
                         indicatorWeight: 2,
@@ -71,14 +93,18 @@ class NotificationScreen extends StatelessWidget {
                                   style: FutTheme.font3,
                                 ),
                                 Obx(() => notificationController
-                                        .generalNotifications.isNotEmpty
+                                            .unseenGeneralNotificationCount
+                                            .value !=
+                                        0
                                     ? const SizedBox(
                                         width: 10,
                                       )
                                     : const SizedBox()),
                                 Obx(
                                   () => notificationController
-                                          .generalNotifications.isNotEmpty
+                                              .unseenGeneralNotificationCount
+                                              .value !=
+                                          0
                                       ? Container(
                                           width: 20,
                                           decoration: const BoxDecoration(
@@ -105,13 +131,19 @@ class NotificationScreen extends StatelessWidget {
                                 'My Events',
                                 style: FutTheme.font3,
                               ),
-                              Obx(() => profileController.regEvents.isNotEmpty
+                              Obx(() => notificationController
+                                          .unseenMyEventsNotificationCount
+                                          .value !=
+                                      0
                                   ? const SizedBox(
                                       width: 10,
                                     )
                                   : const SizedBox()),
                               Obx(
-                                () => profileController.regEvents.isNotEmpty
+                                () => notificationController
+                                            .unseenMyEventsNotificationCount
+                                            .value !=
+                                        0
                                     ? Container(
                                         width: 20,
                                         decoration: const BoxDecoration(

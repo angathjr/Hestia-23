@@ -55,7 +55,6 @@ class MyApp extends StatelessWidget {
       enableLog: true,
       title: 'Hestia 23',
       initialRoute: '/splash',
-      // home: SplashScreen(),
       theme: Themes().theme,
       getPages: [
         GetPage(
