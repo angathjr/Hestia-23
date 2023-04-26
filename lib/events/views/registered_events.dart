@@ -120,7 +120,7 @@ class RegisteredEventScreen extends StatelessWidget {
                                                           _profileController
                                                                   .regEvents[
                                                                       index]
-                                                                  ?.image ??
+                                                                  .image ??
                                                               NOIMAGE,
                                                       fit: BoxFit.cover,
                                                     ),
