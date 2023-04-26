@@ -36,7 +36,24 @@ class NotificationScreen extends StatelessWidget {
                     automaticallyImplyLeading: false,
                     title: Row(
                       children: [
-                        const BackButtonWidget(),
+                        GestureDetector(
+                          onTap: () {
+                            notificationController.seeNotifications();
+                            Get.back();
+                          },
+                          child: Container(
+                              width: width * 0.09,
+                              height: width * 0.09,
+                              decoration: const BoxDecoration(
+                                color: Color(0xff202020),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                Icons.arrow_back_ios_rounded,
+                                color: Colors.white,
+                                size: h * 0.022,
+                              )),
+                        ),
                         const SizedBox(
                           width: 20,
                         ),
@@ -52,13 +69,18 @@ class NotificationScreen extends StatelessWidget {
                     bottom: PreferredSize(
                       preferredSize: Size.fromHeight(h * 0.09),
                       child: TabBar(
+                        onTap: (index) {
+                          if (index == 1) {
+                            notificationController.seeNotifications();
+                          }
+                        },
                         isScrollable: false,
                         labelColor: Colors.white,
                         indicatorWeight: 2,
                         indicatorSize: TabBarIndicatorSize.label,
                         unselectedLabelColor: Colors.grey,
                         indicatorColor:
-                            const Color.fromARGB(255, 226, 222, 169),
+                        const Color.fromARGB(255, 226, 222, 169),
                         dividerColor: Colors.transparent,
                         padding: EdgeInsets.only(right: width * 0.2),
                         tabs: [
@@ -71,27 +93,31 @@ class NotificationScreen extends StatelessWidget {
                                   style: FutTheme.font3,
                                 ),
                                 Obx(() => notificationController
-                                        .generalNotifications.isNotEmpty
+                                    .unseenGeneralNotificationCount
+                                    .value !=
+                                    0
                                     ? const SizedBox(
-                                        width: 10,
-                                      )
+                                  width: 10,
+                                )
                                     : const SizedBox()),
                                 Obx(
-                                  () => notificationController
-                                          .generalNotifications.isNotEmpty
+                                      () => notificationController
+                                      .unseenGeneralNotificationCount
+                                      .value !=
+                                      0
                                       ? Container(
-                                          width: 20,
-                                          decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Color.fromARGB(
-                                                  255, 236, 217, 15)),
-                                          child: Center(
-                                              child: Text(
-                                            '${notificationController.unseenGeneralNotificationCount.value}',
-                                            style: const TextStyle(
-                                                color: Colors.black),
-                                          )),
-                                        )
+                                    width: 20,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color.fromARGB(
+                                            255, 236, 217, 15)),
+                                    child: Center(
+                                        child: Text(
+                                          '${notificationController.unseenGeneralNotificationCount.value}',
+                                          style: const TextStyle(
+                                              color: Colors.black),
+                                        )),
+                                  )
                                       : const SizedBox(),
                                 )
                               ],
@@ -99,36 +125,42 @@ class NotificationScreen extends StatelessWidget {
                           ),
                           Tab(
                               child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'My Events',
-                                style: FutTheme.font3,
-                              ),
-                              Obx(() => profileController.regEvents.isNotEmpty
-                                  ? const SizedBox(
-                                      width: 10,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'My Events',
+                                    style: FutTheme.font3,
+                                  ),
+                                  Obx(() => notificationController
+                                      .unseenMyEventsNotificationCount
+                                      .value !=
+                                      0
+                                      ? const SizedBox(
+                                    width: 10,
+                                  )
+                                      : const SizedBox()),
+                                  Obx(
+                                        () => notificationController
+                                        .unseenMyEventsNotificationCount
+                                        .value !=
+                                        0
+                                        ? Container(
+                                      width: 20,
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Color.fromARGB(
+                                              255, 236, 217, 15)),
+                                      child: Center(
+                                          child: Text(
+                                            '${notificationController.unseenMyEventsNotificationCount.value}',
+                                            style: const TextStyle(
+                                                color: Colors.black),
+                                          )),
                                     )
-                                  : const SizedBox()),
-                              Obx(
-                                () => profileController.regEvents.isNotEmpty
-                                    ? Container(
-                                        width: 20,
-                                        decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Color.fromARGB(
-                                                255, 236, 217, 15)),
-                                        child: Center(
-                                            child: Text(
-                                          '${notificationController.unseenMyEventsNotificationCount.value}',
-                                          style: const TextStyle(
-                                              color: Colors.black),
-                                        )),
-                                      )
-                                    : const SizedBox(),
-                              )
-                            ],
-                          )),
+                                        : const SizedBox(),
+                                  )
+                                ],
+                              )),
                         ],
                       ),
                     ),
