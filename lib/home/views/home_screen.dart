@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:feather_icons/feather_icons.dart';
@@ -125,7 +126,8 @@ class HomeScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if (!authController.isReview.value)
+                            if (!authController.isReview.value ||
+                                Platform.isAndroid)
                               Text(
                                   "HI ${profController.user.value.name?.split(' ').first.toUpperCase()}",
                                   style: Theme.of(context)

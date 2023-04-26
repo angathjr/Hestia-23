@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -59,7 +60,7 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    if (!authController.isReview.value)
+                    if (!authController.isReview.value || Platform.isAndroid)
                       CircleAvatar(
                         backgroundColor: const Color.fromRGBO(51, 51, 51, 1),
                         radius: width / 8,
@@ -73,7 +74,7 @@ class ProfileScreen extends StatelessWidget {
                     SizedBox(
                       height: height / 100,
                     ),
-                    if (!authController.isReview.value)
+                    if (!authController.isReview.value || Platform.isAndroid)
                       Text(
                         '${controller.user.value.name}',
                         style: context.theme.textTheme.titleLarge?.copyWith(
@@ -84,7 +85,7 @@ class ProfileScreen extends StatelessWidget {
                     SizedBox(
                       height: height / 50,
                     ),
-                    if (!authController.isReview.value)
+                    if (!authController.isReview.value || Platform.isAndroid)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -107,7 +108,7 @@ class ProfileScreen extends StatelessWidget {
                     SizedBox(
                       height: height / 200,
                     ),
-                    if (!authController.isReview.value)
+                    if (!authController.isReview.value || Platform.isAndroid)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -140,7 +141,8 @@ class ProfileScreen extends StatelessWidget {
                         padding: EdgeInsets.all(width * 0.015),
                         child: Column(
                           children: [
-                            if (!authController.isReview.value)
+                            if (!authController.isReview.value ||
+                                Platform.isAndroid)
                               Expanded(
                                 flex: 3,
                                 child: SlideAnimation(
@@ -204,16 +206,17 @@ class ProfileScreen extends StatelessWidget {
                                               color: context.theme.primaryColor,
                                             )
                                           ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
                             SizedBox(
                               height: width * 0.015,
                             ),
-                            if (!authController.isReview.value)
+                            if (!authController.isReview.value ||
+                                Platform.isAndroid)
                               Expanded(
                                 flex: 8,
                                 child: Row(
@@ -223,7 +226,7 @@ class ProfileScreen extends StatelessWidget {
                                       child: SlideAnimation(
                                         curve: Curves.fastLinearToSlowEaseIn,
                                         duration:
-                                        const Duration(milliseconds: 2500),
+                                            const Duration(milliseconds: 2500),
                                         horizontalOffset: -20,
                                         child: GestureDetector(
                                           onTap: () => eventsController
@@ -233,13 +236,13 @@ class ProfileScreen extends StatelessWidget {
                                             alignment: Alignment.center,
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(15),
+                                                  BorderRadius.circular(15),
                                               color: context.theme.cardColor
                                                   .withOpacity(0.9),
                                             ),
                                             child: Column(
                                               mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 const Icon(
                                                   FeatherIcons.award,
@@ -251,8 +254,8 @@ class ProfileScreen extends StatelessWidget {
                                                 ),
                                                 Text(
                                                   "View \nCertificates",
-                                                  style: context
-                                                      .theme.textTheme.bodyMedium
+                                                  style: context.theme.textTheme
+                                                      .bodyMedium
                                                       ?.copyWith(
                                                     fontSize: height * 0.016,
                                                   ),

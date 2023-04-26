@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -302,7 +304,7 @@ class EventDetailsScreen extends StatelessWidget {
                       SizedBox(
                         height: height * 0.05,
                       ),
-                      if (!authController.isReview.value)
+                      if (!authController.isReview.value || Platform.isAndroid)
                         GestureDetector(
                           onTap: () => eventsController.launchUrlInWeb(),
                           child: Container(
