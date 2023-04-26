@@ -141,9 +141,7 @@ class ProfileScreen extends StatelessWidget {
                                 verticalOffset: -20,
                                 child: InkWell(
                                   borderRadius: BorderRadius.circular(15),
-                                  onTap: () => controller
-                                              .registeredEventCount.value ==
-                                          0
+                                  onTap: () => controller.regEvents.isEmpty
                                       ? Get.snackbar(
                                           "Registered Events",
                                           "You have not registered any events",
@@ -311,7 +309,7 @@ class ProfileScreen extends StatelessWidget {
                                           Expanded(
                                             child: GestureDetector(
                                               onTap: () => controller
-                                                      .regEventsSlug.isEmpty
+                                                      .regEvents.isEmpty
                                                   ? Get.snackbar(
                                                       "ID Card",
                                                       "You have not registered any events",

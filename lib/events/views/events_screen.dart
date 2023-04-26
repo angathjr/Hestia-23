@@ -43,7 +43,7 @@ class EventScreen extends StatelessWidget {
                     width: 20,
                   ),
                   Text(
-                    Get.arguments.toString(),
+                    controller.selectedCategory.name,
                     style: context.theme.textTheme.titleLarge,
                   ),
                 ],

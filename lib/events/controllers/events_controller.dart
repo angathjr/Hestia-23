@@ -61,8 +61,8 @@ class EventsController extends GetxController {
   var date = eventDates.first.obs;
 
   @override
-  void onReady() {
-    super.onReady();
+  void onInit() {
+    super.onInit();
     selectedCategory = categories[0];
 
     fetchDepartments();
