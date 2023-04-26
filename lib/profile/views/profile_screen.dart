@@ -410,7 +410,7 @@ class ProfileScreen extends StatelessWidget {
                                       actions: [
                                         TextButton(
                                           onPressed: () {
-                                            authController.signout();
+                                            authController.signOut();
                                             //Get.back();
                                           },
                                           child: const Text("Yes"),

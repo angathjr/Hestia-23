@@ -16,7 +16,7 @@ import 'events/controllers/events_controller.dart';
 import 'core/api_provider.dart';
 import 'core/api_provider_no_auth.dart';
 
-class GetXDependancyInjector {
+class GetXDependencyInjector {
   void onInit() {
     Get.put(ApiProvider());
     Get.put(ApiProviderNoAuth());

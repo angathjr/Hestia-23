@@ -152,7 +152,9 @@ class StoriesCard extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage('${story.imageUrl}'),
+                    image: NetworkImage(
+                      '${story.imageUrl}',
+                    ),
                     fit: BoxFit.cover,
                   ),
                   color: Colors.grey[800],

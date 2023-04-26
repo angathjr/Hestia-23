@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:hestia_23/events/models/category.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:hestia_23/events/models/department_list..dart';
-
 import '../../core/api_provider.dart';
 import '../models/event.dart';
 
@@ -15,28 +14,28 @@ class EventsController extends GetxController {
         code: 'W',
         name: 'Workshops',
         description:
-            'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et',
+            "Join Hestia'23's workshops to gain valuable skills and knowledge in a collaborative learning environment.",
         imgUrl:
             'https://firebasestorage.googleapis.com/v0/b/hestia23.appspot.com/o/HomeScreenImages%2Fworkshop.jpg?alt=media&token=c5339195-1dad-4fa7-8d02-30491781688a'),
     CategoryModel(
         code: 'T',
         name: 'Technicals',
         description:
-            'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et',
+            "Enhance your technical skills and knowledge with Hestia'23's technical events designed to test your skills and knowledge.",
         imgUrl:
             'https://firebasestorage.googleapis.com/v0/b/hestia23.appspot.com/o/HomeScreenImages%2Ftechnical.jpg?alt=media&token=fbdfc46f-b879-4a8d-ad44-70ff0e8c2543'),
     CategoryModel(
         code: 'PR',
         name: 'Pro Shows',
         description:
-            'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et',
+            "Experience the thrill of live entertainment and performances with Hestia'23's proshows, featuring talented artists and captivating acts.",
         imgUrl:
             'https://firebasestorage.googleapis.com/v0/b/hestia23.appspot.com/o/HomeScreenImages%2Fproshow.jpg?alt=media&token=59acf99c-252b-4d67-9805-e16f574e501b'),
     CategoryModel(
         code: 'G',
         name: 'General',
         description:
-            'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et',
+            "Join in on the fun and excitement with Hestia'23's lineup of general events, featuring a diverse range of activities and experiences.",
         imgUrl:
             'https://firebasestorage.googleapis.com/v0/b/hestia23.appspot.com/o/HomeScreenImages%2Fgeneral.jpg?alt=media&token=187031d5-3221-4b8c-a071-fbf065144a18'),
     // CategoryModel(code: 'W', name: 'Workshops'),
