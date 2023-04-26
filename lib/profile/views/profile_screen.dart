@@ -426,7 +426,7 @@ class ProfileScreen extends StatelessWidget {
                                             "No",
                                             style: TextStyle(
                                                 color:
-                                                context.theme.primaryColor),
+                                                    context.theme.primaryColor),
                                           ),
                                         ),
                                       ],

@@ -35,7 +35,7 @@ class ScheduleController extends GetxController {
   void fetchEventsbyDate() async {
     eventsLoading(true);
     final Response response = await api.getApi(
-        '/api/events/all/?event_start=${dates[selectedDateIndex.value].apiDate}');
+        '/api/events/all/?event_date=${dates[selectedDateIndex.value].apiDate}');
 
     List<EventModel> parsed = eventModelFromJson(response.body['results']);
 

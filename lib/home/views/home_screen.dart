@@ -4,6 +4,7 @@ import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
@@ -43,7 +44,11 @@ class HomeScreen extends StatelessWidget {
         decoration: BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.fitWidth,
-                opacity: 0.25,
+                opacity: themeController.selectedIndex.value == 0
+                    ? 0.5
+                    : themeController.selectedIndex.value == 1
+                        ? 0.2
+                        : 0.4,
                 image: Themes().backgroundImage)),
         child: SafeArea(
           child: CustomScrollView(
@@ -280,8 +285,7 @@ class HomeScreen extends StatelessWidget {
                                   autoPlayCurve: Curves.linearToEaseOut,
                                   height: height * 0.46,
                                   viewportFraction: 0.66,
-                                  enlargeCenterPage: true
-                                  ),
+                                  enlargeCenterPage: true),
                             ),
                           ),
                         ),
