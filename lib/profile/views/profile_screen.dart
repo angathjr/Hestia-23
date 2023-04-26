@@ -213,62 +213,6 @@ class ProfileScreen extends StatelessWidget {
                             SizedBox(
                               height: width * 0.015,
                             ),
-                            Expanded(
-                              flex: 8,
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    flex: 2,
-                                    child: SlideAnimation(
-                                      curve: Curves.fastLinearToSlowEaseIn,
-                                      duration:
-                                          const Duration(milliseconds: 2500),
-                                      horizontalOffset: -20,
-                                      child: GestureDetector(
-                                        onTap: () => eventsController
-                                            .lauchCeritificate(),
-                                        child: Container(
-                                          width: width,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            color: context.theme.cardColor
-                                                .withOpacity(0.9),
-                                          ),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              const Icon(
-                                                FeatherIcons.award,
-                                                color: Color.fromRGBO(
-                                                    153, 153, 153, 1),
-                                              ),
-                                              SizedBox(
-                                                height: width * 0.03,
-                                              ),
-                                              Text(
-                                                "View \nCertificates",
-                                                style: context
-                                                    .theme.textTheme.bodyMedium
-                                                    ?.copyWith(
-                                                  fontSize: height * 0.016,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                                ),
-                              ),
-                            SizedBox(
-                              height: width * 0.015,
-                            ),
                             if (!authController.isReview.value)
                               Expanded(
                                 flex: 8,
@@ -279,39 +223,43 @@ class ProfileScreen extends StatelessWidget {
                                       child: SlideAnimation(
                                         curve: Curves.fastLinearToSlowEaseIn,
                                         duration:
-                                            const Duration(milliseconds: 2500),
+                                        const Duration(milliseconds: 2500),
                                         horizontalOffset: -20,
-                                        child: Container(
-                                          width: width,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            color: context.theme.cardColor
-                                                .withOpacity(0.9),
-                                          ),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              const Icon(
-                                                FeatherIcons.award,
-                                                color: Color.fromRGBO(
-                                                    153, 153, 153, 1),
-                                              ),
-                                              SizedBox(
-                                                height: width * 0.03,
-                                              ),
-                                              Text(
-                                                "View \nCertificates",
-                                                style: context
-                                                    .theme.textTheme.bodyMedium
-                                                    ?.copyWith(
-                                                  fontSize: height * 0.016,
+                                        child: GestureDetector(
+                                          onTap: () => eventsController
+                                              .lauchCeritificate(),
+                                          child: Container(
+                                            width: width,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.circular(15),
+                                              color: context.theme.cardColor
+                                                  .withOpacity(0.9),
+                                            ),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              children: [
+                                                const Icon(
+                                                  FeatherIcons.award,
+                                                  color: Color.fromRGBO(
+                                                      153, 153, 153, 1),
                                                 ),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ],
+                                                SizedBox(
+                                                  height: width * 0.03,
+                                                ),
+                                                Text(
+                                                  "View \nCertificates",
+                                                  style: context
+                                                      .theme.textTheme.bodyMedium
+                                                      ?.copyWith(
+                                                    fontSize: height * 0.016,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
