@@ -75,7 +75,8 @@ class Themes {
     scaffoldBackgroundColor: Colors.black,
     iconTheme: const IconThemeData(color: Colors.white),
     focusColor: Colors.grey,
-
+    textSelectionTheme:
+        const TextSelectionThemeData(cursorColor: Color(0xffDEFD72)),
     primaryColor: const Color(0xffDEFD72),
     secondaryHeaderColor: const Color(0xffFFD730),
     canvasColor: const Color(0xff1A1A1A),
@@ -125,6 +126,8 @@ class Themes {
 
     scaffoldBackgroundColor: Colors.black,
     iconTheme: const IconThemeData(color: Colors.white),
+    textSelectionTheme:
+        const TextSelectionThemeData(cursorColor: Color(0xffFFD730)),
     primaryColor: const Color(0xffFFD730),
     canvasColor: const Color(0xff1A1A1A),
     cardColor: const Color(0xff1C1C1C),
@@ -173,6 +176,8 @@ class Themes {
 
     scaffoldBackgroundColor: Colors.black,
     iconTheme: const IconThemeData(color: Colors.white),
+    textSelectionTheme:
+        const TextSelectionThemeData(cursorColor: Color(0xffF7CD93)),
     primaryColor: const Color(0xffF7CD93),
     canvasColor: const Color(0xff1A1A1A),
     cardColor: const Color(0xff1A1A1A),

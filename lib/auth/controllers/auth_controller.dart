@@ -80,14 +80,12 @@ class AuthController extends GetxController {
     try {
       text2.value = "Logging you in...";
       isSignIn(true);
-      final credential = await SignInWithApple.getAppleIDCredential(
+      AuthorizationCredentialAppleID credential = await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,
           AppleIDAuthorizationScopes.fullName,
         ],
       );
-
-      print(credential);
       // final auth = await result!.authentication;
       //
       // Map data = {'access_token': auth.accessToken};
