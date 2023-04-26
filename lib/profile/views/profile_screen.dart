@@ -411,13 +411,23 @@ class ProfileScreen extends StatelessWidget {
                                             authController.signOut();
                                             //Get.back();
                                           },
-                                          child: const Text("Yes"),
+                                          child: Text(
+                                            "Yes",
+                                            style: TextStyle(
+                                                color:
+                                                    context.theme.primaryColor),
+                                          ),
                                         ),
                                         TextButton(
                                           onPressed: () {
                                             Get.back();
                                           },
-                                          child: const Text("No"),
+                                          child: Text(
+                                            "No",
+                                            style: TextStyle(
+                                                color:
+                                                context.theme.primaryColor),
+                                          ),
                                         ),
                                       ],
                                     )),
