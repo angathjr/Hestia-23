@@ -8,11 +8,13 @@ import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/constants..dart';
 import 'package:hestia_23/animations/controllers/animation_controller.dart';
+import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/events/views/registered_events.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 import 'package:hestia_23/profile/views/qr_screen.dart';
 import 'package:hestia_23/theme/model/themes.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
@@ -20,6 +22,7 @@ class ProfileScreen extends StatelessWidget {
   final AuthController authController = Get.find();
   final ProfileController controller = Get.find();
   final AnimController anim = Get.find();
+  final EventsController eventsController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -201,10 +204,66 @@ class ProfileScreen extends StatelessWidget {
                                               color: context.theme.primaryColor,
                                             )
                                           ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: width * 0.015,
+                            ),
+                            Expanded(
+                              flex: 8,
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    flex: 2,
+                                    child: SlideAnimation(
+                                      curve: Curves.fastLinearToSlowEaseIn,
+                                      duration:
+                                          const Duration(milliseconds: 2500),
+                                      horizontalOffset: -20,
+                                      child: GestureDetector(
+                                        onTap: () => eventsController
+                                            .lauchCeritificate(),
+                                        child: Container(
+                                          width: width,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            color: context.theme.cardColor
+                                                .withOpacity(0.9),
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const Icon(
+                                                FeatherIcons.award,
+                                                color: Color.fromRGBO(
+                                                    153, 153, 153, 1),
+                                              ),
+                                              SizedBox(
+                                                height: width * 0.03,
+                                              ),
+                                              Text(
+                                                "View \nCertificates",
+                                                style: context
+                                                    .theme.textTheme.bodyMedium
+                                                    ?.copyWith(
+                                                  fontSize: height * 0.016,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
+                                ],
                                 ),
                               ),
                             SizedBox(

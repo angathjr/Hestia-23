@@ -7,7 +7,7 @@ class SwitchThemeScreen extends StatelessWidget {
   SwitchThemeScreen({super.key});
 
   Widget verticalSpace() => const SizedBox(
-        height: 5,
+        height: 3,
       );
 
   final ThemeController themeController = Get.find();

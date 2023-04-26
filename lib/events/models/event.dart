@@ -123,18 +123,19 @@ class EventModel {
         guidelineFile: json["guideline_file"],
         regStart: json["reg_start"] == null
             ? null
-            : DateTime.parse(json["reg_start"]),
-        regEnd:
-            json["reg_end"] == null ? null : DateTime.parse(json["reg_end"]),
+            : DateTime.parse(json["reg_start"]).toLocal(),
+        regEnd: json["reg_end"] == null
+            ? null
+            : DateTime.parse(json["reg_end"]).toLocal(),
         eventStart: json["event_start"] == null
             ? null
-            : DateTime.parse(json["event_start"]),
+            : DateTime.parse(json["event_start"]).toLocal(),
         eventEnd: json["event_end"] == null
             ? null
-            : DateTime.parse(json["event_end"]),
+            : DateTime.parse(json["event_end"]).toLocal(),
         fileSubmissionEnd: json["file_submission_end"] == null
             ? null
-            : DateTime.parse(json["file_submission_end"]),
+            : DateTime.parse(json["file_submission_end"]).toLocal(),
         winner1: json["winner1"],
         winner2: json["winner2"],
         winner3: json["winner3"],

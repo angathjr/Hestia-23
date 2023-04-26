@@ -186,5 +186,8 @@ class EventsController extends GetxController {
     }
   }
 
-  // void fetchEvents() {}
+  void lauchCeritificate() async {
+    await launchUrl(Uri.parse('https://hestiatkmce.live/certificates-list'),
+        mode: LaunchMode.externalApplication);
+  }
 }
