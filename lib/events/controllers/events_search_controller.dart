@@ -70,7 +70,6 @@ class EventsSearchController extends GetxController {
   }
 
   void fetchAllEvents() async {
-    // TODO: Fetch all events
     eventsLoading(true);
     final Response response = await api.getApi('/api/events/all/');
     allEvents.value = eventModelFromJson(response.body['results']);

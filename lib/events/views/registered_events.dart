@@ -18,7 +18,6 @@ class RegisteredEventScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    double squareCard = width - (2 * width * 0.04) - (2 * width * 0.05);
     double cardHeight = height * 0.2;
 
     return Scaffold(
@@ -120,7 +119,7 @@ class RegisteredEventScreen extends StatelessWidget {
                                                           _profileController
                                                                   .regEvents[
                                                                       index]
-                                                                  ?.image ??
+                                                                  .image ??
                                                               NOIMAGE,
                                                       fit: BoxFit.cover,
                                                     ),

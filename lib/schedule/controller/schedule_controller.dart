@@ -39,7 +39,6 @@ class ScheduleController extends GetxController {
 
     List<EventModel> parsed = eventModelFromJson(response.body['results']);
 
-    parsed.forEach((element) => print(element.slug));
     events.value = parsed;
     eventsLoading(false);
   }

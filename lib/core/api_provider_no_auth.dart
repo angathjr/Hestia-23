@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -14,8 +11,6 @@ class ApiProviderNoAuth extends GetConnect {
   void onInit() {
     final storage = GetStorage();
     httpClient.addRequestModifier<dynamic>((request) {
-      log(request.headers.toString());
-      log(request.url.toString());
       return request;
     });
 
@@ -23,9 +18,7 @@ class ApiProviderNoAuth extends GetConnect {
 
     // It's will attach 'apikey' property on header from all requests
     httpClient.addResponseModifier((request, response) {
-      debugPrint(
-        '${response.body}',
-      );
+      
       errorHandler(response);
       return response;
     });
@@ -34,8 +27,6 @@ class ApiProviderNoAuth extends GetConnect {
   }
 
   dynamic errorHandler(Response response) {
-    log(response.statusCode.toString());
-    log(response.body.toString());
     switch (response.statusCode) {
       case 200:
       case 201:

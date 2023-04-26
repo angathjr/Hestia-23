@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -35,7 +33,6 @@ class AuthController extends GetxController {
 
       Map data = {'access_token': auth.accessToken};
       final response = await apiNoAuth.postApi('/users/google/', data);
-      log(data.toString());
       final apiToken = response.body['key'];
 
       await _storage.write('authToken', apiToken);
@@ -44,7 +41,6 @@ class AuthController extends GetxController {
 
       final UserModel userModel =
           userModelFromJson(userResponse.body['results'][0]);
-      log(userModel.toString());
       _storage.write('user', userModel.toJson());
 
       if (userModel.isCompleted ?? false) {
@@ -56,7 +52,6 @@ class AuthController extends GetxController {
       isSiginIn(false);
       Get.offAllNamed('/');
     } catch (error) {
-      log(error.toString());
       isSiginIn(false);
       text.value = "Try Again";
       await Future.delayed(const Duration(seconds: 2));

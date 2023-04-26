@@ -23,7 +23,6 @@ import 'package:hestia_23/theme/model/themes.dart';
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
 
-  // print("Handling a background message: ${message.messageId}");
 }
 
 void main() async {
@@ -69,7 +68,7 @@ class MyApp extends StatelessWidget {
                 : const LoginPage()),
         // GetPage(name: '/posts', page: () => PostsScreen()),
         GetPage(name: '/navbar', page: () => NavBarPage()),
-        GetPage(name: '/splash', page: () => SplashScreen()),
+        GetPage(name: '/splash', page: () => const SplashScreen()),
         GetPage(name: "/schedule", page: () => Schedule()),
         GetPage(name: '/login', page: () => const LoginPage()),
         GetPage(name: '/profile', page: () => ProfileScreen()),
