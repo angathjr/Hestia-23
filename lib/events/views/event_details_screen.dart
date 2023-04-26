@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/constants..dart';
 import 'package:hestia_23/core/widgets/back_button_widget.dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
@@ -12,6 +13,7 @@ class EventDetailsScreen extends StatelessWidget {
   EventDetailsScreen({Key? key}) : super(key: key);
 
   final EventsController eventsController = Get.find();
+  final AuthController authController = Get.find();
   final controller = Get.put(EventPagesController());
 
   @override
@@ -59,8 +61,8 @@ class EventDetailsScreen extends StatelessWidget {
                             child: CachedNetworkImage(
                               placeholder: (context, url) =>
                                   primaryLoadingWidget,
-                              imageUrl:
-                                  '${eventsController.selectedEvent.image ?? NOIMAGE}',
+                              imageUrl: eventsController.selectedEvent.image ??
+                                  NOIMAGE,
                               fit: BoxFit.cover,
                             )),
                       ),
@@ -300,22 +302,25 @@ class EventDetailsScreen extends StatelessWidget {
                       SizedBox(
                         height: height * 0.05,
                       ),
-                      GestureDetector(
-                        onTap: () => eventsController.launchUrlInWeb(),
-                        child: Container(
-                          alignment: Alignment.center,
-                          width: width,
-                          height: height * 0.06,
-                          decoration: BoxDecoration(
-                              color: context.theme.primaryColor,
-                              borderRadius: BorderRadius.circular(127)),
-                          child: Text(
-                            "REGISTER NOW >>",
-                            style: context.theme.textTheme.bodyLarge?.copyWith(
-                                color: Colors.black, fontSize: height * 0.024),
+                      if (!authController.isReview.value)
+                        GestureDetector(
+                          onTap: () => eventsController.launchUrlInWeb(),
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: width,
+                            height: height * 0.06,
+                            decoration: BoxDecoration(
+                                color: context.theme.primaryColor,
+                                borderRadius: BorderRadius.circular(127)),
+                            child: Text(
+                              "REGISTER NOW >>",
+                              style: context.theme.textTheme.bodyLarge
+                                  ?.copyWith(
+                                      color: Colors.black,
+                                      fontSize: height * 0.024),
+                            ),
                           ),
                         ),
-                      ),
                       SizedBox(
                         height: height * 0.05,
                       ),

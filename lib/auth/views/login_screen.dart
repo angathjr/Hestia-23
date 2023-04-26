@@ -34,47 +34,51 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Obx(
-                    () => Container(
-                      decoration: const BoxDecoration(
-                          color: Color(0xff121212),
-                          borderRadius: BorderRadius.all(Radius.circular(25))),
-                      height: 70,
-                      width: 280,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(25),
-                        child: RoundedButton(
-                          lottie: 'google',
-                          text: controller.text1.value,
-                          press: () async {
-                            controller.googleSignIn();
-                          },
+                  if (!controller.isReview.value)
+                    Obx(
+                      () => Container(
+                        decoration: const BoxDecoration(
+                            color: Color(0xff121212),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(25))),
+                        height: 70,
+                        width: 280,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(25),
+                          child: RoundedButton(
+                            lottie: 'google',
+                            text: controller.text1.value,
+                            press: () async {
+                              controller.googleSignIn();
+                            },
+                          ),
                         ),
                       ),
                     ),
-                  ),
                   const SizedBox(
                     height: 20,
                   ),
-                  Obx(
-                    () => Container(
-                      decoration: const BoxDecoration(
-                          color: Color(0xff121212),
-                          borderRadius: BorderRadius.all(Radius.circular(25))),
-                      height: 70,
-                      width: 280,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(25),
-                        child: RoundedButton(
-                          lottie: 'apple',
-                          text: controller.text2.value,
-                          press: () async {
-                            controller.appleSignIn();
-                          },
+                  if (controller.isReview.value)
+                    Obx(
+                      () => Container(
+                        decoration: const BoxDecoration(
+                            color: Color(0xff121212),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(25))),
+                        height: 70,
+                        width: 280,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(25),
+                          child: RoundedButton(
+                            lottie: 'apple',
+                            text: controller.text2.value,
+                            press: () async {
+                              controller.appleSignIn();
+                            },
+                          ),
                         ),
                       ),
                     ),
-                  ),
                   const SizedBox(
                     height: 50,
                   ),
