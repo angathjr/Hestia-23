@@ -9,14 +9,13 @@ class EventsSearchController extends GetxController {
   final EventsController eventsController = Get.find();
 
   static final List<String> eventDates = [
-    '-- ----',
+    '-- April',
     '27 April',
     '28 April',
     '29 April',
     '30 April'
   ];
   var date = eventDates.first.obs;
-
   var searchText = ''.obs;
   late TextEditingController editingController;
   var eventsLoading = false.obs;
