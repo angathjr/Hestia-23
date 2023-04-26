@@ -1,7 +1,7 @@
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
+import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polygon/flutter_polygon.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/theme/model/themes.dart';
 import '../../core/constants..dart';
@@ -28,7 +28,7 @@ class LeaderBoard extends StatelessWidget {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                hintStyle: FutTheme.categoryFont,
+                hintStyle: context.theme.textTheme.titleMedium,
                 hintText: " Search for event",
               ),
             ),
@@ -49,9 +49,9 @@ class LeaderBoard extends StatelessWidget {
                 itemCount: 2,
                 itemBuilder: (BuildContext context, int index) {
                   return ExpansionTile(
-                    trailing: const Icon(
-                      Icons.arrow_drop_down_circle,
-                      color: Color.fromRGBO(222, 253, 114, 1),
+                    trailing: Icon(
+                      FeatherIcons.arrowDownCircle,
+                      color: context.theme.primaryColor,
                     ),
                     title: Text(
                       "Logo Designing",
@@ -110,53 +110,53 @@ class LeaderBoard extends StatelessWidget {
               image: Themes().backgroundImage)),
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.transparent,
-          resizeToAvoidBottomInset: false,
-          appBar: AppBar(
-            // backgroundColor: Colors.transparent,
-            title: Center(
-              child: Text(
-                'LEADERBOARD',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge
-                    ?.copyWith(fontSize: w * 0.064),
+            backgroundColor: Colors.transparent,
+            resizeToAvoidBottomInset: false,
+            appBar: AppBar(
+              // backgroundColor: Colors.transparent,
+              title: Center(
+                child: Text(
+                  'LEADERBOARD',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(fontSize: w * 0.064),
+                ),
               ),
+              elevation: 0,
             ),
-            elevation: 0,
-          ),
-          //body: futureLeaderboard(height, context),
-          body:futureLeaderboard(height, context)
-          
-          //  AnimationConfiguration.synchronized(
-          //   child: FadeInAnimation(
-          //     duration:
-          //     const Duration(milliseconds: 2500),
-          //     curve: Curves.fastLinearToSlowEaseIn,
-          //     child: Center(
-          //       child: Container(
-          //         margin: EdgeInsets.only(
-          //           left: 30,
-          //           right: 30,
-          //           top: height * 0.03,
-          //           bottom: height * 0.1,
-          //         ),
-          //         decoration: BoxDecoration(
-          //           borderRadius: BorderRadius.circular(10),
-          //           color: context.theme.cardColor.withOpacity(0.9),
-          //         ),
-          //         child: Center(
-          //           child: Text(
-          //             "Leaderboard will be active soon ;)",
-          //             style: context.theme.textTheme.bodyMedium
-          //                 ?.copyWith(color: context.theme.disabledColor),
-          //           ),
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
-        ),
+            //body: futureLeaderboard(height, context),
+            body: futureLeaderboard(height, context)
+
+            //  AnimationConfiguration.synchronized(
+            //   child: FadeInAnimation(
+            //     duration:
+            //     const Duration(milliseconds: 2500),
+            //     curve: Curves.fastLinearToSlowEaseIn,
+            //     child: Center(
+            //       child: Container(
+            //         margin: EdgeInsets.only(
+            //           left: 30,
+            //           right: 30,
+            //           top: height * 0.03,
+            //           bottom: height * 0.1,
+            //         ),
+            //         decoration: BoxDecoration(
+            //           borderRadius: BorderRadius.circular(10),
+            //           color: context.theme.cardColor.withOpacity(0.9),
+            //         ),
+            //         child: Center(
+            //           child: Text(
+            //             "Leaderboard will be active soon ;)",
+            //             style: context.theme.textTheme.bodyMedium
+            //                 ?.copyWith(color: context.theme.disabledColor),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            ),
       ),
     );
   }
