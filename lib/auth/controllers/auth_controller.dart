@@ -63,10 +63,10 @@ class AuthController extends GetxController {
       isSignIn(false);
       Get.offAllNamed('/');
     } catch (error) {
-      isSiginIn(false);
-      text.value = "Try Again";
+      isSignIn(false);
+      text1.value = "Try Again";
       await Future.delayed(const Duration(seconds: 2));
-      text.value = "Continue with Google";
+      text1.value = "Continue with Google";
     } finally {
       isSignIn(false);
       text1.value = "Continue with Google";

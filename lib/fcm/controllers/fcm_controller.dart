@@ -14,7 +14,6 @@ class FCMController extends GetxController {
 
     messaging = FirebaseMessaging.instance;
     handleRequest();
-    onListen();
     fetchToken();
     subscribeToTopic();
   }
@@ -31,13 +30,6 @@ class FCMController extends GetxController {
     );
   }
 
-  void onListen() {
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-
-      if (message.notification != null) {
-      }
-    });
-  }
 
   void subscribeToTopic() async {
     try {
