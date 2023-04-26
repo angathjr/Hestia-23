@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -16,10 +17,12 @@ class AuthController extends GetxController {
   var isSignIn = false.obs;
   var text1 = "Continue with Google".obs;
   var text2 = "Continue with Apple".obs;
+  var isReview = true.obs;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
+    isReview(await getReview());
     _googleSignIn = GoogleSignIn();
     Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
       if (result == ConnectivityResult.none) {
@@ -77,7 +80,8 @@ class AuthController extends GetxController {
     try {
       text2.value = "Logging you in...";
       isSignIn(true);
-      AuthorizationCredentialAppleID credential = await SignInWithApple.getAppleIDCredential(
+      AuthorizationCredentialAppleID credential =
+          await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,
           AppleIDAuthorizationScopes.fullName,
@@ -91,23 +95,24 @@ class AuthController extends GetxController {
       // log(data.toString());
       // final apiToken = response.body['key'];
       //
-      // await _storage.write('authToken', apiToken);
-      //
-      // final Response userResponse = await api.getApi('/api/users/');
-      //
-      // final UserModel userModel =
-      //     userModelFromJson(userResponse.body['results'][0]);
-      // log(userModel.toString());
-      // _storage.write('user', userModel.toJson());
-      //
-      // if (userModel.isCompleted ?? false) {
-      //   _storage.write('isComplete', true);
-      // } else {
-      //   _storage.write('isComplete', false);
-      // }
-      // text2.value = "Logged in";
-      // isSignIn(false);
-      // Get.offAllNamed('/');
+      await _storage.write(
+          'authToken', '06717f884c6e955638b2ccbe09244a9f1fb738a6');
+
+      final Response userResponse = await api.getApi('/api/users/');
+
+      final UserModel userModel =
+          userModelFromJson(userResponse.body['results'][0]);
+      log(userModel.toString());
+      _storage.write('user', userModel.toJson());
+
+      if (userModel.isCompleted ?? false) {
+        _storage.write('isComplete', true);
+      } else {
+        _storage.write('isComplete', false);
+      }
+      text2.value = "Logged in";
+      isSignIn(false);
+      Get.offAllNamed('/');
     } catch (error) {
       log(error.toString());
       isSignIn(false);
@@ -118,5 +123,20 @@ class AuthController extends GetxController {
       isSignIn(false);
       text2.value = "Continue with Apple";
     }
+  }
+
+  Future<bool> getReview() async {
+    final doc =
+        await FirebaseFirestore.instance.collection("apple").doc('test').get();
+
+    if(doc.exists) {
+      if(doc.data() != null) {
+        if(doc.data()!['isReview'] != null) {
+          return doc.data()?['isReview'];
+        }
+      }
+    }
+
+    return false;
   }
 }

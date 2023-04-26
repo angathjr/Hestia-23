@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hestia_23/core/constants..dart';
-import 'package:hestia_23/core/widgets/back_button_widget.dart';
 import 'package:hestia_23/notifications/controllers/notification_controller.dart';
 import 'package:hestia_23/notifications/views/general_notifications.dart';
 import 'package:hestia_23/notifications/views/registered_events_notification.dart';
@@ -80,7 +79,7 @@ class NotificationScreen extends StatelessWidget {
                         indicatorSize: TabBarIndicatorSize.label,
                         unselectedLabelColor: Colors.grey,
                         indicatorColor:
-                            const Color.fromARGB(255, 226, 222, 169),
+                        const Color.fromARGB(255, 226, 222, 169),
                         dividerColor: Colors.transparent,
                         padding: EdgeInsets.only(right: width * 0.2),
                         tabs: [
@@ -93,31 +92,31 @@ class NotificationScreen extends StatelessWidget {
                                   style: FutTheme.font3,
                                 ),
                                 Obx(() => notificationController
-                                            .unseenGeneralNotificationCount
-                                            .value !=
-                                        0
+                                    .unseenGeneralNotificationCount
+                                    .value !=
+                                    0
                                     ? const SizedBox(
-                                        width: 10,
-                                      )
+                                  width: 10,
+                                )
                                     : const SizedBox()),
                                 Obx(
-                                  () => notificationController
-                                              .unseenGeneralNotificationCount
-                                              .value !=
-                                          0
+                                      () => notificationController
+                                      .unseenGeneralNotificationCount
+                                      .value !=
+                                      0
                                       ? Container(
-                                          width: 20,
-                                          decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Color.fromARGB(
-                                                  255, 236, 217, 15)),
-                                          child: Center(
-                                              child: Text(
-                                            '${notificationController.unseenGeneralNotificationCount.value}',
-                                            style: const TextStyle(
-                                                color: Colors.black),
-                                          )),
-                                        )
+                                    width: 20,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color.fromARGB(
+                                            255, 236, 217, 15)),
+                                    child: Center(
+                                        child: Text(
+                                          '${notificationController.unseenGeneralNotificationCount.value}',
+                                          style: const TextStyle(
+                                              color: Colors.black),
+                                        )),
+                                  )
                                       : const SizedBox(),
                                 )
                               ],
@@ -125,42 +124,42 @@ class NotificationScreen extends StatelessWidget {
                           ),
                           Tab(
                               child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'My Events',
-                                style: FutTheme.font3,
-                              ),
-                              Obx(() => notificationController
-                                          .unseenMyEventsNotificationCount
-                                          .value !=
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'My Events',
+                                    style: FutTheme.font3,
+                                  ),
+                                  Obx(() => notificationController
+                                      .unseenMyEventsNotificationCount
+                                      .value !=
                                       0
-                                  ? const SizedBox(
-                                      width: 10,
-                                    )
-                                  : const SizedBox()),
-                              Obx(
-                                () => notificationController
-                                            .unseenMyEventsNotificationCount
-                                            .value !=
+                                      ? const SizedBox(
+                                    width: 10,
+                                  )
+                                      : const SizedBox()),
+                                  Obx(
+                                        () => notificationController
+                                        .unseenMyEventsNotificationCount
+                                        .value !=
                                         0
-                                    ? Container(
-                                        width: 20,
-                                        decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Color.fromARGB(
-                                                255, 236, 217, 15)),
-                                        child: Center(
-                                            child: Text(
-                                          '${notificationController.unseenMyEventsNotificationCount.value}',
-                                          style: const TextStyle(
-                                              color: Colors.black),
-                                        )),
-                                      )
-                                    : const SizedBox(),
-                              )
-                            ],
-                          )),
+                                        ? Container(
+                                      width: 20,
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Color.fromARGB(
+                                              255, 236, 217, 15)),
+                                      child: Center(
+                                          child: Text(
+                                            '${notificationController.unseenMyEventsNotificationCount.value}',
+                                            style: const TextStyle(
+                                                color: Colors.black),
+                                          )),
+                                    )
+                                        : const SizedBox(),
+                                  )
+                                ],
+                              )),
                         ],
                       ),
                     ),

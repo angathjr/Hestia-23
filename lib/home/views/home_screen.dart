@@ -125,12 +125,13 @@ class HomeScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                                "HI ${profController.user.value.name?.split(' ').first.toUpperCase()}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineLarge
-                                    ?.copyWith(fontSize: width * 0.038)),
+                            if (!authController.isReview.value)
+                              Text(
+                                  "HI ${profController.user.value.name?.split(' ').first.toUpperCase()}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineLarge
+                                      ?.copyWith(fontSize: width * 0.038)),
                             const SizedBox(
                               height: 7,
                             ),
