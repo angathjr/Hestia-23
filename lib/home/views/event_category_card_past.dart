@@ -71,12 +71,12 @@ class CategoryCardPast extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(color: context.theme.primaryColor),
-                    color: const Color.fromARGB(255, 83, 70, 69),
+                    color: context.theme.cardColor,
                     borderRadius: const BorderRadius.only(
-                      topRight: Radius.circular(5),
-                      topLeft: Radius.circular(50),
+                      topRight: Radius.circular(0),
+                      topLeft: Radius.circular(30),
                       bottomLeft: Radius.circular(5),
-                      bottomRight: Radius.circular(50),
+                      bottomRight: Radius.circular(30),
                     ),
                   ),
                   height: cardHeight * 0.5,
@@ -96,7 +96,7 @@ class CategoryCardPast extends StatelessWidget {
                               style:
                                   context.theme.textTheme.titleLarge?.copyWith(
                                 fontSize: cardHeight * 0.067,
-                                color: context.theme.primaryColor,
+                                color: Colors.white,
                               ),
                             ),
                           ),

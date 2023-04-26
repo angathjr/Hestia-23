@@ -77,7 +77,6 @@ class EventsController extends GetxController {
 
     List<EventModel> parsed = eventModelFromJson(response.body['results']);
 
-    // parsed.forEach((element) => print(element.slug));
     events.value = parsed;
     allEvents.value = parsed;
     eventsLoading(false);

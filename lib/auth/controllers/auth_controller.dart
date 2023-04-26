@@ -44,7 +44,6 @@ class AuthController extends GetxController {
 
       Map data = {'access_token': auth.accessToken};
       final response = await apiNoAuth.postApi('/users/google/', data);
-      log(data.toString());
       final apiToken = response.body['key'];
 
       await _storage.write('authToken', apiToken);
@@ -53,7 +52,6 @@ class AuthController extends GetxController {
 
       final UserModel userModel =
           userModelFromJson(userResponse.body['results'][0]);
-      log(userModel.toString());
       _storage.write('user', userModel.toJson());
 
       if (userModel.isCompleted ?? false) {
@@ -65,11 +63,10 @@ class AuthController extends GetxController {
       isSignIn(false);
       Get.offAllNamed('/');
     } catch (error) {
-      log(error.toString());
-      isSignIn(false);
-      text1.value = "Try Again";
-      await Future.delayed(const Duration(seconds: 1));
-      text1.value = "Continue with Google";
+      isSiginIn(false);
+      text.value = "Try Again";
+      await Future.delayed(const Duration(seconds: 2));
+      text.value = "Continue with Google";
     } finally {
       isSignIn(false);
       text1.value = "Continue with Google";

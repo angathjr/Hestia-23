@@ -7,7 +7,6 @@ import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/theme/model/themes.dart';
 import 'package:intl/intl.dart';
 import '../controllers/event_pages_controller.dart';
-import 'dart:ui' as ui;
 
 class EventDetailsScreen extends StatelessWidget {
   EventDetailsScreen({Key? key}) : super(key: key);
@@ -15,25 +14,11 @@ class EventDetailsScreen extends StatelessWidget {
   final EventsController eventsController = Get.find();
   final controller = Get.put(EventPagesController());
 
-  bool hasTextOverflow(String text, TextStyle style,
-      {double minWidth = 0,
-      double maxWidth = double.infinity,
-      int maxLines = 2}) {
-    final TextPainter textPainter = TextPainter(
-      text: TextSpan(text: text, style: style),
-      maxLines: maxLines,
-      textDirection: ui.TextDirection.ltr,
-    )..layout(minWidth: minWidth, maxWidth: maxWidth);
-    return textPainter.didExceedMaxLines;
-  }
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     double cardSize = (width - (2 * width * 0.04));
-    final textStyle =
-        context.theme.textTheme.bodySmall?.copyWith(fontSize: height * 0.018);
 
     return Scaffold(
       body: Container(
@@ -74,8 +59,8 @@ class EventDetailsScreen extends StatelessWidget {
                             child: CachedNetworkImage(
                               placeholder: (context, url) =>
                                   primaryLoadingWidget,
-                              imageUrl: eventsController.selectedEvent.image ??
-                                  NOIMAGE,
+                              imageUrl:
+                                  '${eventsController.selectedEvent.image ?? NOIMAGE}',
                               fit: BoxFit.cover,
                             )),
                       ),
@@ -242,7 +227,8 @@ class EventDetailsScreen extends StatelessWidget {
                           children: [
                             Text(
                               '${eventsController.selectedEvent.desc}',
-                              style: textStyle,
+                              style: FutTheme.font7
+                                  .copyWith(fontSize: height * 0.018),
                               maxLines: controller.isReadMore.value == false
                                   ? 4
                                   : null,
@@ -253,28 +239,18 @@ class EventDetailsScreen extends StatelessWidget {
                               alignment: Alignment.topRight,
                               height: height * 0.023,
                               //  color: Colors.red,
-                              child: (hasTextOverflow(
-                                '${eventsController.selectedEvent.desc}',
-                                textStyle!,
-                                maxLines: 4,
-                                maxWidth: width,
-                              ))
-                                  ? GestureDetector(
-                                      onTap: () {
-                                        controller.readMore();
-                                      },
-                                      child: Text(
-                                        (!controller.isReadMore.value)
-                                            ? "Read More "
-                                            : "Read Less",
-                                        style: context
-                                            .theme.textTheme.bodyMedium
-                                            ?.copyWith(
-                                                color:
-                                                    context.theme.primaryColor),
-                                      ))
-                                  : null,
-                            )
+                              child: GestureDetector(
+                                  onTap: () {
+                                    controller.readMore();
+                                  },
+                                  child: Text(
+                                    (!controller.isReadMore.value)
+                                        ? "Read More "
+                                        : "Read Less",
+                                    style: FutTheme.font4.copyWith(
+                                        color: context.theme.primaryColor),
+                                  )),
+                            ),
                           ],
                         ),
                       ),

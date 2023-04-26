@@ -113,7 +113,7 @@ class CategoryCardPresent extends StatelessWidget {
               child: Container(
                 height: h * 0.2,
                 width: w * 0.5,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.black,
                   //border: Border.all(color: context.theme.primaryColor)
                 ),

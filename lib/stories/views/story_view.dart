@@ -96,7 +96,6 @@ class StoriesViewScreen extends StatelessWidget {
                       onComplete: () => storiesController.onCompleteGoToNext(),
                       onVerticalSwipeComplete: (direction) {
                         if (direction == Direction.down) {
-                          debugPrint("Down");
                           Navigator.pop(context);
                         }
                       },

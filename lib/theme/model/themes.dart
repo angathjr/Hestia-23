@@ -4,6 +4,10 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hestia_23/theme/controllers/theme_controller.dart';
 
+Color futureColor = const Color(0xffDEFD72);
+Color pastColor = const Color(0xffF7CD93);
+Color presentColor = const Color(0xffFFD730);
+
 class Themes {
   // FUTURE  THEME
   final ThemeController themeController = Get.find();
@@ -77,8 +81,10 @@ class Themes {
     focusColor: Colors.grey,
     textSelectionTheme:
         const TextSelectionThemeData(cursorColor: Color(0xffDEFD72)),
-    primaryColor: const Color(0xffDEFD72),
-    secondaryHeaderColor: const Color(0xffFFD730),
+
+
+    primaryColor: futureColor,
+    secondaryHeaderColor: presentColor,
     canvasColor: const Color(0xff1A1A1A),
     cardColor: const Color(0xff1C1C1C),
 
@@ -128,7 +134,7 @@ class Themes {
     iconTheme: const IconThemeData(color: Colors.white),
     textSelectionTheme:
         const TextSelectionThemeData(cursorColor: Color(0xffFFD730)),
-    primaryColor: const Color(0xffFFD730),
+    primaryColor: presentColor,
     canvasColor: const Color(0xff1A1A1A),
     cardColor: const Color(0xff1C1C1C),
 
@@ -151,8 +157,8 @@ class Themes {
         fontFamily: 'Sandy',
         fontWeight: FontWeight.w300,
       ),
-      bodyLarge: GoogleFonts.poppins(
-          fontWeight: FontWeight.w700, color: const Color(0xffDEFD72)),
+      bodyLarge:
+          GoogleFonts.poppins(fontWeight: FontWeight.w700, color: futureColor),
       bodyMedium: GoogleFonts.montserrat(
         fontWeight: FontWeight.w500,
       ),
@@ -178,7 +184,7 @@ class Themes {
     iconTheme: const IconThemeData(color: Colors.white),
     textSelectionTheme:
         const TextSelectionThemeData(cursorColor: Color(0xffF7CD93)),
-    primaryColor: const Color(0xffF7CD93),
+    primaryColor: pastColor,
     canvasColor: const Color(0xff1A1A1A),
     cardColor: const Color(0xff1A1A1A),
 
@@ -201,8 +207,8 @@ class Themes {
         fontFamily: 'Gangof3',
         fontWeight: FontWeight.w300,
       ),
-      bodyLarge: GoogleFonts.poppins(
-          fontWeight: FontWeight.w700, color: const Color(0xffDEFD72)),
+      bodyLarge:
+          GoogleFonts.poppins(fontWeight: FontWeight.w700, color: futureColor),
       bodyMedium: GoogleFonts.montserrat(
         fontWeight: FontWeight.w500,
       ),
