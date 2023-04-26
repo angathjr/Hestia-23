@@ -161,8 +161,8 @@ class HomeScreen extends StatelessWidget {
                             () => Stack(
                               children: [
                                 if (notificationController
-                                        .generalNotifications.isNotEmpty ||
-                                    profController.regEvents.isNotEmpty)
+                                        .unseenGeneralNotificationCount.value !=
+                                    0)
                                   Positioned(
                                     right: 4,
                                     top: 7,
@@ -280,8 +280,7 @@ class HomeScreen extends StatelessWidget {
                                   autoPlayCurve: Curves.linearToEaseOut,
                                   height: height * 0.46,
                                   viewportFraction: 0.66,
-                                  enlargeCenterPage: true
-                                  ),
+                                  enlargeCenterPage: true),
                             ),
                           ),
                         ),

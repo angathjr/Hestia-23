@@ -13,14 +13,17 @@ String notificationModelToJson(List<NotificationModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class NotificationModel {
-  NotificationModel(
-      {this.message,
-      this.email,
-      this.username,
-      this.createdAt,
-      this.title,
-      this.eventName});
+  NotificationModel({
+    this.message,
+    this.email,
+    this.username,
+    this.createdAt,
+    this.title,
+    this.eventName,
+    this.id,
+  });
 
+  String? id;
   String? message;
   String? title;
   String? eventName;
@@ -37,6 +40,7 @@ class NotificationModel {
         createdAt: (json["createdAt"] as Timestamp).toDate(),
         title: json["title"],
         eventName: json["eventName"],
+        id: json["id"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -46,5 +50,6 @@ class NotificationModel {
         "createdAt": createdAt,
         "title": title,
         "eventName": eventName,
+        "id": id,
       };
 }
