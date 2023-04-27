@@ -3,6 +3,8 @@ import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polygon/flutter_polygon.dart';
 import 'package:get/get.dart';
+import 'package:hestia_23/events/controllers/events_search_controller.dart';
+import 'package:hestia_23/events/models/event.dart';
 import 'package:hestia_23/theme/model/themes.dart';
 import '../../core/constants..dart';
 
@@ -53,9 +55,12 @@ class LeaderBoard extends StatelessWidget {
 }
 
 class StackItem extends StatelessWidget {
-  const StackItem({super.key, this.large = false, this.number = 1});
+  StackItem({super.key, this.large = false, this.number = 1, this.winner});
   final bool large;
   final num number;
+  final Winner? winner;
+  final EventsSearchController searchController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -77,7 +82,7 @@ class StackItem extends StatelessWidget {
                       borderRadius: 8.0,
                       sides: 6,
                       child: CircularProfileAvatar(
-                        'https://avatars3.githubusercontent.com/u/8264639?s=460&v=4',
+                        winner?.teamLeader?.profileImage ?? NOIMAGE,
                       ),
                     ),
                   ),
@@ -101,20 +106,21 @@ class StackItem extends StatelessWidget {
             ],
           ),
         ),
-        Text(
-          'Contestant',
-          style: FutTheme.categoryFont,
+        const SizedBox(
+          height: 10,
         ),
         Text(
-          '200 pts',
+          "${winner?.teamLeader?.name}",
           style: FutTheme.categoryFont,
-        )
+        ),
       ],
     );
   }
 }
 
 Widget futureLeaderboard(num h, BuildContext context) {
+  final EventsSearchController searchController = Get.find();
+
   return Padding(
     padding: const EdgeInsets.all(10),
     child: Column(
@@ -128,86 +134,91 @@ Widget futureLeaderboard(num h, BuildContext context) {
                 color: const Color(0xff1E1E1E),
                 borderRadius: BorderRadius.circular(20)),
             child: TextField(
-                textAlign: TextAlign.left,
-                style: FutTheme.font3,
-                textAlignVertical: TextAlignVertical.center,
-                decoration: InputDecoration(
-                    prefixIcon: const Icon(FeatherIcons.search),
-                    hintText: "Search events here",
-                    hintStyle: context.theme.textTheme.bodyMedium
-                        ?.copyWith(color: Colors.grey),
-                    contentPadding: const EdgeInsets.only(left: 20),
-                    border: InputBorder.none),
-                onChanged: null),
+              controller: searchController.editingController,
+              textAlign: TextAlign.left,
+              style: FutTheme.font3,
+              textAlignVertical: TextAlignVertical.center,
+              decoration: InputDecoration(
+                  prefixIcon: const Icon(FeatherIcons.search),
+                  hintText: "Search events here",
+                  hintStyle: context.theme.textTheme.bodyMedium
+                      ?.copyWith(color: Colors.grey),
+                  contentPadding: const EdgeInsets.only(left: 20),
+                  border: InputBorder.none),
+              onChanged: (_) => searchController.textFieldOnChanged(),
+            ),
           ),
         ),
         SizedBox(
           height: h * 0.02,
         ),
-        SizedBox(
-          height: h * 0.7,
-          child: const Center(
-            child: Text(
-              "Leaderboard will be active soon.",
-              style: TextStyle(
-                color: Colors.grey,
-              ),
-            ),
-          ),
-        ),
-        // Padding(
-        //   padding: const EdgeInsets.all(10.0),
-        //   child: Container(
-        //     height: MediaQuery.of(context).orientation == Orientation.portrait
-        //         ? h * 0.72
-        //         : h * 0.35,
-        //     decoration: const BoxDecoration(
-        //         borderRadius: BorderRadius.all(Radius.circular(12)),
-        //         color: Color.fromARGB(255, 23, 22, 22)),
-        //     child: ListView.builder(
-        //       itemCount: 2,
-        //       itemBuilder: (BuildContext context, int index) {
-        //         return ExpansionTile(
-        //           trailing: const Icon(
-        //             Icons.arrow_drop_down,
-        //             color: Colors.grey,
-        //           ),
-        //           title: Text(
-        //             "Logo Designing",
-        //             style: context.theme.textTheme.bodyMedium?.copyWith(
-        //                 fontSize: h * 0.022, color: Colors.grey.shade400),
-        //           ),
-        //           children: <Widget>[
-        //             SizedBox(
-        //               height: h * 0.4,
-        //               child: Stack(
-        //                 fit: StackFit.expand,
-        //                 children: const [
-        //                   Align(
-        //                     alignment: Alignment(-1, 0),
-        //                     child: StackItem(
-        //                       number: 2,
-        //                     ),
-        //                   ),
-        //                   Align(
-        //                     alignment: Alignment(0, -0.4),
-        //                     child: StackItem(large: true),
-        //                   ),
-        //                   Align(
-        //                     alignment: Alignment(1, 0),
-        //                     child: StackItem(
-        //                       number: 3,
-        //                     ),
-        //                   )
-        //                 ],
-        //               ),
-        //             )
-        //           ],
-        //         );
-        //       },
-        //     ),
-        //   ),
-        // )
+        Obx(
+          () => searchController.eventsLoading.value
+              ? SizedBox(height: h * 0.7, child: primaryLoadingWidget)
+              : Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    height: MediaQuery.of(context).orientation ==
+                            Orientation.portrait
+                        ? h * 0.72
+                        : h * 0.35,
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                        color: Color.fromARGB(255, 23, 22, 22)),
+                    child: ListView.builder(
+                      itemCount: searchController.events.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ExpansionTile(
+                          trailing: const Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.grey,
+                          ),
+                          title: Text(
+                            "${searchController.events[index].title}",
+                            style: context.theme.textTheme.bodySmall?.copyWith(
+                                fontSize: h * 0.022,
+                                color: Colors.grey.shade400),
+                          ),
+                          children: <Widget>[
+                            SizedBox(
+                              height: h * 0.4,
+                              child: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  Align(
+                                    alignment: const Alignment(-0.75, 0),
+                                    child: StackItem(
+                                      number: 2,
+                                      winner: searchController
+                                          .events[index].winner1,
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: const Alignment(0, -0.4),
+                                    child: StackItem(
+                                      large: true,
+                                      winner: searchController
+                                          .events[index].winner2,
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: const Alignment(0.75, 0),
+                                    child: StackItem(
+                                      number: 3,
+                                      winner: searchController
+                                          .events[index].winner3,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                ),
+        )
       ],
     ),
   );

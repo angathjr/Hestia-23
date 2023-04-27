@@ -21,7 +21,6 @@ import 'package:hestia_23/theme/model/themes.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-
 }
 
 void main() async {

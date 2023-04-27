@@ -51,7 +51,7 @@ class EventsSearchController extends GetxController {
     }
 
     // events.
-    
+
     if (editingController.text.isNotEmpty) {
       events.sort((a, b) {
         int index1 = a.title!
@@ -87,4 +87,6 @@ class EventsSearchController extends GetxController {
   }
 
   void textFieldOnChanged() => filterEvents();
+
+  void clearController() => editingController.clear();
 }
