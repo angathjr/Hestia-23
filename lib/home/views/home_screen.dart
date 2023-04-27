@@ -5,7 +5,6 @@ import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/constants..dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
@@ -169,8 +168,13 @@ class HomeScreen extends StatelessWidget {
                             () => Stack(
                               children: [
                                 if (notificationController
-                                        .unseenGeneralNotificationCount.value !=
-                                    0)
+                                            .unseenGeneralNotificationCount
+                                            .value !=
+                                        0 ||
+                                    notificationController
+                                            .unseenMyEventsNotificationCount
+                                            .value !=
+                                        0)
                                   Positioned(
                                     right: 4,
                                     top: 7,
