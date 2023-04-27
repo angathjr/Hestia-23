@@ -477,6 +477,77 @@ class ProfileScreen extends StatelessWidget {
                                     ),
                                   ),
                                 )),
+                            if (authController.isReview.value)
+                              Expanded(
+                                flex: 2,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 20),
+                                  child: SlideAnimation(
+                                    curve: Curves.fastLinearToSlowEaseIn,
+                                    duration:
+                                        const Duration(milliseconds: 2500),
+                                    verticalOffset: 20,
+                                    child: InkWell(
+                                      borderRadius: BorderRadius.circular(15),
+                                      // onTap: () => authController.signout(),
+                                      onTap: () => Get.dialog(AlertDialog(
+                                        // backgroundColor: context.theme.cardColor,
+                                        title: Text(
+                                          "Delete my account",
+                                          style: context
+                                              .theme.textTheme.bodyMedium
+                                              ?.copyWith(fontSize: 20),
+                                        ),
+                                        content: const Text(
+                                            "Are you sure you want to delete your account?"),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              authController.signOut();
+                                              //Get.back();
+                                            },
+                                            child: Text(
+                                              "Yes",
+                                              style: TextStyle(
+                                                  color: context
+                                                      .theme.primaryColor),
+                                            ),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              Get.back();
+                                            },
+                                            child: Text(
+                                              "No",
+                                              style: TextStyle(
+                                                  color: context
+                                                      .theme.primaryColor),
+                                            ),
+                                          ),
+                                        ],
+                                      )),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width: width,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: context.theme.cardColor
+                                              .withOpacity(0.9),
+                                        ),
+                                        child: Text(
+                                          "Delete my account",
+                                          style: context
+                                              .theme.textTheme.bodyMedium
+                                              ?.copyWith(
+                                            fontSize: height * 0.016,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             SizedBox(
                               height: height * 0.02,
                             ),
