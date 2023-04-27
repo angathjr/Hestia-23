@@ -66,34 +66,19 @@ class RegisteredEventsNotificatonScreen extends StatelessWidget {
                               SizedBox(
                                 height: cardHeight * 0.1,
                               ),
-                              Container(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "${notification.title}".toUpperCase(),
-                                  style: FutTheme.font5.copyWith(
-                                      fontSize: h * 0.02, color: Colors.white),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                              SizedBox(
-                                height: cardHeight * 0.1,
-                              ),
-                              Text(
-                                "${notification.message}",
-                                maxLines: 2,
-                                style: FutTheme.font2,
-                                overflow: TextOverflow.ellipsis,
-                              ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    DateFormat('h:mm a').format(
-                                        notification.createdAt ??
-                                            DateTime.now()),
-                                    style: FutTheme.font6
-                                        .copyWith(fontSize: width * 0.03),
+                                  Container(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      "${notification.title}".toUpperCase(),
+                                      style: FutTheme.font5.copyWith(
+                                          fontSize: h * 0.02,
+                                          color: Colors.white),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                   ),
                                   Container(
                                     padding: EdgeInsets.all(width * 0.02),
@@ -107,15 +92,42 @@ class RegisteredEventsNotificatonScreen extends StatelessWidget {
                                         borderRadius:
                                             BorderRadius.circular(20)),
                                     child: FittedBox(
-                                      child: Text(
-                                        "${notification.eventName}",
-                                        style: FutTheme.font5.copyWith(
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            "${notification.eventName}",
+                                            style: FutTheme.font5.copyWith(
+                                                color:
+                                                    context.theme.primaryColor,
+                                                overflow: TextOverflow.clip),
+                                          ),
+                                          Icon(
+                                            Icons.chevron_right,
                                             color: context.theme.primaryColor,
-                                            overflow: TextOverflow.clip),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   )
                                 ],
+                              ),
+                              Text(
+                                "${notification.message}",
+                                maxLines: 2,
+                                style: FutTheme.font2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              SizedBox(
+                                height: cardHeight * 0.1,
+                              ),
+                              Text(
+                                DateFormat('h:mm a').format(
+                                    notification.createdAt ?? DateTime.now()),
+                                style: FutTheme.font6
+                                    .copyWith(fontSize: width * 0.03),
+                              ),
+                              SizedBox(
+                                height: cardHeight * 0.1,
                               ),
                             ]),
                       ),

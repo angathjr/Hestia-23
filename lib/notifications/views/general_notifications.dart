@@ -25,7 +25,7 @@ class GeneralNotificationsScreen extends StatelessWidget {
     return Obx(
       () => (notificationController.generalNotificationsLoading.value)
           ? primaryLoadingWidget
-          : AnimationLimiter(  
+          : AnimationLimiter(
               child: ListView.builder(
                 physics: const BouncingScrollPhysics(
                     parent: AlwaysScrollableScrollPhysics()),
@@ -90,38 +90,22 @@ class GeneralNotificationsScreen extends StatelessWidget {
                                     SizedBox(
                                       height: cardHeight * 0.1,
                                     ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          DateFormat('h:mm a').format(
-                                              notification.createdAt ??
-                                                  DateTime.now()),
-                                          style: FutTheme.font6
-                                              .copyWith(fontSize: width * 0.03),
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.all(width * 0.02),
-                                          alignment: Alignment.center,
-                                          margin: EdgeInsets.symmetric(
-                                              vertical: cardHeight * 0.06),
-                                          width: width * 0.4,
-                                          height: cardHeight * 0.3,
-                                          decoration: BoxDecoration(
-                                              color:
-                                                  Colors.grey.withOpacity(0.2),
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                          child: Text(
-                                            notification.eventName ?? 'General',
-                                            style: FutTheme.font5.copyWith(
-                                                color:
-                                                    context.theme.primaryColor,
-                                                overflow: TextOverflow.clip),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 20),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            DateFormat('h:mm a').format(
+                                                notification.createdAt ??
+                                                    DateTime.now()),
+                                            style: FutTheme.font6.copyWith(
+                                                fontSize: width * 0.03),
                                           ),
-                                        )
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ]),
                             ),
