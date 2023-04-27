@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hestia_23/events/models/event.dart';
 import 'package:hestia_23/notifications/models/notification.dart';
 import 'package:hestia_23/notifications/views/notification_screen_two.dart';
@@ -10,10 +11,10 @@ class NotificationController extends GetxController {
 
   final ProfileController profileController = Get.find();
 
-  CollectionReference notfRef =
+  CollectionReference notificationReference =
       FirebaseFirestore.instance.collection('notifications');
 
-  CollectionReference generealRef = FirebaseFirestore.instance
+  CollectionReference generalRef = FirebaseFirestore.instance
       .collection('notifications')
       .doc('groups')
       .collection('general');
@@ -21,12 +22,17 @@ class NotificationController extends GetxController {
   DocumentReference groups =
       FirebaseFirestore.instance.collection('notifications').doc('groups');
 
-  late NotificationModel selectedNotEvent;
+  late NotificationModel selectedNotificationEvent;
   var notificationsLoading = false.obs;
   var generalNotificationsLoading = false.obs;
   var generalNotifications = <NotificationModel>[].obs;
   var notifications = <NotificationModel>[].obs;
   var myEventsNotification = <NotificationModel>[].obs;
+  var unseenGeneralNotificationCount = 0.obs;
+  var unseenMyEventsNotificationCount = 0.obs;
+  var myEventsNotificationCount = 0.obs;
+
+  final _box = GetStorage();
 
   ///notifications/groups/CUSTOM-EVENT-FOR-APP-TEST/M5gZdjPQ6ktaPMbc6mlg
 
@@ -44,10 +50,11 @@ class NotificationController extends GetxController {
     fetchRegEvents();
     fetchMyEventsNotification();
     fetchGeneralNotifications();
+    getUnseenMyEventsNotificationCount();
   }
 
   void goToNotification(NotificationModel notification) {
-    selectedNotEvent = notification;
+    selectedNotificationEvent = notification;
     Get.to(() => NotificationScreenTwo());
     fetchNotifications();
   }
@@ -55,7 +62,7 @@ class NotificationController extends GetxController {
   void fetchMyEventsNotification() async {
     final List<EventModel> regEvents =
         await profileController.fetchRegEventsSlugs();
-    regEvents.forEach((event) async {
+    for (var event in regEvents) {
       final colRef = groups.collection('${event.slug}');
       final query =
           await colRef.orderBy('createdAt', descending: true).limit(1).get();
@@ -67,7 +74,7 @@ class NotificationController extends GetxController {
         notification.eventName = event.title;
         myEventsNotification.add(notification);
       }
-    });
+    }
 
     myEventsNotification.sort(
       (a, b) => a.createdAt!.compareTo(b.createdAt!),
@@ -76,7 +83,7 @@ class NotificationController extends GetxController {
 
   void fetchNotifications() async {
     notificationsLoading(true);
-    final colRef = groups.collection('${selectedNotEvent.eventSlug}');
+    final colRef = groups.collection('${selectedNotificationEvent.eventSlug}');
     final query = await colRef.orderBy('createdAt', descending: true).get();
     final data = query.docs.map((e) => e.data()).toList();
 
@@ -90,10 +97,62 @@ class NotificationController extends GetxController {
 
   void fetchGeneralNotifications() async {
     generalNotificationsLoading(true);
-    final query =
-        await generealRef.orderBy('createdAt', descending: true).get();
-    final data = query.docs.map((e) => e.data()).toList();
+    final query = await generalRef.orderBy('createdAt', descending: true).get();
+    final data = query.docs.map((e) {
+      dynamic map = e.data();
+      map['id'] = e.id;
+      return map;
+    }).toList();
     generalNotifications.value = notificationModelFromJson(data);
     generalNotificationsLoading(false);
+    getUnseenGeneralNotificationCount();
+  }
+
+  void getUnseenGeneralNotificationCount() {
+    if (!_box.hasData('seenGeneralNotificationCount')) {
+      unseenGeneralNotificationCount.value = generalNotifications.length;
+    } else {
+      int seenCount = _box.read('seenGeneralNotificationCount');
+
+      if (seenCount < generalNotifications.length) {
+        unseenGeneralNotificationCount.value =
+            generalNotifications.length - seenCount;
+      } else {
+        unseenGeneralNotificationCount(0);
+      }
+    }
+  }
+
+  void getUnseenMyEventsNotificationCount() async {
+    final List<EventModel> regEvents =
+        await profileController.fetchRegEventsSlugs();
+
+    for (var event in regEvents) {
+      final colRef = groups.collection('${event.slug}');
+      final query = await colRef.get();
+      final data = query.docs.map((e) => e.data()).toList();
+      myEventsNotificationCount.value += data.length;
+    }
+
+    if (!_box.hasData('seenMyEventsNotificationCount')) {
+      unseenMyEventsNotificationCount.value = myEventsNotificationCount.value;
+    } else {
+      int seenCount = _box.read('seenMyEventsNotificationCount');
+
+      if (seenCount < myEventsNotificationCount.value) {
+        unseenMyEventsNotificationCount.value =
+            myEventsNotificationCount.value - seenCount;
+      } else {
+        unseenMyEventsNotificationCount(0);
+      }
+    }
+  }
+
+  void seeNotifications() {
+    _box.write('seenGeneralNotificationCount', generalNotifications.length);
+    _box.write(
+        'seenMyEventsNotificationCount', myEventsNotificationCount.value);
+    unseenGeneralNotificationCount.value = 0;
+    unseenMyEventsNotificationCount.value = 0;
   }
 }

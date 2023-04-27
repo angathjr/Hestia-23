@@ -51,7 +51,7 @@ class EventsSearchController extends GetxController {
     }
 
     // events.
-    
+
     if (editingController.text.isNotEmpty) {
       events.sort((a, b) {
         int index1 = a.title!
@@ -69,7 +69,6 @@ class EventsSearchController extends GetxController {
   }
 
   void fetchAllEvents() async {
-    // TODO: Fetch all events
     eventsLoading(true);
     final Response response = await api.getApi('/api/events/all/');
     allEvents.value = eventModelFromJson(response.body['results']);
@@ -88,4 +87,6 @@ class EventsSearchController extends GetxController {
   }
 
   void textFieldOnChanged() => filterEvents();
+
+  void clearController() => editingController.clear();
 }

@@ -21,8 +21,6 @@ import 'package:hestia_23/theme/model/themes.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-
-  // print("Handling a background message: ${message.messageId}");
 }
 
 void main() async {
@@ -56,7 +54,6 @@ class MyApp extends StatelessWidget {
       enableLog: true,
       title: 'Hestia 23',
       initialRoute: '/splash',
-      // home: SplashScreen(),
       theme: Themes().theme,
       getPages: [
         GetPage(

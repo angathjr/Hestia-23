@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:feather_icons/feather_icons.dart';
@@ -43,7 +44,11 @@ class HomeScreen extends StatelessWidget {
         decoration: BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.fitWidth,
-                opacity: 0.25,
+                opacity: themeController.selectedIndex.value == 0
+                    ? 0.3
+                    : themeController.selectedIndex.value == 1
+                        ? 0.2
+                        : 0.4,
                 image: Themes().backgroundImage)),
         child: SafeArea(
           child: CustomScrollView(
@@ -89,7 +94,7 @@ class HomeScreen extends StatelessWidget {
                               alignment: Alignment.bottomCenter,
                               child: ClipRRect(
                                 borderRadius:
-                                    BorderRadius.circular(height * 0.015),
+                                    BorderRadius.circular(height * 0.03),
                                 child: themeController.selectedIndex.value == 0
                                     ? Image.asset(
                                         "assets/images/Past.png",
@@ -120,12 +125,14 @@ class HomeScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                                "HI ${profController.user.value.name?.split(' ').first.toUpperCase()}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineLarge
-                                    ?.copyWith(fontSize: width * 0.038)),
+                            if (!authController.isReview.value ||
+                                Platform.isAndroid)
+                              Text(
+                                  "HI ${profController.user.value.name?.split(' ').first.toUpperCase()}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineLarge
+                                      ?.copyWith(fontSize: width * 0.038)),
                             const SizedBox(
                               height: 7,
                             ),
@@ -161,8 +168,13 @@ class HomeScreen extends StatelessWidget {
                             () => Stack(
                               children: [
                                 if (notificationController
-                                        .generalNotifications.isNotEmpty ||
-                                    profController.regEvents.isNotEmpty)
+                                            .unseenGeneralNotificationCount
+                                            .value !=
+                                        0 ||
+                                    notificationController
+                                            .unseenMyEventsNotificationCount
+                                            .value !=
+                                        0)
                                   Positioned(
                                     right: 4,
                                     top: 7,
@@ -280,8 +292,7 @@ class HomeScreen extends StatelessWidget {
                                   autoPlayCurve: Curves.linearToEaseOut,
                                   height: height * 0.46,
                                   viewportFraction: 0.66,
-                                  enlargeCenterPage: true
-                                  ),
+                                  enlargeCenterPage: true),
                             ),
                           ),
                         ),

@@ -25,7 +25,7 @@ class NotificationScreenTwo extends StatelessWidget {
         ),
         centerTitle: true,
         title: Text(
-          notificationController.selectedNotEvent.title ?? '',
+          notificationController.selectedNotificationEvent.title ?? '',
           style: context.theme.textTheme.titleLarge,
         ),
       ),

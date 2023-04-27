@@ -77,7 +77,6 @@ class EventsController extends GetxController {
 
     List<EventModel> parsed = eventModelFromJson(response.body['results']);
 
-    // parsed.forEach((element) => print(element.slug));
     events.value = parsed;
     allEvents.value = parsed;
     eventsLoading(false);
@@ -187,5 +186,8 @@ class EventsController extends GetxController {
     }
   }
 
-  // void fetchEvents() {}
+  void lauchCeritificate() async {
+    await launchUrl(Uri.parse('https://hestiatkmce.live/certificates-list'),
+        mode: LaunchMode.externalApplication);
+  }
 }

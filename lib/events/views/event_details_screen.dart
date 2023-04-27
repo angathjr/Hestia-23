@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/constants..dart';
 import 'package:hestia_23/core/widgets/back_button_widget.dart';
 import 'package:hestia_23/events/controllers/events_controller.dart';
@@ -13,6 +15,7 @@ class EventDetailsScreen extends StatelessWidget {
   EventDetailsScreen({Key? key}) : super(key: key);
 
   final EventsController eventsController = Get.find();
+  final AuthController authController = Get.find();
   final controller = Get.put(EventPagesController());
 
   bool hasTextOverflow(String text, TextStyle style,
@@ -32,8 +35,6 @@ class EventDetailsScreen extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     double cardSize = (width - (2 * width * 0.04));
-    final textStyle =
-        context.theme.textTheme.bodySmall?.copyWith(fontSize: height * 0.018);
 
     return Scaffold(
       body: Container(
@@ -242,7 +243,8 @@ class EventDetailsScreen extends StatelessWidget {
                           children: [
                             Text(
                               '${eventsController.selectedEvent.desc}',
-                              style: textStyle,
+                              style: FutTheme.font7
+                                  .copyWith(fontSize: height * 0.018),
                               maxLines: controller.isReadMore.value == false
                                   ? 4
                                   : null,
@@ -253,12 +255,13 @@ class EventDetailsScreen extends StatelessWidget {
                               alignment: Alignment.topRight,
                               height: height * 0.023,
                               //  color: Colors.red,
-                              child: (hasTextOverflow(
-                                '${eventsController.selectedEvent.desc}',
-                                textStyle!,
-                                maxLines: 4,
-                                maxWidth: width,
-                              ))
+                              child: hasTextOverflow(
+                                      eventsController.selectedEvent.desc
+                                          .toString(),
+                                      FutTheme.font7
+                                          .copyWith(fontSize: height * 0.018),
+                                      maxWidth: width,
+                                      maxLines: 4)
                                   ? GestureDetector(
                                       onTap: () {
                                         controller.readMore();
@@ -267,14 +270,11 @@ class EventDetailsScreen extends StatelessWidget {
                                         (!controller.isReadMore.value)
                                             ? "Read More "
                                             : "Read Less",
-                                        style: context
-                                            .theme.textTheme.bodyMedium
-                                            ?.copyWith(
-                                                color:
-                                                    context.theme.primaryColor),
+                                        style: FutTheme.font4.copyWith(
+                                            color: context.theme.primaryColor),
                                       ))
                                   : null,
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -324,22 +324,25 @@ class EventDetailsScreen extends StatelessWidget {
                       SizedBox(
                         height: height * 0.05,
                       ),
-                      GestureDetector(
-                        onTap: () => eventsController.launchUrlInWeb(),
-                        child: Container(
-                          alignment: Alignment.center,
-                          width: width,
-                          height: height * 0.06,
-                          decoration: BoxDecoration(
-                              color: context.theme.primaryColor,
-                              borderRadius: BorderRadius.circular(127)),
-                          child: Text(
-                            "REGISTER NOW >>",
-                            style: context.theme.textTheme.bodyLarge?.copyWith(
-                                color: Colors.black, fontSize: height * 0.024),
+                      if (!authController.isReview.value || Platform.isAndroid)
+                        GestureDetector(
+                          onTap: () => eventsController.launchUrlInWeb(),
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: width,
+                            height: height * 0.06,
+                            decoration: BoxDecoration(
+                                color: context.theme.primaryColor,
+                                borderRadius: BorderRadius.circular(127)),
+                            child: Text(
+                              "REGISTER NOW >>",
+                              style: context.theme.textTheme.bodyLarge
+                                  ?.copyWith(
+                                      color: Colors.black,
+                                      fontSize: height * 0.024),
+                            ),
                           ),
                         ),
-                      ),
                       SizedBox(
                         height: height * 0.05,
                       ),

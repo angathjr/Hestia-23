@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -8,11 +9,13 @@ import 'package:get/get.dart';
 import 'package:hestia_23/auth/controllers/auth_controller.dart';
 import 'package:hestia_23/core/constants..dart';
 import 'package:hestia_23/animations/controllers/animation_controller.dart';
+import 'package:hestia_23/events/controllers/events_controller.dart';
 import 'package:hestia_23/events/views/registered_events.dart';
 import 'package:hestia_23/profile/controllers/profile_controller.dart';
 import 'package:hestia_23/profile/views/profile_completion_screen.dart';
 import 'package:hestia_23/profile/views/qr_screen.dart';
 import 'package:hestia_23/theme/model/themes.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
@@ -20,6 +23,7 @@ class ProfileScreen extends StatelessWidget {
   final AuthController authController = Get.find();
   final ProfileController controller = Get.find();
   final AnimController anim = Get.find();
+  final EventsController eventsController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -56,70 +60,74 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      backgroundColor: const Color.fromRGBO(51, 51, 51, 1),
-                      radius: width / 8,
-                      child: CircleAvatar(
-                        backgroundImage: CachedNetworkImageProvider(
-                          '${controller.user.value.profileImage}',
+                    if (!authController.isReview.value || Platform.isAndroid)
+                      CircleAvatar(
+                        backgroundColor: const Color.fromRGBO(51, 51, 51, 1),
+                        radius: width / 8,
+                        child: CircleAvatar(
+                          backgroundImage: CachedNetworkImageProvider(
+                            '${controller.user.value.profileImage}',
+                          ),
+                          radius: width / 9.5,
                         ),
-                        radius: width / 9.5,
                       ),
-                    ),
                     SizedBox(
                       height: height / 100,
                     ),
-                    Text(
-                      '${controller.user.value.name}',
-                      style: context.theme.textTheme.titleLarge?.copyWith(
-                          color: Colors.white54,
-                          letterSpacing: 2,
-                          fontSize: width * 0.045),
-                    ),
+                    if (!authController.isReview.value || Platform.isAndroid)
+                      Text(
+                        '${controller.user.value.name}',
+                        style: context.theme.textTheme.titleLarge?.copyWith(
+                            color: Colors.white54,
+                            letterSpacing: 2,
+                            fontSize: width * 0.045),
+                      ),
                     SizedBox(
                       height: height / 50,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.phone_outlined,
-                          color: Color.fromRGBO(153, 153, 153, 1),
-                        ),
-                        SizedBox(
-                          width: width / 80,
-                        ),
-                        Text(
-                          '${controller.user.value.phoneNumber?.replaceAll('+91', '')}',
-                          style: FutTheme.font3.copyWith(
-                            color: Colors.white54,
-                            letterSpacing: 1.2,
+                    if (!authController.isReview.value || Platform.isAndroid)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.phone_outlined,
+                            color: Color.fromRGBO(153, 153, 153, 1),
                           ),
-                        )
-                      ],
-                    ),
+                          SizedBox(
+                            width: width / 80,
+                          ),
+                          Text(
+                            '${controller.user.value.phoneNumber?.replaceAll('+91', '')}',
+                            style: FutTheme.font3.copyWith(
+                              color: Colors.white54,
+                              letterSpacing: 1.2,
+                            ),
+                          )
+                        ],
+                      ),
                     SizedBox(
                       height: height / 200,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.mail_outline,
-                          color: Color.fromRGBO(153, 153, 153, 1),
-                        ),
-                        SizedBox(
-                          width: width / 80,
-                        ),
-                        Text(
-                          '${controller.user.value.email}',
-                          style: FutTheme.font3.copyWith(
-                            color: Colors.white54,
-                            letterSpacing: 1,
+                    if (!authController.isReview.value || Platform.isAndroid)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.mail_outline,
+                            color: Color.fromRGBO(153, 153, 153, 1),
                           ),
-                        )
-                      ],
-                    ),
+                          SizedBox(
+                            width: width / 80,
+                          ),
+                          Text(
+                            '${controller.user.value.email}',
+                            style: FutTheme.font3.copyWith(
+                              color: Colors.white54,
+                              letterSpacing: 1,
+                            ),
+                          )
+                        ],
+                      ),
                     SizedBox(
                       height: height / 20,
                     ),
@@ -133,256 +141,275 @@ class ProfileScreen extends StatelessWidget {
                         padding: EdgeInsets.all(width * 0.015),
                         child: Column(
                           children: [
-                            Expanded(
-                              flex: 3,
-                              child: SlideAnimation(
-                                curve: Curves.fastLinearToSlowEaseIn,
-                                duration: const Duration(milliseconds: 2500),
-                                verticalOffset: -20,
-                                child: InkWell(
-                                  borderRadius: BorderRadius.circular(15),
-                                  onTap: () => controller.regEvents.isEmpty
-                                      ? Get.snackbar(
-                                          "Registered Events",
-                                          "You have not registered any events",
-                                        )
-                                      : Get.to(() => RegisteredEventScreen()),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: context.theme.cardColor
-                                            .withOpacity(0.9)),
-                                    height: height / 9,
-                                    child: Padding(
-                                      padding: EdgeInsets.all(width / 30),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Expanded(
-                                            flex: 5,
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                left: 20.0,
-                                              ),
-                                              child: Text(
-                                                "Number of events \nregistered",
-                                                style: context
-                                                    .theme.textTheme.bodyMedium
-                                                    ?.copyWith(
-                                                  fontSize: height * 0.016,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 1,
-                                            child: Obx(
-                                              () => Text(
-                                                controller.regEvents.length
-                                                    .toString(),
-                                                style: context
-                                                    .theme.textTheme.bodyMedium
-                                                    ?.copyWith(
-                                                  fontSize: width * 0.09,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Icon(
-                                            Icons.navigate_next_outlined,
-                                            color: context.theme.primaryColor,
+                            if (!authController.isReview.value ||
+                                Platform.isAndroid)
+                              Expanded(
+                                flex: 3,
+                                child: SlideAnimation(
+                                  curve: Curves.fastLinearToSlowEaseIn,
+                                  duration: const Duration(milliseconds: 2500),
+                                  verticalOffset: -20,
+                                  child: InkWell(
+                                    borderRadius: BorderRadius.circular(15),
+                                    onTap: () => controller.regEvents.isEmpty
+                                        ? Get.snackbar(
+                                            "Registered Events",
+                                            "You have not registered any events",
                                           )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: width * 0.015,
-                            ),
-                            Expanded(
-                              flex: 8,
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    flex: 2,
-                                    child: SlideAnimation(
-                                      curve: Curves.fastLinearToSlowEaseIn,
-                                      duration:
-                                          const Duration(milliseconds: 2500),
-                                      horizontalOffset: -20,
-                                      child: Container(
-                                        width: width,
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
+                                        : Get.to(() => RegisteredEventScreen()),
+                                    child: Container(
+                                      decoration: BoxDecoration(
                                           borderRadius:
-                                              BorderRadius.circular(15),
+                                              BorderRadius.circular(10),
                                           color: context.theme.cardColor
-                                              .withOpacity(0.9),
-                                        ),
-                                        child: Column(
+                                              .withOpacity(0.9)),
+                                      height: height / 9,
+                                      child: Padding(
+                                        padding: EdgeInsets.all(width / 30),
+                                        child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                              MainAxisAlignment.spaceAround,
                                           children: [
-                                            const Icon(
-                                              FeatherIcons.award,
-                                              color: Color.fromRGBO(
-                                                  153, 153, 153, 1),
-                                            ),
-                                            SizedBox(
-                                              height: width * 0.03,
-                                            ),
-                                            Text(
-                                              "View \nCertificates",
-                                              style: context
-                                                  .theme.textTheme.bodyMedium
-                                                  ?.copyWith(
-                                                fontSize: height * 0.016,
+                                            Expanded(
+                                              flex: 5,
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                  left: 20.0,
+                                                ),
+                                                child: Text(
+                                                  "Number of events \nregistered",
+                                                  style: context.theme.textTheme
+                                                      .bodyMedium
+                                                      ?.copyWith(
+                                                    fontSize: height * 0.016,
+                                                  ),
+                                                ),
                                               ),
-                                              textAlign: TextAlign.center,
                                             ),
+                                            Expanded(
+                                              flex: 1,
+                                              child: Obx(
+                                                () => Text(
+                                                  controller.regEvents.length
+                                                      .toString(),
+                                                  style: context.theme.textTheme
+                                                      .bodyMedium
+                                                      ?.copyWith(
+                                                    fontSize: width * 0.09,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Icon(
+                                              Icons.navigate_next_outlined,
+                                              color: context.theme.primaryColor,
+                                            )
                                           ],
                                         ),
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: width * 0.015,
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: SlideAnimation(
-                                      curve: Curves.fastLinearToSlowEaseIn,
-                                      duration:
-                                          const Duration(milliseconds: 2500),
-                                      horizontalOffset: 20,
-                                      child: Column(
-                                        children: [
-                                          Expanded(
-                                            child: InkWell(
+                                ),
+                              ),
+                            SizedBox(
+                              height: width * 0.015,
+                            ),
+                            if (!authController.isReview.value ||
+                                Platform.isAndroid)
+                              Expanded(
+                                flex: 8,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 2,
+                                      child: SlideAnimation(
+                                        curve: Curves.fastLinearToSlowEaseIn,
+                                        duration:
+                                            const Duration(milliseconds: 2500),
+                                        horizontalOffset: -20,
+                                        child: GestureDetector(
+                                          onTap: () => eventsController
+                                              .lauchCeritificate(),
+                                          child: Container(
+                                            width: width,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(15),
-                                              onTap: () => Get.to(
-                                                  () => ProfileCompletion(),
-                                                  arguments: [true]),
-                                              child: Container(
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                  color: context.theme.cardColor
-                                                      .withOpacity(0.9),
+                                              color: context.theme.cardColor
+                                                  .withOpacity(0.9),
+                                            ),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                const Icon(
+                                                  FeatherIcons.award,
+                                                  color: Color.fromRGBO(
+                                                      153, 153, 153, 1),
                                                 ),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    const Icon(
-                                                      FeatherIcons.edit,
-                                                      color: Color.fromRGBO(
-                                                          153, 153, 153, 1),
-                                                    ),
-                                                    SizedBox(
-                                                      height: width * 0.03,
-                                                    ),
-                                                    Text(
-                                                      "Edit Profile",
-                                                      style: context.theme
-                                                          .textTheme.bodyMedium
-                                                          ?.copyWith(
-                                                        fontSize:
-                                                            height * 0.016,
-                                                      ),
-                                                    ),
-                                                  ],
+                                                SizedBox(
+                                                  height: width * 0.03,
                                                 ),
-                                              ),
+                                                Text(
+                                                  "View \nCertificates",
+                                                  style: context.theme.textTheme
+                                                      .bodyMedium
+                                                      ?.copyWith(
+                                                    fontSize: height * 0.016,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                          SizedBox(
-                                            height: width * 0.015,
-                                          ),
-                                          Expanded(
-                                            child: GestureDetector(
-                                              onTap: () => controller
-                                                      .regEvents.isEmpty
-                                                  ? Get.snackbar(
-                                                      "ID Card",
-                                                      "You have not registered any events",
-                                                    )
-                                                  : showModalBottomSheet(
-                                                      isScrollControlled: true,
-                                                      useSafeArea: true,
-                                                      shape: const RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius.only(
-                                                                  topLeft: Radius
-                                                                      .circular(
-                                                                          20),
-                                                                  topRight: Radius
-                                                                      .circular(
-                                                                          20))),
-                                                      isDismissible: true,
-                                                      context: context,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      builder: (context) =>
-                                                          BackdropFilter(
-                                                              filter: ImageFilter
-                                                                  .blur(
-                                                                      sigmaX:
-                                                                          20,
-                                                                      sigmaY:
-                                                                          20),
-                                                              child:
-                                                                  Qrscreen()),
-                                                    ),
-                                              child: Container(
-                                                alignment: Alignment.center,
-                                                width: width,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                  color: context.theme.cardColor
-                                                      .withOpacity(0.9),
-                                                ),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    const Icon(
-                                                      Icons.qr_code,
-                                                      color: Color.fromRGBO(
-                                                          153, 153, 153, 1),
-                                                    ),
-                                                    SizedBox(
-                                                      height: width * 0.03,
-                                                    ),
-                                                    Text(
-                                                      "ID Card",
-                                                      style: context.theme
-                                                          .textTheme.bodyMedium
-                                                          ?.copyWith(
-                                                        fontSize:
-                                                            height * 0.016,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                                        ),
                                       ),
                                     ),
-                                  )
-                                ],
+                                    SizedBox(
+                                      width: width * 0.015,
+                                    ),
+                                    Expanded(
+                                      flex: 2,
+                                      child: SlideAnimation(
+                                        curve: Curves.fastLinearToSlowEaseIn,
+                                        duration:
+                                            const Duration(milliseconds: 2500),
+                                        horizontalOffset: 20,
+                                        child: Column(
+                                          children: [
+                                            Expanded(
+                                              child: InkWell(
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                                onTap: () => Get.to(
+                                                    () => ProfileCompletion(),
+                                                    arguments: [true]),
+                                                child: Container(
+                                                  alignment: Alignment.center,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15),
+                                                    color: context
+                                                        .theme.cardColor
+                                                        .withOpacity(0.9),
+                                                  ),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      const Icon(
+                                                        FeatherIcons.edit,
+                                                        color: Color.fromRGBO(
+                                                            153, 153, 153, 1),
+                                                      ),
+                                                      SizedBox(
+                                                        height: width * 0.03,
+                                                      ),
+                                                      Text(
+                                                        "Edit Profile",
+                                                        style: context
+                                                            .theme
+                                                            .textTheme
+                                                            .bodyMedium
+                                                            ?.copyWith(
+                                                          fontSize:
+                                                              height * 0.016,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: width * 0.015,
+                                            ),
+                                            Expanded(
+                                              child: GestureDetector(
+                                                onTap: () =>
+                                                    controller.regEvents.isEmpty
+                                                        ? Get.snackbar(
+                                                            "ID Card",
+                                                            "You have not registered any events",
+                                                          )
+                                                        : showModalBottomSheet(
+                                                            isScrollControlled:
+                                                                true,
+                                                            useSafeArea: true,
+                                                            shape: const RoundedRectangleBorder(
+                                                                borderRadius: BorderRadius.only(
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            20),
+                                                                    topRight: Radius
+                                                                        .circular(
+                                                                            20))),
+                                                            isDismissible: true,
+                                                            context: context,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            builder: (context) =>
+                                                                BackdropFilter(
+                                                                    filter: ImageFilter.blur(
+                                                                        sigmaX:
+                                                                            20,
+                                                                        sigmaY:
+                                                                            20),
+                                                                    child:
+                                                                        Qrscreen()),
+                                                          ),
+                                                child: Container(
+                                                  alignment: Alignment.center,
+                                                  width: width,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15),
+                                                    color: context
+                                                        .theme.cardColor
+                                                        .withOpacity(0.9),
+                                                  ),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      const Icon(
+                                                        Icons.qr_code,
+                                                        color: Color.fromRGBO(
+                                                            153, 153, 153, 1),
+                                                      ),
+                                                      SizedBox(
+                                                        height: width * 0.03,
+                                                      ),
+                                                      Text(
+                                                        "ID Card",
+                                                        style: context
+                                                            .theme
+                                                            .textTheme
+                                                            .bodyMedium
+                                                            ?.copyWith(
+                                                          fontSize:
+                                                              height * 0.016,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
-                            ),
                             SizedBox(
                               height: width * 0.015,
                             ),
@@ -411,13 +438,23 @@ class ProfileScreen extends StatelessWidget {
                                             authController.signOut();
                                             //Get.back();
                                           },
-                                          child: const Text("Yes"),
+                                          child: Text(
+                                            "Yes",
+                                            style: TextStyle(
+                                                color:
+                                                    context.theme.primaryColor),
+                                          ),
                                         ),
                                         TextButton(
                                           onPressed: () {
                                             Get.back();
                                           },
-                                          child: const Text("No"),
+                                          child: Text(
+                                            "No",
+                                            style: TextStyle(
+                                                color:
+                                                    context.theme.primaryColor),
+                                          ),
                                         ),
                                       ],
                                     )),

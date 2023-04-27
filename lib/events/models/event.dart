@@ -83,9 +83,9 @@ class EventModel {
   DateTime? eventStart;
   DateTime? eventEnd;
   DateTime? fileSubmissionEnd;
-  String? winner1;
-  String? winner2;
-  String? winner3;
+  Winner? winner1;
+  Winner? winner2;
+  Winner? winner3;
 
   factory EventModel.fromJson(Map<String, dynamic> json) => EventModel(
         id: json["id"],
@@ -123,21 +123,25 @@ class EventModel {
         guidelineFile: json["guideline_file"],
         regStart: json["reg_start"] == null
             ? null
-            : DateTime.parse(json["reg_start"]),
-        regEnd:
-            json["reg_end"] == null ? null : DateTime.parse(json["reg_end"]),
+            : DateTime.parse(json["reg_start"]).toLocal(),
+        regEnd: json["reg_end"] == null
+            ? null
+            : DateTime.parse(json["reg_end"]).toLocal(),
         eventStart: json["event_start"] == null
             ? null
-            : DateTime.parse(json["event_start"]),
+            : DateTime.parse(json["event_start"]).toLocal(),
         eventEnd: json["event_end"] == null
             ? null
-            : DateTime.parse(json["event_end"]),
+            : DateTime.parse(json["event_end"]).toLocal(),
         fileSubmissionEnd: json["file_submission_end"] == null
             ? null
-            : DateTime.parse(json["file_submission_end"]),
-        winner1: json["winner1"],
-        winner2: json["winner2"],
-        winner3: json["winner3"],
+            : DateTime.parse(json["file_submission_end"]).toLocal(),
+        winner1:
+            json["winner1"] == null ? null : Winner.fromJson(json['winner1']),
+        winner2:
+            json["winner2"] == null ? null : Winner.fromJson(json['winner2']),
+        winner3:
+            json["winner3"] == null ? null : Winner.fromJson(json['winner3']),
       );
 
   Map<String, dynamic> toJson() => {
@@ -265,5 +269,124 @@ class Venue {
         "picture": picture,
         "desc": desc,
         "short_desc": shortDesc,
+      };
+}
+
+class Winner {
+  String? id;
+  TeamLeader? teamLeader;
+  String? teamName;
+  int? gateway;
+  String? title;
+  String? coupon;
+  String? userFile;
+  bool? isFileComplete;
+  int? teamCount;
+  String? slug;
+  String? referral;
+  bool? isSpot;
+  bool? attendance;
+  DateTime? createdAt;
+  String? mode;
+  int? payment;
+  int? event;
+  List<int>? members;
+
+  Winner({
+    this.id,
+    this.teamLeader,
+    this.teamName,
+    this.gateway,
+    this.title,
+    this.coupon,
+    this.userFile,
+    this.isFileComplete,
+    this.teamCount,
+    this.slug,
+    this.referral,
+    this.isSpot,
+    this.attendance,
+    this.createdAt,
+    this.mode,
+    this.payment,
+    this.event,
+    this.members,
+  });
+
+  factory Winner.fromJson(Map<String, dynamic> json) => Winner(
+        id: json["id"],
+        teamLeader: json["team_leader"] == null
+            ? null
+            : TeamLeader.fromJson(json["team_leader"]),
+        teamName: json["team_name"],
+        gateway: json["gateway"],
+        title: json["title"],
+        coupon: json["coupon"],
+        userFile: json["user_file"],
+        isFileComplete: json["is_file_complete"],
+        teamCount: json["team_count"],
+        slug: json["slug"],
+        referral: json["referral"],
+        isSpot: json["is_spot"],
+        attendance: json["attendance"],
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        mode: json["mode"],
+        payment: json["payment"],
+        event: json["event"],
+        members: json["members"] == null
+            ? []
+            : List<int>.from(json["members"]!.map((x) => x)),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "team_leader": teamLeader?.toJson(),
+        "team_name": teamName,
+        "gateway": gateway,
+        "title": title,
+        "coupon": coupon,
+        "user_file": userFile,
+        "is_file_complete": isFileComplete,
+        "team_count": teamCount,
+        "slug": slug,
+        "referral": referral,
+        "is_spot": isSpot,
+        "attendance": attendance,
+        "created_at": createdAt?.toIso8601String(),
+        "mode": mode,
+        "payment": payment,
+        "event": event,
+        "members":
+            members == null ? [] : List<dynamic>.from(members!.map((x) => x)),
+      };
+}
+
+class TeamLeader {
+  String? name;
+  String? email;
+  String? phoneNumber;
+  String? profileImage;
+
+  TeamLeader({
+    this.name,
+    this.email,
+    this.phoneNumber,
+    this.profileImage,
+  });
+
+  factory TeamLeader.fromJson(Map<String, dynamic> json) => TeamLeader(
+        name: json["name"],
+        email: json["email"],
+        phoneNumber: json["phone_number"],
+        profileImage: json["profile_image"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "email": email,
+        "phone_number": phoneNumber,
+        "profile_image": profileImage,
       };
 }

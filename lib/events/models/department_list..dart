@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 List<DepartmentModel> departmentModelFromJson(List<dynamic> str) => List<DepartmentModel>.from(str.map((x) => DepartmentModel.fromJson(x)));

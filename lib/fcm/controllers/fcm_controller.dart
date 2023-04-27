@@ -14,7 +14,6 @@ class FCMController extends GetxController {
 
     messaging = FirebaseMessaging.instance;
     handleRequest();
-    onListen();
     fetchToken();
     subscribeToTopic();
   }
@@ -31,16 +30,6 @@ class FCMController extends GetxController {
     );
   }
 
-  void onListen() {
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      log('Got a message whilst in the foreground!');
-      log('Message data: ${message.data}');
-
-      if (message.notification != null) {
-        log('Message also contained a notification: ${message.notification}');
-      }
-    });
-  }
 
   void subscribeToTopic() async {
     try {
@@ -61,7 +50,6 @@ class FCMController extends GetxController {
 
   void fetchToken() async {
     String? token = await messaging.getToken();
-    log(token!);
 
     // TODO: Api call to register device token
   }

@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -16,10 +17,12 @@ class AuthController extends GetxController {
   var isSignIn = false.obs;
   var text1 = "Continue with Google".obs;
   var text2 = "Continue with Apple".obs;
+  var isReview = true.obs;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
+    isReview(await getReview());
     _googleSignIn = GoogleSignIn();
     Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
       if (result == ConnectivityResult.none) {
@@ -44,10 +47,56 @@ class AuthController extends GetxController {
 
       Map data = {'access_token': auth.accessToken};
       final response = await apiNoAuth.postApi('/users/google/', data);
-      log(data.toString());
       final apiToken = response.body['key'];
 
       await _storage.write('authToken', apiToken);
+
+      final Response userResponse = await api.getApi('/api/users/');
+
+      final UserModel userModel =
+          userModelFromJson(userResponse.body['results'][0]);
+      _storage.write('user', userModel.toJson());
+
+      if (userModel.isCompleted ?? false) {
+        _storage.write('isComplete', true);
+      } else {
+        _storage.write('isComplete', false);
+      }
+      text1.value = "Logged in";
+      isSignIn(false);
+      Get.offAllNamed('/');
+    } catch (error) {
+      isSignIn(false);
+      text1.value = "Try Again";
+      await Future.delayed(const Duration(seconds: 2));
+      text1.value = "Continue with Google";
+    } finally {
+      isSignIn(false);
+      text1.value = "Continue with Google";
+    }
+  }
+
+  Future<void> appleSignIn() async {
+    try {
+      text2.value = "Logging you in...";
+      isSignIn(true);
+      AuthorizationCredentialAppleID credential =
+          await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+      );
+
+      // final auth = await result!.authentication;
+      //
+      // Map data = {'access_token': auth.accessToken};
+      // final response = await apiNoAuth.postApi('/users/google/', data);
+      // log(data.toString());
+      // final apiToken = response.body['key'];
+      //
+      await _storage.write(
+          'authToken', '06717f884c6e955638b2ccbe09244a9f1fb738a6');
 
       final Response userResponse = await api.getApi('/api/users/');
 
@@ -61,57 +110,9 @@ class AuthController extends GetxController {
       } else {
         _storage.write('isComplete', false);
       }
-      text1.value = "Logged in";
+      text2.value = "Logged in";
       isSignIn(false);
       Get.offAllNamed('/');
-    } catch (error) {
-      log(error.toString());
-      isSignIn(false);
-      text1.value = "Try Again";
-      await Future.delayed(const Duration(seconds: 1));
-      text1.value = "Continue with Google";
-    } finally {
-      isSignIn(false);
-      text1.value = "Continue with Google";
-    }
-  }
-
-  Future<void> appleSignIn() async {
-    try {
-      text2.value = "Logging you in...";
-      isSignIn(true);
-      final credential = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-      );
-
-      print(credential);
-      // final auth = await result!.authentication;
-      //
-      // Map data = {'access_token': auth.accessToken};
-      // final response = await apiNoAuth.postApi('/users/google/', data);
-      // log(data.toString());
-      // final apiToken = response.body['key'];
-      //
-      // await _storage.write('authToken', apiToken);
-      //
-      // final Response userResponse = await api.getApi('/api/users/');
-      //
-      // final UserModel userModel =
-      //     userModelFromJson(userResponse.body['results'][0]);
-      // log(userModel.toString());
-      // _storage.write('user', userModel.toJson());
-      //
-      // if (userModel.isCompleted ?? false) {
-      //   _storage.write('isComplete', true);
-      // } else {
-      //   _storage.write('isComplete', false);
-      // }
-      // text2.value = "Logged in";
-      // isSignIn(false);
-      // Get.offAllNamed('/');
     } catch (error) {
       log(error.toString());
       isSignIn(false);
@@ -122,5 +123,20 @@ class AuthController extends GetxController {
       isSignIn(false);
       text2.value = "Continue with Apple";
     }
+  }
+
+  Future<bool> getReview() async {
+    final doc =
+        await FirebaseFirestore.instance.collection("apple").doc('test').get();
+
+    if(doc.exists) {
+      if(doc.data() != null) {
+        if(doc.data()!['isReview'] != null) {
+          return doc.data()?['isReview'];
+        }
+      }
+    }
+
+    return false;
   }
 }

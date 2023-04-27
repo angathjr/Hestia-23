@@ -34,22 +34,22 @@ class CategoryCardPast extends StatelessWidget {
               Align(
                 alignment: Alignment.topCenter,
                 child: SizedBox(
-                  height: cardHeight * 0.45,
+                  height: cardHeight * 0.5,
                   width: double.infinity,
                   child: Container(
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        color: context.theme.primaryColor,
-                      ),
+                      // border: Border.all(
+                      //   color: context.theme.primaryColor,
+                      // ),
                       borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(10),
-                        topLeft: Radius.circular(30),
+                        // topRight: Radius.circular(10),
+                        topLeft: Radius.circular(20),
                       ),
                     ),
                     child: ClipRRect(
                       borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(10),
-                        topLeft: Radius.circular(30),
+                        // topRight: Radius.circular(10),
+                        topLeft: Radius.circular(20),
                       ),
                       child: CachedNetworkImage(
                         progressIndicatorBuilder:
@@ -70,16 +70,16 @@ class CategoryCardPast extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: context.theme.primaryColor),
-                    color: const Color.fromARGB(255, 83, 70, 69),
+                    // border: Border.all(color: context.theme.primaryColor),
+                    color: context.theme.canvasColor,
                     borderRadius: const BorderRadius.only(
-                      topRight: Radius.circular(5),
-                      topLeft: Radius.circular(50),
-                      bottomLeft: Radius.circular(5),
-                      bottomRight: Radius.circular(50),
+                      topRight: Radius.circular(0),
+                      topLeft: Radius.circular(20),
+                      bottomLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(20),
                     ),
                   ),
-                  height: cardHeight * 0.5,
+                  height: cardHeight * 0.45,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -96,7 +96,7 @@ class CategoryCardPast extends StatelessWidget {
                               style:
                                   context.theme.textTheme.titleLarge?.copyWith(
                                 fontSize: cardHeight * 0.067,
-                                color: context.theme.primaryColor,
+                                color: Colors.white,
                               ),
                             ),
                           ),
@@ -141,7 +141,7 @@ class CategoryCardPast extends StatelessWidget {
                               child: Text(
                                 "Check It Out",
                                 style: context.theme.textTheme.titleSmall
-                                    ?.copyWith(color: Colors.black87),
+                                    ?.copyWith(color: Colors.black),
                               ),
                             ),
                           ),

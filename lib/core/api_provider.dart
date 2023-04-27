@@ -1,6 +1,4 @@
-import 'dart:developer';
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -44,8 +42,6 @@ class ApiProvider extends GetConnect {
 
   dynamic errorHandler(Response response) {
     try {
-      log(response.statusCode.toString());
-      log(response.body.toString());
       // switch (response.statusCode) {
       //   case 200:
       //   case 201:
@@ -61,7 +57,6 @@ class ApiProvider extends GetConnect {
       //     throw 'Error occurred retry';
       // }
     } catch (e) {
-      print(e);
     }
   }
 }

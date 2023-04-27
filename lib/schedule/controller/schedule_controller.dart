@@ -7,8 +7,13 @@ class ScheduleDate {
   final String day;
   final String date;
   final String apiDate;
+  final String apiEndDate;
 
-  ScheduleDate({required this.day, required this.date, required this.apiDate});
+  ScheduleDate(
+      {required this.apiEndDate,
+      required this.day,
+      required this.date,
+      required this.apiDate});
 }
 
 class ScheduleController extends GetxController {
@@ -20,10 +25,26 @@ class ScheduleController extends GetxController {
   var selectedDateIndex = 0.obs;
 
   final List<ScheduleDate> dates = [
-    ScheduleDate(date: "27", day: "Thu", apiDate: "2023-04-27"),
-    ScheduleDate(date: "28", day: "Fri", apiDate: "2023-04-28"),
-    ScheduleDate(date: "29", day: "Sat", apiDate: "2023-04-29"),
-    ScheduleDate(date: "30", day: "Sun", apiDate: "2023-04-30"),
+    ScheduleDate(
+        date: "27",
+        day: "Thu",
+        apiDate: "2023-04-27",
+        apiEndDate: '2023-04-28'),
+    ScheduleDate(
+        date: "28",
+        day: "Fri",
+        apiDate: "2023-04-28",
+        apiEndDate: '2023-04-29'),
+    ScheduleDate(
+        date: "29",
+        day: "Sat",
+        apiDate: "2023-04-29",
+        apiEndDate: '2023-04-30'),
+    ScheduleDate(
+        date: "30",
+        day: "Sun",
+        apiDate: "2023-04-30",
+        apiEndDate: '2023-05-01'),
   ];
 
   @override
@@ -35,11 +56,10 @@ class ScheduleController extends GetxController {
   void fetchEventsbyDate() async {
     eventsLoading(true);
     final Response response = await api.getApi(
-        '/api/events/all/?event_start=${dates[selectedDateIndex.value].apiDate}');
+        '/api/events/all/?event_start=${dates[selectedDateIndex.value].apiDate}&event_end=${dates[selectedDateIndex.value].apiEndDate}');
 
     List<EventModel> parsed = eventModelFromJson(response.body['results']);
-
-    parsed.forEach((element) => print(element.slug));
+    parsed.sort((a, b) => a.eventStart!.compareTo(b.eventStart!));
     events.value = parsed;
     eventsLoading(false);
   }
