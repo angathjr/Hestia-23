@@ -113,6 +113,7 @@ class StackItem extends StatelessWidget {
         SizedBox(
           width: width * 0.25,
           child: Text(
+            
             "${winner?.teamLeader?.name}",
             style: FutTheme.categoryFont,
             textAlign: TextAlign.center,
@@ -173,7 +174,7 @@ Widget futureLeaderboard(num h, BuildContext context) {
                     child: ListView.builder(
                       itemCount: searchController.events.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return ExpansionTile(
+                        return (searchController.events[index].winner1!=null)?ExpansionTile(
                           trailing: const Icon(
                             Icons.arrow_drop_down,
                             color: Colors.grey,
@@ -218,7 +219,7 @@ Widget futureLeaderboard(num h, BuildContext context) {
                               ),
                             )
                           ],
-                        );
+                        ):Container();
                       },
                     ),
                   ),
