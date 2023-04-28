@@ -63,6 +63,7 @@ class StackItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -107,11 +108,15 @@ class StackItem extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 10,
+          height: 5,
         ),
-        Text(
-          "${winner?.teamLeader?.name}",
-          style: FutTheme.categoryFont,
+        SizedBox(
+          width: width * 0.25,
+          child: Text(
+            "${winner?.teamLeader?.name}",
+            style: FutTheme.categoryFont,
+            textAlign: TextAlign.center,
+          ),
         ),
       ],
     );
@@ -186,23 +191,23 @@ Widget futureLeaderboard(num h, BuildContext context) {
                                 fit: StackFit.expand,
                                 children: [
                                   Align(
-                                    alignment: const Alignment(-0.75, 0),
+                                    alignment: const Alignment(-0.8, 0),
                                     child: StackItem(
                                       number: 2,
-                                      winner: searchController
-                                          .events[index].winner1,
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: const Alignment(0, -0.4),
-                                    child: StackItem(
-                                      large: true,
                                       winner: searchController
                                           .events[index].winner2,
                                     ),
                                   ),
                                   Align(
-                                    alignment: const Alignment(0.75, 0),
+                                    alignment: const Alignment(0, -0.5),
+                                    child: StackItem(
+                                      large: true,
+                                      winner: searchController
+                                          .events[index].winner1,
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: const Alignment(0.8, 0),
                                     child: StackItem(
                                       number: 3,
                                       winner: searchController
