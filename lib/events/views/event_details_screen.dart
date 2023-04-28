@@ -308,7 +308,7 @@ class EventDetailsScreen extends StatelessWidget {
                           if (eventsController.selectedEvent.coordinator2 !=
                               null)
                             SizedBox(
-                              width: width * 0.11,
+                              width: width * 0.05,
                             ),
                           if (eventsController.selectedEvent.coordinator2 !=
                               null)
@@ -357,35 +357,43 @@ class EventDetailsScreen extends StatelessWidget {
     );
   }
 
-  SizedBox contactDetails(double width, double height, String name,
+  Widget contactDetails(double width, double height, String name,
       {String? phoneNumber}) {
-    return SizedBox(
+    return Container(
+        color: Colors.red,
         child: GestureDetector(
-      onTap: () => eventsController.launchPhoneDialer(phoneNumber),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            width: width * 0.09,
-            height: width * 0.09,
-            decoration: const BoxDecoration(
-                color: Color(0xffD1D1D1), shape: BoxShape.circle),
-            child: Icon(
-              Icons.call,
-              size: width * 0.05,
-              color: Colors.black,
-            ),
+          onTap: () => eventsController.launchPhoneDialer(phoneNumber),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                width: width * 0.09,
+                height: width * 0.09,
+                decoration: const BoxDecoration(
+                    color: Color(0xffD1D1D1), shape: BoxShape.circle),
+                child: Icon(
+                  Icons.call,
+                  size: width * 0.05,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Container(
+                alignment: Alignment.center,
+                width: width * 0.3,
+                child: FittedBox(
+                  child: Text(
+                    name,
+                    style: FutTheme.font4.copyWith(fontSize: height * 0.016),
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              )
+            ],
           ),
-          const SizedBox(
-            width: 10,
-          ),
-          Text(
-            name,
-            style: FutTheme.font4.copyWith(fontSize: height * 0.02),
-            overflow: TextOverflow.ellipsis,
-          )
-        ],
-      ),
-    ));
+        ));
   }
 }
