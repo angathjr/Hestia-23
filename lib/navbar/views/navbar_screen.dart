@@ -62,7 +62,7 @@ class NavBarPage extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: width * 0.06, vertical: height * 0.008),
+                            horizontal: width * 0.06, vertical: height * 0.03),
                         child: Container(
                           height: height * 0.065,
                           decoration: BoxDecoration(

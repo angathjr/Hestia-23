@@ -76,54 +76,54 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> appleSignIn() async {
-    try {
-      text2.value = "Logging you in...";
-      isSignIn(true);
-      AuthorizationCredentialAppleID credential =
-          await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-      );
-
-      // final auth = await result!.authentication;
-      //
-      // Map data = {'access_token': auth.accessToken};
-      // final response = await apiNoAuth.postApi('/users/google/', data);
-      // log(data.toString());
-      // final apiToken = response.body['key'];
-      //
-      await _storage.write(
-          'authToken', '06717f884c6e955638b2ccbe09244a9f1fb738a6');
-
-      final Response userResponse = await api.getApi('/api/users/');
-
-      final UserModel userModel =
-          userModelFromJson(userResponse.body['results'][0]);
-      log(userModel.toString());
-      _storage.write('user', userModel.toJson());
-
-      if (userModel.isCompleted ?? false) {
-        _storage.write('isComplete', true);
-      } else {
-        _storage.write('isComplete', false);
-      }
-      text2.value = "Logged in";
-      isSignIn(false);
-      Get.offAllNamed('/');
-    } catch (error) {
-      log(error.toString());
-      isSignIn(false);
-      text2.value = "Try Again";
-      await Future.delayed(const Duration(seconds: 1));
-      text2.value = "Continue with Apple";
-    } finally {
-      isSignIn(false);
-      text2.value = "Continue with Apple";
-    }
-  }
+  // Future<void> appleSignIn() async {
+  //   try {
+  //     text2.value = "Logging you in...";
+  //     isSignIn(true);
+  //     AuthorizationCredentialAppleID credential =
+  //         await SignInWithApple.getAppleIDCredential(
+  //       scopes: [
+  //         AppleIDAuthorizationScopes.email,
+  //         AppleIDAuthorizationScopes.fullName,
+  //       ],
+  //     );
+  //
+  //     // final auth = await result!.authentication;
+  //     //
+  //     // Map data = {'access_token': auth.accessToken};
+  //     // final response = await apiNoAuth.postApi('/users/google/', data);
+  //     // log(data.toString());
+  //     // final apiToken = response.body['key'];
+  //     //
+  //     await _storage.write(
+  //         'authToken', '06717f884c6e955638b2ccbe09244a9f1fb738a6');
+  //
+  //     final Response userResponse = await api.getApi('/api/users/');
+  //
+  //     final UserModel userModel =
+  //         userModelFromJson(userResponse.body['results'][0]);
+  //     log(userModel.toString());
+  //     _storage.write('user', userModel.toJson());
+  //
+  //     if (userModel.isCompleted ?? false) {
+  //       _storage.write('isComplete', true);
+  //     } else {
+  //       _storage.write('isComplete', false);
+  //     }
+  //     text2.value = "Logged in";
+  //     isSignIn(false);
+  //     Get.offAllNamed('/');
+  //   } catch (error) {
+  //     log(error.toString());
+  //     isSignIn(false);
+  //     text2.value = "Try Again";
+  //     await Future.delayed(const Duration(seconds: 1));
+  //     text2.value = "Continue with Apple";
+  //   } finally {
+  //     isSignIn(false);
+  //     text2.value = "Continue with Apple";
+  //   }
+  // }
 
   Future<bool> getReview() async {
     final doc =

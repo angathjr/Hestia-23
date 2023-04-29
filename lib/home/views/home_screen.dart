@@ -210,7 +210,7 @@ class HomeScreen extends StatelessWidget {
                     Column(
                       children: [
                         SizedBox(
-                          height: height * 0.02,
+                          height: height * 0.01,
                         ),
                         SizedBox(
                           width: width,
@@ -218,7 +218,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         Padding(
                           padding: EdgeInsets.only(
-                              top: height * 0.05, bottom: height * 0.03),
+                              top: height * 0.04, bottom: height * 0.03),
                           child: Container(
                             alignment: Alignment.center,
                             // width: width,
