@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tkmce.hestia22">
+    package="com.tkmce.hestia23">
     <uses-permission android:name="android.permission.INTERNET" />
     <queries>
     <!-- If your app checks for call support -->
@@ -45,7 +45,7 @@
 
        <!-- Set up the Sign in with Apple activity, such that it's callable from the browser-redirect -->
        <activity
-           android:name="com.aboutyou.dart_packages.sign_in_with_apple.SignInWithAppleCallback"
+           android:name="com.aboutyou.dart_package="com.tkmce.hestia23">
            android:exported="true"
            >
            <intent-filter>
