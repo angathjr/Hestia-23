@@ -359,41 +359,39 @@ class EventDetailsScreen extends StatelessWidget {
 
   Widget contactDetails(double width, double height, String name,
       {String? phoneNumber}) {
-    return Container(
-        color: Colors.red,
-        child: GestureDetector(
-          onTap: () => eventsController.launchPhoneDialer(phoneNumber),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                width: width * 0.09,
-                height: width * 0.09,
-                decoration: const BoxDecoration(
-                    color: Color(0xffD1D1D1), shape: BoxShape.circle),
-                child: Icon(
-                  Icons.call,
-                  size: width * 0.05,
-                  color: Colors.black,
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Container(
-                alignment: Alignment.center,
-                width: width * 0.3,
-                child: FittedBox(
-                  child: Text(
-                    name,
-                    style: FutTheme.font4.copyWith(fontSize: height * 0.016),
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              )
-            ],
+    return GestureDetector(
+      onTap: () => eventsController.launchPhoneDialer(phoneNumber),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            width: width * 0.09,
+            height: width * 0.09,
+            decoration: const BoxDecoration(
+                color: Color(0xffD1D1D1), shape: BoxShape.circle),
+            child: Icon(
+              Icons.call,
+              size: width * 0.05,
+              color: Colors.black,
+            ),
           ),
-        ));
+          const SizedBox(
+            width: 10,
+          ),
+          Container(
+            alignment: Alignment.center,
+            width: width * 0.3,
+            child: FittedBox(
+              child: Text(
+                name,
+                style: FutTheme.font4.copyWith(fontSize: height * 0.016),
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
