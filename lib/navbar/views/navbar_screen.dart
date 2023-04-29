@@ -7,7 +7,6 @@ import 'package:hestia_23/home/views/home_screen.dart';
 import 'package:hestia_23/home/views/leaderboard_card.dart';
 import 'package:hestia_23/profile/views/profile_screen.dart';
 import 'package:upgrader/upgrader.dart';
-
 import '../controllers/navbar_controller.dart';
 
 class NavBarPage extends StatelessWidget {
